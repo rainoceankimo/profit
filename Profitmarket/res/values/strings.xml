@@ -8,5 +8,11 @@
     <string name="title_activity_s_storescenter">舊市潤市</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_s_storescenteramend">舊市潤市</string>
+    <string name="title_activity_s__stroes_merchandise">S_StroesMerchandiseActivity</string>
+    <string name="title_activity_s__buycoupon">S_BuycouponActivity</string>
+    <string name="title_activity_s__couponmanagement">S_CouponmanagementActivity</string>
+    <string name="title_activity_s__couponrules">S_CouponrulesActivity</string>
+    <string name="title_activity_s__settleaccounts">S_SettleaccountsActivity</string>
+    <string name="title_activity_s__records">S_RecordsActivity</string>
 
 </resources>

@@ -59,22 +59,40 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int s_mainmenu=0x7f030001;
-        public static final int s_storescenter=0x7f030002;
-        public static final int s_storescenteramend=0x7f030003;
+        public static final int s_buycoupon=0x7f030001;
+        public static final int s_couponmanagement=0x7f030002;
+        public static final int s_couponrules=0x7f030003;
+        public static final int s_mainmenu=0x7f030004;
+        public static final int s_records=0x7f030005;
+        public static final int s_settleaccounts=0x7f030006;
+        public static final int s_storescenter=0x7f030007;
+        public static final int s_storescenteramend=0x7f030008;
+        public static final int s_stroes_merchandise=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f070000;
-        public static final int s__mainmenu=0x7f070001;
-        public static final int s_storescenter=0x7f070002;
-        public static final int s_storescenteramend=0x7f070003;
+        public static final int s__buycoupon=0x7f070001;
+        public static final int s__couponmanagement=0x7f070002;
+        public static final int s__couponrules=0x7f070003;
+        public static final int s__mainmenu=0x7f070004;
+        public static final int s__records=0x7f070005;
+        public static final int s__settleaccounts=0x7f070006;
+        public static final int s__stroes_merchandise=0x7f070007;
+        public static final int s_storescenter=0x7f070008;
+        public static final int s_storescenteramend=0x7f070009;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int companyname=0x7f050003;
         public static final int hello_world=0x7f050005;
+        public static final int title_activity_s__buycoupon=0x7f050008;
+        public static final int title_activity_s__couponmanagement=0x7f050009;
+        public static final int title_activity_s__couponrules=0x7f05000a;
         public static final int title_activity_s__mainmenu=0x7f050002;
+        public static final int title_activity_s__records=0x7f05000c;
+        public static final int title_activity_s__settleaccounts=0x7f05000b;
+        public static final int title_activity_s__stroes_merchandise=0x7f050007;
         public static final int title_activity_s_storescenter=0x7f050004;
         public static final int title_activity_s_storescenteramend=0x7f050006;
     }

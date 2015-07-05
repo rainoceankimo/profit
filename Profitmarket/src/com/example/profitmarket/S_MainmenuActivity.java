@@ -36,8 +36,8 @@ public class S_MainmenuActivity extends Activity {
 	
 	public void s_storescenter_onClick(View view){
 		Intent intent = new Intent(); 
-		intent.setClass(S_MainmenuActivity.this,S_storescenterActivity.class);
+		intent.setClass(S_MainmenuActivity.this,S_StorescenterActivity.class);
 		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
+		S_MainmenuActivity.this.finish();   //結束本頁
 	}
 }
