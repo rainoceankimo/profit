@@ -1,9 +1,11 @@
 package com.example.profitmarket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class S_storescenterActivity extends Activity {
 
@@ -30,5 +32,12 @@ public class S_storescenterActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void s_storesinformationamend_onClick(View view){
+		Intent intent = new Intent(); 
+		intent.setClass(S_storescenterActivity.this,S_storescenteramendActivity.class);
+		startActivity(intent);    //Ä²µo´«­¶
+		finish();   //µ²§ô¥»­¶
 	}
 }

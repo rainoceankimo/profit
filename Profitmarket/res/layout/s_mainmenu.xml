@@ -31,18 +31,8 @@
         android:layout_alignRight="@+id/textView2"
         android:layout_below="@+id/linearLayout1"
         android:layout_marginTop="15dp"
-        android:src="@drawable/s_stores" />
-    
-    
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="100dip"
-        android:layout_height="100dip"
-        android:layout_above="@+id/textView3"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/textView2"
-        android:background="#CCFFFF"
-        android:src="@drawable/s_buycoupon" />
+        android:src="@drawable/s_stores"
+        android:onClick="s_storescenter_onClick" />
 
     <TextView
         android:id="@+id/textView2"
@@ -100,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton5"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="46dp"
+        android:layout_marginRight="44dp"
         android:text="結帳管理"
         android:textSize="24sp" />
 
@@ -120,5 +110,15 @@
         android:layout_centerHorizontal="true"
         android:text="歷史紀錄及資料分析"
         android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_above="@+id/textView3"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_marginRight="10dp"
+        android:background="#CCFFFF"
+        android:src="@drawable/s_buycoupon" />
 
 </RelativeLayout>

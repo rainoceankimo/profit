@@ -15,7 +15,8 @@
             android:layout_height="fill_parent"
             android:background="#CCFFFF"
             android:scaleType="fitXY"
-            android:src="@drawable/s_start_stores" />
+            android:src="@drawable/s_start_stores"
+            android:onClick="s_stores_onClick" />
 
     </LinearLayout>
 
