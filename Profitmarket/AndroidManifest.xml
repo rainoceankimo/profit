@@ -26,6 +26,18 @@
             android:name=".S_MainmenuActivity"
             android:label="@string/title_activity_s__mainmenu" >
         </activity>
+        <activity
+            android:name=".C_mem_view"
+            android:label="@string/title_activity_c_mem_view" >
+        </activity>
+        <activity
+            android:name=".C_mem_center"
+            android:label="@string/title_activity_c_mem_center" >
+        </activity>
+        <activity
+            android:name=".C_mod_inform"
+            android:label="@string/title_activity_c_mod_inform" >
+        </activity>
     </application>
 
 </manifest>
