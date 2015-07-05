@@ -38,6 +38,38 @@
             android:name=".C_mod_inform"
             android:label="@string/title_activity_c_mod_inform" >
         </activity>
+        <activity
+            android:name=".S_StorescenterActivity"
+            android:label="@string/title_activity_s_storescenter" >
+        </activity>
+        <activity
+            android:name=".S_StorescenteramendActivity"
+            android:label="@string/title_activity_s_storescenteramend" >
+        </activity>
+        <activity
+            android:name=".S_StroesMerchandiseActivity"
+            android:label="@string/title_activity_s__stroes_merchandise" >
+        </activity>
+        <activity
+            android:name=".S_BuycouponActivity"
+            android:label="@string/title_activity_s__buycoupon" >
+        </activity>
+        <activity
+            android:name=".S_CouponmanagementActivity"
+            android:label="@string/title_activity_s__couponmanagement" >
+        </activity>
+        <activity
+            android:name=".S_CouponrulesActivity"
+            android:label="@string/title_activity_s__couponrules" >
+        </activity>
+        <activity
+            android:name=".S_SettleaccountsActivity"
+            android:label="@string/title_activity_s__settleaccounts" >
+        </activity>
+        <activity
+            android:name=".S_RecordsActivity"
+            android:label="@string/title_activity_s__records" >
+        </activity>
     </application>
 
 </manifest>

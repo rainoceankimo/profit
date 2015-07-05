@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.content.Intent;
 
 public class MainActivity extends Activity {
 
@@ -30,5 +32,18 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void s_stores_onClick(View view){
+		Intent intent = new Intent(); 
+		intent.setClass(MainActivity.this,S_MainmenuActivity.class);
+		startActivity(intent);    //觸發換頁
+		MainActivity.this.finish();   //結束本頁
+	}
+	public void c_sale_onClick(View view){
+		Intent intent = new Intent(); 
+		intent.setClass(MainActivity.this,C_mem_center.class);
+		startActivity(intent);    //觸發換頁
+		MainActivity.this.finish();   //結束本頁
 	}
 }
