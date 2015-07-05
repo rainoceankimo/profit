@@ -13,7 +13,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class MainActivity extends Activity {
 	
 	public void s_stores_onClick(View view){
 		Intent intent = new Intent(); 
-		intent.setClass(MainActivity.this,S_MainmenuActivity.class);
+		intent.setClass(MainActivity.this,S_Mainmenu.class);
 		startActivity(intent);    //觸發換頁
 		MainActivity.this.finish();   //結束本頁
 	}
@@ -47,6 +46,4 @@ public class MainActivity extends Activity {
 		startActivity(intent);    //觸發換頁
 		MainActivity.this.finish();   //結束本頁
 	}
-	
-	
 }

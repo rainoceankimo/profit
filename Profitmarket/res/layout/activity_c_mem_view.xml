@@ -29,6 +29,7 @@
     </LinearLayout>
 
     <ImageButton
+      android:contentDescription="@drawable/c_search"
         android:id="@+id/imageButton4"
         android:layout_width="130dip"
         android:layout_height="130dip"
@@ -36,8 +37,7 @@
         android:layout_alignStart="@+id/imageButton2"
         android:layout_alignTop="@+id/imageButton3"
         android:background="@drawable/c_search"
-        android:contentDescription="@drawable/c_search"
-        android:onClick="c_redcordsOnClick" />
+      />
 
     <ImageButton
         android:id="@+id/imageButton3"

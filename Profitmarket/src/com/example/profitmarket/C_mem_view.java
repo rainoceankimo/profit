@@ -39,10 +39,4 @@ public class C_mem_view extends Activity {
 	   startActivity(intent);    //觸發換頁
 	   finish();   //結束本頁
 	}
-	public void c_redcordsOnClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_mem_view.this,C_records.class);
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
- }
 }

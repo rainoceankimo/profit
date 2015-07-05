@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class C_store_favorite extends Activity {
+public class S_Coupon_Rules extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_c_store_favorite);
+		setContentView(R.layout.s_coupon_rules);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.c_store_favorite, menu);
+		getMenuInflater().inflate(R.menu.s__couponrules, menu);
 		return true;
 	}
 

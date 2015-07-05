@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class S_StroesMerchandiseActivity extends Activity {
+public class S_Coupon_Buy extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.s_stroes_merchandise);
+		setContentView(R.layout.s_coupon_buy);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.s__stroes_merchandise, menu);
+		getMenuInflater().inflate(R.menu.s__buycoupon, menu);
 		return true;
 	}
 

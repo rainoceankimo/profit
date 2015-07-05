@@ -4,19 +4,21 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.content.Intent;
 
-public class C_use_discount extends Activity {
+public class S_Mainmenu extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_c_use_discount);
+		setContentView(R.layout.s_mainmenu);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.c_use_discount, menu);
+		getMenuInflater().inflate(R.menu.s__mainmenu, menu);
 		return true;
 	}
 
@@ -30,5 +32,12 @@ public class C_use_discount extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void s_storescenter_onClick(View view){
+		Intent intent = new Intent(); 
+		intent.setClass(S_Mainmenu.this,S_Stores_Center.class);
+		startActivity(intent);    //Ä²µo´«­¶
+		S_Mainmenu.this.finish();   //µ²§ô¥»­¶
 	}
 }

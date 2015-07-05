@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".S_MainmenuActivity"
+            android:name=".S_Mainmenu"
             android:label="@string/title_activity_s__mainmenu" >
         </activity>
         <activity
@@ -39,54 +39,36 @@
             android:label="@string/title_activity_c_mod_inform" >
         </activity>
         <activity
-            android:name=".S_StorescenterActivity"
+            android:name=".S_Stores_Center"
             android:label="@string/title_activity_s_storescenter" >
         </activity>
         <activity
-            android:name=".S_StorescenteramendActivity"
-            android:label="@string/title_activity_s_storescenteramend" >
+            android:name=".S_Stores_Center_Amend"
+            android:label="@string/title_activity_s_stores_center_amend" >
         </activity>
         <activity
-            android:name=".S_StroesMerchandiseActivity"
+            android:name=".S_Stroes_Center_Merchandise"
             android:label="@string/title_activity_s__stroes_merchandise" >
         </activity>
         <activity
-            android:name=".S_BuycouponActivity"
-            android:label="@string/title_activity_s__buycoupon" >
+            android:name=".S_Coupon_Buy"
+            android:label="@string/title_activity_s__coupon_buy" >
         </activity>
         <activity
-            android:name=".S_CouponmanagementActivity"
-            android:label="@string/title_activity_s__couponmanagement" >
+            android:name=".S_Coupon_management"
+            android:label="@string/title_activity_s__coupon_management" >
         </activity>
         <activity
-            android:name=".S_CouponrulesActivity"
-            android:label="@string/title_activity_s__couponrules" >
+            android:name=".S_Coupon_Rules"
+            android:label="@string/title_activity_s__coupon_rules" >
         </activity>
         <activity
-            android:name=".S_SettleaccountsActivity"
+            android:name=".S_SettleaCcounts"
             android:label="@string/title_activity_s__settleaccounts" >
         </activity>
         <activity
-            android:name=".S_RecordsActivity"
+            android:name=".S_Records"
             android:label="@string/title_activity_s__records" >
-        </activity>
-        <activity
-            android:name=".C_store_favorite"
-            android:label="@string/title_activity_c_store_favorite" >
-        </activity>
-        <activity
-            android:name=".C_use_discount"
-            android:label="@string/title_activity_c_use_discount" >
-        </activity>
-        <activity
-            android:name=".C_search_records"
-            android:label="@string/title_activity_c_search_records" >
-        </activity>
-      
-       
-        <activity
-            android:name=".C_records"
-            android:label="@string/title_activity_c_records" >
         </activity>
     </application>
 
