@@ -70,6 +70,14 @@
             android:name=".S_Records"
             android:label="@string/title_activity_s__records" >
         </activity>
+        <activity
+            android:name=".C_register"
+            android:label="@string/title_activity_c_register" >
+        </activity>
+        <activity
+            android:name=".C_log"
+            android:label="@string/title_activity_c_log" >
+        </activity>
     </application>
 
 </manifest>

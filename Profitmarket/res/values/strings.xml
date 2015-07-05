@@ -7,7 +7,7 @@
     <string name="title_activity_s_storescenter">舊市潤市</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-   	<string name="title_activity_s_stores_center_amend">s_stores_center_amend</string>
+    <string name="title_activity_s_stores_center_amend">s_stores_center_amend</string>
     <string name="title_activity_c_mem_view">C_mem_view</string>
     <string name="title_activity_c_mem_center">C_mem_center</string>
     <string name="title_activity_c_mod_inform">C_mod_inform</string>
@@ -18,6 +18,6 @@
     <string name="title_activity_s__settleaccounts">s__settleaccounts</string>
     <string name="title_activity_s__records">s__records</string>
     <string name="hello">Hello World, TabhostActivity!</string>
-    
-     
+    <string name="title_activity_c_register">C_register</string>
+       <string name="title_activity_c_log">C_log"</string>
 </resources>

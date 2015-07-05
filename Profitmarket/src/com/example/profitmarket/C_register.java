@@ -1,24 +1,24 @@
 package com.example.profitmarket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
 
-public class MainActivity extends Activity {
+public class C_register extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_c_register);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.c_register, menu);
 		return true;
 	}
 
@@ -33,17 +33,10 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void s_stores_onClick(View view){
-		Intent intent = new Intent(); 
-		intent.setClass(MainActivity.this,S_Mainmenu.class);
-		startActivity(intent);    //觸發換頁
-		MainActivity.this.finish();   //結束本頁
-	}
-	public void c_sale_onClick(View view){
-		Intent intent = new Intent(); 
-		intent.setClass(MainActivity.this,C_log.class);
-		startActivity(intent);    //觸發換頁
-		MainActivity.this.finish();   //結束本頁
+	public void c_mem_register_onClick(View v) {
+	    Intent intent = new Intent();  
+	    intent.setClass(C_register.this,C_log.class);
+	   startActivity(intent);    //觸發換頁
+	   finish();   //結束本頁
 	}
 }
