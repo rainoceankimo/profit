@@ -13,6 +13,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 	}
 
 	@Override
@@ -42,8 +43,10 @@ public class MainActivity extends Activity {
 	}
 	public void c_sale_onClick(View view){
 		Intent intent = new Intent(); 
-		intent.setClass(MainActivity.this,C_mem_center.class);
+		intent.setClass(MainActivity.this,C_mem_view.class);
 		startActivity(intent);    //Ä²µo´«­¶
 		MainActivity.this.finish();   //µ²§ô¥»­¶
 	}
+	
+	
 }

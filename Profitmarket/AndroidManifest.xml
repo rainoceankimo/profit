@@ -70,6 +70,24 @@
             android:name=".S_RecordsActivity"
             android:label="@string/title_activity_s__records" >
         </activity>
+        <activity
+            android:name=".C_store_favorite"
+            android:label="@string/title_activity_c_store_favorite" >
+        </activity>
+        <activity
+            android:name=".C_use_discount"
+            android:label="@string/title_activity_c_use_discount" >
+        </activity>
+        <activity
+            android:name=".C_search_records"
+            android:label="@string/title_activity_c_search_records" >
+        </activity>
+      
+       
+        <activity
+            android:name=".C_records"
+            android:label="@string/title_activity_c_records" >
+        </activity>
     </application>
 
 </manifest>

@@ -2,24 +2,25 @@
 <resources>
 
     <string name="app_name">舊市潤市</string>
-   
     <string name="title_activity_s__mainmenu">舊市潤市</string>
     <string name="companyname">公司名稱</string>
     <string name="title_activity_s_storescenter">舊市潤市</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-   <string name="title_activity_s_storescenteramend">s_storescenteramend</string>
+    <string name="title_activity_s_storescenteramend">s_storescenteramend</string>
     <string name="title_activity_c_mem_view">C_mem_view</string>
     <string name="title_activity_c_mem_center">C_mem_center</string>
     <string name="title_activity_c_mod_inform">C_mod_inform</string>
-   
-     <string name="title_activity_s__stroes_merchandise">s__stroes_merchandise</string>
-    
-     <string name="title_activity_s__buycoupon">s__buycoupon</string>
-     <string name="title_activity_s__couponmanagement">s__couponmanagement</string>
-     
-     <string name="title_activity_s__couponrules">s__couponrules</string>
-       <string name="title_activity_s__settleaccounts">s__settleaccounts</string>
-       <string name="title_activity_s__records">s__records</string>
-     
+    <string name="title_activity_s__stroes_merchandise">s__stroes_merchandise</string>
+    <string name="title_activity_s__buycoupon">s__buycoupon</string>
+    <string name="title_activity_s__couponmanagement">s__couponmanagement</string>
+    <string name="title_activity_s__couponrules">s__couponrules</string>
+    <string name="title_activity_s__settleaccounts">s__settleaccounts</string>
+    <string name="title_activity_s__records">s__records</string>
+    <string name="title_activity_c_store_favorite">C_store_favorite</string>
+    <string name="title_activity_c_use_discount">C_use_discount</string>
+    <string name="title_activity_c_search_records">C_search_records</string>
+    <string name="result">日期</string>
+    <string name="title_activity_c_records">C_records</string>
+
 </resources>
