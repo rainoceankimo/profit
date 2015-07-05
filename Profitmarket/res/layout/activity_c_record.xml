@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lla"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8de0fd"
+    android:orientation="vertical" >
+    tools:context="com.example.profitmarket.C_record" >
+
+      <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:text="查詢交易紀錄" 
+        android:background="#FF6633"/>
+
+      <DatePicker
+          android:id="@+id/datePicker1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/textView1"
+          android:calendarViewShown="false" />
+
+</RelativeLayout>

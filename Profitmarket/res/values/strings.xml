@@ -19,5 +19,8 @@
     <string name="title_activity_s__records">s__records</string>
     <string name="hello">Hello World, TabhostActivity!</string>
     <string name="title_activity_c_register">C_register</string>
-       <string name="title_activity_c_log">C_log"</string>
+    <string name="title_activity_c_log">C_log"</string>
+    <string name="title_activity_c_record">C_record</string>
+    <string name="title_activity_c_store">C_store</string>
+
 </resources>

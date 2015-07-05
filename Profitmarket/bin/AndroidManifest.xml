@@ -78,6 +78,14 @@
             android:name=".C_log"
             android:label="@string/title_activity_c_log" >
         </activity>
+        <activity
+            android:name=".C_record"
+            android:label="@string/title_activity_c_record" >
+        </activity>
+        <activity
+            android:name=".C_store"
+            android:label="@string/title_activity_c_store" >
+        </activity>
     </application>
 
 </manifest>

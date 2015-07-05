@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   
+    android:background="#8de0fd"
+    tools:context="com.example.profitmarket.C_store" >
+ <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#FF6633"
+        android:gravity="center"
+        android:text="商店"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+<ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/s_storephoto" />
+<TextView
+    android:id="@+id/textView3"
+    android:layout_width="60dp"
+    android:layout_height="30dp"
+    android:layout_alignLeft="@+id/textView2"
+    android:layout_below="@+id/textView2"
+    android:layout_marginTop="26dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:text="店家地址:" />
+
+<TextView
+    android:id="@+id/textView4"
+    android:layout_width="60dp"
+    android:layout_height="30dp"
+    android:layout_alignLeft="@+id/textView3"
+    android:layout_below="@+id/textView3"
+    android:layout_marginTop="24dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:text="店家電話:" />
+<EditText
+    android:id="@+id/editText1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/imageView1"
+    android:layout_alignTop="@+id/textView2"
+    android:ems="10" 
+    android:inputType="text"/>
+
+<TextView
+    android:id="@+id/textView2"
+    android:layout_width="40dp"
+    android:layout_height="30dp"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/imageView1"
+    android:layout_marginTop="14dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:text="店名:" />
+
+<EditText
+    android:id="@+id/editText2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/textView4"
+    android:layout_alignLeft="@+id/editText1"
+    android:ems="10"
+    android:inputType="textPostalAddress" />
+
+<EditText
+    android:id="@+id/editText3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/textView4"
+    android:layout_alignBottom="@+id/textView4"
+    android:layout_alignLeft="@+id/editText2"
+    android:ems="10"
+    android:inputType="phone" >
+
+    
+</EditText>
+
+<EditText
+    android:id="@+id/editText4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/textView5"
+    android:layout_marginTop="19dp"
+    android:inputType="text"
+    android:ems="10" />
+
+<TextView
+    android:id="@+id/textView5"
+    android:layout_width="60dp"
+    android:layout_height="40dp"
+    android:layout_below="@+id/editText3"
+    android:layout_centerHorizontal="true"
+    android:gravity="center_vertical|center_horizontal"
+    android:text="簡介:" />
+
+<Button
+    android:id="@+id/button1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/editText4"
+    android:layout_centerHorizontal="true"
+    android:text="加入最愛" />
+
+</RelativeLayout>
