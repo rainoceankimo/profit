@@ -42,9 +42,13 @@ public final class R {
         public static final int s_stores=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001b;
+        public static final int action_settings=0x7f080020;
         public static final int button1=0x7f080003;
         public static final int button2=0x7f08001a;
+        public static final int button3=0x7f08001b;
+        public static final int button4=0x7f08001c;
+        public static final int button5=0x7f08001e;
+        public static final int button6=0x7f08001f;
         public static final int editText1=0x7f080006;
         public static final int editText2=0x7f080007;
         public static final int editText3=0x7f080005;
@@ -59,6 +63,7 @@ public final class R {
         public static final int imageButton4=0x7f08000c;
         public static final int imageButton5=0x7f080018;
         public static final int imageView1=0x7f080019;
+        public static final int imageView2=0x7f08001d;
         public static final int linearLayout1=0x7f080001;
         public static final int lla=0x7f080000;
         public static final int textView1=0x7f080002;
