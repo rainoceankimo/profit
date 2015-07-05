@@ -78,6 +78,10 @@
             android:name=".C_log"
             android:label="@string/title_activity_c_log" >
         </activity>
+        <activity
+            android:name=".S_Signin"
+            android:label="@string/title_activity_s__signin" >
+        </activity>
     </application>
 
 </manifest>

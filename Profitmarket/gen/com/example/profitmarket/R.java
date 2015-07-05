@@ -95,9 +95,10 @@ public final class R {
         public static final int s_mainmenu=0x7f030009;
         public static final int s_records=0x7f03000a;
         public static final int s_settleaccounts=0x7f03000b;
-        public static final int s_stores_center=0x7f03000c;
-        public static final int s_stores_center_amend=0x7f03000d;
-        public static final int s_stroes_merchandise=0x7f03000e;
+        public static final int s_signin=0x7f03000c;
+        public static final int s_stores_center=0x7f03000d;
+        public static final int s_stores_center_amend=0x7f03000e;
+        public static final int s_stroes_merchandise=0x7f03000f;
     }
     public static final class menu {
         public static final int c_log=0x7f070000;
@@ -112,9 +113,10 @@ public final class R {
         public static final int s__mainmenu=0x7f070009;
         public static final int s__records=0x7f07000a;
         public static final int s__settleaccounts=0x7f07000b;
-        public static final int s__stroes_merchandise=0x7f07000c;
-        public static final int s_storescenter=0x7f07000d;
-        public static final int s_storescenteramend=0x7f07000e;
+        public static final int s__signin=0x7f07000c;
+        public static final int s__stroes_merchandise=0x7f07000d;
+        public static final int s_storescenter=0x7f07000e;
+        public static final int s_storescenteramend=0x7f07000f;
     }
     public static final class string {
         public static final int action_settings=0x7f050005;
@@ -133,6 +135,7 @@ public final class R {
         public static final int title_activity_s__mainmenu=0x7f050001;
         public static final int title_activity_s__records=0x7f05000f;
         public static final int title_activity_s__settleaccounts=0x7f05000e;
+        public static final int title_activity_s__signin=0x7f050013;
         public static final int title_activity_s__stroes_merchandise=0x7f05000a;
         public static final int title_activity_s_stores_center_amend=0x7f050006;
         public static final int title_activity_s_storescenter=0x7f050003;
