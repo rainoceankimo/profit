@@ -26,6 +26,14 @@
             android:name=".S_MainmenuActivity"
             android:label="@string/title_activity_s__mainmenu" >
         </activity>
+        <activity
+            android:name=".S_storescenterActivity"
+            android:label="@string/title_activity_s_storescenter" >
+        </activity>
+        <activity
+            android:name=".S_storescenteramendActivity"
+            android:label="@string/title_activity_s_storescenteramend" >
+        </activity>
     </application>
 
 </manifest>

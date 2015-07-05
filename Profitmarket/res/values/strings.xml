@@ -2,8 +2,11 @@
 <resources>
 
     <string name="app_name">舊市潤市</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_s__mainmenu">S_MainmenuActivity</string>
+    <string name="title_activity_s__mainmenu">舊市潤市</string>
+    <string name="companyname">公司名稱</string>
+    <string name="title_activity_s_storescenter">舊市潤市</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_s_storescenteramend">舊市潤市</string>
 
 </resources>
