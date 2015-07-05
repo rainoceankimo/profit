@@ -86,6 +86,10 @@
             android:name=".C_store"
             android:label="@string/title_activity_c_store" >
         </activity>
+        <activity
+            android:name=".S_Signin"
+            android:label="@string/title_activity_s__signin" >
+        </activity>
     </application>
 
 </manifest>
