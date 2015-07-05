@@ -42,13 +42,18 @@ public final class R {
         public static final int s_stores=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f080020;
+        public static final int TextView01=0x7f08001b;
+        public static final int TextView02=0x7f08001e;
+        public static final int TextView03=0x7f08001d;
+        public static final int TextView04=0x7f08001c;
+        public static final int TextView06=0x7f08001f;
+        public static final int action_settings=0x7f080026;
         public static final int button1=0x7f080007;
         public static final int button2=0x7f080008;
         public static final int button3=0x7f080009;
-        public static final int button4=0x7f08001c;
-        public static final int button5=0x7f08001e;
-        public static final int button6=0x7f08001f;
+        public static final int button4=0x7f080022;
+        public static final int button5=0x7f080024;
+        public static final int button6=0x7f080025;
         public static final int editText1=0x7f080006;
         public static final int editText2=0x7f080004;
         public static final int editText3=0x7f08000b;
@@ -61,9 +66,10 @@ public final class R {
         public static final int imageButton2=0x7f08000f;
         public static final int imageButton3=0x7f080010;
         public static final int imageButton4=0x7f08000e;
-        public static final int imageButton5=0x7f08001a;
-        public static final int imageView1=0x7f08001b;
-        public static final int imageView2=0x7f08001d;
+        public static final int imageButton5=0x7f080020;
+        public static final int imageView1=0x7f080021;
+        public static final int imageView2=0x7f080023;
+        public static final int linearLayout01=0x7f08001a;
         public static final int linearLayout1=0x7f080001;
         public static final int lla=0x7f080000;
         public static final int textView1=0x7f080002;
