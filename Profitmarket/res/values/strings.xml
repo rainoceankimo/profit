@@ -19,11 +19,12 @@
     <string name="title_activity_s__records">s__records</string>
     <string name="hello">Hello World, TabhostActivity!</string>
     <string name="title_activity_c_register">C_register</string>
-
     <string name="title_activity_c_record">C_record</string>
     <string name="title_activity_c_store">C_store</string>
-
     <string name="title_activity_c_log">C_log"</string>
     <string name="title_activity_s__signin">S_Signin</string>
+    <string name="title_activity_c_search_store">C_search_store</string>
+    <string name="title_activity_c_discount_use">C_discount_use</string>
+    <string name="title_activity_drawer_item">DrawerItem</string>
 
 </resources>

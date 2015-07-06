@@ -90,6 +90,18 @@
             android:name=".S_Signin"
             android:label="@string/title_activity_s__signin" >
         </activity>
+        <activity
+            android:name=".C_search_store"
+            android:label="@string/title_activity_c_search_store" >
+        </activity>
+        <activity
+            android:name=".C_discount_use"
+            android:label="@string/title_activity_c_discount_use" >
+        </activity>
+        <activity
+            android:name=".DrawerItem"
+            android:label="@string/title_activity_drawer_item" >
+        </activity>
     </application>
 
 </manifest>
