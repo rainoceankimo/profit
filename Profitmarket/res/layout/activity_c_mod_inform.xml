@@ -15,7 +15,7 @@
         android:background="#FF6633"
         android:gravity="center"
         android:text="修改會員資訊"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="36sp"
         android:textStyle="bold" />
 
