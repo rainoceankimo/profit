@@ -72,7 +72,8 @@
         android:layout_toLeftOf="@+id/imageButton2"
         android:gravity="center_vertical|center_horizontal"
         android:text="查詢店家"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/textView3"
@@ -84,7 +85,8 @@
         android:layout_alignTop="@+id/textView2"
         android:gravity="center_vertical|center_horizontal"
         android:text="會員中心"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/textView4"
@@ -96,7 +98,8 @@
         android:layout_below="@+id/imageButton4"
         android:gravity="center_vertical|center_horizontal"
         android:text="折價券查看及使用"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/textView5"
@@ -108,7 +111,8 @@
         android:layout_alignTop="@+id/textView4"
         android:gravity="center_vertical|center_horizontal"
         android:text="查詢交易紀錄"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="#000000" />
 
     <ImageButton
         android:id="@+id/imageButton1"
