@@ -34,7 +34,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="帳號:"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/editText1"
@@ -70,7 +71,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="密碼:"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000" />
     
     
 
@@ -124,6 +126,7 @@
         android:layout_marginTop="27dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="店名:"
-        android:textSize="20sp" />
+        android:textSize="20sp" 
+        android:textColor="#000000"/>
 
 </RelativeLayout>

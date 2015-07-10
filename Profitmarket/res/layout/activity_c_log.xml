@@ -33,7 +33,8 @@
         android:layout_toLeftOf="@+id/editText2"
         android:gravity="center_vertical|center_horizontal"
         android:text="帳號:"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+          android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -45,7 +46,8 @@
         android:layout_alignRight="@+id/textView2"
         android:gravity="center_vertical|center_horizontal"
         android:text="密碼"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+         android:textColor="#000000" />
 
     <EditText
         android:id="@+id/editText1"
@@ -80,7 +82,8 @@
         android:layout_marginTop="70dp"
         android:background="#C4E1FF"
         android:onClick="c_log_onClick"
-        android:text="登入" />
+        android:text="登入" 
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/button2"
@@ -89,7 +92,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/button1"
         android:onClick="c_register_onClick"
-        android:text="註冊" />
+        android:text="註冊" 
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/button3"
@@ -98,6 +102,7 @@
         android:layout_alignBaseline="@+id/button2"
         android:layout_alignBottom="@+id/button2"
         android:layout_alignParentRight="true"
-        android:text="忘記密碼" />
+        android:text="忘記密碼" 
+        android:textColor="#000000"/>
 
 </RelativeLayout>
