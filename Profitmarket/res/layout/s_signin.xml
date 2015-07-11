@@ -16,7 +16,7 @@
             android:id="@+id/textView1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#FF6633"
+            android:background="#0FFF3F"
             android:gravity="center"
             android:text="店家登入"
         	android:textColor="#000000"

@@ -6,12 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class S_Stroes_Center_Merchandise extends Activity {
+public class S_Merchandise extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.s_stroes_merchandise);
+		setContentView(R.layout.s_merchandise);
 	}
 
 	@Override
