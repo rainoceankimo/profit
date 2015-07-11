@@ -15,7 +15,7 @@
         android:background="#FF6633"
         android:gravity="center"
         android:text="註冊"
-        android:textColor="#FFFFFF"
+   		android:textColor="#000000"
         android:textSize="36sp"
         android:textStyle="bold" />
 
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText1"
         android:layout_alignParentLeft="true"
+        android:textColor="#000000"
         android:layout_below="@+id/textView1"
         android:layout_toLeftOf="@+id/button1"
         android:gravity="center_vertical|center_horizontal"
@@ -129,6 +130,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/editText2"
         android:layout_toLeftOf="@+id/editText2"
+        android:textColor="#000000"
         android:gravity="center_vertical|center_horizontal"
         android:text="密碼:" />
 
@@ -139,6 +141,7 @@
         android:layout_above="@+id/editText4"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/editText3"
+        android:textColor="#000000"
         android:layout_toLeftOf="@+id/editText3"
         android:gravity="center_vertical|center_horizontal"
         android:text="密碼確認:" />
@@ -149,6 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText4"
         android:layout_alignParentLeft="true"
+        android:textColor="#000000"
         android:layout_below="@+id/textView4"
         android:layout_toLeftOf="@+id/editText4"
         android:gravity="center_vertical|center_horizontal"
@@ -160,6 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText5"
         android:layout_alignParentLeft="true"
+        android:textColor="#000000"
         android:layout_alignRight="@+id/textView5"
         android:layout_below="@+id/textView5"
         android:gravity="center_vertical|center_horizontal"
@@ -173,6 +178,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView6"
         android:layout_toLeftOf="@+id/editText6"
+        android:textColor="#000000"
         android:gravity="center_vertical|center_horizontal"
         android:text="地址:" />
 
@@ -182,6 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText7"
         android:layout_alignParentLeft="true"
+        android:textColor="#000000"
         android:layout_alignRight="@+id/textView3"
         android:layout_alignTop="@+id/editText7"
         android:gravity="center_vertical|center_horizontal"
@@ -195,6 +202,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/editText8"
         android:layout_toLeftOf="@+id/editText8"
+        android:textColor="#000000"
         android:gravity="center_vertical|center_horizontal"
         android:text="電子信箱:" />
 

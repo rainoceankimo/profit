@@ -28,6 +28,7 @@
         android:layout_below="@+id/textView1"
         android:layout_toLeftOf="@+id/button1"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="帳號:" />
 
     <EditText
@@ -130,6 +131,7 @@
         android:layout_alignTop="@+id/editText2"
         android:layout_toLeftOf="@+id/editText2"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="密碼:" />
 
     <TextView
@@ -141,6 +143,7 @@
         android:layout_alignTop="@+id/editText3"
         android:layout_toLeftOf="@+id/editText3"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="密碼確認:" />
 
     <TextView
@@ -152,6 +155,7 @@
         android:layout_below="@+id/textView4"
         android:layout_toLeftOf="@+id/editText4"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="會員姓名:" />
 
     <TextView
@@ -163,6 +167,7 @@
         android:layout_alignRight="@+id/textView5"
         android:layout_below="@+id/textView5"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="身份證字號:" />
 
     <TextView
@@ -174,6 +179,7 @@
         android:layout_below="@+id/textView6"
         android:layout_toLeftOf="@+id/editText6"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="地址:" />
 
     <TextView
@@ -185,6 +191,7 @@
         android:layout_alignRight="@+id/textView3"
         android:layout_alignTop="@+id/editText7"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="電話號碼:" />
 
     <TextView
@@ -196,6 +203,7 @@
         android:layout_alignTop="@+id/editText8"
         android:layout_toLeftOf="@+id/editText8"
         android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000"
         android:text="電子信箱:" />
 
     <Button
@@ -206,6 +214,7 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/textView8"
         android:minWidth="100dip"
+        android:textColor="#000000"
         android:onClick="c_mem_check_onClick"
         android:text="確定:" />
 

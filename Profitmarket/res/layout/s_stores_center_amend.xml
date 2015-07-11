@@ -13,6 +13,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="修改店家資訊"
+        android:textColor="#000000"
         android:textSize="36sp"
         android:background="#0FFF3F" />
     
@@ -33,6 +34,7 @@
         android:layout_below="@+id/textView2"
         android:layout_marginTop="5dp"
         android:text="店家電話："
+        android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
@@ -43,6 +45,7 @@
         android:layout_below="@+id/textView3"
         android:layout_marginTop="5dp"
         android:text="店家E-mail："
+        android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
@@ -52,6 +55,7 @@
         android:layout_below="@+id/imageView1"
         android:layout_marginTop="19dp"
         android:text="店家地址："
+        android:textColor="#000000"
         android:textSize="20sp" />
     
     <EditText
@@ -92,6 +96,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:text="簡介"
+        android:textColor="#000000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -102,6 +107,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
         android:text="確定"
+        android:textColor="#000000"
         android:textSize="26sp"
         android:onClick="s_backtostorescenter_onClick " />
 

@@ -14,6 +14,7 @@
         android:background="#0FFF3F"
         android:gravity="center"
         android:text="折價券管理"
+        android:textColor="#000000"
         android:textSize="36sp" />
 
     <Button
@@ -23,6 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_toLeftOf="@+id/button2"
+        android:textColor="#000000"
         android:text="查看現有折價券" />
 
     <Button
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
+        android:textColor="#000000"
         android:text="設定發行規則" />
 
     <LinearLayout
@@ -41,6 +44,7 @@
         android:layout_below="@+id/button1"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="25dp"
+        android:textColor="#000000"
         android:background="#66FFFF" >
 
         <LinearLayout
@@ -53,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -66,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="元折價券"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -79,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XX"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -92,6 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="張"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
@@ -115,6 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -128,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="元折價券"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -141,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XX"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -154,6 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="張"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
@@ -166,6 +178,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
         android:text="確定"
+        android:textColor="#000000"
         android:textSize="26sp" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:textColor="#000000"
         android:layout_alignParentTop="true"
         android:text="分類一" />
 
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/button1"
+        android:textColor="#000000"
         android:text="分類二" />
 
     <Button
@@ -25,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textColor="#000000"
         android:layout_toRightOf="@+id/button2"
         android:text="分類三" />
 
@@ -33,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textColor="#000000"
         android:layout_toRightOf="@+id/button3"
         android:text="分類四" />
 
@@ -43,6 +47,7 @@
         android:layout_below="@+id/button1"
         android:layout_marginTop="53dp"
         android:layout_toRightOf="@+id/button1"
+        android:textColor="#000000"
         android:text="商品一"
         android:textSize="24dip" />
 
@@ -55,6 +60,7 @@
         android:layout_alignRight="@+id/button4"
         android:layout_marginRight="22dp"
         android:text="元"
+        android:textColor="#000000"
         android:textSize="24dip" />
 
     <TextView
@@ -66,6 +72,7 @@
         android:layout_marginRight="14dp"
         android:layout_toLeftOf="@+id/textView2"
         android:text="XXX"
+        android:textColor="#000000"
         android:textSize="24dip" />
 
     <TextView
@@ -76,6 +83,7 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="27dp"
         android:text="商品二"
+        android:textColor="#000000"
         android:textSize="24dip" />
 
     <TextView
@@ -86,6 +94,7 @@
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignLeft="@+id/textView3"
         android:text="XXX"
+        android:textColor="#000000"
         android:textSize="24dip" />
 
     <TextView
@@ -96,6 +105,7 @@
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignLeft="@+id/textView2"
         android:text="元"
+        android:textColor="#000000"
         android:textSize="24dip" />
 
     <ImageView
@@ -103,6 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView4"
+        android:textColor="#000000"
         android:layout_alignRight="@+id/button1"
         android:src="@drawable/icon_4" />
 
@@ -122,6 +133,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="26dp"
         android:text="確定"
+        android:textColor="#000000"
         android:textSize="24dip" />
 
     <Button
@@ -129,6 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button5"
+        android:textColor="#000000"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
         android:text="更改資訊"

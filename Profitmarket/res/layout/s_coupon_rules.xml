@@ -14,6 +14,7 @@
         android:background="#0FFF3F"
         android:gravity="center"
         android:text="設定發行規則"
+        android:textColor="#000000"
         android:textSize="36sp" />
 
     <Button
@@ -23,6 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_toLeftOf="@+id/button2"
+        android:textColor="#000000"
         android:text="查看現有折價券" />
 
     <Button
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
+        android:textColor="#000000"
         android:text="設定發行規則" />
 
     <LinearLayout
@@ -52,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:inputType="numberSigned" >
 
                 <requestFocus />
@@ -69,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -82,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="元折價券"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -97,7 +103,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="期限"
-                android:textSize="26sp" />
+                android:textSize="26sp"
+                android:textColor="#000000" />
         </LinearLayout>
         
     </LinearLayout>
@@ -121,6 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:inputType="numberSigned" />
 
         </LinearLayout>
@@ -135,6 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -148,6 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="元折價券"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
 
@@ -163,6 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="期限"
+                android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
         
@@ -176,6 +187,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
         android:text="確定"
+        android:textColor="#000000"
         android:textSize="26sp" />
 
 </RelativeLayout>

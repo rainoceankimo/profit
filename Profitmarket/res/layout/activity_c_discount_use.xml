@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:background="#FF6633"
         android:gravity="center"
-        android:text="折價券查看或使用"
-        android:textColor="#FFFFFF"
+        android:text="折價券查看或使用"      
+        android:textColor="#000000"
         android:textSize="36sp"
         android:textStyle="bold" />
 
@@ -37,6 +37,7 @@
                 android1:layout_height="46dp"
                 android1:gravity="center_vertical|center_horizontal"
                 android1:text="會員二維圖"
+                android:textColor="#000000"
                 android1:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
@@ -70,6 +71,7 @@
                 android1:layout_height="wrap_content"
                 android1:gravity="center_vertical|center_horizontal"
                 android1:text="10"
+                android:textColor="#000000"
                 android1:textSize="30sp" />
         </LinearLayout>
 
@@ -84,6 +86,7 @@
                 android1:layout_height="wrap_content"
                 android1:gravity="center_vertical|center_horizontal"
                 android1:text="元折價券"
+                android:textColor="#000000"
                 android1:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
@@ -118,6 +121,7 @@
                 android1:layout_height="wrap_content"
                 android1:gravity="center_vertical|center_horizontal"
                 android1:text="5"
+                android:textColor="#000000"
                 android1:textSize="30sp" />
         </LinearLayout>
 
@@ -132,6 +136,7 @@
                 android1:layout_height="wrap_content"
                 android1:gravity="center_vertical|center_horizontal"
                 android1:text="元折價券"
+                android:textColor="#000000"
                 android1:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>

@@ -19,7 +19,7 @@
             android:background="#FF6633"
             android:gravity="center"
             android:text="店家登入"
-            android:textColor="#FFFFFF"
+        	android:textColor="#000000"
             android:textSize="36sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -83,6 +83,7 @@
         android:layout_alignBaseline="@+id/button2"
         android:layout_alignBottom="@+id/button2"
         android:layout_alignParentRight="true"
+        android:textColor="#000000"
         android:text="忘記密碼" />
 
     <Button
@@ -93,6 +94,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="19dp"
         android:onClick="c_register_onClick"
+        android:textColor="#000000"
         android:text="註冊" />
 
     <Button
@@ -103,6 +105,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="14dp"
         android:background="#C4E1FF"
+        android:textColor="#000000"
         android:onClick="c_log_onClick"
         android:text="登入" />
 

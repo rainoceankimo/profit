@@ -11,6 +11,7 @@
         android:gravity="center"
         android:text="店家中心"
         android:textSize="36sp"
+        android:textColor="#000000"
         android:background="#0FFF3F" />
 
     <ImageView
@@ -30,6 +31,7 @@
         android:layout_below="@+id/textView2"
         android:layout_marginTop="5dp"
         android:text="店家地址："
+        android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
@@ -40,6 +42,7 @@
         android:layout_below="@+id/textView3"
         android:layout_marginTop="5dp"
         android:text="店家電話："
+        android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
@@ -49,6 +52,7 @@
         android:layout_below="@+id/imageView1"
         android:layout_marginTop="19dp"
         android:text="店家名稱："
+        android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
@@ -59,6 +63,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:text="簡介"
+        android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
@@ -68,6 +73,7 @@
         android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:textColor="#000000"
         android:text="等待資訊中..."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="16sp" />
@@ -81,6 +87,7 @@
         android:layout_toLeftOf="@+id/textView6"
         android:text="修改資訊"
         android:textSize="26sp"
+        android:textColor="#000000"
         android:onClick="s_storesinformationamend_onClick" />
 
     <Button
@@ -89,6 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
+        android:textColor="#000000"
         android:layout_toRightOf="@+id/textView6"
         android:text="商品管理"
         android:textSize="26sp" />
@@ -100,6 +108,7 @@
         android:layout_alignBaseline="@+id/textView4"
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignLeft="@+id/textView8"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:text="等待資訊中..." />
 
@@ -110,6 +119,7 @@
         android:layout_above="@+id/textView3"
         android:layout_toRightOf="@+id/textView2"
         android:textSize="20sp"
+        android:textColor="#000000"
         android:text="等待資訊中..." />
 
     <TextView
@@ -119,6 +129,7 @@
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignLeft="@+id/textView7"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:text="等待資訊中..." />
 
