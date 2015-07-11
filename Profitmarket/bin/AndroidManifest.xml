@@ -12,7 +12,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+       >
         <activity
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:name=".MainActivity"
@@ -39,6 +39,7 @@
             android:label="@string/title_activity_c_mem_center" >
         </activity>
         <activity
+            android:theme="@android:style/Theme.Holo.NoActionBar"
             android:name=".C_mod_inform"
             android:label="@string/title_activity_c_mod_inform" >
         </activity>
