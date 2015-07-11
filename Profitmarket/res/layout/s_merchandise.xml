@@ -50,46 +50,6 @@
         android:textColor="#000000"
         android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:text="分類一"
-        android:textColor="#000000" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button3"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_toRightOf="@+id/button1"
-        android:text="分類二"
-        android:textColor="#000000" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_toRightOf="@+id/button2"
-        android:text="分類三"
-        android:textColor="#000000" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView01"
-        android:layout_marginTop="48dp"
-        android:layout_toRightOf="@+id/button3"
-        android:text="分類四"
-        android:textColor="#000000" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -136,5 +96,42 @@
         android:text="商品一"
         android:textColor="#000000"
         android:textSize="24dip" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView01"
+        android:layout_marginTop="16dp"
+        android:text="分類一"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_toRightOf="@+id/button1"
+        android:text="分類二"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_toRightOf="@+id/button2"
+        android:text="分類三"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_toRightOf="@+id/button3"
+        android:text="分類四"
+        android:textColor="#000000" />
 
 </RelativeLayout>
