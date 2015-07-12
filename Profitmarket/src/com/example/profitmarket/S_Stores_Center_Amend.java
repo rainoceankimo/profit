@@ -36,7 +36,7 @@ public class S_Stores_Center_Amend extends Activity {
 	
 	public void s_backtostorescenter_onClick(View view){
 		Intent intent = new Intent(); 
-		intent.setClass(S_Stores_Center_Amend.this,S_Stores_Center.class);
+		intent.setClass(S_Stores_Center_Amend.this,S_Mainmenu.class);
 		startActivity(intent);    //Ä²µo´«­¶
 		S_Stores_Center_Amend.this.finish();   //µ²§ô¥»­¶
 	}
