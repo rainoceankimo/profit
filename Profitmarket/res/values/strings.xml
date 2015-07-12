@@ -23,9 +23,10 @@
     <string name="title_activity_c_store">C_store</string>
     <string name="title_activity_c_log">C_log"</string>
     <string name="title_activity_s__signin">S_Signin</string>
-    <string name="title_activity_c_search_store">C_search_store</string>
+    <string name="title_activity_c_search_store">店家查詢</string>
     <string name="title_activity_c_discount_use">C_discount_use</string>
     <string name="title_activity_drawer_item">DrawerItem</string>
     <string name="title_activity_s__merchandise_increase">S_Merchandise_increase</string>
-
+   	<string name="drawer_open">Open drawer</string>
+	<string name="drawer_close">Close drawer</string>
 </resources>

@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class C_mem_view extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,4 +39,20 @@ public class C_mem_view extends Activity {
 	   startActivity(intent);    //觸發換頁
 	   finish();   //結束本頁
 	}
+	public void c_sstore__onClick(View v) {
+	    Intent intent = new Intent();  
+	    intent.setClass(C_mem_view.this,C_search_store.class);
+	    
+	   startActivity(intent);    //觸發換頁
+	   finish();   //結束本頁
+	
+    }
+	
+	public void c_use_onClick(View v) {
+	    Intent intent = new Intent();  
+	    intent.setClass(C_mem_view.this,C_discount_use.class);
+	   startActivity(intent);    //觸發換頁
+	   finish();   //結束本頁
+	
+    }
 }

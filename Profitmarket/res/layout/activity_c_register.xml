@@ -214,6 +214,7 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/textView8"
         android:minWidth="100dip"
+        android:textColor="#000000"
         android:onClick="c_mem_register_onClick"
         android:text="註冊:" />
 

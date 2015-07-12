@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lla"
@@ -48,7 +47,8 @@
         android:layout_alignStart="@+id/imageButton1"
         android:layout_marginBottom="65dp"
         android:background="@drawable/c_folder"
-        android:contentDescription="@drawable/c_folder" />
+        android:contentDescription="@drawable/c_folder"
+        android:onClick="c_use_onClick" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -125,6 +125,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="34dp"
         android:background="@drawable/c_store"
-        android:contentDescription="@drawable/c_store" />
+        android:contentDescription="@drawable/c_store"
+        android:onClick="c_sstore__onClick" />
 
 </RelativeLayout>
