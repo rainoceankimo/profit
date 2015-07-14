@@ -33,5 +33,8 @@
     <string name="title_activity_s__transaction_records">S_TransactionRecords</string>
     <string name="title_activity_s__records__transactionre">S_Records_Transactionre</string>
     <string name="title_activity_s__inquirere__transactionre_records">S_Inquirere_TransactionreRecords</string>
+    <string name="title_activity_s__records__inquire_share">S_Records_InquireShare</string>
+    <string name="title_activity_s__records__share_get">S_Records_ShareGet</string>
+    <string name="title_activity_s__records__shareg_issue">S_Records_SharegIssue</string>
 
 </resources>
