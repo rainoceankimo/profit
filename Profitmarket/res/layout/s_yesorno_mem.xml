@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CCFFFF"
     tools:context="com.example.profitmarket.S_YesorNo_Mem" >
 
     <TextView
@@ -22,6 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_weight="0.85"
+        android:textColor="#000000"
         android:text="會員結帳"
         android:textSize="35sp" />
 
@@ -34,6 +36,7 @@
         android:layout_alignRight="@+id/button1"
         android:layout_marginBottom="45dp"
         android:layout_weight="0.49"
+        android:textColor="#000000"
         android:text="非會員結帳"
         android:textSize="35sp" />
 
