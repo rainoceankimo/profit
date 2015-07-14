@@ -32,5 +32,6 @@
     <string name="title_activity_s__yesor_no__mem">S_YesorNo_Mem</string>
     <string name="title_activity_s__transaction_records">S_TransactionRecords</string>
     <string name="title_activity_s__records__transactionre">S_Records_Transactionre</string>
+    <string name="title_activity_s__inquirere__transactionre_records">S_Inquirere_TransactionreRecords</string>
 
 </resources>

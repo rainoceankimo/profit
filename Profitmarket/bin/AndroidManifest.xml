@@ -139,6 +139,10 @@
             android:name=".S_Records_Transactionre"
             android:label="@string/title_activity_s__records__transactionre" >
         </activity>
+        <activity
+            android:name=".S_Records_InquirereTransactionre"
+            android:label="@string/title_activity_s__inquirere__transactionre_records" >
+        </activity>
     </application>
 
 </manifest>
