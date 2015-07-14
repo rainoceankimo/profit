@@ -36,5 +36,10 @@
     <string name="title_activity_s__records__inquire_share">S_Records_InquireShare</string>
     <string name="title_activity_s__records__share_get">S_Records_ShareGet</string>
     <string name="title_activity_s__records__shareg_issue">S_Records_SharegIssue</string>
+    <string name="title_activity_s__analysis">S_Analysis</string>
+    <string name="title_activity_s__analysis__issue_recover">S_Analysis_IssueRecover</string>
+    <string name="title_activity_s__analysis__sources">S_Analysis_Sources</string>
+    <string name="title_activity_s__analysis__whereabouts">S_Analysis_Whereabouts</string>
+    <string name="title_activity_s__analysis__revenue">S_Analysis_Revenue</string>
 
 </resources>
