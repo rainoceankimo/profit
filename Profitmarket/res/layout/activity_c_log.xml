@@ -58,6 +58,7 @@
         android:layout_marginTop="33dp"
         android:background="#FFFFFF"
         android:ems="10"
+        android:hint="請輸入密碼"
         android:inputType="textPersonName" />
 
     <EditText
@@ -70,6 +71,7 @@
         android:layout_marginTop="31dp"
         android:background="#FFFFFF"
         android:ems="10"
+        android:hint="請輸入帳號"
         android:inputType="text" />
 
     <Button
