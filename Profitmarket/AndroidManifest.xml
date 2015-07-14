@@ -135,6 +135,10 @@
             android:name=".S_TransactionRecords"
             android:label="@string/title_activity_s__transaction_records" >
         </activity>
+        <activity
+            android:name=".S_Records_Transactionre"
+            android:label="@string/title_activity_s__records__transactionre" >
+        </activity>
     </application>
 
 </manifest>
