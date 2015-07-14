@@ -19,6 +19,7 @@
             android:theme="@android:style/Theme.Holo.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -109,8 +110,7 @@
         </activity>
         <activity
             android:name=".C_search_store"
-            android:label="@string/title_activity_c_search_store"
-                                      							 >
+            android:label="@string/title_activity_c_search_store" >
         </activity>
         <activity
             android:name=".C_discount_use"
@@ -124,10 +124,13 @@
         </activity>
         <activity
             android:name=".S_Merchandise_increase"
-            android:label="@string/title_activity_s__merchandise_increase" 
+            android:label="@string/title_activity_s__merchandise_increase"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
-
+        <activity
+            android:name=".S_YesorNo_Mem"
+            android:label="@string/title_activity_s__yesor_no__mem" >
+        </activity>
     </application>
 
 </manifest>

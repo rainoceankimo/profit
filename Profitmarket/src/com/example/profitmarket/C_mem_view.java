@@ -36,15 +36,14 @@ public class C_mem_view extends Activity {
 	public void c_mem_onClick(View v) {
 	    Intent intent = new Intent();  
 	    intent.setClass(C_mem_view.this,C_mem_center.class);
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
+	    startActivity(intent);    //觸發換頁
+	    finish();   //結束本頁
 	}
 	public void c_sstore__onClick(View v) {
 	    Intent intent = new Intent();  
 	    intent.setClass(C_mem_view.this,C_search_store.class);
-	    
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
+	    startActivity(intent);    //觸發換頁
+	    finish();   //結束本頁
 	
     }
 	

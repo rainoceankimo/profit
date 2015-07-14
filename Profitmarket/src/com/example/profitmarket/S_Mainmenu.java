@@ -34,10 +34,17 @@ public class S_Mainmenu extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void s_storescenter_onClick(View view){
+	public void s_storescenter_onClick(View v){
 		Intent intent = new Intent(); 
 		intent.setClass(S_Mainmenu.this,S_Stores_Center.class);
 		startActivity(intent);    //觸發換頁
-		S_Mainmenu.this.finish();   //結束本頁
+		finish();   //結束本頁
+	}
+	
+	public void s_settleaccounts_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Mainmenu.this,S_SettleaCcounts.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
 	}
 }
