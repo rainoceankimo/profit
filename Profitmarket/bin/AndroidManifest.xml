@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.profitmarket"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".S_Mainmenu"
+            android:label="@string/title_activity_s__mainmenu"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_mem_view"
+            android:label="@string/title_activity_c_mem_view"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_mem_center"
+            android:label="@string/title_activity_c_mem_center"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_mod_inform"
+            android:label="@string/title_activity_c_mod_inform"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Stores_Center"
+            android:label="@string/title_activity_s_storescenter"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Stores_Center_Amend"
+            android:label="@string/title_activity_s_stores_center_amend"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Merchandise"
+            android:label="@string/title_activity_s__stroes_merchandise"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Coupon_Buy"
+            android:label="@string/title_activity_s__coupon_buy"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Coupon_management"
+            android:label="@string/title_activity_s__coupon_management"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Coupon_Rules"
+            android:label="@string/title_activity_s__coupon_rules"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_SettleaCcounts"
+            android:label="@string/title_activity_s__settleaccounts"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records"
+            android:label="@string/title_activity_s__records"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_register"
+            android:label="@string/title_activity_c_register"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_log"
+            android:label="@string/title_activity_c_log"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_record"
+            android:label="@string/title_activity_c_record"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_store"
+            android:label="@string/title_activity_c_store"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Signin"
+            android:label="@string/title_activity_s__signin"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".C_search_store"
+            android:label="@string/title_activity_c_search_store" >
+        </activity>
+        <activity
+            android:name=".C_discount_use"
+            android:label="@string/title_activity_c_discount_use"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".DrawerItem"
+            android:label="@string/title_activity_drawer_item"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Merchandise_increase"
+            android:label="@string/title_activity_s__merchandise_increase"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_YesorNo_Mem"
+            android:label="@string/title_activity_s__yesor_no__mem"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_TransactionRecords"
+            android:label="@string/title_activity_s__transaction_records"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_Transactionre"
+            android:label="@string/title_activity_s__records__transactionre"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_InquireTransactionre"
+            android:label="@string/title_activity_s__inquirere__transactionre_records"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_InquireShare"
+            android:label="@string/title_activity_s__records__inquire_share"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_ShareGet"
+            android:label="@string/title_activity_s__records__share_get"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_SharegIssue"
+            android:label="@string/title_activity_s__records__shareg_issue"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis"
+            android:label="@string/title_activity_s__analysis"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_IssueRecover"
+            android:label="@string/title_activity_s__analysis__issue_recover"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_Sources"
+            android:label="@string/title_activity_s__analysis__sources"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_Whereabouts"
+            android:label="@string/title_activity_s__analysis__whereabouts"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_Revenue"
+            android:label="@string/title_activity_s__analysis__revenue"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+    </application>
+
+</manifest>
