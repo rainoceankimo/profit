@@ -41,5 +41,6 @@
     <string name="title_activity_s__analysis__sources">S_Analysis_Sources</string>
     <string name="title_activity_s__analysis__whereabouts">S_Analysis_Whereabouts</string>
     <string name="title_activity_s__analysis__revenue">S_Analysis_Revenue</string>
+    <string name="title_activity_s__coupon__issuing">S_Coupon_Issuing</string>
 
 </resources>

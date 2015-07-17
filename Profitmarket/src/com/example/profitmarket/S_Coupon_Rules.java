@@ -42,6 +42,13 @@ public class S_Coupon_Rules extends Activity {
 		finish();   //結束本頁
 	}
 	
+	public void s_gocoupon_issuing_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Coupon_Rules.this,S_Coupon_Issuing.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
         if (keyCode == KeyEvent.KEYCODE_BACK)

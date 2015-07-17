@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class S_Analysis extends Activity {
 
@@ -32,6 +33,35 @@ public class S_Analysis extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void s_goIssueRecover_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Analysis.this,S_Analysis_IssueRecover.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
+	public void s_goSources_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Analysis.this,S_Analysis_Sources.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
+	public void s_goWhereabouts_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Analysis.this,S_Analysis_Whereabouts.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
+	
+	public void s_goRevenue_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Analysis.this,S_Analysis_Revenue.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
 	}
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class S_Records_InquireShare extends Activity {
 
@@ -33,6 +34,7 @@ public class S_Records_InquireShare extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
