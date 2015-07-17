@@ -137,7 +137,8 @@
         android:layout_marginBottom="41dp"
         android:text="確定"
         android:textColor="#000000"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:onClick="s_backInquireShare_onClick" />
 
     <TextView
         android:id="@+id/textView12"

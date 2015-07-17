@@ -6,19 +6,20 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class S_Analysis_IssueRecover extends Activity {
+public class S_Coupon_Issuing extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.s_analysis_issue_recover);
+		setContentView(R.layout.s_coupon_issuing);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.s__analysis__issue_recover, menu);
+		getMenuInflater().inflate(R.menu.s__coupon__issuing, menu);
 		return true;
 	}
 
@@ -34,6 +35,21 @@ public class S_Analysis_IssueRecover extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	public void s_backcouponrules_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Coupon_Issuing.this,S_Coupon_Rules.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
+	public void s_backcoupon_management_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Coupon_Issuing.this,S_Coupon_Management.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
+	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
         if (keyCode == KeyEvent.KEYCODE_BACK)
@@ -41,7 +57,7 @@ public class S_Analysis_IssueRecover extends Activity {
             // Show home screen when pressing "back" button,
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
-    	    intent.setClass(S_Analysis_IssueRecover.this,S_Analysis.class);
+    	    intent.setClass(S_Coupon_Issuing.this,S_Coupon_Rules.class);
     	   startActivity(intent);    //觸發換頁
     	   finish();   //結束本頁
             

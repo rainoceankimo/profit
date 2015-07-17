@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.profitmarket.S_Coupon_Management"
-    android:background="#CCFFFF" >
+    android:background="#CCFFFF"
+    tools:context="com.example.profitmarket.S_Coupon_Issuing" >
 
     <TextView
         android:id="@+id/textView1"
@@ -13,9 +13,18 @@
         android:layout_centerHorizontal="true"
         android:background="#0FFF3F"
         android:gravity="center"
-        android:text="折價券管理"
+        android:text="折價券發行中..."
         android:textColor="#000000"
         android:textSize="36sp" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:text="查看現有折價券"
+        android:textColor="#000000"
+        android:onClick="s_backcoupon_management_onClick" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -25,6 +34,22 @@
         android:layout_below="@+id/linearLayout1"
         android:layout_marginTop="21dp"
         android:background="#66FFFF" >
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp" >
+
+            <TextView android:text="XX"
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:inputType="numberSigned"
+                android:textSize="26sp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -54,44 +79,23 @@
                 android:textSize="26sp" />
         </LinearLayout>
 
+        
+        
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp" >
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/TextView06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XX"
+                android:text="期限"
                 android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp" >
-
-            <TextView
-                android:id="@+id/TextView02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="張"
-                android:textColor="#000000"
-                android:textSize="26sp" />
-
-        </LinearLayout>
+        
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:onClick="s_gocouponrules_onClick"
-        android:text="設定發行規則"
-        android:textColor="#000000" />
 
     <Button
         android:id="@+id/button3"
@@ -99,20 +103,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="28dp"
         android:text="確定"
         android:textColor="#000000"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        android:onClick="s_backcouponrules_onClick" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/button1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:background="#66FFFF"
-        android:textColor="#000000" >
+        android:layout_marginTop="26dp"
+        android:background="#66FFFF" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp" >
+
+            <TextView android:text="XX"
+                android:id="@+id/TextView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberSigned"
+                android:textColor="#000000"
+                android:textSize="26sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -148,37 +167,13 @@
             android:layout_marginLeft="10dp" >
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XX"
-                android:textColor="#000000"
-                android:textSize="26sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp" >
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="張"
+                android:text="期限"
                 android:textColor="#000000"
                 android:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_alignParentRight="true"
-        android:onClick="s_gocouponissuing_onClick"
-        android:text="發行中的折價券"
-        android:textColor="#000000" />
 
 </RelativeLayout>
