@@ -129,11 +129,63 @@
         </activity>
         <activity
             android:name=".S_YesorNo_Mem"
-            android:label="@string/title_activity_s__yesor_no__mem" >
+            android:label="@string/title_activity_s__yesor_no__mem"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
             android:name=".S_TransactionRecords"
-            android:label="@string/title_activity_s__transaction_records" >
+            android:label="@string/title_activity_s__transaction_records"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_Transactionre"
+            android:label="@string/title_activity_s__records__transactionre"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_InquireTransactionre"
+            android:label="@string/title_activity_s__inquirere__transactionre_records"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_InquireShare"
+            android:label="@string/title_activity_s__records__inquire_share"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_ShareGet"
+            android:label="@string/title_activity_s__records__share_get"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Records_SharegIssue"
+            android:label="@string/title_activity_s__records__shareg_issue"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis"
+            android:label="@string/title_activity_s__analysis"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_IssueRecover"
+            android:label="@string/title_activity_s__analysis__issue_recover"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_Sources"
+            android:label="@string/title_activity_s__analysis__sources"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_Whereabouts"
+            android:label="@string/title_activity_s__analysis__whereabouts"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".S_Analysis_Revenue"
+            android:label="@string/title_activity_s__analysis__revenue"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
     </application>
 
