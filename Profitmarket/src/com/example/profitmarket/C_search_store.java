@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -194,16 +195,29 @@ public class C_search_store extends Activity {
         }
 
         fragment.setArguments(args);
-        FragmentManager frgManager = getFragmentManager();
-        frgManager.beginTransaction().replace(R.id.content_frame, fragment)
-                    .commit();
-
+		  FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		  fragmentTransaction.replace(R.id.content_frame, fragment);
+		  fragmentTransaction.addToBackStack("home");
+		  fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		  fragmentTransaction.commit();
         mDrawerList.setItemChecked(possition, true);
         setTitle(dataList.get(possition).getItemName());
         mDrawerLayout.closeDrawer(mDrawerList);
 
   }
-	
+	@Override
+	 public void onBackPressed() {
+	  super.onBackPressed();
+	  FragmentManager fragmentManager = this.getFragmentManager();
+	  int stackCount = fragmentManager.getBackStackEntryCount();
+	  if (stackCount == 0) {
+     
+      Intent intent = new Intent();  
+	    intent.setClass(C_search_store.this,C_mem_view.class);
+	   startActivity(intent);   
+	   finish(); 
+	  }
+	}
 	@Override
 	public void setTitle(CharSequence title) {
 	      mTitle = title;
@@ -251,6 +265,5 @@ public void onItemClick(AdapterView<?> parent, View view, int position,
 		getMenuInflater().inflate(R.menu.c_search_store, menu);
 		return true;
 	}
-
 
 }

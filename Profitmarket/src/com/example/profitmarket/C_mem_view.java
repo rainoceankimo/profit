@@ -55,6 +55,13 @@ public class C_mem_view extends Activity {
 	   finish();   //結束本頁
 	
     }
+	public void C_research_onClick(View v) {
+	    Intent intent = new Intent();  
+	    intent.setClass(C_mem_view.this,C_record.class);
+	   startActivity(intent);    //觸發換頁
+	   finish();   //結束本頁
+	
+    }
 public boolean onKeyDown(int keyCode, KeyEvent event) {
         
         if (keyCode == KeyEvent.KEYCODE_BACK)
