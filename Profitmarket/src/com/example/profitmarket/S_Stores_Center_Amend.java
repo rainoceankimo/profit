@@ -3,6 +3,7 @@ package com.example.profitmarket;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,10 +35,27 @@ public class S_Stores_Center_Amend extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void s_backtostorescenter_onClick(View view){
+	public void s_backtostorescenter_onClick(View v){
 		Intent intent = new Intent(); 
-		intent.setClass(S_Stores_Center_Amend.this,S_Mainmenu.class);
+		intent.setClass(S_Stores_Center_Amend.this,S_Stores_Center.class);
 		startActivity(intent);    //觸發換頁
-		S_Stores_Center_Amend.this.finish();   //結束本頁
+		finish();   //結束本頁
 	}
+	
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(S_Stores_Center_Amend.this,S_Stores_Center.class);
+    	   startActivity(intent);    //觸發換頁
+    	   finish();   //結束本頁
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
 }

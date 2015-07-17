@@ -2,6 +2,7 @@ package com.example.profitmarket;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,4 +48,40 @@ public class S_Mainmenu extends Activity {
 		startActivity(intent);    //觸發換頁
 		finish();   //結束本頁
 	}
+	
+	public void s_couponbuy_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Mainmenu.this,S_Coupon_Buy.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	public void s_couponmanagement_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Mainmenu.this,S_Coupon_Management.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	public void s_records_onClick(View v){
+		Intent intent = new Intent();
+		intent.setClass(S_Mainmenu.this,S_Records.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	}
+	
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(S_Mainmenu.this,S_Signin.class);
+    	   startActivity(intent);    //觸發換頁
+    	   finish();   //結束本頁
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
 }

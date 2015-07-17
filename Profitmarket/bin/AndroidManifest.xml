@@ -64,7 +64,7 @@
             android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
-            android:name=".S_Coupon_management"
+            android:name=".S_Coupon_Management"
             android:label="@string/title_activity_s__coupon_management"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>

@@ -14,7 +14,8 @@
         android:layout_marginBottom="18dp"
         android:text="確定"
         android:textColor="#000000"
-        android:textSize="24dip" />
+        android:textSize="24dip"
+        android:onClick="s_Merchandiseback_onClick" />
 
     <Button
         android:id="@+id/button3"

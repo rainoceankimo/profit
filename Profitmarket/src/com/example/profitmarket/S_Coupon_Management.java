@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class S_Coupon_management extends Activity {
+public class S_Coupon_Management extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

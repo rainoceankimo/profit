@@ -110,7 +110,7 @@
         android:text="確定"
         android:textColor="#000000"
         android:textSize="26sp"
-        android:onClick="s_backtostorescenter_onClick " />
+        android:onClick="s_backtostorescenter_onClick" />
 
     <EditText
         android:id="@+id/editText4"
