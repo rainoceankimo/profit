@@ -1,17 +1,26 @@
 package com.example.profitmarket;
 import java.util.Calendar;  
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;  
 import android.app.DatePickerDialog;  
 import android.app.TimePickerDialog;  
 import android.content.Intent;
 import android.os.Bundle;  
+import android.os.StrictMode;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;  
 import android.widget.Button;  
 import android.widget.DatePicker;  
+import android.widget.TableLayout;
+import android.widget.TableLayout.LayoutParams;
+import android.widget.TableRow;
 import android.widget.TextView;  
 import android.widget.TimePicker;  
 
@@ -32,9 +41,8 @@ public class C_record extends Activity {
 		    showDatePickerDialog();  
 		   }  
 		  });  
-		
-		  
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

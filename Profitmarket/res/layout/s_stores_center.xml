@@ -92,7 +92,7 @@
         android:onClick="s_storesinformationamend_onClick" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnViewProducts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"

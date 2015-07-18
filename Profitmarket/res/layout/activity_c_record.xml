@@ -42,18 +42,6 @@
         android:layout_weight="0"
         android:text="選擇日期" />
 
-    <TableLayout
-        android:id="@+id/user_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/get_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp"
-        android:text="抓資料囉！" />
     
 
 </RelativeLayout>

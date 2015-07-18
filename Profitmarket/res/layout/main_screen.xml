@@ -7,11 +7,7 @@
  
     <!--  Sample Dashboard screen with Two buttons -->
     <!--  Button to view all products screen -->
-    <Button android:id="@+id/btnViewProducts"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="View Products"
-        android:layout_marginTop="25dip"/>
+    
  
     <!--  Button to create a new product screen -->
     <Button android:id="@+id/btnCreateProduct"
