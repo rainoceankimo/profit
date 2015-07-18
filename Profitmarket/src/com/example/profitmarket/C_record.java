@@ -26,21 +26,14 @@ public class C_record extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_c_record);
 		tvDate = (TextView) findViewById(R.id.tvDate);  
-		  tvTime = (TextView) findViewById(R.id.tvTime);  
-		  
 		  btDate = (Button) findViewById(R.id.btDate);  
-		  btTime = (Button) findViewById(R.id.btTime);  
-		  
 		  btDate.setOnClickListener(new Button.OnClickListener() {  
 		   public void onClick(View v) {  
 		    showDatePickerDialog();  
 		   }  
 		  });  
-		  btTime.setOnClickListener(new Button.OnClickListener() {  
-		   public void onClick(View v) {  
-		    showTimePickerDialog();  
-		   }  
-		  });  
+		
+		  
 	}
 
 	@Override
@@ -81,70 +74,7 @@ public class C_record extends Activity {
 		     }  
 		    }, mYear, mMonth, mDay);  
 		  dpd.show();  
-		 }  
-		  
-		 public void showTimePickerDialog() {  
-		  // 設定初始時間  
-		  final Calendar c = Calendar.getInstance();  
-		  mHour = c.get(Calendar.HOUR_OF_DAY);  
-		  mMinute = c.get(Calendar.MINUTE);  
-		  
-		  // 跳出時間選擇器  
-		  TimePickerDialog tpd = new TimePickerDialog(this,  
-		    new TimePickerDialog.OnTimeSetListener() {  
-		     public void onTimeSet(TimePicker view, int hourOfDay,  
-		       int minute) {  
-		      // 完成選擇，顯示時間  
-		      tvTime.setText(hourOfDay + ":" + minute);  
-		     }  
-		    }, mHour, mMinute, false);  
-		  tpd.show();  
-		 }  
-		  
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		 }  	
 public boolean onKeyDown(int keyCode, KeyEvent event) {
         
         if (keyCode == KeyEvent.KEYCODE_BACK)
