@@ -187,6 +187,11 @@
             android:label="@string/title_activity_s__analysis__revenue"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
+        <activity
+            android:name=".S_Coupon_Issuing"
+            android:label="@string/title_activity_s__coupon__issuing"
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
+        </activity>
     </application>
   <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
