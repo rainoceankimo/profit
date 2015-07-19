@@ -29,18 +29,6 @@
         android:textColor="#000000"
         android:textSize="24dip" />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp"
-        android:text="更改資訊"
-        android:textColor="#000000"
-        android:textSize="24dip"
-        android:onClick="s_merchandiseincrease_onClick" />
-
     <TextView
         android:id="@+id/textView01"
         android:layout_width="fill_parent"
@@ -134,5 +122,28 @@
         android:layout_toRightOf="@+id/button3"
         android:text="分類四"
         android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/btnViewProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="63dp"
+        android:layout_marginLeft="14dp"
+        android:onClick="s_merchandiseincrease_onClick"
+        android:text="更改資訊"
+        android:textColor="#000000"
+        android:textSize="24dip" />
+
+    <Button
+        android:id="@+id/btnCreateProduct"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnViewProducts"
+        android:layout_alignBottom="@+id/btnViewProducts"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/textView4"
+        android:text="Add New Products" />
 
 </RelativeLayout>

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
  
+
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,13 +20,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
  
 public class AllProductsActivity extends ListActivity {
- 
+	 Button btnNewProduct;
     // Progress Dialog
     private ProgressDialog pDialog;
  
@@ -49,7 +52,7 @@ public class AllProductsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_product);
- 
+       
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
  
@@ -64,12 +67,11 @@ public class AllProductsActivity extends ListActivity {
         lv.setOnItemClickListener(new OnItemClickListener() {
  
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
+            public void onItemClick(AdapterView<?> parent, View view2,
                     int position, long id) {
                 // getting values from selected ListItem
-                String pid = ((TextView) view.findViewById(R.id.pid)).getText()
+                String pid = ((TextView) view2.findViewById(R.id.pid)).getText()
                         .toString();
- 
                 // Starting new intent
                 Intent in = new Intent(getApplicationContext(),
                         EditProductActivity.class);
@@ -80,7 +82,6 @@ public class AllProductsActivity extends ListActivity {
                 startActivityForResult(in, 100);
             }
         });
- 
     }
  
     // Response from Edit Product Activity
@@ -193,8 +194,5 @@ public class AllProductsActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
             });
- 
-        }
- 
-    }
-}
+        }      
+}}
