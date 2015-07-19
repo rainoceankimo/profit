@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:descendantFocusability="blocksDescendants"
-                          >
-     <ListView
-        android:id="@android:id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="231dp"
-       
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="64dp" >
-    </ListView>
+    android:orientation="vertical" >
 
-    
-    
-</LinearLayout>
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="292dp"
+        android:layout_height="283dp" />
+
+    <Button
+        android:id="@+id/btnCreateProduct"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="Add New Products" />
+   
+   </LinearLayout>

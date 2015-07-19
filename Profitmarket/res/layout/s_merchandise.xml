@@ -137,13 +137,12 @@
         android:textSize="24dip" />
 
     <Button
-        android:id="@+id/btnCreateProduct"
-        android:layout_width="fill_parent"
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnViewProducts"
-        android:layout_alignBottom="@+id/btnViewProducts"
-        android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/textView4"
-        android:text="Add New Products" />
+        android:layout_alignTop="@+id/btnViewProducts"
+        android:layout_marginRight="20dp"
+        android:text="Button" />
 
 </RelativeLayout>

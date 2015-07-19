@@ -7,50 +7,15 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 
 public class S_Merchandise extends Activity {
 
-    Button btnViewProducts;
-    Button btnNewProduct;
- 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_merchandise);
-		 btnNewProduct = (Button) findViewById(R.id.btnCreateProduct);
-	     // view products click event
-	     btnNewProduct.setOnClickListener(new View.OnClickListener() {
-
-	         @Override
-	         public void onClick(View view) {
-	             // Launching create new product activity
-	             Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
-	             startActivity(i);
-
-	         }
-	     });
-	
-	      
-		 // Buttons
-        btnViewProducts = (Button) findViewById(R.id.btnViewProducts);
-      
- 
-        // view products click event
-        btnViewProducts.setOnClickListener(new View.OnClickListener() {
- 
-            @Override
-            public void onClick(View view) {
-                // Launching All products Activity
-                Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
-                startActivity(i);
- 
-            }
-        });
 	}
-	
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,7 +36,12 @@ public class S_Merchandise extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	
+	public void s_merchandiseincrease_onClick(View v){
+		Intent intent = new Intent(); 
+		intent.setClass(S_Merchandise.this,AllProductsActivity.class);
+		startActivity(intent);    //Ä²µo´«­¶
+		finish();   //µ²§ô¥»­¶
+	}
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
