@@ -36,12 +36,7 @@ public class S_Merchandise extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void s_merchandiseincrease_onClick(View v){
-		Intent intent = new Intent(); 
-		intent.setClass(S_Merchandise.this,AllProductsActivity.class);
-		startActivity(intent);    //Ä²µo´«­¶
-		finish();   //µ²§ô¥»­¶
-	}
+	
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
