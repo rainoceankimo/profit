@@ -44,7 +44,7 @@ public class S_Stores_Center extends Activity {
 	
 	public void s_merchandise_onClick(View v){
 		Intent intent = new Intent(); 
-		intent.setClass(S_Stores_Center.this,S_Merchandise.class);
+		intent.setClass(S_Stores_Center.this,AllProductsActivity.class);
 		startActivity(intent);    //Ä²µo´«­¶
 		finish();   //µ²§ô¥»­¶
 	}
