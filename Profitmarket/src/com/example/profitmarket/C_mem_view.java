@@ -69,7 +69,7 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
             // Show home screen when pressing "back" button,
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
-    	    intent.setClass(C_mem_view.this,C_log.class);
+    	    intent.setClass(C_mem_view.this,LogoutActivity.class);
     	   startActivity(intent);    //Ä²µo´«­¶
     	   finish();   //µ²§ô¥»­¶
             
