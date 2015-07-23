@@ -133,7 +133,7 @@ public class AllProductsActivity extends ListActivity {
     /**
      * Background Async Task to Load all product by making HTTP Request
      * */
-    class LoadAllProducts extends AsyncTask<String, String, String> {
+    class LoadAllProducts extends AsyncTask <String, String, String> {
  
         /**
          * Before starting background thread Show Progress Dialog
