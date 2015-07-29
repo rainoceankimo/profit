@@ -11,7 +11,7 @@
       android:orientation="vertical"
  
       android:layout_marginTop="0dp"
-      android:background="?android:attr/activatedBackgroundIndicator"
+      
      >
  
               <LinearLayout
