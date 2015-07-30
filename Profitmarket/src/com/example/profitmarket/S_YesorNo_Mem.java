@@ -1,9 +1,11 @@
 package com.example.profitmarket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class S_YesorNo_Mem extends Activity {
 
@@ -31,4 +33,12 @@ public class S_YesorNo_Mem extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	 public void test_camera_onClick(View v){
+			Intent intent = new Intent(); 
+			intent.setClass(S_YesorNo_Mem.this,Camera_MainActivity.class);
+			startActivity(intent);    //Ä²µo´«­¶
+			finish();   //µ²§ô¥»­¶
+		}
+	
 }
+

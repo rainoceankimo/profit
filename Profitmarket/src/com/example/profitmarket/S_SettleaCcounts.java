@@ -119,4 +119,10 @@ public class S_SettleaCcounts extends Activity {
         
         return super.onKeyDown(keyCode, event);
     }
+    public void account_onClick(View v){
+		Intent intent = new Intent(); 
+		intent.setClass(S_SettleaCcounts.this,S_YesorNo_Mem.class);
+		startActivity(intent);    //Ä²µo´«­¶
+		finish();   //µ²§ô¥»­¶
+	}
 }
