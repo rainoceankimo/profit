@@ -52,7 +52,12 @@
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
+   
+  
+
     <string name="title_activity_test_android_db">TestAndroidDBActivity</string>
     <string name="title_activity_camera_test">CameraTestActivity</string>
+    <string name="title_activity_camera_preview">CameraPreview</string>
+    <string name="title_activity_camera__main">Camera_MainActivity</string>
 
 </resources>
