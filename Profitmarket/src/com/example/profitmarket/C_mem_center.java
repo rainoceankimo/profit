@@ -29,6 +29,7 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 	
 	private EditText textName;
     private EditText textEmail;
+    private EditText textPhone;
     private Button QRcode;
     
     private SQLiteHandler db;
@@ -37,14 +38,16 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
     private SurfaceView mSurfaceView01;
     private SurfaceHolder mSurfaceHolder01;
     
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_c_mem_center);
 		
-		textName = (EditText) findViewById(R.id.textname);
-        textEmail = (EditText) findViewById(R.id.textemail);
+		textName = (EditText) findViewById(R.id.txtemail);
+        textEmail = (EditText) findViewById(R.id.txtname);
+        textPhone = (EditText) findViewById(R.id.textphone);
         QRcode = (Button) findViewById(R.id.button2);
         
         /*取得解析像素*/
@@ -66,11 +69,12 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
         
         String name = user.get("name");
         String email = user.get("email");
+        String phone = user.get("phone");
  
         // Displaying the user details on the screen
         textName.setText(name);
         textEmail.setText(email);
-        
+        textPhone.setText(phone);
         
         //產生QR Code
         QRcode = (Button)findViewById(R.id.button2);
@@ -89,10 +93,9 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 				
 			}
         });
-        
-        
-		
 	}
+	
+	
 	
 	public void AndroidQREncode(String strEncoding, int qrcodeVersion)
 	{
@@ -180,29 +183,7 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 		return super.onOptionsItemSelected(item);
 	} 
 	
-	public void c_mod_inform_onClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_mem_center.this,C_mod_inform.class);
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
-    }
 	
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        
-        if (keyCode == KeyEvent.KEYCODE_BACK)
-        {
-            // Show home screen when pressing "back" button,
-            //  so that this app won't be closed accidentally
-        	Intent intent = new Intent();  
-    	    intent.setClass(C_mem_center.this,C_mem_view.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
-            
-            return true;
-        }
-        
-        return super.onKeyDown(keyCode, event);
-    }
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
@@ -221,6 +202,30 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void c_mod_inform_onClick(View v) {
+	    Intent intent = new Intent();  
+	    intent.setClass(C_mem_center.this,C_mod_inform.class);
+	    startActivity(intent);    //觸發換頁
+	    finish();   //結束本頁
+    }
+	
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(C_mem_center.this,C_mem_view.class);
+    	   startActivity(intent);    //觸發換頁
+    	   finish();   //結束本頁
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
 	
 }
 
