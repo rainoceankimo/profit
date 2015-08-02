@@ -50,7 +50,7 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
         textPhone = (EditText) findViewById(R.id.textphone);
         QRcode = (Button) findViewById(R.id.button2);
         
-        /*¨ú±o¸ÑªR¹³¯À*/
+        /*å–å¾—è§£æžåƒç´ */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         
@@ -76,7 +76,7 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
         textEmail.setText(email);
         textPhone.setText(phone);
         
-        //²£¥ÍQR Code
+        //ç”¢ç”ŸQR Code
         QRcode = (Button)findViewById(R.id.button2);
         QRcode.setOnClickListener(new Button.OnClickListener()
         {
@@ -87,7 +87,7 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 				
 				if(QRcode.getText().toString()!="")
 		        {
-		          /* ´«ÈësetQrcodeVersionÎª4£¬½öÄÜ½ÓÊÜ62¸ö×Ö·û */
+		          // å‚³å…¥setQrcodeVersionç‚º4ï¼Œ åªèƒ½æŽ¥å—62å€‹å­—
 		          AndroidQREncode(textName.getText().toString(), 4);
 		        }
 				
@@ -96,18 +96,18 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 	}
 	
 	
-	
+	//å®šç¾©ç”¢ç”ŸQR Code
 	public void AndroidQREncode(String strEncoding, int qrcodeVersion)
 	{
 	    try
 	    {
-	      /* ½¨¹¹QRCode±àÂë¶ÔÏó */
+	      // æž„å»ºQRCodeç·¨ç¢¼å°è±¡ 
 	      com.swetake.util.Qrcode testQrcode = new com.swetake.util.Qrcode();
-	      /* L','M','Q','H' */
+	      // L','M','Q','H' 
 	      testQrcode.setQrcodeErrorCorrect('M');
-	      /* "N","A" or other */
+	      // "N","A" or other 
 	      testQrcode.setQrcodeEncodeMode('B');
-	      /* 0-20 */
+	      // 0-20 
 	      testQrcode.setQrcodeVersion(qrcodeVersion);
 	      
 	      // getBytes
@@ -115,9 +115,9 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 	      
 	      if (bytesEncoding.length>0 && bytesEncoding.length <256)
 	      {
-	        /* ½«×Ö·û´®Í¸¹ýcalQrcodeº¯Êý×ª»»³ÉbooleanÊý×é */
+	        // å°‡å­—ä¸²é€šéŽcalQrcodeå‡½æ•°è½‰æ›æˆbooleanæ•¸çµ„
 	        boolean[][] bEncoding = testQrcode.calQrcode(bytesEncoding);
-	        /* ÒÀ¾Ý±àÂëºóµÄbooleanÊý×é£¬»æÍ¼ */
+	        // ä¾æ“šç·¨è™Ÿå¾Œçš„booleanæ•¸çµ„ç¹ªç•«
 	        DrawQRCode(bEncoding, getResources().getColor(R.drawable.black));
 	      }
 	    }
@@ -129,38 +129,39 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 	 }
 	
 
-
+    // åœ¨SurfaceViewä¸Šç¹ªè£½QR Code
 	private void DrawQRCode(boolean[][] bRect, int colorFill) {
 		// TODO Auto-generated method stub
-		/* test Canvas*/
+		// test Canvas
 	    int intPadding = 20;
 	    
-	    /* ÓûÔÚSurfaceViewÉÏ»æÍ¼£¬ÐèÏÈlockËø¶¨SurfaceHolder */
+	    // æƒ³åœ¨SurfaceViewä¸Šç¹ªåœ–ï¼Œéœ€è¦lockéŽ–å®šSurfaceHolder 
 	    Canvas mCanvas01 = mSurfaceHolder01.lockCanvas();
 	    
-	    /* Éè¶¨»­²¼»æÖÆÑÕÉ« */
+	    // è¨­ç½®ç•«å¸ƒç¹ªè£½é¡è‰²
 	    mCanvas01.drawColor(getResources().getColor(R.drawable.white));
 	    
-	    /* ½¨Á¢»­±Ê */
+	    // å‰µå»ºç•«ç­† 
 	    Paint mPaint01 = new Paint();
 	    
-	    /* Éè¶¨»­±ÊÑÕÉ«¼°ÑùÊ½ */
+	    // è¨­ç½®ç•«ç­† é¡è‰²åŠé¡è‰²
 	    mPaint01.setStyle(Paint.Style.FILL);
 	    mPaint01.setColor(colorFill);
 	    mPaint01.setStrokeWidth(1.0F);
 	    
-	    /* ÖðÒ»¼ÓÔØ2Î¬booleanÊý×é */
+	    // é€ä¸€åŠ è¼‰2ç¶­booleanæ•¸çµ„ 
 	    for (int i=0;i<bRect.length;i++)
 	    {
 	      for (int j=0;j<bRect.length;j++)
 	      {
 	        if (bRect[j][i])
 	        {
-	          /* ÒÀ¾ÝÊý×éÖµ£¬»æ³öÌõÐÎÂë·½¿é */
+	          // ä¾æ“šæ•¸çµ„æ•¸ï¼Œç¹ªè£½QRæ–¹å¡Š
 	          mCanvas01.drawRect(new Rect( intPadding+j*9+6,intPadding+i*9+6, intPadding+j*9+6+9, intPadding+i*9+6+9), mPaint01);
 	        }
 	      }
 	    }
+	    // è§£éŽ–SurfaceHolderï¼Œå¹¶ç¹ªåœ–
 	    mSurfaceHolder01.unlockCanvasAndPost(mCanvas01);
 	}
 
@@ -206,8 +207,8 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
 	public void c_mod_inform_onClick(View v) {
 	    Intent intent = new Intent();  
 	    intent.setClass(C_mem_center.this,C_mod_inform.class);
-	    startActivity(intent);    //Ä²µo´«­¶
-	    finish();   //µ²§ô¥»­¶
+	    startActivity(intent);    //è§¸ç™¼æ›é 
+	    finish();   //çµæŸæœ¬é 
     }
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -218,8 +219,8 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
     	    intent.setClass(C_mem_center.this,C_mem_view.class);
-    	   startActivity(intent);    //Ä²µo´«­¶
-    	   finish();   //µ²§ô¥»­¶
+    	   startActivity(intent);    //è§¸ç™¼æ›é 
+    	   finish();   //çµæŸæœ¬é 
             
             return true;
         }
