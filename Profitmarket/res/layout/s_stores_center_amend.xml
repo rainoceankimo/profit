@@ -60,7 +60,7 @@
         android:textSize="20sp" />
     
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txtemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignLeft="@+id/txtemail"
         android:ems="10"
         android:inputType="textPostalAddress" />
 
@@ -113,7 +113,7 @@
         android:onClick="s_backtostorescenter_onClick" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/txtname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView5"

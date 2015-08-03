@@ -83,13 +83,13 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText1"
-        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignBaseline="@+id/txtemail"
+        android:layout_alignBottom="@+id/txtemail"
         android:layout_alignRight="@+id/button4"
         android:text="刪除" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txtemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -135,7 +135,7 @@
         android:ems="10" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/txtname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button7"
@@ -150,7 +150,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
+        android:layout_above="@+id/txtemail"
         android:layout_toRightOf="@+id/button6"
         android:background="#FFD966"
         android:text="元"
