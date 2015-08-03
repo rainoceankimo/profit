@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -15,12 +15,28 @@
     <!-- Name Label -->
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="fill_parent"
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/name"
         android:paddingLeft="6dip"
         android:paddingTop="6dip"
         android:textSize="17dip"
         android:textStyle="bold" />
- 
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        android:textSize="17dip"
+        android:textStyle="bold" />
+
+    
+
+</RelativeLayout>

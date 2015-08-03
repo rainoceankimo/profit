@@ -74,7 +74,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
  
         Log.d(TAG, "New user inserted into sqlite: " + id);
     }
- 
+   
     /**
      * Getting user data from database
      * */

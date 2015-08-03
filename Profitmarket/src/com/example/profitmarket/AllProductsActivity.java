@@ -3,18 +3,12 @@ package com.example.profitmarket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
- 
-
-
-
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
-
-
 
 
 import android.app.ListActivity;
@@ -30,6 +24,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
  
 public class AllProductsActivity extends ListActivity {
@@ -41,16 +36,16 @@ public class AllProductsActivity extends ListActivity {
     JSONParser jParser = new JSONParser();
  
     ArrayList<HashMap<String, String>> productsList;
- 
+    
     // url to get all products list
     private static String url_all_products = "http://10.3.204.1/android_connect/get_all_products.php";
- 
+    
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_PID = "pid";
     private static final String TAG_NAME = "name";
- 
+    private static final String TAG_PRICE = "price";
     // products JSONArray
     JSONArray products = null;
  
@@ -60,14 +55,12 @@ public class AllProductsActivity extends ListActivity {
         setContentView(R.layout.all_product);
         Button btnViewProducts;
         Button btnNewProduct;
-
+    
         
             // Buttons
             btnViewProducts = (Button) findViewById(R.id.btnViewProducts);
             btnNewProduct = (Button) findViewById(R.id.btnCreateProduct);
-
-            
-
+          
             // view products click event
             btnNewProduct.setOnClickListener(new View.OnClickListener() {
 
@@ -91,7 +84,7 @@ public class AllProductsActivity extends ListActivity {
  
         // Get listview
         ListView lv = getListView();
- 
+        
         // on seleting single product
         // launching Edit Product Screen
         lv.setOnItemClickListener(new OnItemClickListener() {
@@ -163,7 +156,7 @@ public class AllProductsActivity extends ListActivity {
             try {
                 // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
- 
+                 
                 if (success == 1) {
                     // products found
                     // Getting Array of Products
@@ -176,14 +169,15 @@ public class AllProductsActivity extends ListActivity {
                         // Storing each json item in variable
                         String id = c.getString(TAG_PID);
                         String name = c.getString(TAG_NAME);
- 
+                        String price = c.getString(TAG_PRICE);
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
  
                         // adding each child node to HashMap key => value
                         map.put(TAG_PID, id);
                         map.put(TAG_NAME, name);
- 
+                        map.put(TAG_PRICE, price);
+                        
                         // adding HashList to ArrayList
                         productsList.add(map);
                     }
@@ -218,10 +212,11 @@ public class AllProductsActivity extends ListActivity {
                     ListAdapter adapter = new SimpleAdapter(
                             AllProductsActivity.this, productsList,
                             R.layout.list_item, new String[] { TAG_PID,
-                                    TAG_NAME},
-                            new int[] { R.id.pid, R.id.name });
+                                    TAG_NAME,TAG_PRICE},
+                            new int[] { R.id.pid, R.id.name ,R.id.price});
                     // updating listview
                     setListAdapter(adapter);
+                    
                 }
             });
         }      
