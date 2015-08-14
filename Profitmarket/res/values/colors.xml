@@ -15,6 +15,7 @@
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
+    <color name="stores_background">#CCFFFF</color>
     
     <drawable name="black">#000000</drawable>
     <drawable name="darkgray">#808080</drawable>

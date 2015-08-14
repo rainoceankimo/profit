@@ -75,7 +75,7 @@ public class S_Mainmenu extends Activity {
             // Show home screen when pressing "back" button,
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
-    	    intent.setClass(S_Mainmenu.this,S_Signin.class);
+    	    intent.setClass(S_Mainmenu.this,S_Login.class);
     	   startActivity(intent);    //Ä²µo´«­¶
     	   finish();   //µ²§ô¥»­¶
             

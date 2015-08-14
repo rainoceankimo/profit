@@ -107,16 +107,6 @@
         android:textSize="24sp"
         android:onClick="s_settleaccounts_onClick" />
 
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="100dip"
-        android:layout_height="100dip"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/s_records"
-        android:layout_marginTop="15dp"
-        android:onClick="s_records_onClick" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -138,5 +128,14 @@
         android:background="#CCFFFF"
         android:src="@drawable/s_buycoupon"
         android:onClick="s_couponbuy_onClick" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:onClick="s_records_onClick"
+        android:src="@drawable/s_records" />
 
 </RelativeLayout>
