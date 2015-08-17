@@ -77,7 +77,7 @@ public class C_mem_center extends Activity implements SurfaceHolder.Callback
         textPhone.setText(phone);
         
         //產生QR Code
-        QRcode = (Button)findViewById(R.id.button2);
+        //QRcode = (Button)findViewById(R.id.button2);
         QRcode.setOnClickListener(new Button.OnClickListener()
         {
 
