@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	
+
+	<EditText
+		android:id="@+id/edithowmuch"
+	    android:layout_width="match_parent" 
+	    android:hint="需要的折價券面額"
+	    android:inputType="number"
+	    android:layout_height="wrap_content" />
+
+	
+
+	<EditText
+		android:id="@+id/edithowmany"
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content"
+	    android:hint="需要幾張"
+	    
+	    android:inputType="number" />
+
+	<LinearLayout
+	    android:orientation="horizontal"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center" >
+
+		<Button
+			android:id="@+id/btnOK"
+		    android:layout_width="160dp" 
+		    android:layout_height="wrap_content" 
+		    android:text="加入" />
+
+		<Button
+			android:id="@+id/btnCancel"
+		    android:layout_width="80dp" 
+		    android:layout_height="wrap_content" 
+		    android:text="取消" />
+
+	
+
+	</LinearLayout>
+    
+</LinearLayout>

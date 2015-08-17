@@ -12,7 +12,7 @@
     <string name="title_activity_c_mem_center">C_mem_center</string>
     <string name="title_activity_c_mod_inform">C_mod_inform</string>
     <string name="title_activity_s__stroes_merchandise">s__stroes_merchandise</string>
-    <string name="title_activity_s__coupon_buy">s__coupon_buy</string>
+    <string name="title_activity_s__coupon_buy">購買折價券</string>
     <string name="title_activity_s__coupon_management">s__coupon_management</string>
     <string name="title_activity_s__coupon_rules">s__coupon_rules</string>
     <string name="title_activity_s__settleaccounts">s__settleaccounts</string>
