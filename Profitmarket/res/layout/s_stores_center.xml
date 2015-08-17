@@ -16,7 +16,7 @@
         android:background="#0FFF3F" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/QRimageshow1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -50,7 +50,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
+        android:layout_below="@+id/QRimageshow1"
         android:layout_marginTop="19dp"
         android:text="店家名稱："
         android:textColor="#000000"
@@ -80,7 +80,7 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -95,8 +95,8 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBaseline="@+id/btnclickqr"
+        android:layout_alignBottom="@+id/btnclickqr"
         android:textColor="#000000"
         android:layout_toRightOf="@+id/textView6"
         android:text="商品管理"

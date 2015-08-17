@@ -18,7 +18,7 @@
         android:textSize="36sp"
         android:textStyle="bold" />
 <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/QRimageshow1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -50,7 +50,7 @@
     android:id="@+id/txtemail"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignLeft="@+id/imageView1"
+    android:layout_alignLeft="@+id/QRimageshow1"
     android:layout_alignTop="@+id/textView2"
     android:ems="10" 
     android:inputType="text"/>
@@ -60,7 +60,7 @@
     android:layout_width="40dp"
     android:layout_height="30dp"
     android:layout_alignParentLeft="true"
-    android:layout_below="@+id/imageView1"
+    android:layout_below="@+id/QRimageshow1"
     android:layout_marginTop="14dp"
     android:gravity="center_vertical|center_horizontal"
     android:text="店名:"
@@ -110,7 +110,7 @@
     android:text="簡介:" />
 
 <Button
-    android:id="@+id/button1"
+    android:id="@+id/btnclickqr"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@+id/txtname"

@@ -18,7 +18,7 @@
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -113,7 +113,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/btnclickqr"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:background="#66FFFF" >

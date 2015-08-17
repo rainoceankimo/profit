@@ -16,7 +16,7 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="275dp"
         android:layout_height="100dp"
         android:layout_below="@+id/textView1"
@@ -43,7 +43,7 @@
         android:id="@+id/button2"
         android:layout_width="275dp"
         android:layout_height="100dp"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignLeft="@+id/btnclickqr"
         android:layout_centerVertical="true"
         android:text="查詢分潤紀錄"
         android:textColor="#000000"

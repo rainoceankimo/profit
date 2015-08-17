@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     >
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="wrap_content"
         android:layout_height="84dp"
         android:layout_weight="0.56"

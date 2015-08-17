@@ -57,7 +57,8 @@
             android:background="@color/btn_login_bg"
             android:gravity="center"
             android:text="@string/btn_login"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:padding="15dip" />
  
         <!-- Link to Login Screen -->
  
@@ -70,16 +71,18 @@
             android:text="註冊"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:padding="15dip" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btnclickqr"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:text="忘記密碼" />
+            android:text="忘記密碼"
+            android:padding="15dip" />
 
     </LinearLayout>
  

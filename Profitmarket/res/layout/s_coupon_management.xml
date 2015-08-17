@@ -172,7 +172,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout1"

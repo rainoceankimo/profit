@@ -66,7 +66,7 @@ public class S_Coupon_Buy extends Activity {
 		clear = (Button) findViewById(R.id.clear);
 		clear.setOnClickListener(clearOnClickListener);
 		add.setOnClickListener(addOnClickListener);
-		buy = (Button) findViewById(R.id.button1);
+		buy = (Button) findViewById(R.id.btnclickqr);
 		buy.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread

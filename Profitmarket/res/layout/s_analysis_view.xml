@@ -16,7 +16,7 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="275dp"
         android:layout_height="80dp"
         android:layout_below="@+id/textView1"
@@ -31,8 +31,8 @@
         android:id="@+id/button2"
         android:layout_width="275dp"
         android:layout_height="80dp"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
+        android:layout_alignLeft="@+id/btnclickqr"
+        android:layout_below="@+id/btnclickqr"
         android:layout_marginTop="22dp"
         android:text="折價券來源店家統計"
         android:textColor="#000000"

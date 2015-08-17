@@ -16,7 +16,7 @@
         android:textColor="#000000"
         android:textSize="36sp" />
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnclickqr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -28,9 +28,9 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/button1"
+        android:layout_alignBaseline="@+id/btnclickqr"
+        android:layout_alignBottom="@+id/btnclickqr"
+        android:layout_toRightOf="@+id/btnclickqr"
         android:text="分類二"
         android:textColor="#000000" />
 
@@ -82,7 +82,7 @@
         android:id="@android:id/list"
         android:layout_width="wrap_content"
         android:layout_height="283dp"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/btnclickqr"
         android:layout_toLeftOf="@+id/textView3" >
 
     </ListView>

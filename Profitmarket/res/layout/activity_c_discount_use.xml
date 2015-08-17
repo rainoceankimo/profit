@@ -19,135 +19,109 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android1:id="@+id/LinearLayout03"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_below="@+id/textView1"
-        android1:layout_marginTop="18dp"
-        android1:background="#FFCCCC" >
+        android:id="@+id/LinearLayout01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/LinearLayout02"
+        android:layout_below="@+id/LinearLayout02"
+        android:layout_marginTop="17dp"
+        android:background="#FFCCCC" >
 
         <LinearLayout
-            android1:layout_width="wrap_content"
-            android1:layout_height="match_parent"
-            android1:layout_marginLeft="10dp" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp" >
 
             <TextView
-                android1:id="@+id/TextView01"
-                android1:layout_width="236dp"
-                android1:layout_height="46dp"
-                android1:gravity="center_vertical|center_horizontal"
-                android1:text="會員二維圖"
+                android:id="@+id/TextView05"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="5"
                 android:textColor="#000000"
-                android1:textSize="26sp" />
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:id="@+id/TextView04"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="元折價券"
+                android:textColor="#000000"
+                android:textSize="26sp" />
+
+            <Button
+                android1:id="@+id/Button02"
+                android1:layout_width="94dp"
+                android1:layout_height="wrap_content"
+                android1:text="Button" />
+
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android1:id="@+id/button1"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_alignParentRight="true"
-        android1:layout_alignTop="@+id/LinearLayout03"
-        android1:text="Button" />
 
     <LinearLayout
-        android1:id="@+id/LinearLayout02"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_alignParentLeft="true"
-        android1:layout_below="@+id/button1"
-        android1:layout_marginTop="34dp"
-        android1:layout_toLeftOf="@+id/button1"
-        android1:background="#FFCCCC" >
+        android:id="@+id/LinearLayout02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnclickqr"
+        android:layout_marginTop="18dp"
+        android:background="#FFCCCC" >
 
         <LinearLayout
-            android1:layout_width="wrap_content"
-            android1:layout_height="match_parent"
-            android1:layout_marginLeft="10dp" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp" >
 
             <TextView
-                android1:id="@+id/TextView02"
-                android1:layout_width="72dp"
-                android1:layout_height="wrap_content"
-                android1:gravity="center_vertical|center_horizontal"
-                android1:text="10"
+                android:id="@+id/TextView02"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="10"
                 android:textColor="#000000"
-                android1:textSize="30sp" />
+                android:textSize="30sp" />
         </LinearLayout>
 
         <LinearLayout
-            android1:layout_width="wrap_content"
-            android1:layout_height="match_parent"
-            android1:layout_marginLeft="10dp" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp" >
 
             <TextView
-                android1:id="@+id/TextView03"
-                android1:layout_width="130dp"
-                android1:layout_height="wrap_content"
-                android1:gravity="center_vertical|center_horizontal"
-                android1:text="元折價券"
+                android:id="@+id/TextView03"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="元折價券"
                 android:textColor="#000000"
-                android1:textSize="26sp" />
-        </LinearLayout>
-    </LinearLayout>
+                android:textSize="26sp" />
 
-    <Button
-        android1:id="@+id/Button01"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_alignBottom="@+id/LinearLayout02"
-        android1:layout_alignTop="@+id/LinearLayout02"
-        android1:layout_toRightOf="@+id/LinearLayout02"
-        android1:text="Button" />
-
-    <LinearLayout
-        android1:id="@+id/LinearLayout01"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_alignParentLeft="true"
-        android1:layout_alignRight="@+id/LinearLayout02"
-        android1:layout_below="@+id/LinearLayout02"
-        android1:layout_marginTop="17dp"
-        android1:background="#FFCCCC" >
-
-        <LinearLayout
-            android1:layout_width="wrap_content"
-            android1:layout_height="match_parent"
-            android1:layout_marginLeft="10dp" >
-
-            <TextView
-                android1:id="@+id/TextView05"
-                android1:layout_width="72dp"
+            <Button
+                android1:id="@+id/Button01"
+                android1:layout_width="94dp"
                 android1:layout_height="wrap_content"
-                android1:gravity="center_vertical|center_horizontal"
-                android1:text="5"
-                android:textColor="#000000"
-                android1:textSize="30sp" />
-        </LinearLayout>
+                android1:text="Button" />
 
-        <LinearLayout
-            android1:layout_width="wrap_content"
-            android1:layout_height="match_parent"
-            android1:layout_marginLeft="10dp" >
-
-            <TextView
-                android1:id="@+id/TextView04"
-                android1:layout_width="130dp"
-                android1:layout_height="wrap_content"
-                android1:gravity="center_vertical|center_horizontal"
-                android1:text="元折價券"
-                android:textColor="#000000"
-                android1:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
 
     <Button
-        android1:id="@+id/Button02"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_alignBottom="@+id/LinearLayout01"
-        android1:layout_alignParentRight="true"
-        android1:layout_alignTop="@+id/LinearLayout01"
-        android1:text="Button" />
+        android:id="@+id/btnclickqr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="17dp"
+        android:text="會員二維圖" 
+        android:textSize="25dp"
+        android:padding="15dip" />
 
 </RelativeLayout>
