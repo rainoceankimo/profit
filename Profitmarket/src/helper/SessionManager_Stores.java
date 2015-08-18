@@ -7,7 +7,7 @@ import android.util.Log;
  
 public class SessionManager_Stores {
     // LogCat tag
-    private static String TAG1 = SessionManager_Stores.class.getSimpleName();
+    private static String TAG = SessionManager_Stores.class.getSimpleName();
  
     // Shared Preferences
     SharedPreferences pref1;
@@ -36,7 +36,7 @@ public class SessionManager_Stores {
         // commit changes
         editor1.commit();
  
-        Log.d(TAG1, "User login session modified!");
+        Log.d(TAG, "User login session modified!");
     }
      
     public boolean isLoggedIn(){

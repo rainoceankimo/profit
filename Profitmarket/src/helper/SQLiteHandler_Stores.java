@@ -11,7 +11,7 @@ import android.util.Log;
  
 public class SQLiteHandler_Stores extends SQLiteOpenHelper {
  
-    private static final String TAG1 = SQLiteHandler_Stores.class.getSimpleName();
+    private static final String TAG = SQLiteHandler_Stores.class.getSimpleName();
  
     // All Static variables
     // Database Version
@@ -43,7 +43,7 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
                 + KEY_CREATED_AT + " TEXT" + ")";
         db1.execSQL(CREATE_LOGIN_TABLE);
  
-        Log.d(TAG1, "Database tables created");
+        Log.d(TAG, "Database tables created");
     }
  
     // Upgrading database
@@ -72,7 +72,7 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
         long id = db1.insert(TABLE_LOGIN, null, values);
         db1.close(); // Closing database connection
  
-        Log.d(TAG1, "New user inserted into sqlite: " + id);
+        Log.d(TAG, "New user inserted into sqlite: " + id);
     }
  
     /**
@@ -95,7 +95,7 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
         cursor.close();
         db1.close();
         // return user
-        Log.d(TAG1, "Fetching user from Sqlite: " + user.toString());
+        Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
  
         return user;
     }
@@ -124,7 +124,7 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
         db1.delete(TABLE_LOGIN, null, null);
         db1.close();
  
-        Log.d(TAG1, "Deleted all user info from sqlite");
+        Log.d(TAG, "Deleted all user info from sqlite");
     }
  
 }
