@@ -70,13 +70,16 @@ public class C_Login extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
+            	
+            	
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
+                String phone = "";
  
                 // Check for empty data in the form
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
-                    checkLogin(email, password);
+                    checkLogin(email, password, phone);
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
@@ -103,7 +106,7 @@ public class C_Login extends Activity {
     /**
      * function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password) {
+    private void checkLogin(final String email, final String password, final String phone) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
  
@@ -127,10 +130,21 @@ public class C_Login extends Activity {
                             if (!error) {
                                 // user successfully logged in
                                 // Create login session
+                            	String uid = jObj.getString("uid");
+                            	 
+                                JSONObject user = jObj.getJSONObject("user");
+                                String name = user.getString("name");
+                                String email = user.getString("email");
+                                String phone = user.getString("phone");
+                                String created_at = user
+                                        .getString("created_at");
+                                
+                             // Inserting row in users table
+                                db.addUser(name, email, uid, phone, created_at);
+                            	
+                            	
                                 session.setLogin(true);
                                 
-                                
- 
                                 // Launch main activity
                                 Intent intent = new Intent(C_Login.this,
                                         C_Logout.class);
@@ -166,6 +180,7 @@ public class C_Login extends Activity {
                 params.put("tag", "login");
                 params.put("email", email);
                 params.put("password", password);
+                params.put("phone", phone);
  
                 return params;
             }
