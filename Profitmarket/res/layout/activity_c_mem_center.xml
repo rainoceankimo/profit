@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
+        android:background="@color/white"
         android:layout_marginTop="25dp" />
 
     <Button
@@ -79,7 +80,8 @@
         android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:onClick="c_mod_inform_onClick"
-        android:text="修改會員資訊" />
+        android:text="修改會員資訊"
+        android:padding="15dip" />
 
     <EditText
         android:id="@+id/txtemail"

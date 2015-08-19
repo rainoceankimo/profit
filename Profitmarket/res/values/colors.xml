@@ -16,6 +16,13 @@
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
     <color name="stores_background">#CCFFFF</color>
+    <color name="bule30">#00FFFF</color>
+    <color name="bule20">#CCCCFF</color>
+    <color name="bule10">#E6E6FF</color>
+    <color name="gray">#666666</color>
+    <color name="gray10">#E6E6E6</color>
+    
+    
     
     <drawable name="black">#000000</drawable>
     <drawable name="darkgray">#808080</drawable>

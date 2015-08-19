@@ -54,10 +54,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@color/btn_login_bg"
+            android:background="@color/gray10"
             android:gravity="center"
             android:text="@string/btn_login"
-            android:textColor="@color/black"
+            android:textColor="@color/gray"
+            android:textSize="20dip"
             android:padding="15dip" />
  
         <!-- Link to Login Screen -->

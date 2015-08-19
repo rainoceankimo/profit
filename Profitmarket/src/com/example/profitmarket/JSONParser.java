@@ -57,13 +57,13 @@ public class JSONParser {
                 // request method is POST
                 // defaultHttpClient
                 DefaultHttpClient httpClient = new DefaultHttpClient();
-                DefaultHttpClient http = new DefaultHttpClient();
+              /*  DefaultHttpClient http = new DefaultHttpClient();
                 HttpHost proxy = new HttpHost("127.0.0.1",3128);
                 httpClient.getParams().setParameter(ConnRouteParams.DEFAULT_PROXY, proxy);
                 httpClient.getCredentialsProvider().setCredentials(
                         new AuthScope("proxy.lib.ncyu.edu.tw", 3128),
                         new UsernamePasswordCredentials(
-                                "1014641", "F128583553"));
+                                "1014641", "F128583553")); */
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
                 

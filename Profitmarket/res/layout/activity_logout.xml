@@ -18,7 +18,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
-            android:background="#99FFFF"
+            android:background="#E6E6FF"
             android:gravity="center"
             android:textSize="24dp" />
  
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:background="#99FFFF"
+            android:background="#E6E6FF"
             android:gravity="center"
             android:textSize="24dp" />
 
@@ -36,7 +36,7 @@
             android:id="@+id/email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#99FFFF"
+            android:background="#E6E6FF"
             android:gravity="center"
             android:textSize="24dp" />
  
@@ -63,6 +63,8 @@
             android:id="@+id/btnclickqr"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bule30"
+            android:textColor="@color/white"
             android:text="確定"
             android:textSize="20dp"
             android:padding="15dip"

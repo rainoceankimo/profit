@@ -25,8 +25,8 @@
             android:padding="10dp"
             android:singleLine="true"
             android:inputType="textCapWords"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/input_login_hint" />
  
         <EditText
             android:id="@+id/email"
@@ -38,8 +38,8 @@
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/input_login_hint" />
  
         <EditText
             android:id="@+id/password"
@@ -51,8 +51,8 @@
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/input_login_hint" />
  
         <!-- Login Button -->
  
@@ -64,6 +64,7 @@
             android:background="#ea4c88"
             android:text="@string/btn_register"
             android:textColor="@color/white" 
+            android:textSize="20dp" 
             android:padding="15dip" />
  
         <!-- Link to Login Screen -->
@@ -73,11 +74,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
-            android:background="@null"
+            android:background="@color/bule20"
             android:text="@string/btn_back"
             android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="15dp" 
+            android:textColor="@color/white" 
+            android:textSize="20dp" 
             android:padding="15dip" />
     </LinearLayout>
  
