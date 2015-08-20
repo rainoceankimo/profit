@@ -25,8 +25,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.AppController;
 
-public class S_Coupon_Buy extends Activity {
+public class S_Coupon_Buy extends Activity  {
 	JSONParser jsonParser = new JSONParser();
 	CustomListAdapter adapter;
 	EditText input;
@@ -44,7 +45,7 @@ public class S_Coupon_Buy extends Activity {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://10.0.2.2/couponconnect/create.php";
+	private static String url_create_product = "http://192.168.0.110/couponconnect/create.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -66,12 +67,15 @@ public class S_Coupon_Buy extends Activity {
 		clear = (Button) findViewById(R.id.clear);
 		clear.setOnClickListener(clearOnClickListener);
 		add.setOnClickListener(addOnClickListener);
-		buy = (Button) findViewById(R.id.btnclickqr);
+		buy = (Button) findViewById(R.id.button1);
 		buy.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread
+			
 				new postnew().execute();
+				Toast.makeText(S_Coupon_Buy.this, "上傳成功", Toast.LENGTH_LONG).show();
 			}
+			
 		});
 
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -191,7 +195,7 @@ public class S_Coupon_Buy extends Activity {
 						input1.setText("");
 						tv.setText("總金額為" + total + "元");
 						tv1.setText("抽成後總金額為" + sum + "元");
-						Toast.makeText(S_Coupon_Buy.this, "新增成功", Toast.LENGTH_LONG).show();
+						Toast.makeText(S_Coupon_Buy.this, "新增成功", Toast.LENGTH_SHORT).show();
 
 					}
 				}
@@ -281,46 +285,57 @@ public class S_Coupon_Buy extends Activity {
 		}
 
 		protected String doInBackground(String... args) {
-		//	for (int h = 0; h < itemname.length; h++) 
-			//{
-				String userid= "abc";
-				String howmuch = "abc";
-				String howmany = "abc";
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			AppController globalVariable = ((AppController)getApplicationContext());
+			for (int m = 0; m < itemname.length; m++) 
+			{
+				String userid =  globalVariable.UserID;
+				String howmuch = itemname[m];
+				String howmany = imgid[m];
+				if (itemname[m] == null){break;}
+				
 				// Building Parameters
-				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				else
+				{
 				params.add(new BasicNameValuePair("userid", userid));
 				params.add(new BasicNameValuePair("howmuch", howmuch));
 				params.add(new BasicNameValuePair("howmany", howmany));
-
+			
 				// getting JSON Object
 				// Note that create product url accepts POST method
 				JSONObject json = jsonParser.makeHttpRequest(url_create_product, "POST", params);
 
 				// check log cat fro response
 				Log.d("Create Response", json.toString());
-
+			
 				// check for success tag
 				try {
 					int success = json.getInt(TAG_SUCCESS);
 
 					if (success == 1) {
-						// successfully created product
+				//	Intent i = new Intent(getApplicationContext(), S_Stores_Center.class);
+					//	startActivity(i);
 					
-						Toast.makeText(S_Coupon_Buy.this, "購買成功", Toast.LENGTH_LONG).show();
+						// successfully created product
+				//	
+						//	finish();
 						// closing this screen
-						finish();
+					
 					} else 
 					{
 						// failed to create product
 					}
-				} 
+				}
+			
+				
 				catch (JSONException e) 
 				{
 					e.printStackTrace();
 				}
-			
-
+				}
+			}
 			return null;
+			
 		}
 
 		/**

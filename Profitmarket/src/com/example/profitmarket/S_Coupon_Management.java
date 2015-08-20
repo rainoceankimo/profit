@@ -1,68 +1,20 @@
 package com.example.profitmarket;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-public class S_Coupon_Management extends Activity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.s_coupon_management);
-	}
+public class S_Coupon_Management extends Fragment {
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.s__couponmanagement, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 	
-	public void s_gocouponrules_onClick(View v){
-		Intent intent = new Intent();
-		intent.setClass(S_Coupon_Management.this,S_Coupon_Rules.class);
-		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.s_coupon_management, container,
+				false);
+		
+		return view;
 	}
-	
-	public void s_gocouponissuing_onClick(View v){
-		Intent intent = new Intent();
-		intent.setClass(S_Coupon_Management.this,S_Coupon_Issuing.class);
-		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
-	}
-	
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        
-        if (keyCode == KeyEvent.KEYCODE_BACK)
-        {
-            // Show home screen when pressing "back" button,
-            //  so that this app won't be closed accidentally
-        	Intent intent = new Intent();  
-    	    intent.setClass(S_Coupon_Management.this,S_Mainmenu.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
-            
-            return true;
-        }
-        
-        return super.onKeyDown(keyCode, event);
-    }
 }
