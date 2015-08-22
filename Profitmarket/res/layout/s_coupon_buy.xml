@@ -103,7 +103,7 @@
             android:text="抽成後總金額" />
 
         <Button
-            android:id="@+id/btnclickqr"
+            android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

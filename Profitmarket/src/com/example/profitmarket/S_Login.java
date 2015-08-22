@@ -13,6 +13,7 @@ import org.json.JSONObject;
  
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 public class S_Login extends Activity {
     // LogCat tag
     private static final String TAG1 = S_Register.class.getSimpleName();
+	
     private Button btnLogin;
     private Button btnLinkToRegister;
     private EditText inputEmail;
@@ -70,6 +72,7 @@ public class S_Login extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
+            	   
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
                 String phone = "";
@@ -79,6 +82,7 @@ public class S_Login extends Activity {
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
                     checkLogin(email, password, phone, address);
+            
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
@@ -126,6 +130,8 @@ public class S_Login extends Activity {
  
                             // Check for error node in json
                             if (!error) {
+                            	AppController globalVariable = ((AppController)getApplicationContext());
+                                globalVariable.UserID = email;
                                 // user successfully logged in
                                 // Create login session
 
@@ -149,6 +155,10 @@ public class S_Login extends Activity {
                                 Intent intent = new Intent(S_Login.this,
                                 		S_Logout.class);
                                 startActivity(intent);
+                             
+                               
+                               
+                          
                                 finish();
                             } else {
                                 // Error in login. Get the error message
