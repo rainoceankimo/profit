@@ -104,10 +104,9 @@
         android:background="#FFFFFF"
         android:ems="20"
         android:enabled="false"
-        android:inputType="textEmailAddress" >
+        android:inputType="textEmailAddress" />
 
-        <requestFocus />
-    </EditText>
+      
 
     <EditText
         android:id="@+id/textphone"

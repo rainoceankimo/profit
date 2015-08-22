@@ -5,27 +5,6 @@
     android:background="#CCFFFF"
     tools:context="com.example.profitmarket.S_Coupon_Issuing" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="#0FFF3F"
-        android:gravity="center"
-        android:text="折價券發行中..."
-        android:textColor="#000000"
-        android:textSize="36sp" />
-    <Button
-        android:id="@+id/btnclickqr"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:text="查看現有折價券"
-        android:textColor="#000000"
-        android:onClick="s_backcoupon_management_onClick" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
@@ -97,23 +76,10 @@
         
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:text="確定"
-        android:textColor="#000000"
-        android:textSize="26sp"
-        android:onClick="s_backcouponrules_onClick" />
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnclickqr"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:background="#66FFFF" >

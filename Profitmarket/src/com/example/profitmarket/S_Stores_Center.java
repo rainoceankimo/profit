@@ -1,5 +1,7 @@
 package com.example.profitmarket;
 
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +9,51 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager_Stores;
 
 public class S_Stores_Center extends Activity {
+	
+	
+	private EditText textName;
+    private EditText textEmail;
+    private EditText textPhone;
+    private EditText textAddress;
+    
+    private SQLiteHandler_Stores db;
+    private SessionManager_Stores session;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_stores_center);
+		
+		textName = (EditText) findViewById(R.id.scname);
+		textEmail = (EditText) findViewById(R.id.scemail);
+		textPhone = (EditText) findViewById(R.id.scphone);
+		textAddress = (EditText) findViewById(R.id.scaddress);
+		
+		// SqLite database handler
+        db = new SQLiteHandler_Stores(getApplicationContext());
+ 
+        // session manager
+        session = new SessionManager_Stores(getApplicationContext());
+        
+        HashMap<String, String> user = db.getUserDetails();
+        
+        String name = user.get("name");
+        String email = user.get("email");
+        String phone = user.get("phone");
+        String address = user.get("address");
+        
+        // Displaying the user details on the screen
+        textName.setText(name);
+        textEmail.setText(email);
+        textPhone.setText(phone);
+        textAddress.setText(address);
+        
+        
 	}
 
 	@Override

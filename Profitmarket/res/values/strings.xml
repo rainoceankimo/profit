@@ -45,6 +45,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_phone">Phone</string>
+    <string name="hint_address">Address</string>
     <string name="hint_name">Fullname</string>
     <string name="btn_login">登入</string>
     <string name="btn_register">註冊</string>

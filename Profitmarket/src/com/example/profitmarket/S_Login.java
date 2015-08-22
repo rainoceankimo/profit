@@ -3,6 +3,7 @@ package com.example.profitmarket;
 import app.AppConfig_Stores;
 import app.AppController;
 import helper.SessionManager_Stores;
+import helper.SQLiteHandler_Stores;
  
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.json.JSONObject;
  
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,12 +31,14 @@ import com.android.volley.toolbox.StringRequest;
 public class S_Login extends Activity {
     // LogCat tag
     private static final String TAG1 = S_Register.class.getSimpleName();
+	
     private Button btnLogin;
     private Button btnLinkToRegister;
     private EditText inputEmail;
     private EditText inputPassword;
     private ProgressDialog pDialog;
     private SessionManager_Stores session;
+    private SQLiteHandler_Stores db;
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,9 @@ public class S_Login extends Activity {
  
         // Session manager
         session = new SessionManager_Stores(getApplicationContext());
+        
+        // SQLite database handler
+        db = new SQLiteHandler_Stores(getApplicationContext());
  
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
@@ -65,13 +72,17 @@ public class S_Login extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
+            	   
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
+                String phone = "";
+                String address = "";
  
                 // Check for empty data in the form
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
-                    checkLogin(email, password);
+                    checkLogin(email, password, phone, address);
+            
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
@@ -98,7 +109,7 @@ public class S_Login extends Activity {
     /**
      * function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password) {
+    private void checkLogin(final String email, final String password, final String phone, final String address) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
  
@@ -119,14 +130,35 @@ public class S_Login extends Activity {
  
                             // Check for error node in json
                             if (!error) {
+                            	AppController globalVariable = ((AppController)getApplicationContext());
+                                globalVariable.UserID = email;
                                 // user successfully logged in
                                 // Create login session
+
+                            	String uid = jObj.getString("uid");
+                            	 
+                                JSONObject user = jObj.getJSONObject("user");
+                                String name = user.getString("name");
+                                String email = user.getString("email");
+                                String phone = user.getString("phone");
+                                String address = user.getString("address");
+                                String created_at = user
+                                		.getString("created_at");
+                                
+ 
+                                // Inserting row in users table
+                                db.addUser(name, email, phone, address, uid, created_at);
+                                
                                 session.setLogin(true);
  
                                 // Launch main activity
                                 Intent intent = new Intent(S_Login.this,
                                 		S_Logout.class);
                                 startActivity(intent);
+                             
+                               
+                               
+                          
                                 finish();
                             } else {
                                 // Error in login. Get the error message
@@ -158,6 +190,8 @@ public class S_Login extends Activity {
                 params.put("tag", "login");
                 params.put("email", email);
                 params.put("password", password);
+                params.put("phone", phone);
+                params.put("address", address);
  
                 return params;
             }
@@ -186,8 +220,8 @@ public class S_Login extends Activity {
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
     	    intent.setClass(S_Login.this,MainActivity.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
+    	    startActivity(intent);    //觸發換頁
+    	    finish();   //結束本頁
             
             return true;
         }

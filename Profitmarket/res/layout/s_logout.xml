@@ -55,7 +55,7 @@
             android:padding="15dip"
             android:text="確定"
             android:textColor="@color/white"
-            android:background="@color/bule20"
+            android:background="@color/blue20"
             android:textSize="20dip" />
         
     </LinearLayout>

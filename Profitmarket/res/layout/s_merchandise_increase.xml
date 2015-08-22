@@ -103,7 +103,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/scaaddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button5"
@@ -124,7 +124,7 @@
         android:text="刪除" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/scaphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button7"

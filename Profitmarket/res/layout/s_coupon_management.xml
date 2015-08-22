@@ -5,18 +5,6 @@
     tools:context="com.example.profitmarket.S_Coupon_Management"
     android:background="#CCFFFF" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="#0FFF3F"
-        android:gravity="center"
-        android:text="折價券管理"
-        android:textColor="#000000"
-        android:textSize="36sp" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
@@ -84,31 +72,10 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:onClick="s_gocouponrules_onClick"
-        android:text="設定發行規則"
-        android:textColor="#000000" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="39dp"
-        android:text="確定"
-        android:textColor="#000000"
-        android:textSize="26sp" />
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="#66FFFF"
@@ -173,12 +140,12 @@
 
     <Button
         android:id="@+id/btnclickqr"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout1"
         android:layout_alignParentRight="true"
         android:onClick="s_gocouponissuing_onClick"
-        android:text="發行中的折價券"
+        android:text="發行中折價券"
         android:textColor="#000000" />
 
 </RelativeLayout>
