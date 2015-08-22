@@ -33,21 +33,21 @@ public class AllProductsActivity extends ListActivity {
     private ProgressDialog pDialog;
  
     // Creating JSON Parser object
-    JSONParser jParser = new JSONParser();
+    public static   JSONParser jParser = new JSONParser();
  
-    ArrayList<HashMap<String, String>> productsList;
+    public static ArrayList<HashMap<String, String>> productsList;
     
     // url to get all products list
-    private static String url_all_products = "http://10.3.204.1/android_connect/get_all_products.php";
+    private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
     
     // JSON Node names
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "products";
-    private static final String TAG_PID = "pid";
-    private static final String TAG_NAME = "name";
-    private static final String TAG_PRICE = "price";
+    public static  String TAG_SUCCESS = "success";
+    public static  String TAG_PRODUCTS = "products";
+    public static String TAG_PID = "pid";
+    public static  String TAG_NAME = "name";
+    public static  String TAG_PRICE = "price";
     // products JSONArray
-    JSONArray products = null;
+   public static JSONArray products = null;
  
     @Override
     public void onCreate(Bundle savedInstanceState) {

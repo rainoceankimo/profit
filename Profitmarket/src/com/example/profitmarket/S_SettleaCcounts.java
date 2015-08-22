@@ -37,29 +37,37 @@ import android.widget.TextView;
 
 public class S_SettleaCcounts extends ListActivity {
 	
-	String[] items = {"1","2","3","4","5","6","7","8","9","10"};
+	 private ListView listInput;
+	
+    public static ArrayList<String> list =new ArrayList<String>();
 	
 	
-	Spinner spinner2;
-	TextView textView3;
-	private ProgressDialog pDialog;
+	
+	//String[] items = {"1","2","3","4","5","6","7","8","9","10"};
+	
+	 private ArrayAdapter<String> adapter;
+	 
+		
+	//Spinner spinner2;
+	//TextView textView3;
+	//private ProgressDialog pDialog;
 	 
     // Creating JSON Parser object
-    JSONParser jParser = new JSONParser();
+    //JSONParser jParser = new JSONParser();
  
-    ArrayList<HashMap<String, String>> productsList;
+   // ArrayList<HashMap<String, String>> productsList;
  
     // url to get all products list
-    private static String url_all_products = "http://10.3.204.1/android_connect/get_all_products.php";
+   // private static String url_all_products = "http://10.3.204.1/android_connect/get_all_products.php";
  
     // JSON Node names
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "products";
-    private static final String TAG_PID = "pid";
-    private static final String TAG_NAME = "name";
-    private static final String TAG_PRICE = "price";
+   // private static final String TAG_SUCCESS = "success";
+   // private static final String TAG_PRODUCTS = "products";
+   // private static final String TAG_PID = "pid";
+   // private static final String TAG_NAME = "name";
+    //private static final String TAG_PRICE = "price";
     // products JSONArray
-    JSONArray products = null;
+    //JSONArray products = null;
  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,36 +78,47 @@ public class S_SettleaCcounts extends ListActivity {
 		//spinner2 = (Spinner) findViewById(R.id.spinner2);
 		//textView3 = (TextView) findViewById(R.id.textView3);
 	
-		ArrayAdapter adapter = new ArrayAdapter(S_SettleaCcounts.this, android.R.layout.simple_spinner_item, new String[]{"1","2","3","4","5","6","7","8","9","10"});
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		this.spinner2 = (Spinner)findViewById(R.id.spinner2);
-		textView3=(TextView) findViewById(R.id.textView3);
-		spinner2.setAdapter(adapter);
+		//ArrayAdapter adapter = new ArrayAdapter(S_SettleaCcounts.this, android.R.layout.simple_spinner_item, new String[]{"1","2","3","4","5","6","7","8","9","10"});
+		//adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//this.spinner2 = (Spinner)findViewById(R.id.spinner2);
+		//textView3=(TextView) findViewById(R.id.textView3);
+		//spinner2.setAdapter(adapter);
+		listInput = (ListView)findViewById(android.R.id.list);
+		//	items = new ArrayList<String>();
+			
+		adapter = new ArrayAdapter(S_SettleaCcounts.this, android.R.layout.simple_list_item_1, list);
+		listInput.setAdapter(adapter);
+		
+		
+		
+		
+		
+		
+		
+		//spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-		spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView adapterView , View view, int position, long id) {
+			//@Override
+			//public void onItemSelected(AdapterView adapterView , View view, int position, long id) {
 				// TODO Auto-generated method stub
 				
-				String a = items[position];
-				textView3.setText(spinner2.getSelectedItem().toString());
+			//	String a = items[position];
+			//	textView3.setText(spinner2.getSelectedItem().toString());
 				
-			}
+			
 
-			@Override
-			public void onNothingSelected(AdapterView arg0) {
+		//	@Override
+			//public void onNothingSelected(AdapterView arg0) {
 				// TODO Auto-generated method stub
 				
-			}
-		});
-		  productsList = new ArrayList<HashMap<String, String>>();
+		//	}
+		//});//*/
+		 // productsList = new ArrayList<HashMap<String, String>>();
 	        
 	        // Loading products in Background Thread
-	        new LoadAllProducts().execute();
+	       // new LoadAllProducts().execute();
 	 
 	        // Get listview
-	        ListView lv = getListView();
+	       // ListView lv = getListView();
 	}
 	
 
@@ -149,11 +168,11 @@ public class S_SettleaCcounts extends ListActivity {
 		finish();   //µ²§ô¥»­¶
 	}
     
-    class LoadAllProducts extends AsyncTask <String, String, String> {
+    /*class LoadAllProducts extends AsyncTask <String, String, String> {
     	 
         /**
          * Before starting background thread Show Progress Dialog
-         * */
+         * 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -163,10 +182,10 @@ public class S_SettleaCcounts extends ListActivity {
             pDialog.setCancelable(false);
             pDialog.show();
         }
- 
-        /**
+ */
+        /*
          * getting All products from url
-         * */
+         * 
         protected String doInBackground(String... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -219,9 +238,9 @@ public class S_SettleaCcounts extends ListActivity {
             return null;
         }
  
-        /**
+        
          * After completing background task Dismiss the progress dialog
-         * **/
+         * *
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
@@ -230,7 +249,7 @@ public class S_SettleaCcounts extends ListActivity {
                 public void run() {
                     /**
                      * Updating parsed JSON data into ListView
-                     * */
+                     * 
                     ListAdapter adapter = new SimpleAdapter(
                             S_SettleaCcounts.this, productsList,
                             R.layout.list_item2, new String[] { TAG_PID,
@@ -238,8 +257,7 @@ public class S_SettleaCcounts extends ListActivity {
                             new int[] { R.id.pid, R.id.name ,R.id.price});
                     // updating listview
                     setListAdapter(adapter);
-                }
-            });
-        }      
-}
+                }*/
+            
+
 }

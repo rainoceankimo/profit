@@ -52,16 +52,15 @@
     <string name="btn_logout">登出</string>
     <string name="btn_back">返回</string>
     <string name="name">Fullname</string>
-    
-    
     <string name="title_activity_test_android_db">TestAndroidDBActivity</string>
     <string name="title_activity_camera_test">CameraTestActivity</string>
     <string name="title_activity_camera_preview">CameraPreview</string>
     <string name="title_activity_camera__main">Camera_MainActivity</string>
-      <string name="forgetpassword">忘記密碼</string>
+    <string name="forgetpassword">忘記密碼</string>
+
     <string-array name="A">
         <item>1</item>
-       	<item>2</item>
+        <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
@@ -70,7 +69,8 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
-        
     </string-array>
+
+    <string name="title_activity_s__yesor_no__mem2">S_YesorNo_Mem2</string>
 
 </resources>
