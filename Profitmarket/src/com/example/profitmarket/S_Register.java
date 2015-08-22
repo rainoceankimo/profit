@@ -34,6 +34,8 @@ public class S_Register extends Activity {
     private EditText inputFullName;
     private EditText inputEmail;
     private EditText inputPassword;
+    private EditText inputPhone;
+    private EditText inputAddress;
     private ProgressDialog pDialog;
     private SessionManager_Stores session;
     private SQLiteHandler_Stores db;
@@ -46,6 +48,9 @@ public class S_Register extends Activity {
         inputFullName = (EditText) findViewById(R.id.name);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
+        inputPhone = (EditText) findViewById(R.id.s_phone);
+        inputAddress = (EditText) findViewById(R.id.address);
+        
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
  
@@ -74,9 +79,11 @@ public class S_Register extends Activity {
                 String name = inputFullName.getText().toString();
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
+                String phone = inputPhone.getText().toString();
+                String address = inputAddress.getText().toString();
  
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    registerUser(name, email, password);
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() && !address.isEmpty() ) {
+                    registerUser(name, email, password, phone, address);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please enter your details!", Toast.LENGTH_LONG)
@@ -102,8 +109,8 @@ public class S_Register extends Activity {
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void registerUser(final String name, final String email,
-            final String password) {
+    private void registerUser(final String name, final String email, final String password, final String phone,
+            final String address) {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
  
@@ -129,11 +136,14 @@ public class S_Register extends Activity {
                                 JSONObject user = jObj.getJSONObject("user");
                                 String name = user.getString("name");
                                 String email = user.getString("email");
+                                String phone = user.getString("phone");
+                                String address = user.getString("address");
                                 String created_at = user
-                                        .getString("created_at");
+                                		.getString("created_at");
+                                
  
                                 // Inserting row in users table
-                                db.addUser(name, email, uid, created_at);
+                                db.addUser(name, email, phone, address, uid, created_at);
  
                                 // Launch login activity
                                 Intent intent = new Intent(
@@ -173,6 +183,8 @@ public class S_Register extends Activity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("phone", phone);
+                params.put("address", address);
  
                 return params;
             }

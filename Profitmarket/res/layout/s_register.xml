@@ -54,7 +54,34 @@
             android:textColor="@color/white"
             android:textColorHint="@color/input_login_hint" />
  
-        <!-- Login Button -->
+       
+
+        <EditText
+            android:id="@+id/s_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:inputType="phone"
+            android:hint="@string/hint_phone"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/input_login_hint" />
+
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:inputType="textPostalAddress"
+            android:hint="@string/hint_address"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/input_login_hint" />
  
         <Button
             android:id="@+id/btnRegister"
@@ -67,14 +94,13 @@
             android:textSize="20dp" 
             android:padding="15dip" />
  
-        <!-- Link to Login Screen -->
  
         <Button
             android:id="@+id/btnLinkToLoginScreen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@color/bule20"
+            android:layout_marginTop="20dip"
+            android:background="@color/blue20"
             android:text="@string/btn_back"
             android:textAllCaps="false"
             android:textColor="@color/white" 

@@ -30,7 +30,7 @@ public class C_mod_inform extends Activity {
 		
 		textName = (EditText) findViewById(R.id.txtemail);
         textEmail = (EditText) findViewById(R.id.txtname);
-        textPhone = (EditText) findViewById(R.id.editText5);
+        textPhone = (EditText) findViewById(R.id.scpassward);
 		
      // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());

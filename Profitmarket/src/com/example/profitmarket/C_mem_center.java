@@ -43,8 +43,8 @@ public class C_mem_center extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_c_mem_center);
+		
 		
 		textName = (EditText) findViewById(R.id.txtname);
         textEmail = (EditText) findViewById(R.id.txtemail);

@@ -27,6 +27,8 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_ADDRESS = "address";
     private static final String KEY_UID = "uid";
     private static final String KEY_CREATED_AT = "created_at";
  
@@ -36,41 +38,44 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
  
     // Creating Tables
     @Override
-    public void onCreate(SQLiteDatabase db1) {
+    public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"
+                + KEY_EMAIL + " TEXT UNIQUE," + KEY_PHONE + " TEXT UNIQUE,"
+                + KEY_ADDRESS + " TEXT," + KEY_UID + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
-        db1.execSQL(CREATE_LOGIN_TABLE);
+        db.execSQL(CREATE_LOGIN_TABLE);
  
         Log.d(TAG, "Database tables created");
     }
  
     // Upgrading database
     @Override
-    public void onUpgrade(SQLiteDatabase db1, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db1.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIN);
  
         // Create tables again
-        onCreate(db1);
+        onCreate(db);
     }
  
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String uid, String created_at) {
-        SQLiteDatabase db1 = this.getWritableDatabase();
+    public void addUser(String name, String email, String phone, String address, String uid, String created_at) {
+        SQLiteDatabase db = this.getWritableDatabase();
  
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
-        values.put(KEY_UID, uid); // Email
+        values.put(KEY_PHONE, phone); // phone
+        values.put(KEY_ADDRESS, address); // address
+        values.put(KEY_UID, uid); // uid
         values.put(KEY_CREATED_AT, created_at); // Created At
  
         // Inserting Row
-        long id = db1.insert(TABLE_LOGIN, null, values);
-        db1.close(); // Closing database connection
+        long id = db.insert(TABLE_LOGIN, null, values);
+        db.close(); // Closing database connection
  
         Log.d(TAG, "New user inserted into sqlite: " + id);
     }
@@ -82,18 +87,20 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
         HashMap<String, String> user = new HashMap<String, String>();
         String selectQuery = "SELECT  * FROM " + TABLE_LOGIN;
  
-        SQLiteDatabase db1 = this.getReadableDatabase();
-        Cursor cursor = db1.rawQuery(selectQuery, null);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
         // Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
             user.put("name", cursor.getString(1));
             user.put("email", cursor.getString(2));
-            user.put("uid", cursor.getString(3));
-            user.put("created_at", cursor.getString(4));
+            user.put("phone", cursor.getString(3));
+            user.put("address", cursor.getString(4));
+            user.put("uid", cursor.getString(5));
+            user.put("created_at", cursor.getString(6));
         }
         cursor.close();
-        db1.close();
+        db.close();
         // return user
         Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
  
@@ -105,10 +112,10 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
      * */
     public int getRowCount() {
         String countQuery = "SELECT  * FROM " + TABLE_LOGIN;
-        SQLiteDatabase db1 = this.getReadableDatabase();
-        Cursor cursor = db1.rawQuery(countQuery, null);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
         int rowCount = cursor.getCount();
-        db1.close();
+        db.close();
         cursor.close();
  
         // return row count
@@ -119,10 +126,10 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
      * Re crate database Delete all tables and create them again
      * */
     public void deleteUsers() {
-        SQLiteDatabase db1 = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         // Delete All Rows
-        db1.delete(TABLE_LOGIN, null, null);
-        db1.close();
+        db.delete(TABLE_LOGIN, null, null);
+        db.close();
  
         Log.d(TAG, "Deleted all user info from sqlite");
     }
