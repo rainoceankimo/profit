@@ -32,6 +32,7 @@ import com.dtr.zbar.build.ZBarDecoder;
 
 public class S_YesorNo_Mem2 extends Activity {
 
+
 	private Camera mCamera;
 	private CameraPreview mPreview;
 	private Handler autoFocusHandler;
@@ -149,15 +150,15 @@ public class S_YesorNo_Mem2 extends Activity {
 				mCamera.stopPreview();
 				barcodeScanned = true;
 				scanResult.setText("barcode result " + result);
-
-			if( result==AllProductsActivity.TAG_NAME.toString())	
+				
+			/*if( result==AllProductsActivity.TAG_NAME.toString())	
 			{
 				S_SettleaCcounts.list.add(result);
 			}
 			else if(result!=AllProductsActivity.TAG_NAME.toString())
 			{
 				S_SettleaCcounts.list.add("沒有這項產品");
-			     }	
+			     }	*/
 			}
 		}
 	};

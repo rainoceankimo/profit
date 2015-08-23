@@ -170,6 +170,7 @@ public class AllProductsActivity extends ListActivity {
                         String id = c.getString(TAG_PID);
                         String name = c.getString(TAG_NAME);
                         String price = c.getString(TAG_PRICE);
+                        
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
  
@@ -216,7 +217,7 @@ public class AllProductsActivity extends ListActivity {
                             new int[] { R.id.pid, R.id.name ,R.id.price});
                     // updating listview
                     setListAdapter(adapter);
-                    
+                   
                 }
             });
         }      
