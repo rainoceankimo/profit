@@ -28,7 +28,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dtr.zbar.build.ZBarDecoder;
+import com.example.profitmarket.ZBarDecoder;
 
 public class S_YesorNo_Mem2 extends Activity {
 
