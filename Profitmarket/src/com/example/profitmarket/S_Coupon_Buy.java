@@ -25,8 +25,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.AppController;
 
-public class S_Coupon_Buy extends Activity {
+public class S_Coupon_Buy extends Activity  {
 	JSONParser jsonParser = new JSONParser();
 	CustomListAdapter adapter;
 	EditText input;
@@ -44,7 +45,7 @@ public class S_Coupon_Buy extends Activity {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://10.0.2.2/couponconnect/create.php";
+	private static String url_create_product = "http://192.168.0.101/couponconnect/create.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -66,12 +67,15 @@ public class S_Coupon_Buy extends Activity {
 		clear = (Button) findViewById(R.id.clear);
 		clear.setOnClickListener(clearOnClickListener);
 		add.setOnClickListener(addOnClickListener);
-		buy = (Button) findViewById(R.id.btnclickqr);
+		buy = (Button) findViewById(R.id.button1);
 		buy.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread
+			
 				new postnew().execute();
+				Toast.makeText(S_Coupon_Buy.this, "上傳成功", Toast.LENGTH_LONG).show();
 			}
+			
 		});
 
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -81,7 +85,7 @@ public class S_Coupon_Buy extends Activity {
 				// TODO Auto-generated method stub
 
 				if (itemname[position] == null) {
-					Toast.makeText(S_Coupon_Buy.this, "請輸入", Toast.LENGTH_LONG).show();
+					Toast.makeText(S_Coupon_Buy.this, "請輸入", Toast.LENGTH_SHORT).show();
 				} else {
 					mDlgLogin = new Dialog(S_Coupon_Buy.this);
 					mDlgLogin.setTitle("編輯");
@@ -107,14 +111,14 @@ public class S_Coupon_Buy extends Activity {
 
 							if (editHowMuch.getText().toString().startsWith("0")) {
 
-								Toast.makeText(S_Coupon_Buy.this, "面額開頭不能為零", Toast.LENGTH_LONG).show();
+								Toast.makeText(S_Coupon_Buy.this, "面額開頭不能為零", Toast.LENGTH_SHORT).show();
 							} else {
 								if (editHowMany.getText().toString().startsWith("0")) {
 
-									Toast.makeText(S_Coupon_Buy.this, "張數開頭不能為零", Toast.LENGTH_LONG).show();
+									Toast.makeText(S_Coupon_Buy.this, "張數開頭不能為零", Toast.LENGTH_SHORT).show();
 								} else {
 									if (editHowMuch.getText().toString().isEmpty()) {
-										Toast.makeText(S_Coupon_Buy.this, "欄位不能為空", Toast.LENGTH_LONG).show();
+										Toast.makeText(S_Coupon_Buy.this, "欄位不能為空", Toast.LENGTH_SHORT).show();
 									} else {
 										if (editHowMany.getText().toString().isEmpty()) {
 											Toast.makeText(S_Coupon_Buy.this, "欄位不能為空", Toast.LENGTH_LONG).show();
@@ -165,12 +169,12 @@ public class S_Coupon_Buy extends Activity {
 				if (input.getText().toString().startsWith("0")) {
 					input.setText("");
 					input1.setText("");
-					Toast.makeText(S_Coupon_Buy.this, "面額開頭不能為零", Toast.LENGTH_LONG).show();
+					Toast.makeText(S_Coupon_Buy.this, "面額開頭不能為零", Toast.LENGTH_SHORT).show();
 				} else {
 					if (input1.getText().toString().startsWith("0")) {
 						input.setText("");
 						input1.setText("");
-						Toast.makeText(S_Coupon_Buy.this, "張數開頭不能為零", Toast.LENGTH_LONG).show();
+						Toast.makeText(S_Coupon_Buy.this, "張數開頭不能為零", Toast.LENGTH_SHORT).show();
 					}
 
 					else {
@@ -191,14 +195,14 @@ public class S_Coupon_Buy extends Activity {
 						input1.setText("");
 						tv.setText("總金額為" + total + "元");
 						tv1.setText("抽成後總金額為" + sum + "元");
-						Toast.makeText(S_Coupon_Buy.this, "新增成功", Toast.LENGTH_LONG).show();
+						Toast.makeText(S_Coupon_Buy.this, "新增成功", Toast.LENGTH_SHORT).show();
 
 					}
 				}
 			} catch (NumberFormatException e) {
-				Toast.makeText(S_Coupon_Buy.this, "欄位不能為空", Toast.LENGTH_LONG).show();
+				Toast.makeText(S_Coupon_Buy.this, "欄位不能為空", Toast.LENGTH_SHORT).show();
 			} catch (Exception e) {
-				Toast.makeText(S_Coupon_Buy.this, "不能超過十個選項喔", Toast.LENGTH_LONG).show();
+				Toast.makeText(S_Coupon_Buy.this, "不能超過十個選項喔", Toast.LENGTH_SHORT).show();
 			}
 		}
 	};
@@ -281,46 +285,57 @@ public class S_Coupon_Buy extends Activity {
 		}
 
 		protected String doInBackground(String... args) {
-		//	for (int h = 0; h < itemname.length; h++) 
-			//{
-				String userid= "abc";
-				String howmuch = "abc";
-				String howmany = "abc";
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			AppController globalVariable = ((AppController)getApplicationContext());
+			for (int m = 0; m < itemname.length; m++) 
+			{
+				String userid =  globalVariable.UserID;
+				String howmuch = itemname[m];
+				String howmany = imgid[m];
+				if (itemname[m] == null){break;}
+				
 				// Building Parameters
-				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				else
+				{
 				params.add(new BasicNameValuePair("userid", userid));
 				params.add(new BasicNameValuePair("howmuch", howmuch));
 				params.add(new BasicNameValuePair("howmany", howmany));
-
+			
 				// getting JSON Object
 				// Note that create product url accepts POST method
 				JSONObject json = jsonParser.makeHttpRequest(url_create_product, "POST", params);
 
 				// check log cat fro response
 				Log.d("Create Response", json.toString());
-
+			
 				// check for success tag
 				try {
 					int success = json.getInt(TAG_SUCCESS);
 
 					if (success == 1) {
-						// successfully created product
+				//	Intent i = new Intent(getApplicationContext(), S_Stores_Center.class);
+					//	startActivity(i);
 					
-						Toast.makeText(S_Coupon_Buy.this, "購買成功", Toast.LENGTH_LONG).show();
+						// successfully created product
+				//	
+						//	finish();
 						// closing this screen
-						finish();
+					
 					} else 
 					{
 						// failed to create product
 					}
-				} 
+				}
+			
+				
 				catch (JSONException e) 
 				{
 					e.printStackTrace();
 				}
-			
-
+				}
+			}
 			return null;
+			
 		}
 
 		/**

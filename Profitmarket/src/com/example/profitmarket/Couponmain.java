@@ -51,10 +51,10 @@ public class Couponmain extends Activity {
 		if (fragment == null) {
 
 			if (id == R.id.button2)
-			{	fragment = new S_Coupon_Management();
+			{	fragment = new S_Coupon_Rules();
 			replaceFragment(fragment);}
 			if (id == R.id.button1)
-				{fragment = new S_Coupon_Rules();
+				{fragment = new S_Coupon_Management();
 				replaceFragment(fragment);
 				}
 				
@@ -66,20 +66,20 @@ public class Couponmain extends Activity {
 			
 		}else{
 			if (id == R.id.button2
-				&& fragment instanceof S_Coupon_Rules) {
-			replaceFragment(new S_Coupon_Management());
+				&& fragment instanceof S_Coupon_Management) {
+			replaceFragment(new S_Coupon_Rules());
 			
 		}  if (id == R.id.button2
 				&& fragment instanceof S_Coupon_Issuing) {
-			replaceFragment(new S_Coupon_Management());
+			replaceFragment(new S_Coupon_Rules());
 			
 		}  if (id == R.id.button1
-				&& fragment instanceof S_Coupon_Management) {
-			replaceFragment(new S_Coupon_Rules());
+				&& fragment instanceof S_Coupon_Rules) {
+			replaceFragment(new S_Coupon_Management());
 		}
 		 if (id == R.id.button1
 					&& fragment instanceof S_Coupon_Issuing) {
-				replaceFragment(new S_Coupon_Rules());
+				replaceFragment(new S_Coupon_Management());
 			}
 		 if (id == R.id.btnclickqr
 				 && fragment instanceof S_Coupon_Management) {

@@ -14,4 +14,3 @@ public class S_Coupon_Rules extends Fragment {
 				false);
 	}
 }
-
