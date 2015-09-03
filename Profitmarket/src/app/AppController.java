@@ -12,8 +12,16 @@ public class AppController extends Application {
     public static final String TAG = AppController.class.getSimpleName();
  
     private RequestQueue mRequestQueue;
-    public String UserID = "";
     private static AppController mInstance;
+    
+    
+    public String UserID = "";
+    public String tradetype = "" ;
+    
+    public int tradetypeNO = 0 ;
+    public int settlea_totalmoney = 0 ;
+    public int settlea_MaxDiscount = 0 ;
+    
  
     @Override
     public void onCreate() {

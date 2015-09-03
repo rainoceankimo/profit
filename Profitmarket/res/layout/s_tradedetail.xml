@@ -1,0 +1,139 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#CCFFFF"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.profitmarket.S_Tradedetail" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <TextView
+            android:id="@+id/showtype"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:padding="10dip"
+            android:textSize="20dip" />
+
+        <TextView
+            android:id="@+id/trade_date"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_consumption"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+           android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_maxdiscount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_coupongrant"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_grantdenominations"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_membername"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_couponuse"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_couponNo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_usedenominations"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:padding="8dip"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/trade_totalmoney"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/white"
+            android:gravity="right"
+            android:padding="8dip"
+            android:text="totalmoney"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+
+        <Button
+            android:id="@+id/trade_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:text="確定" />
+    </LinearLayout>
+
+</LinearLayout>
