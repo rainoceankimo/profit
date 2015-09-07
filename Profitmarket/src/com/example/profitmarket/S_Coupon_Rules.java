@@ -34,7 +34,9 @@ public class S_Coupon_Rules extends Fragment {
 			Bundle savedInstanceState) {
 		v= inflater.inflate(R.layout.s_coupon_rules, container,
 				false);
+		
 	     input= (EditText) v.findViewById(R.id.abc);
+	     
 	     spinner=(Spinner)v.findViewById(R.id.spinner1);
 	     adapter = new CustomListAdapter2(getActivity(), z,cost, x, howmuch, y);
 			list = (ListView) v.findViewById(R.id.jkl);
@@ -51,12 +53,20 @@ public class S_Coupon_Rules extends Fragment {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
+			
+			String moneyinput = input.getText().toString();
+			
 			try {
 				if (input.getText().toString().startsWith("0")) {
 					input.setText("");
 					
 					Toast.makeText(getActivity(), "不能為零", Toast.LENGTH_SHORT).show();
 				} 
+				
+				else if (moneyinput.isEmpty()){
+					Toast.makeText(getActivity(), "不能為空白", Toast.LENGTH_SHORT).show();
+				}
+				
 
 					else {
 
