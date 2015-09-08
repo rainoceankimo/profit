@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 import app.AppController;
 
+import com.example.profitmarket.R;
+
 public class S_Tradedetail extends Activity {
 	
 	
@@ -36,7 +38,7 @@ public class S_Tradedetail extends Activity {
 		setContentView(R.layout.s_tradedetail);
 		
 		AppController globalVariable = (AppController)getApplicationContext();
-
+		Bundle extras = getIntent().getExtras();
 		
 		
 		if (globalVariable.tradetypeNO == 0){
@@ -100,7 +102,8 @@ public class S_Tradedetail extends Activity {
 		    tradegrantdenominations.setText("發放面額：");
 		    
 		    trademembername = (TextView) findViewById(R.id.trade_membername);
-		    trademembername.setText("會員名稱：");
+		    String result = extras.getString("result");
+		    trademembername.setText("會員名稱："+ result);
 		    
 		    tradecouponuse = (TextView) findViewById(R.id.trade_couponuse);
 		    tradecouponuse.setText("折價券使用：");
