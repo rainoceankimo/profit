@@ -166,7 +166,7 @@ public class S_SettleaCcounts extends Activity {
 			globalVariable.tradetype = "會員結帳 - 明細";
 			
 			Intent intent = new Intent(S_SettleaCcounts.this,
-					S_Tradedetail.class);
+					S_Capture.class);
             startActivity(intent);
             
 		}
