@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 	
 	public void s_stores_onClick(View view){
 		Intent intent = new Intent(); 
-		intent.setClass(MainActivity.this,S_Mainmenu.class);
+		intent.setClass(MainActivity.this,S_Login.class);
 		startActivity(intent);    //Ä²µo´«­¶
 		MainActivity.this.finish();   //µ²§ô¥»­¶
 	}
