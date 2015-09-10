@@ -1,6 +1,7 @@
 package com.example.profitmarket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -26,6 +27,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.AppController;
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager_Stores;
 
 public class S_Coupon_Buy extends Activity  {
 	JSONParser jsonParser = new JSONParser();
@@ -45,8 +48,9 @@ public class S_Coupon_Buy extends Activity  {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://192.168.0.109/couponconnect/create.php";
-
+	private static String url_create_product = "http://192.168.0.105/couponconnect/create.php";
+	 private SQLiteHandler_Stores db;
+	    private SessionManager_Stores session;
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 
@@ -71,12 +75,17 @@ public class S_Coupon_Buy extends Activity  {
 		buy.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread
-			
+		
 				new postnew().execute();
-				Toast.makeText(S_Coupon_Buy.this, "上傳成功", Toast.LENGTH_LONG).show();
-			}
+				Toast.makeText(S_Coupon_Buy.this, "上傳成功", Toast.LENGTH_SHORT).show();
+				
+				Intent intent = new Intent(); 
+				intent.setClass(S_Coupon_Buy.this,S_Mainmenu.class);
+				startActivity(intent);    //觸發換頁
+		
+			}}
 			
-		});
+		);
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -285,11 +294,16 @@ public class S_Coupon_Buy extends Activity  {
 		}
 
 		protected String doInBackground(String... args) {
+			 db = new SQLiteHandler_Stores(getApplicationContext());
+			 
+		        // session manager
+		        session = new SessionManager_Stores(getApplicationContext());
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			AppController globalVariable = ((AppController)getApplicationContext());
+			 HashMap<String, String> user = db.getUserDetails();
+		      String userid = user.get("email");
 			for (int m = 0; m < itemname.length; m++) 
 			{
-				String userid =  globalVariable.UserID;
+				
 				String howmuch = itemname[m];
 				String howmany = imgid[m];
 				if (itemname[m] == null){break;}
@@ -313,13 +327,7 @@ public class S_Coupon_Buy extends Activity  {
 					int success = json.getInt(TAG_SUCCESS);
 
 					if (success == 1) {
-				//	Intent i = new Intent(getApplicationContext(), S_Stores_Center.class);
-					//	startActivity(i);
-					
-						// successfully created product
-				//	
-						//	finish();
-						// closing this screen
+		
 					
 					} else 
 					{
@@ -345,6 +353,7 @@ public class S_Coupon_Buy extends Activity  {
 		{
 			// dismiss the dialog once done
 			aDialog.dismiss();
+			
 		}
 
 	}
