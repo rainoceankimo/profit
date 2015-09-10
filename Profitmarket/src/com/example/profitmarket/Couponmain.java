@@ -6,7 +6,10 @@ package com.example.profitmarket;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,7 +20,8 @@ public class Couponmain extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_couponmain);
-
+		  StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	        StrictMode.setThreadPolicy(policy);
 		Button button1 = (Button) this.findViewById(R.id.button2);
 		Button button2 = (Button) this.findViewById(R.id.button1);
 		Button button3 = (Button) this.findViewById(R.id.btnclickqr);
@@ -97,4 +101,20 @@ public class Couponmain extends Activity {
 				.replace(R.id.layout_container, fragment).addToBackStack(null)
 				.commit();
 	}
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+	        
+	        if (keyCode == KeyEvent.KEYCODE_BACK)
+	        {
+	            // Show home screen when pressing "back" button,
+	            //  so that this app won't be closed accidentally
+	        	Intent intent = new Intent();  
+	    	    intent.setClass(Couponmain.this,MainActivity.class);
+	    	   startActivity(intent);    //Ä²µo´«­¶
+	    	   finish();   //µ²§ô¥»­¶
+	            
+	            return true;
+	        }
+	        
+	        return super.onKeyDown(keyCode, event);
+	    }
 }

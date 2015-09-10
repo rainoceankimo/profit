@@ -45,7 +45,7 @@ public class S_Coupon_Buy extends Activity  {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://192.168.0.101/couponconnect/create.php";
+	private static String url_create_product = "http://192.168.0.109/couponconnect/create.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -348,4 +348,6 @@ public class S_Coupon_Buy extends Activity  {
 		}
 
 	}
+	
+	
 }
