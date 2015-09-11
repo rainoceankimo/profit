@@ -73,7 +73,7 @@ public class S_Coupon_Rules extends Fragment {
 	JSONArray spin = null;
 	private View v;
 
-	private static String url_all_products = "http://192.168.0.105/couponconnect/spinner.php";
+	private static String url_all_products = "http://192.168.0.101/couponconnect/spinner.php";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -44,7 +44,7 @@ public class S_Coupon_Management  extends ListFragment {
 	ArrayList<HashMap<String, String>> productsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://192.168.0.105/couponconnect/getallcoupon.php";
+	private static String url_all_products = "http://192.168.0.101/couponconnect/getallcoupon.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
