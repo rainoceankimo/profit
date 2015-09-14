@@ -108,7 +108,7 @@ public class Couponmain extends Activity {
 	            // Show home screen when pressing "back" button,
 	            //  so that this app won't be closed accidentally
 	        	Intent intent = new Intent();  
-	    	    intent.setClass(Couponmain.this,MainActivity.class);
+	    	    intent.setClass(Couponmain.this,S_Mainmenu.class);
 	    	   startActivity(intent);    //Ä²µo´«­¶
 	    	   finish();   //µ²§ô¥»­¶
 	            

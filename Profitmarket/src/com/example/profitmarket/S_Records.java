@@ -37,7 +37,7 @@ public class S_Records extends Activity {
 	
 	public void s_inquiretransaction_onClick(View v){
 		Intent intent = new Intent();
-		intent.setClass(S_Records.this,S_Records_InquireTransactionre.class);
+		intent.setClass(S_Records.this,S_TransactionRecords.class);
 		startActivity(intent);    //Ä²µo´«­¶
 		finish();   //µ²§ô¥»­¶
 	}

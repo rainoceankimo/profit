@@ -7,221 +7,38 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="fill_parent" 
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:background="#0FFF3F"
         android:gravity="center"
         android:text="交易紀錄"
-        android:textSize="36sp"
         android:textColor="#000000"
-        android:background="#0FFF3F" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:text="日期"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginLeft="29dp"
-        android:textColor="#000000"
-        android:text="商品一"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:text="XXX元"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_marginLeft="26dp"
-        android:layout_toRightOf="@+id/textView4"
-        android:textColor="#000000"
-        android:text="XX份"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="19dp"
-        android:textColor="#000000"
-        android:text="商品一"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_alignLeft="@+id/textView4"
-        android:textColor="#000000"
-        android:text="XXX元"
-        android:textSize="25sp"  />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_alignLeft="@+id/textView5"
-        android:textColor="#000000"
-        android:text="XX份"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView9"
-        android:layout_alignBottom="@+id/textView9"
-        android:layout_toLeftOf="@+id/textView8"
-        android:textColor="#000000"
-        android:text="------"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView6"
-        android:layout_below="@+id/textView9"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:text="總金額:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_below="@+id/textView11"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:text="折價券面額:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView13"
-        android:layout_alignBottom="@+id/textView13"
-        android:layout_alignLeft="@+id/textView12"
-        android:textColor="#000000"
-        android:text="------"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView13"
-        android:layout_alignLeft="@+id/textView10"
-        android:textColor="#000000"
-        android:text="------"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView13"
-        android:layout_below="@+id/textView13"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:text="折扣:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView15"
-        android:layout_alignBottom="@+id/textView15"
-        android:layout_alignLeft="@+id/textView14"
-        android:textColor="#000000"
-        android:text="------"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView15"
-        android:layout_below="@+id/textView15"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:text="折扣後總金額:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView17"
-        android:layout_alignBottom="@+id/textView17"
-        android:layout_alignLeft="@+id/textView16"
-        android:textColor="#000000"
-        android:text="------"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_below="@+id/textView6"
-        android:layout_marginTop="107dp"
-        android:textColor="#000000"
-        android:text="會員名稱:"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnclickqr"
-        android:layout_alignBottom="@+id/btnclickqr"
-        android:layout_alignLeft="@+id/textView18"
-        android:textColor="#000000"
-        android:text="取消"
-        android:textSize="20sp" />
+        android:textSize="36sp" />
 
     <Button
         android:id="@+id/btnclickqr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView9"
-        android:layout_below="@+id/textView17"
-        android:layout_marginTop="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:text="確定"
         android:textColor="#000000"
         android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edttr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

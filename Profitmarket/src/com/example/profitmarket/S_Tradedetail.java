@@ -106,7 +106,7 @@ public class S_Tradedetail extends Activity {
 		  
 		    trademembername = (TextView) findViewById(R.id.trade_membername);
 		    //trademembername.setVisibility(View.GONE);
-		    memname = "null";
+		    memname = "無";
 		    trademembername.setText("會員名稱："+"無");
 		  
 		    tradecouponuse = (TextView) findViewById(R.id.trade_couponuse);
@@ -216,6 +216,14 @@ public class S_Tradedetail extends Activity {
 	        newRow.put("tradettmoney", tradettmoney);
 	        
 	        mtradedetailDb.insert(DB_TABLE, null, newRow);
+
+	        Toast.makeText(S_Tradedetail.this,"紀錄成功",Toast.LENGTH_SHORT);
+ 
+	        Intent intent = new Intent();
+			intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
+			startActivity(intent);    //觸發換頁
+			finish();   //結束本頁
+	        
 		}
     };
 	

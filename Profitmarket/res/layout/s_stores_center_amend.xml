@@ -57,6 +57,7 @@
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignParentRight="true"
         android:ems="10"
+        android:enabled="false"
         android:inputType="textPersonName" />
 
     <TextView

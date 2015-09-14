@@ -46,13 +46,13 @@ public class S_Coupon_Management  extends ListFragment {
 	ArrayList<HashMap<String, String>> productsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://192.168.0.109/couponconnect/getallcoupon.php";
+	private static String url_all_products = "http://192.168.0.101/couponconnect/getallcoupon.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ISSUE = "coupon";
 	private static final String TAG_ID = "userid";
-	private static final String TAG_TITLE = "howmany";
+	private static final String TAG_TITLE = "SUM(howmany)";
 	private static final String TAG_CONTENT = "howmuch";
 
 	// products JSONArray
@@ -131,14 +131,15 @@ public class S_Coupon_Management  extends ListFragment {
 						JSONObject c = products.getJSONObject(i);
 
 						// Storing each json item in variable
-						String id = c.getString(TAG_ID);
+					
 						String title = c.getString(TAG_TITLE);
 						String content = c.getString(TAG_CONTENT);
 
 						// creating new HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
 						// adding each child node to HashMap key => value
-						map.put(TAG_ID, id);
+						
+						
 						map.put(TAG_CONTENT, content);
 						map.put(TAG_TITLE, title);
 
@@ -169,9 +170,9 @@ public class S_Coupon_Management  extends ListFragment {
 					 * */
 					ListAdapter adapter = new SimpleAdapter(
 							getActivity(), productsList,
-							R.layout.mylist3, new String[] { TAG_ID,TAG_CONTENT,
+							R.layout.mylist3, new String[] { TAG_CONTENT,
 									TAG_TITLE},
-							new int[] { R.id.pid,R.id.content22, R.id.name1 });
+							new int[] { R.id.content22, R.id.name1 });
 					// updating listview
 					setListAdapter(adapter);
 				}
