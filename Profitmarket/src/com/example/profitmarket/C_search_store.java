@@ -21,18 +21,6 @@ import android.widget.ListView;
 
 public class C_search_store extends Activity {
 	
-	
-
-	public void c_store3_onClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_search_store.this,C_store.class);
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
-	}
-	
-	
-	
-	
 	 private DrawerLayout mDrawerLayout;
      private ListView mDrawerList;
      private ActionBarDrawerToggle mDrawerToggle;
@@ -65,11 +53,9 @@ public class C_search_store extends Activity {
         mDrawerList.setAdapter(adapter);
         
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        
-        
-        
+
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+       // getActionBar().setHomeButtonEnabled(true);
          
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                     R.drawable.ic_drawer, R.string.drawer_open,
@@ -266,4 +252,10 @@ public void onItemClick(AdapterView<?> parent, View view, int position,
 		return true;
 	}
 
+	public void c_store3_onClick(View v) {
+	    Intent intent = new Intent();  
+	    intent.setClass(C_search_store.this,C_store.class);
+	   startActivity(intent);    //觸發換頁
+	   finish();   //結束本頁
+	}
 }

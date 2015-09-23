@@ -150,7 +150,7 @@
             android:label="@string/title_activity_c_store" >
         </activity>
         <activity
-            android:name=".C_search_store"
+            android:name=".com.example.profitmarket.C_search_store"
             android:label="@string/title_activity_c_search_store" >
         </activity>
         <activity
@@ -197,6 +197,8 @@
             android:name=".S_Analysis"
             android:label="@string/title_activity_s__analysis" >
         </activity>
+           <activity 
+    android:name = "org.achartengine.GraphicalActivity" />
         <activity
             android:name=".S_Analysis_IssueRecover"
             android:label="@string/title_activity_s__analysis__issue_recover" >
