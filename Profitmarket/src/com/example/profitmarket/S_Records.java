@@ -64,8 +64,8 @@ public class S_Records extends Activity {
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
     	    intent.setClass(S_Records.this,S_Mainmenu.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
+    	    startActivity(intent);    //觸發換頁
+    	    finish();   //結束本頁
             
             return true;
         }

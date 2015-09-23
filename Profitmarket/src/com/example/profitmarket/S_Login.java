@@ -130,8 +130,7 @@ public class S_Login extends Activity {
  
                             // Check for error node in json
                             if (!error) {
-                            	AppController globalVariable = ((AppController)getApplicationContext());
-                                globalVariable.UserID = email;
+                            	
                                 // user successfully logged in
                                 // Create login session
 

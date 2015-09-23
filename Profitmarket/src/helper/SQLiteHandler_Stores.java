@@ -15,7 +15,7 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
  
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
  
     // Database Name
     private static final String DATABASE_NAME = "android_Stores";
@@ -133,5 +133,6 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
  
         Log.d(TAG, "Deleted all user info from sqlite");
     }
+  
  
 }

@@ -31,18 +31,36 @@ import helper.TradedetailDbHandler;
 public class S_Tradedetail extends Activity {
 	
 	private static final String DB_FILE = "tradedetail.db",
-			                    DB_TABLE = "details";
+			                    DB_TABLE = "tradedetail";
 	
-    private SQLiteDatabase mtradedetailDb;
+	public static final String TID = "id";
+	public static final String TYPE = "type";
+	public static final String DATE = "date";
+	public static final String CONSUMPTION = "cousumption";
+	public static final String DISCOUNT = "discount";
+	public static final String GRANT = "grant";
+	public static final String GRANTDENOMINATIONS = "grantdenominations";
+	public static final String MEMNAME = "memname";
+	public static final String QPONUSE = "Qponuse";
+	public static final String QPONNO = "QponNo";
+	public static final String USEDENOMINATIONS = "usedenominations";
+	public static final String TRADETTMONEY = "tradettmoney";
+	
+	
+	String[] columns = 
+		{TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,TRADETTMONEY};
+
+	private SQLiteDatabase mtradeDb;
+	
 	
 	private TextView showtradetype,showtradedate,showtradeconsumption,trademaxdiscount,
 	                 tradecoupongrant,tradegrantdenominations,trademembername,
 	                 tradecouponuse,tradecouponNo,tradeusedenominations,tradetotalmoney;
-	                 
+
 	private String tradetype,tradedate,Qpongrant,memname,Qponuse,QponNo;
 	
 	private int tradeconsumption,tradediscount,grantdenominations,usedenominations,tradettmoney;
-	
+
 	private Button btnrecode;
 	
 	SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -58,29 +76,51 @@ public class S_Tradedetail extends Activity {
 		
 		TradedetailDbHandler tradedetailDbHandler = 
 				new TradedetailDbHandler(getApplicationContext(), DB_FILE, null, 1);
-		mtradedetailDb = tradedetailDbHandler.getWritableDatabase();
-		
-		        // 檢查資料表是否已經存在，如果不存在，就建立一個。
-				Cursor cursor = mtradedetailDb.rawQuery(
-			    		"select DISTINCT tbl_name from sqlite_master where tbl_name = '" +
-			    		DB_TABLE + "'", null);
-				
-				if(cursor != null) {
-			        if(cursor.getCount() == 0)	// 沒有資料表，要建立一個資料表。
-			        	mtradedetailDb.execSQL("CREATE TABLE " + DB_TABLE + " (" +
-				        		"t_id INTEGER PRIMARY KEY," +
-				        		"type TEXT NOT NULL," + "date TEXT," + "consumption TEXT," +
-				        		"discount TEXT," + "grant TEXT," + "grantdenominations TEXT," + 
-				        		"memname TEXT," + "Qponuse TEXT," + "QponNo TEXT," + 
-				        		"usedenominations TEXT," + "tradettmoney TEXT);");
+		mtradeDb = tradedetailDbHandler.getWritableDatabase();
 
-			        cursor.close();
-			    }
+		// 檢查資料表是否已經存在，如果不存在，就建立一個。
+		Cursor cursor = mtradeDb.rawQuery(
+	    		"select DISTINCT tbl_name from sqlite_master where tbl_name = '" +
+	    		DB_TABLE + "'", null);
+		
+		Toast.makeText(S_Tradedetail.this, cursor+"", Toast.LENGTH_SHORT).show();
+		
+		if(cursor != null) {
+	        if(cursor.getCount() == 0){	// 沒有資料表，要建立一個資料表。
+	        	mtradeDb.execSQL("CREATE TABLE " + DB_TABLE + " (" +
+	        			          TID + " INTEGER PRIMARY KEY," +
+	        			          TYPE + " TEXT NOT NULL," +
+	        			          DATE + " TEXT," +
+	        			          CONSUMPTION + " TEXT," +
+	        			          DISCOUNT + " TEXT," +
+	        			          GRANT + " TEXT," +
+	        			          GRANTDENOMINATIONS + " TEXT," +
+	        			          MEMNAME + " TEXT," +
+	        			          QPONUSE + " TEXT," +
+	        			          QPONNO + " TEXT," +
+	        			          USEDENOMINATIONS + " TEXT," +
+	        			          TRADETTMONEY + " TEXT);");
+	        	
+	        	Toast.makeText(S_Tradedetail.this, "新增成功", Toast.LENGTH_SHORT).show();
+		        
+	        }else
+	        {
+	        	//Toast.makeText(S_Tradedetail.this, "新增失敗", Toast.LENGTH_SHORT).show();
+	        }
+
+	        cursor.close();
+	    }else
+	    {
+	    	Toast.makeText(S_Tradedetail.this, "ERROR", Toast.LENGTH_SHORT).show();
+	    }
+
 		
 		if (globalVariable.tradetypeNO == 0){
+			
+			
 		
 		    showtradetype = (TextView) findViewById(R.id.showtype);
-		    tradetype = "general";
+		    tradetype = "一般結帳";
 		    showtradetype.setText(globalVariable.tradetype);
 		
 		    showtradedate = (TextView) findViewById(R.id.trade_date);
@@ -97,7 +137,7 @@ public class S_Tradedetail extends Activity {
 		    trademaxdiscount.setVisibility(View.GONE);
 		  
 		    tradecoupongrant = (TextView) findViewById(R.id.trade_coupongrant);
-		    Qpongrant = "null";
+		    Qpongrant = "無";
 		    tradecoupongrant.setVisibility(View.GONE);
 		  
 		    tradegrantdenominations = (TextView) findViewById(R.id.trade_grantdenominations);
@@ -110,11 +150,11 @@ public class S_Tradedetail extends Activity {
 		    trademembername.setText("會員名稱："+"無");
 		  
 		    tradecouponuse = (TextView) findViewById(R.id.trade_couponuse);
-		    Qponuse = "null";
+		    Qponuse = "無";
 		    tradecouponuse.setVisibility(View.GONE);
 		  
 		    tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
-		    QponNo = "null";
+		    QponNo = "無";
 		    tradecouponNo.setVisibility(View.GONE);
 		   
 		    tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
@@ -128,6 +168,7 @@ public class S_Tradedetail extends Activity {
 		}
 		else if (globalVariable.tradetypeNO == 1){
 			
+
 			showtradetype = (TextView) findViewById(R.id.showtype);
 			showtradetype.setText(globalVariable.tradetype);
 			
@@ -191,7 +232,7 @@ public class S_Tradedetail extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		mtradedetailDb.close(); 
+		mtradeDb.close();
 	}
 	
 	
@@ -200,42 +241,30 @@ public class S_Tradedetail extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-
-	        ContentValues newRow = new ContentValues();
-	        
-	        newRow.put("type", tradetype);
-	        newRow.put("date", tradedate);
-	        newRow.put("consumption", tradeconsumption);
-	        newRow.put("discount", tradediscount);
-	        newRow.put("grant", Qpongrant);
-	        newRow.put("grantdenominations", grantdenominations);
-	        newRow.put("memname", memname);
-	        newRow.put("Qponuse", Qponuse);
-	        newRow.put("QponNo", QponNo);
-	        newRow.put("usedenominations", usedenominations);
-	        newRow.put("tradettmoney", tradettmoney);
-	        
-	        mtradedetailDb.insert(DB_TABLE, null, newRow);
-
-	        Toast.makeText(S_Tradedetail.this,"紀錄成功",Toast.LENGTH_SHORT);
- 
-	        Intent intent = new Intent();
+			
+			ContentValues newRow = new ContentValues();
+			newRow.put(TYPE,tradetype);
+			newRow.put(DATE,tradedate);
+			newRow.put(CONSUMPTION,tradeconsumption);
+			newRow.put(DISCOUNT,tradediscount);
+			newRow.put(GRANT,Qpongrant);
+			newRow.put(GRANTDENOMINATIONS,grantdenominations);
+			newRow.put(MEMNAME,memname);
+			newRow.put(QPONUSE,Qponuse);
+			newRow.put(QPONNO,QponNo);
+			newRow.put(USEDENOMINATIONS,usedenominations);
+			newRow.put(TRADETTMONEY,tradettmoney);
+			
+			mtradeDb.insert(DB_TABLE, null, newRow);
+			
+			Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
+			
+			Intent intent = new Intent();
 			intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
 			startActivity(intent);    //觸發換頁
-			finish();   //結束本頁
-	        
+			
 		}
     };
-	
-	
-	
-	//Next
-	public void launchScanner(View v){
-		Intent intent = new Intent();
-		intent.setClass(S_Tradedetail.this,S_YesorNo_Mem2.class);
-		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
-	}
 	
 }
 

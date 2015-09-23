@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import app.AppController;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,20 +48,29 @@ public class S_SettleaCcounts extends Activity {
 			@Override
 			public void onClick(View v) {
 		               
-				        money = 0;
-				        outputmoney = 0;
-				        maxdiscount = 0;
-				
-				  
-					    money = Integer.valueOf(Getmoney.getText().toString());
-					    AppController globalVariable = (AppController)getApplicationContext();
-					    globalVariable.settlea_totalmoney = money;
-					    outputmoney = globalVariable.settlea_totalmoney;
-						maxdiscount = (int) (outputmoney * 0.2);
-						globalVariable.settlea_MaxDiscount = maxdiscount;
-						//txttxt1.setText(""+ outputmoney + "&" + globalVariable.settlea_Discount + "元");
+				       
+				        if (!Getmoney.getText().toString().equals("")){
+				        	
+				        	money = 0;
+					        outputmoney = 0;
+					        maxdiscount = 0;
 					
-						MyDialog();
+					  
+						    money = Integer.valueOf(Getmoney.getText().toString());
+						    AppController globalVariable = (AppController)getApplicationContext();
+						    globalVariable.settlea_totalmoney = money;
+						    outputmoney = globalVariable.settlea_totalmoney;
+							maxdiscount = (int) (outputmoney * 0.2);
+							globalVariable.settlea_MaxDiscount = maxdiscount;
+							//txttxt1.setText(""+ outputmoney + "&" + globalVariable.settlea_Discount + "元");
+						
+							MyDialog();
+				        	
+				        }else
+				        {
+				        	Toast.makeText(S_SettleaCcounts.this, "請輸入金額!", Toast.LENGTH_SHORT).show();
+				        }
+				        
 				
 			}
 	
