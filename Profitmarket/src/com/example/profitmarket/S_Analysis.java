@@ -46,14 +46,14 @@ public class S_Analysis extends Activity {
 		Intent intent = new Intent();
 		intent.setClass(S_Analysis.this,S_Analysis_Sources.class);
 		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
+		   //結束本頁
 	}
 	
 	public void s_goWhereabouts_onClick(View v){
 		Intent intent = new Intent();
 		intent.setClass(S_Analysis.this,S_Analysis_Whereabouts.class);
 		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
+		 //結束本頁
 	}
 	
 	
