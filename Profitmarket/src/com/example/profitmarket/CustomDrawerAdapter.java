@@ -1,4 +1,4 @@
-package com.example.profitmarket;
+/*package com.example.profitmarket;
 import java.util.List;
 
 import android.app.Activity;
@@ -58,4 +58,4 @@ public class CustomDrawerAdapter extends ArrayAdapter<DrawerItem>{
          TextView ItemName;
          ImageView icon;
    }
-}
+}*/

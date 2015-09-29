@@ -6,7 +6,7 @@
 
     
    <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="20" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -150,7 +150,7 @@
             android:label="@string/title_activity_c_store" >
         </activity>
         <activity
-            android:name=".com.example.profitmarket.C_search_store"
+            android:name=".C_search_store"
             android:label="@string/title_activity_c_search_store" >
         </activity>
         <activity

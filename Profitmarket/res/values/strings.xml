@@ -58,7 +58,11 @@
     <string name="title_activity_camera_preview">CameraPreview</string>
     <string name="title_activity_camera__main">Camera_MainActivity</string>
     <string name="forgetpassword">忘記密碼</string>
-
+    <string-array name="navigation_drawer_items_array">
+    <item>Create</item>
+    <item>Read</item>
+    <item>Help</item>
+    </string-array>
     <string-array name="A">
         <item>1</item>
         <item>2</item>

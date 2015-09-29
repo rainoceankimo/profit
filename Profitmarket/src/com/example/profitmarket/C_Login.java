@@ -77,15 +77,21 @@ public class C_Login extends Activity {
                 String phone = "";
  
                 // Check for empty data in the form
-                if (email.trim().length() > 0 && password.trim().length() > 0) {
-                    // login user
-                    checkLogin(email, password, phone);
-                } else {
-                    // Prompt user to enter credentials
-                    Toast.makeText(getApplicationContext(),
-                            "Please enter the credentials!", Toast.LENGTH_LONG)
-                            .show();
-                }
+//                if (email.trim().length() > 0 && password.trim().length() > 0) {
+//                    // login user
+//                    checkLogin(email, password, phone);
+//                } else {
+//                    // Prompt user to enter credentials
+//                    Toast.makeText(getApplicationContext(),
+//                            "Please enter the credentials!", Toast.LENGTH_LONG)
+//                            .show();
+//                }
+                
+                // Launch main activity
+                Intent intent = new Intent(C_Login.this,
+                        C_mem_view.class);
+                startActivity(intent);
+                finish();
             }
  
         });
