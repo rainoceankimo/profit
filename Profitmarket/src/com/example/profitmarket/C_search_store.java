@@ -46,9 +46,9 @@ public class C_search_store extends Activity {
         // list the drawer items
         ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[3];
         
-        drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_action_copy, "Create");
-        drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_action_refresh, "Read");
-        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_action_share, "Help");
+        drawerItem[0] = new ObjectDrawerItem(R.drawable.c_food, "Food");
+        drawerItem[1] = new ObjectDrawerItem(R.drawable.c_clothes, "Clothes");
+        drawerItem[2] = new ObjectDrawerItem(R.drawable.c_live, "Live");
         
         // Pass the folderData to our ListView adapter
         DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, drawerItem);

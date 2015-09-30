@@ -4,34 +4,30 @@
     android:versionCode="3"
     android:versionName="1.0" >
 
-    
-   <uses-sdk
+    <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="20" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
 
     <application
         android:name="app.AppController"
@@ -40,9 +36,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
-        >
-
-
+        >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -62,7 +56,6 @@
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
-       
         <activity
             android:name=".C_Logout"
             android:label="@string/app_name"
@@ -85,9 +78,7 @@
             android:name=".S_Mainmenu"
             android:label="@string/title_activity_s__mainmenu" >
         </activity>
-         <activity
-           android:name=".Couponmain"
-          >
+        <activity android:name=".Couponmain" >
         </activity>
         <activity
             android:name=".C_mem_view"
@@ -197,8 +188,7 @@
             android:name=".S_Analysis"
             android:label="@string/title_activity_s__analysis" >
         </activity>
-           <activity 
-    android:name = "org.achartengine.GraphicalActivity" />
+        <activity android:name="org.achartengine.GraphicalActivity" />
         <activity
             android:name=".S_Analysis_IssueRecover"
             android:label="@string/title_activity_s__analysis__issue_recover" >
@@ -259,12 +249,13 @@
             android:name=".S_YesorNo_Mem2"
             android:label="@string/title_activity_s__yesor_no__mem2" >
         </activity>
-        
         <activity
             android:name=".S_Capture"
-             android:theme="@android:style/Theme.Black.NoTitleBar" />
-
-        
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name=".C_Store_information"
+            android:label="@string/title_activity_c__store_information" >
+        </activity>
     </application>
 
 </manifest>
