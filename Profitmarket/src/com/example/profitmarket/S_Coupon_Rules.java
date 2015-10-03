@@ -22,11 +22,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import helper.RulesDbHandler;
+import app.AppController;
+
 import com.example.profitmarket.S_Coupon_Management.DownloadData;
 
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,8 +54,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class S_Coupon_Rules extends Fragment {
+	
 	CustomListAdapter2 adapter;
-	EditText input;
+	EditText input,showw;
 	ListView list;
 	Spinner spinner;
 	private SQLiteHandler_Stores db;
@@ -58,12 +65,13 @@ public class S_Coupon_Rules extends Fragment {
 	private Dialog mDlgLogin;
 	Button add, clear, save;
 	String item;
+	int k = 0;
 	String[] z = new String[100];
 	String[] cost = new String[100];
 	String[] x = new String[100];
 	String[] howmuch = new String[100];
 	String[] y = new String[100];
-	int k = 0;
+	
 	List<Integer> list1;
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ISSUE = "coupon";
@@ -72,8 +80,20 @@ public class S_Coupon_Rules extends Fragment {
 	ArrayList<HashMap<String, String>> spinnerList;
 	JSONArray spin = null;
 	private View v;
-
-	private static String url_all_products = "http://192.168.0.101/couponconnect/spinner.php";
+	
+	private static String url_all_products = "http://192.168.2.142/couponconnect/spinner.php";
+	
+	
+	private static final String DB_DBNAME = "rules.db",
+                                DB_TBNAME = "rules";
+	
+	public static final String RID = "id";
+	public static final String USEMONEY = "usemoney";
+	public static final String GRANTMONEY = "grantmoney";
+	
+	String[] columns = {RID,USEMONEY,GRANTMONEY};
+	
+	private SQLiteDatabase MyrulesDb;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -81,12 +101,47 @@ public class S_Coupon_Rules extends Fragment {
 		list1 = new ArrayList<Integer>();
 		spinnerList = new ArrayList<HashMap<String, String>>();
 		new downloadData().execute();
-
+       
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.s_coupon_rules, container, false);
 		input = (EditText) v.findViewById(R.id.abc);
+		showw =  (EditText) v.findViewById(R.id.edtabcc);
+		
+		AppController globalVariable = (AppController)getActivity().getApplicationContext();
+		
+		RulesDbHandler rulesDbHandler = 
+				new RulesDbHandler(getActivity().getApplicationContext(), DB_DBNAME, null, 1);
+		MyrulesDb = rulesDbHandler.getWritableDatabase();
+		
+		// 檢查資料表是否已經存在，如果不存在，就建立一個。
+		Cursor cursor = MyrulesDb.rawQuery(
+			   "select DISTINCT tbl_name from sqlite_master where tbl_name = '" +
+					   DB_TBNAME + "'", null);
+		
+		//Toast.makeText(getActivity().getApplicationContext(), cursor+"", Toast.LENGTH_SHORT).show();
+		
+		if(cursor != null) {
+	        if(cursor.getCount() == 0){	// 沒有資料表，要建立一個資料表。
+	        	MyrulesDb.execSQL("CREATE TABLE " + DB_TBNAME + " (" +
+		        		RID + " INTEGER PRIMARY KEY," +
+		        		USEMONEY + " TEXT NOT NULL," +
+		        		GRANTMONEY + " TEXT);");
+	        	
+	        //Toast.makeText(getActivity().getApplicationContext(), "新增成功", Toast.LENGTH_SHORT).show();
+	        
+	        }else
+	        {
+	        	//Toast.makeText(getActivity().getApplicationContext(), "新增失敗", Toast.LENGTH_SHORT).show();
+	        }
+
+	        cursor.close();
+	    }else
+	    {
+	    	Toast.makeText(getActivity().getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+	    }
+		
 
 		adapter = new CustomListAdapter2(getActivity(), z, cost, x, howmuch, y);
 		list = (ListView) v.findViewById(R.id.jkl);
@@ -167,11 +222,16 @@ public class S_Coupon_Rules extends Fragment {
 				}
 			}
 		});
+		
+		
 		add = (Button) v.findViewById(R.id.def);
 		clear = (Button) v.findViewById(R.id.ghi);
-		clear.setOnClickListener(clearOnClickListener);
 		save = (Button) v.findViewById(R.id.mno);
+		
+		
 		add.setOnClickListener(addOnClickListener);
+		clear.setOnClickListener(clearOnClickListener);
+		save.setOnClickListener(saveOnClickListener);
 
 		return v;
 
@@ -197,7 +257,9 @@ public class S_Coupon_Rules extends Fragment {
 				}
 
 				else {
-
+                    
+					
+					
 					cost[k] = input.getText().toString();
 					howmuch[k] = item;
 
@@ -208,6 +270,9 @@ public class S_Coupon_Rules extends Fragment {
 					x[k] = "元發放折價券";
 					y[k] = "元";
 					k++;
+					
+					
+					
 
 					input.setText("");
 
@@ -232,6 +297,9 @@ public class S_Coupon_Rules extends Fragment {
 		@Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
+			
+			
+			
 			for (int i = 0; i < cost.length; i++) {
 				cost[i] = "";
 				howmuch[i] = "";
@@ -241,11 +309,48 @@ public class S_Coupon_Rules extends Fragment {
 			}
 			k = 0;
 			
+			
 			input.setText("");
 			
 			adapter.notifyDataSetChanged();
 		}
 	};
+	
+	private Button.OnClickListener saveOnClickListener = new Button.OnClickListener() {
+		@Override
+		public void onClick(View arg0) {
+			
+			ContentValues newRow = new ContentValues();
+			
+			
+			int recodeNum = k;
+			
+			
+			if (recodeNum != 0){
+				for(int i=0;i<=k;i++){
+
+					newRow.put("usemoney",cost[i]);
+					newRow.put("grantmoney",howmuch[i]);
+					
+					MyrulesDb.insert(DB_TBNAME, null, newRow);
+
+				}
+				
+				Toast.makeText(getActivity(), "新增成功", Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(getActivity(), "請新增規則", Toast.LENGTH_SHORT).show();
+			}
+			
+			
+		}
+			
+	};
+	
+	
+	
+	
+	
+	
 
 	class downloadData extends AsyncTask<String, String, String> {
 

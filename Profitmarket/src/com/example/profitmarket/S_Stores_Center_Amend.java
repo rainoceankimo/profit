@@ -43,12 +43,14 @@ String created_at;
 	private EditText textAddress;
 	private Button btnclickqr;
 	String mail;
+	String idnum;
 	private SQLiteHandler_Stores db;
 	private SessionManager_Stores session;
 	private static final String TAG_SUCCESS = "success";
 
 	private static final String TAG_EMAIL = "email";
 	private static final String TAG_NAME = "name";
+	private static final String KEY_IDNUMBER = "idnumber";
 	private static final String TAG_PHONE = "phone";
 	private static final String TAG_ADDRESS = "address";
 	private static final String TAG_DB = "android_stores";
@@ -90,6 +92,7 @@ String created_at;
 		String name = user.get("name");
 		String email = user.get("email");
 		mail = user.get("email");
+		idnum = user.get("idnumber");
 		String phone = user.get("phone");
 		String address = user.get("address");
 
@@ -165,6 +168,7 @@ String created_at;
 
 			// getting updated data from EditTexts
 			String email = mail;
+			String idnumber = idnum;
 			String name = textName.getText().toString();
 			String phone = textPhone.getText().toString();
 			String address = textAddress.getText().toString();
@@ -173,6 +177,7 @@ String created_at;
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair(TAG_EMAIL, email));
 			params.add(new BasicNameValuePair(TAG_NAME, name));
+			params.add(new BasicNameValuePair(KEY_IDNUMBER, idnumber));
 			params.add(new BasicNameValuePair(TAG_PHONE, phone));
 			params.add(new BasicNameValuePair(TAG_ADDRESS, address));
 
@@ -186,7 +191,7 @@ String created_at;
 
 				if (success == 1) {
                  db.deleteUsers();
-                 db.addUser(name, email, phone, address, uid, created_at);
+                 db.addUser(name, email, idnumber, phone, address, uid, created_at);
 				} else {
 					// failed to update product
 				}

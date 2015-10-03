@@ -81,4 +81,13 @@
 
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/edtabcc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
 </LinearLayout>

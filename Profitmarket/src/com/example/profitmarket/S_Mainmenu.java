@@ -57,7 +57,7 @@ public class S_Mainmenu extends Activity {
 	}
 	public void s_couponmanagement_onClick(View v){
 		Intent intent = new Intent();
-		intent.setClass(S_Mainmenu.this,Couponmain.class);
+		intent.setClass(S_Mainmenu.this,S_Couponmain.class);
 		startActivity(intent);    //Ä²µo´«­¶
 		finish();   //µ²§ô¥»­¶
 	}

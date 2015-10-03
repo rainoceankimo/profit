@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.Window;
@@ -179,6 +180,7 @@ public final class S_Capture extends Activity implements SurfaceHolder.Callback 
 		bundle.putString("result", rawResult.getText());
 
 		startActivity(new Intent(S_Capture.this, S_Tradedetail.class).putExtras(bundle));
+		finish();
 	}
 
 	private void initCamera(SurfaceHolder surfaceHolder) {
@@ -287,4 +289,21 @@ public final class S_Capture extends Activity implements SurfaceHolder.Callback 
 		}
 		return 0;
 	}
+	
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(S_Capture.this,S_SettleaCcounts.class);
+    	    startActivity(intent);    //Ä²µo´«­¶
+    	    finish();   //µ²§ô¥»­¶
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
 }

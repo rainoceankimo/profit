@@ -139,6 +139,7 @@ public class S_Login extends Activity {
                                 JSONObject user = jObj.getJSONObject("user");
                                 String name = user.getString("name");
                                 String email = user.getString("email");
+                                String idnumber = user.getString("idnumber");
                                 String phone = user.getString("phone");
                                 String address = user.getString("address");
                                 String created_at = user
@@ -146,7 +147,7 @@ public class S_Login extends Activity {
                                 
  
                                 // Inserting row in users table
-                                db.addUser(name, email, phone, address, uid, created_at);
+                                db.addUser(name, email, idnumber, phone, address, uid, created_at);
                                 
                                 session.setLogin(true);
  

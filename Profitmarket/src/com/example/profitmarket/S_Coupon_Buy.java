@@ -48,7 +48,7 @@ public class S_Coupon_Buy extends Activity  {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://192.168.0.101/couponconnect/create.php";
+	private static String url_create_product = "http://192.168.2.142/couponconnect/create.php";
 	 private SQLiteHandler_Stores db;
 	    private SessionManager_Stores session;
 	// JSON Node names
@@ -71,11 +71,11 @@ public class S_Coupon_Buy extends Activity  {
 		clear = (Button) findViewById(R.id.clear);
 		clear.setOnClickListener(clearOnClickListener);
 		add.setOnClickListener(addOnClickListener);
-		buy = (Button) findViewById(R.id.button1);
+		buy = (Button) findViewById(R.id.btnbuy);
 		buy.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread
-		
+		        
 				new postnew().execute();
 				Toast.makeText(S_Coupon_Buy.this, "上傳成功", Toast.LENGTH_SHORT).show();
 				
@@ -298,9 +298,10 @@ public class S_Coupon_Buy extends Activity  {
 			 
 		        // session manager
 		        session = new SessionManager_Stores(getApplicationContext());
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			 HashMap<String, String> user = db.getUserDetails();
-		      String userid = user.get("email");
+		        List<NameValuePair> params = new ArrayList<NameValuePair>();
+		        HashMap<String, String> user = db.getUserDetails();
+		        String userid = user.get("email");
+		      
 			for (int m = 0; m < itemname.length; m++) 
 			{
 				
