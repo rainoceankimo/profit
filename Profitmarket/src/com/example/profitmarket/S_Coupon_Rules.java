@@ -31,6 +31,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -335,8 +336,12 @@ public class S_Coupon_Rules extends Fragment {
 					MyrulesDb.insert(DB_TBNAME, null, newRow);
 
 				}
+				Toast.makeText(getActivity(), "成功", Toast.LENGTH_SHORT).show();
 				
-				Toast.makeText(getActivity(), "新增成功", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(); 
+				intent.setClass(getActivity(),S_Mainmenu.class);
+				startActivity(intent);    //觸發換頁
+				
 			}else{
 				Toast.makeText(getActivity(), "請新增規則", Toast.LENGTH_SHORT).show();
 			}
