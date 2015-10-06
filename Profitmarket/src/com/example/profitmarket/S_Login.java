@@ -75,19 +75,19 @@ public class S_Login extends Activity {
             	   
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
+                String idnumber = "";
                 String phone = "";
                 String address = "";
  
                 // Check for empty data in the form
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
-                    checkLogin(email, password, phone, address);
+                    checkLogin(email, password, idnumber, phone, address);
             
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
-                            "Please enter the credentials!", Toast.LENGTH_LONG)
-                            .show();
+                            "Please enter the credentials!", Toast.LENGTH_LONG).show();
                 }
             }
  
@@ -109,7 +109,7 @@ public class S_Login extends Activity {
     /**
      * function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password, final String phone, final String address) {
+    private void checkLogin(final String email, final String password, final String idnumber,final String phone, final String address) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
  
@@ -142,8 +142,7 @@ public class S_Login extends Activity {
                                 String idnumber = user.getString("idnumber");
                                 String phone = user.getString("phone");
                                 String address = user.getString("address");
-                                String created_at = user
-                                		.getString("created_at");
+                                String created_at = user.getString("created_at");
                                 
  
                                 // Inserting row in users table
@@ -155,11 +154,8 @@ public class S_Login extends Activity {
                                 Intent intent = new Intent(S_Login.this,
                                 		S_Logout.class);
                                 startActivity(intent);
-                             
-                               
-                               
-                          
                                 finish();
+                                
                             } else {
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("error_msg");
@@ -190,6 +186,7 @@ public class S_Login extends Activity {
                 params.put("tag", "login");
                 params.put("email", email);
                 params.put("password", password);
+                params.put("idnumber", idnumber);
                 params.put("phone", phone);
                 params.put("address", address);
  

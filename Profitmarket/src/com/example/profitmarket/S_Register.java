@@ -112,7 +112,8 @@ public class S_Register extends Activity {
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void registerUser(final String name, final String email, final String password, final String idnumber, final String phone,
+    private void registerUser(final String name, final String email, 
+    		final String password, final String idnumber, final String phone,
             final String address) {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
@@ -149,9 +150,7 @@ public class S_Register extends Activity {
                                 db.addUser(name, email, idnumber, phone, address, uid, created_at);
  
                                 // Launch login activity
-                                Intent intent = new Intent(
-                                		S_Register.this,
-                                		S_Login.class);
+                                Intent intent = new Intent(S_Register.this,S_Login.class);
                                 startActivity(intent);
                                 finish();
                             } else {

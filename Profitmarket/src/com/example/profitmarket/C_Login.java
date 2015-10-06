@@ -75,23 +75,22 @@ public class C_Login extends Activity {
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
                 String phone = "";
+                String idnumber = "";
  
                 // Check for empty data in the form
-//                if (email.trim().length() > 0 && password.trim().length() > 0) {
-//                    // login user
-//                    checkLogin(email, password, phone);
-//                } else {
-//                    // Prompt user to enter credentials
-//                    Toast.makeText(getApplicationContext(),
-//                            "Please enter the credentials!", Toast.LENGTH_LONG)
-//                            .show();
-//                }
+                if (email.trim().length() > 0 && password.trim().length() > 0) {
+                    // login user
+                    checkLogin(email, password, idnumber, phone);
+                } else {
+                    // Prompt user to enter credentials
+                    Toast.makeText(getApplicationContext(),
+                            "Please enter the credentials!", Toast.LENGTH_LONG).show();
+                }
                 
                 // Launch main activity
-                Intent intent = new Intent(C_Login.this,
-                        C_mem_view.class);
-                startActivity(intent);
-                finish();
+             //   Intent intent = new Intent(C_Login.this,C_mem_view.class);
+            //    startActivity(intent);
+            //    finish();
             }
  
         });
@@ -100,8 +99,7 @@ public class C_Login extends Activity {
         btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),
-                        C_Register.class);
+                Intent i = new Intent(getApplicationContext(),C_Register.class);
                 startActivity(i);
                 finish();
             }
@@ -112,7 +110,7 @@ public class C_Login extends Activity {
     /**
      * function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password, final String phone) {
+    private void checkLogin(final String email, final String password, final String idnumber, final String phone) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
  
@@ -141,21 +139,24 @@ public class C_Login extends Activity {
                                 JSONObject user = jObj.getJSONObject("user");
                                 String name = user.getString("name");
                                 String email = user.getString("email");
+                                String idnumber = user.getString("idnumber");
                                 String phone = user.getString("phone");
-                                String created_at = user
-                                        .getString("created_at");
+                                String created_at = user.getString("created_at");
                                 
                                 // Inserting row in users table
-                                db.addUser(name, email, uid, phone, created_at);
+                                db.addUser(name, email, idnumber, phone, uid, created_at);
                             	
+                               // Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_LONG).show();
                             	
                                 session.setLogin(true);
                                 
                                 // Launch main activity
-                                Intent intent = new Intent(C_Login.this,
-                                        C_Logout.class);
+                                Intent intent = new Intent(
+                                		C_Login.this,
+                                		C_Logout.class);
                                 startActivity(intent);
                                 finish();
+                                
                             } else {
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("error_msg");
@@ -186,6 +187,7 @@ public class C_Login extends Activity {
                 params.put("tag", "login");
                 params.put("email", email);
                 params.put("password", password);
+                params.put("idnumber", idnumber);
                 params.put("phone", phone);
  
                 return params;
@@ -215,8 +217,8 @@ public class C_Login extends Activity {
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
     	    intent.setClass(C_Login.this,MainActivity.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
+    	    startActivity(intent);    //觸發換頁
+    	    finish();   //結束本頁
             
             return true;
         }

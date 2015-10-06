@@ -99,7 +99,7 @@ public class S_Tradedetail extends Activity {
 
 	JSONParser jsonParser = new JSONParser();
 	
-	private static String url_create_product = "http://192.168.0.105/addQpon/add_coupon.php";
+	private static String url_create_product = "http://10.51.202.142/addQpon/add_coupon.php";
 	
 	private static final String TAG_SUCCESS = "success";
 	
