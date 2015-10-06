@@ -27,6 +27,7 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
+    private static final String KEY_IDNUMBER = "idnumber";
     private static final String KEY_PHONE = "phone";
     private static final String KEY_ADDRESS = "address";
     private static final String KEY_UID = "uid";
@@ -41,7 +42,8 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_PHONE + " TEXT UNIQUE,"
+                + KEY_EMAIL + " TEXT UNIQUE," + KEY_IDNUMBER + " TEXT UNIQUE,"
+                + KEY_PHONE + " TEXT UNIQUE,"
                 + KEY_ADDRESS + " TEXT," + KEY_UID + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
@@ -62,12 +64,13 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String phone, String address, String uid, String created_at) {
+    public void addUser(String name, String email, String idnumber, String phone, String address, String uid, String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
  
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
+        values.put(KEY_IDNUMBER, idnumber); // Email
         values.put(KEY_PHONE, phone); // phone
         values.put(KEY_ADDRESS, address); // address
         values.put(KEY_UID, uid); // uid
@@ -94,10 +97,11 @@ public class SQLiteHandler_Stores extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) {
             user.put("name", cursor.getString(1));
             user.put("email", cursor.getString(2));
-            user.put("phone", cursor.getString(3));
-            user.put("address", cursor.getString(4));
-            user.put("uid", cursor.getString(5));
-            user.put("created_at", cursor.getString(6));
+            user.put("idnumber", cursor.getString(3));
+            user.put("phone", cursor.getString(4));
+            user.put("address", cursor.getString(5));
+            user.put("uid", cursor.getString(6));
+            user.put("created_at", cursor.getString(7));
         }
         cursor.close();
         db.close();

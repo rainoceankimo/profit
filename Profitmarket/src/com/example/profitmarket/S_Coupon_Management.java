@@ -34,8 +34,8 @@ import android.widget.TextView;
 
 public class S_Coupon_Management  extends ListFragment {
 	// Progress Dialog
-	 private SQLiteHandler_Stores db;
-	 private SessionManager_Stores session;
+	private SQLiteHandler_Stores db;
+	private SessionManager_Stores session;
 	 
 	 
 	private ProgressDialog pDialog;
@@ -46,7 +46,7 @@ public class S_Coupon_Management  extends ListFragment {
 	ArrayList<HashMap<String, String>> productsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://192.168.0.101/couponconnect/getallcoupon.php";
+	private static String url_all_products = "http://10.51.202.142/couponconnect/getallcoupon.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -102,15 +102,16 @@ public class S_Coupon_Management  extends ListFragment {
 		 * */
 		protected String doInBackground(String... args) {
 			// Building Parameters
-			 db = new SQLiteHandler_Stores(getActivity().getApplicationContext());
+			    db = new SQLiteHandler_Stores(getActivity().getApplicationContext());
 			 
 		        // session manager
 		        session = new SessionManager_Stores(getActivity().getApplicationContext());
 		        HashMap<String, String> user = db.getUserDetails();
-		      String userid = user.get("email");
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
+		        String userid = user.get("email");
+			    List<NameValuePair> params = new ArrayList<NameValuePair>();
 			
-			params.add(new BasicNameValuePair("userid", userid));
+			    params.add(new BasicNameValuePair("userid", userid));
+			    
 			// getting JSON string from URL
 			JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 	

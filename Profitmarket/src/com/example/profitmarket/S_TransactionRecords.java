@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,9 +77,45 @@ public class S_TransactionRecords extends ListActivity {
 		showrecod = (TextView)findViewById(R.id.edttr);
 	    mBtnshow = (Button)findViewById(R.id.btnclickqr);
 	    
-	    ABCC();  
-		SHOWLIST();
-		clicklist();
+	    Cursor cursor = mtradeDb.rawQuery(
+	    		"select DISTINCT tbl_name from sqlite_master where tbl_name = '" +
+	    		DB_TABLE + "'", null);
+	    
+	    if(cursor != null) {
+	        if(cursor.getCount() == 0){	// 沒有資料表，要建立一個資料表。
+	        	mtradeDb.execSQL("CREATE TABLE " + DB_TABLE + " (" +
+	        			          TID + " INTEGER PRIMARY KEY," +
+	        			          TYPE + " TEXT NOT NULL," +
+	        			          DATE + " TEXT," +
+	        			          CONSUMPTION + " TEXT," +
+	        			          DISCOUNT + " TEXT," +
+	        			          GRANT + " TEXT," +
+	        			          GRANTDENOMINATIONS + " TEXT," +
+	        			          MEMNAME + " TEXT," +
+	        			          QPONUSE + " TEXT," +
+	        			          QPONNO + " TEXT," +
+	        			          USEDENOMINATIONS + " TEXT," +
+	        			          TRADETTMONEY + " TEXT);");
+	        	
+	        	Toast.makeText(S_TransactionRecords.this, "新增成功", Toast.LENGTH_SHORT).show();
+		        
+	        }else
+	        {
+	        	//Toast.makeText(S_Tradedetail.this, "新增失敗", Toast.LENGTH_SHORT).show();
+	        }
+
+	        cursor.close();
+	    }else
+	    {
+	    	Toast.makeText(S_TransactionRecords.this, "ERROR", Toast.LENGTH_SHORT).show();
+	    }
+	    
+	    
+	    	ABCC();  
+			SHOWLIST();
+			clicklist();
+	   
+	   
 	    
 	    mBtnshow.setOnClickListener(btnListOnClick);
 		
@@ -120,6 +157,8 @@ public class S_TransactionRecords extends ListActivity {
 		
 		Cursor c = mtradeDb.query(true, DB_TABLE, columns, null, null, null, null, null, null);
 		
+		if (c == null)
+	        return;
 
         
 	  	  while(c.moveToNext())
@@ -210,5 +249,22 @@ public class S_TransactionRecords extends ListActivity {
         
     }
 	
+	
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(S_TransactionRecords.this,S_Records.class);
+    	   startActivity(intent);    //觸發換頁
+    	   finish();   //結束本頁
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
 	
 }

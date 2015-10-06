@@ -33,6 +33,7 @@ public class C_Register extends Activity {
     private EditText inputFullName;
     private EditText inputEmail;
     private EditText inputPassword;
+    private EditText inputIDnumber;
     private EditText inputphone;
     private ProgressDialog pDialog;
     private SessionManager session;
@@ -46,6 +47,7 @@ public class C_Register extends Activity {
         inputFullName = (EditText) findViewById(R.id.name);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
+        inputIDnumber = (EditText) findViewById(R.id.c_idnumber);
         inputphone = (EditText) findViewById(R.id.phone);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
@@ -75,10 +77,11 @@ public class C_Register extends Activity {
                 String name = inputFullName.getText().toString();
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
+                String idnumber = inputIDnumber.getText().toString();
                 String phone = inputphone.getText().toString();
  
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() ) {
-                    registerUser(name, email, password, phone);
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !idnumber.isEmpty() && !phone.isEmpty() ) {
+                    registerUser(name, email, password, idnumber, phone);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please enter your details!", Toast.LENGTH_LONG)
@@ -105,7 +108,7 @@ public class C_Register extends Activity {
      * email, password) to register url
      * */
     private void registerUser(final String name, final String email,
-            final String password,final String phone) {
+            final String password,final String idnumber, final String phone) {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
  
@@ -131,19 +134,18 @@ public class C_Register extends Activity {
                                 JSONObject user = jObj.getJSONObject("user");
                                 String name = user.getString("name");
                                 String email = user.getString("email");
+                                String idnumber = user.getString("idnumber");
                                 String phone = user.getString("phone");
-                                String created_at = user
-                                        .getString("created_at");
+                                String created_at = user.getString("created_at");
  
                                 // Inserting row in users table
-                                db.addUser(name, email, uid, phone, created_at);
+                                db.addUser(name, email, idnumber, phone, uid, created_at);
  
                                 // Launch login activity
-                                Intent intent = new Intent(
-                                        C_Register.this,
-                                        C_Login.class);
+                                Intent intent = new Intent(C_Register.this,C_Login.class);
                                 startActivity(intent);
                                 finish();
+                                
                             } else {
  
                                 // Error occurred in registration. Get the error
@@ -176,6 +178,7 @@ public class C_Register extends Activity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("idnumber", idnumber);
                 params.put("phone", phone);
                 
                 return params;

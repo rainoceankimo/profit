@@ -26,8 +26,8 @@ public class C_Logout extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
  
-        txtName = (TextView) findViewById(R.id.name);
-        txtEmail = (TextView) findViewById(R.id.email);
+        txtName = (TextView) findViewById(R.id.c_loname);
+        txtEmail = (TextView) findViewById(R.id.c_loemail);
         btnLogout = (Button) findViewById(R.id.btnLogout);
  
         // SqLite database handler

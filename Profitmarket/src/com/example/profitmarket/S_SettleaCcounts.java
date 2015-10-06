@@ -161,6 +161,7 @@ public class S_SettleaCcounts extends Activity {
 			Intent intent = new Intent(S_SettleaCcounts.this,
 					S_Tradedetail.class);
             startActivity(intent);
+            finish(); 
             			
 			
 		}
@@ -178,8 +179,10 @@ public class S_SettleaCcounts extends Activity {
 			Intent intent = new Intent(S_SettleaCcounts.this,
 					S_Capture.class);
             startActivity(intent);
+            finish(); 
             
 		}
 	};
+	
 
 }

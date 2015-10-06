@@ -36,7 +36,7 @@ public class C_mod_inform extends Activity {
     private SQLiteHandler db;
     private SessionManager session;
     private static final String TAG_SUCCESS = "success";
-
+    private static final String url_update_product = "http://10.51.202.142/storedetail/updatestoresdetail.php";
 	private static final String TAG_EMAIL = "email";
 	private static final String TAG_NAME = "name";
 	private static final String TAG_PHONE = "phone";
@@ -133,7 +133,7 @@ public class C_mod_inform extends Activity {
 
 		
 		@Override
-	/*	protected void onPreExecute() {
+		protected void onPreExecute() {
 			super.onPreExecute();
 			nDialog = new ProgressDialog(C_mod_inform.this);
 			nDialog.setMessage("§ó·s¤¤");
@@ -188,6 +188,6 @@ public class C_mod_inform extends Activity {
 			// dismiss the dialog once product uupdated
 			nDialog.dismiss();
 		}
-	}*/
+	*/
 }
 
