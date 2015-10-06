@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,10 +93,10 @@ public class C_search_store extends Activity {
         
         
         
-        //if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             // on first time display view for first nav item
-        //	selectItem(0);
-      //  }
+        	selectItem(0);
+        }
 	}
 
 	@Override
@@ -157,7 +159,7 @@ public class C_search_store extends Activity {
             break;
         }
         
-        if (fragment != null) {
+       if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
  
@@ -171,6 +173,21 @@ public class C_search_store extends Activity {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(C_search_store.this,C_mem_view.class);
+    	   startActivity(intent);    //Ä²µo´«­¶  //µ²§ô¥»­¶
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
     }
     
    // @Override

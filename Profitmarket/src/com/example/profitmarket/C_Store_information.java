@@ -6,17 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.profitmarket.CreateFragment.LoadAllProducts;
+import com.example.profitmarket.EditProductActivity.GetProductDetails;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,33 +30,63 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class C_Store_information extends Activity {
 	public static   JSONParser jParser = new JSONParser();
-	  
+	 private ProgressDialog pDialog;
+	 String pid;
+	 String uid;
 	 public static ArrayList<HashMap<String, String>> productsList;
 	 CustomListAdapter2 adapter;
 	private float[] ydata[];
+	  private static final String TAG_PID = "uid";
 	public static  String TAG_SUCCESS = "success";
-	public static  String TAG_PRODUCTS = "products";
-	public static String TAG_PID = "pid";
+	public static  String TAG_PRODUCTS = "users";
+	public static String TAG_EMAIL = "email";
 	public static  String TAG_NAME = "name";
-	public static  String TAG_PRICE = "price";
+	public static  String TAG_ADDRESS = "address";
+	public static  String TAG_PHONE = "phone";
+	public static  String TAG_UID = "uid";
+	private static final String TAG_PRODUCT = "users";
     public static JSONArray products = null;
 	EditText csemail;
+	EditText txtName;
 	EditText csname;
 	EditText csphone;
 	EditText csaddress;
+	TextView csid;
+	  private Handler mUI_Handler=new Handler();
+	  private Handler mThreadHandler;
+
+	  private HandlerThread mThread; 
+	  
 	
-	private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
+	
+	   JSONParser jsonParser = new JSONParser();
+	   private static final String url_product_detials = "http://10.51.202.142/android_connect2/get_product_details.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_c__store_information);
-		  new LoadAllProducts().execute();
-			productsList = new ArrayList<HashMap<String, String>>(10);	 
+		 // new LoadAllProducts().execute();
+			productsList = new ArrayList<HashMap<String, String>>(10);	
+			     Intent i = getIntent();
+			  
+		        // getting product id (pid) from intent
+		       
+		      
+		        // Getting complete product details in background thread
+		       csid=(TextView)findViewById(R.id.csid);
+		       uid = i.getStringExtra(TAG_PID);
+		       csid.setText(uid);
+		  	   csemail = (EditText) findViewById(R.id.scemail);
+	           csname = (EditText) findViewById(R.id.scname);
+	           csphone = (EditText) findViewById(R.id.scphone);
+	           csaddress= (EditText) findViewById(R.id.scaddress);
+		        new GetProductDetails().execute();
 		
 		
 	}
@@ -73,11 +109,42 @@ public class C_Store_information extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	 class LoadAllProducts extends AsyncTask <String, String, String> {
+	
+	
+	public void setui( JSONObject product){
+		   // display product data in EditText
+		
+        try{
+        csemail.setText(product.getString(TAG_EMAIL));
+        csname.setText(product.getString(TAG_NAME));
+        csphone.setText(product.getString(TAG_PHONE));
+        csaddress.setText(product.getString(TAG_ADDRESS)); 
+        }catch(Exception e){
+     	   e.printStackTrace();
+        }
+	}
+	/* public boolean onKeyDown(int keyCode, KeyEvent event) {
+	        
+	        if (keyCode == KeyEvent.KEYCODE_BACK)
+	        {
+	            // Show home screen when pressing "back" button,
+	            //  so that this app won't be closed accidentally
+	        	Intent intent = new Intent();  
+	    	    intent.setClass(C_Store_information.this,CreateFragment.class);
+	    	   startActivity(intent);    //Ä²µo´«­¶
+	    	   finish();   //µ²§ô¥»­¶
+	            
+	            return true;
+	        }
+	        
+	        return super.onKeyDown(keyCode, event);
+	    }*/
+	
+	/* class LoadAllProducts extends AsyncTask <String, String, String> {
 	   	 
 	        /**
 	         * Before starting background thread Show Progress Dialog
-	         * */
+	         * 
 	        @Override
 	        protected void onPreExecute() {
 	            super.onPreExecute();
@@ -86,7 +153,7 @@ public class C_Store_information extends Activity {
 
 	        /**
 	         * getting All products from url
-	         * */
+	         * 
 	        protected String doInBackground(String... args) {
 	            // Building Parameters
 	            List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -110,17 +177,21 @@ public class C_Store_information extends Activity {
 	                        JSONObject c = products.getJSONObject(i);
 
 	                        // Storing each json item in variable
-	                        String id = c.getString(TAG_PID);
+	                        String uid = c.getString(TAG_UID);
+	                        String email = c.getString(TAG_EMAIL);
 	                        String name = c.getString(TAG_NAME);
-	                        String price = c.getString(TAG_PRICE);
-	                        
+	                        String address = c.getString(TAG_ADDRESS);
+	                        String phone = c.getString(TAG_PHONE);
 	                        // creating new HashMap
 	                        HashMap<String, String> map = new HashMap<String, String>();
 
 	                        // adding each child node to HashMap key => value
-	                        map.put(TAG_PID, id);
+	                        map.put(TAG_UID, uid);
+	                        map.put(TAG_EMAIL, email);
 	                        map.put(TAG_NAME, name);
-	                        map.put(TAG_PRICE, price);
+	                        map.put(TAG_ADDRESS, address);
+	                        map.put(TAG_PHONE,phone);
+
 	                        
 	                        // adding HashList to ArrayList
 	                        productsList.add(map);
@@ -137,27 +208,94 @@ public class C_Store_information extends Activity {
 				super.onPostExecute(result);
 				//adapter = new CustomListAdapter2(getActivity(), z, cost, x, howmuch, y);
 			
-			     String t = productsList.get(0).get(TAG_NAME);
-			        String q = productsList.get(1).get(TAG_NAME);
-			        String a = productsList.get(2).get(TAG_NAME);
-			        String b = productsList.get(3).get(TAG_NAME);  
+			        String t = productsList.get(0).get(TAG_NAME);
+			        String q = productsList.get(0).get(TAG_EMAIL);
+			        String a = productsList.get(0).get(TAG_ADDRESS);
+			        String b = productsList.get(0).get(TAG_PHONE);  
 			        //String t = productsList.get(0).get(TAG_NAME);
-				 csemail=(EditText)findViewById(R.id.scemail);
+				    csemail=(EditText)findViewById(R.id.scemail);
 					csname=(EditText)findViewById(R.id.scname);
 					csphone=(EditText)findViewById(R.id.scphone);
 					csaddress=(EditText)findViewById(R.id.scaddress);
-					csemail.setText(t);
-		       
-		        		
+					csemail.setText(q);
+		            csname.setText(t);
+		        	csaddress.setText(a);
+		        	csphone.setText(b);
 		        	
 		        }
 		        	
 		        	
 		       
 	       
-   }
+   }*/
+	
+	
+
+	
+	  class GetProductDetails extends AsyncTask<String, String, String> {
+		  
+	        /**
+	         * Before starting background thread Show Progress Dialog
+	         * */
+	        @Override
+	        protected void onPreExecute() {
+	            super.onPreExecute();
+
+	       
+	            
+	            //setResult(100, null);
+	         
+	        }
 	 
+	        /**
+	         * Getting product details in background thread
+	         * */
+	        protected String doInBackground(String... params1) {
 	 
+	            // updating UI from Background Thread
+	          //  runOnUiThread(new Runnable() {
+	           //     public void run() {
+	                    // Check for success tag
+	                    int success;
+	                    try {
+	                        // Building Parameters
+	                        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	                        params.add(new BasicNameValuePair("uid", uid));
 	 
+	                        // getting product details by making HTTP request
+	                        // Note that product details url will use GET request
+	                        JSONObject json = jsonParser.makeHttpRequest(
+	                                url_product_detials, "GET", params);
+	 
+	                        // check your log for json response
+	                        Log.d("Single Product Details", json.toString());
+	 
+	                        // json success tag
+	                        success = json.getInt(TAG_SUCCESS);
+	                        if (success == 1) {
+	                            // successfully received product details
+	                            JSONArray productObj = json
+	                                    .getJSONArray(TAG_PRODUCT); // JSON Array
+	 
+	                            // get first product object from JSON Array
+	                            JSONObject product = productObj.getJSONObject(0);
+	                            setui(product);
+	                            // product with this pid found
+	                            // Edit Text
+	                            
+	                        }else{
+	                            // product with pid not found
+	                        }
+	                    } catch (JSONException e) {
+	                        e.printStackTrace();
+	                    }
+	               // }
+	          //  });
+	 
+	            return null;
+	        }
+	 
+	  } 
+	  
 	 
 }
