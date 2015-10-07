@@ -112,19 +112,33 @@ public class C_discount_use extends ListActivity {
 	            public void onItemClick(AdapterView<?> parent, View view,
 	                    int position, long id) {
 	                
-	            	String pid = ((TextView) view.findViewById(R.id.c)).getText()
-	                        .toString();
+	            	String qponid = ((TextView) view.findViewById(R.id.dctlttv05)).getText().toString();
+	            	
+	            	mDlgLogin = new Dialog(C_discount_use.this);
+	    			mDlgLogin.setTitle("QR Code");
+	    			mDlgLogin.setCancelable(true);
+	    			mDlgLogin.setContentView(R.layout.activity_c_mem_qrcode);
+	    			qrImgImageView = (ImageView) mDlgLogin.findViewById(R.id.imageView_abc);
+	    			
+	    			try {
+	    				String contentString = qponid;
+	    				if (contentString != null && contentString.trim().length() > 0) {
+	    					
+	    					Bitmap qrCodeBitmap =EncodingHandler.createQRCode(contentString, 600);
+	    					qrImgImageView.setImageBitmap(qrCodeBitmap);
+	    					
+	    				}else {
+	    					Toast.makeText(C_discount_use.this, "Text can not be empty", Toast.LENGTH_SHORT).show();
+	    				}
+	    				
+	    			} catch (WriterException e) {
+	    				e.printStackTrace();
+	    			}
+
+	    			mDlgLogin.show();
 	            	
 	            }
-	        });
-	    
-		
-		
-		
-		
-		
-		
-		
+	        });	
 	}
 
 	
@@ -208,7 +222,7 @@ public class C_discount_use extends ListActivity {
 						
 					}
 				} else {
-					Toast.makeText(C_discount_use.this, "沒有資料", Toast.LENGTH_LONG).show();
+					
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -232,8 +246,8 @@ public class C_discount_use extends ListActivity {
 						ListAdapter adapter = new SimpleAdapter(
 								C_discount_use.this, couponsList,
 								R.layout.activity_c_dctlist, new String[] { TAG_DEADLINE,
-										TAG_MONEY,TAG_COUPONID},
-								new int[] { R.id.dctlttv02, R.id.dctlttv03, R.id.dctlttv04 });
+										TAG_MONEY,TAG_COUPONID,TAG_COUPONID1},
+								new int[] { R.id.dctlttv02, R.id.dctlttv03, R.id.dctlttv04, R.id.dctlttv05 });
 						// updating listview
 						setListAdapter(adapter);
 					}
