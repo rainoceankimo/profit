@@ -38,24 +38,34 @@ public class C_Store_information extends Activity {
 	 private ProgressDialog pDialog;
 	 String pid;
 	 String uid;
+	 String email;
+	 String name;
+	 String phone;
+	 String address;
+	 
+	 
+	 
+	 
+	 
+	 
 	 public static ArrayList<HashMap<String, String>> productsList;
 	 CustomListAdapter2 adapter;
 	private float[] ydata[];
 	  private static final String TAG_PID = "uid";
 	public static  String TAG_SUCCESS = "success";
 	public static  String TAG_PRODUCTS = "users";
-	public static String TAG_EMAIL = "email";
-	public static  String TAG_NAME = "name";
-	public static  String TAG_ADDRESS = "address";
-	public static  String TAG_PHONE = "phone";
-	public static  String TAG_UID = "uid";
+	public static final String TAG_EMAIL = "email";
+	public static final  String TAG_NAME = "name";
+	public static  final String TAG_ADDRESS = "address";
+	public static final String TAG_PHONE = "phone";
+	public static  final String TAG_UID = "uid";
 	private static final String TAG_PRODUCT = "users";
     public static JSONArray products = null;
-	EditText csemail;
-	EditText txtName;
-	EditText csname;
-	EditText csphone;
-	EditText csaddress;
+    TextView csemail;
+   // TextView txtName;
+    TextView csname;
+    TextView csphone;
+    TextView csaddress;
 	TextView csid;
 	  private Handler mUI_Handler=new Handler();
 	  private Handler mThreadHandler;
@@ -65,7 +75,7 @@ public class C_Store_information extends Activity {
 	
 	
 	   JSONParser jsonParser = new JSONParser();
-	   private static final String url_product_detials = "http://10.51.202.142/android_connect2/get_product_details.php";
+	   private static final String url_product_detials = "http://192.168.0.107/android_connect2/get_product_details.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,20 +83,42 @@ public class C_Store_information extends Activity {
 		setContentView(R.layout.activity_c__store_information);
 		 // new LoadAllProducts().execute();
 			productsList = new ArrayList<HashMap<String, String>>(10);	
-			     Intent i = getIntent();
+			    
 			  
 		        // getting product id (pid) from intent
+			   Intent i = getIntent();
+			   csid=(TextView)findViewById(R.id.csid);
+			   csemail=(TextView)findViewById(R.id.scemail);
+			   csname=(TextView)findViewById(R.id.scname);
+			   csphone=(TextView)findViewById(R.id.scphone);
+			   csaddress=(TextView)findViewById(R.id.scaddress);
+			   
+			   
+			   
+			   
+		       uid = i.getStringExtra(TAG_PID);
+		       email=i.getStringExtra(TAG_EMAIL);
+		       name=i.getStringExtra(TAG_NAME);
+		       phone=i.getStringExtra(TAG_PHONE);
+		       address=i.getStringExtra(TAG_ADDRESS);
+		       
+		       csid.setText(uid);
+		       csemail.setText(email);
+		       csname.setText(name);
+		       csphone.setText(phone);
+		       csaddress.setText(address);
+		       
+		       
+		       
+		       
+		       
+		       
+		       
 		       
 		      
 		        // Getting complete product details in background thread
-		       csid=(TextView)findViewById(R.id.csid);
-		       uid = i.getStringExtra(TAG_PID);
-		       csid.setText(uid);
-		  	   csemail = (EditText) findViewById(R.id.scemail);
-	           csname = (EditText) findViewById(R.id.scname);
-	           csphone = (EditText) findViewById(R.id.scphone);
-	           csaddress= (EditText) findViewById(R.id.scaddress);
-		        new GetProductDetails().execute();
+		      
+		       // new GetProductDetails().execute();
 		
 		
 	}
@@ -111,7 +143,7 @@ public class C_Store_information extends Activity {
 	}
 	
 	
-	public void setui( JSONObject product){
+	/*public void setui( JSONObject product){
 		   // display product data in EditText
 		
         try{
@@ -122,7 +154,19 @@ public class C_Store_information extends Activity {
         }catch(Exception e){
      	   e.printStackTrace();
         }
-	}
+        Log.d("pleas", product.toString());
+	}*/
+	//protected void onResume(){
+	//	super.onResume();
+		
+	  	 
+		// new GetProductDetails().execute();
+		
+		
+		
+		
+		
+	
 	/* public boolean onKeyDown(int keyCode, KeyEvent event) {
 	        
 	        if (keyCode == KeyEvent.KEYCODE_BACK)
@@ -232,11 +276,11 @@ public class C_Store_information extends Activity {
 	
 
 	
-	  class GetProductDetails extends AsyncTask<String, String, String> {
+	 /* class GetProductDetails extends AsyncTask<String, String, String> {
 		  
 	        /**
 	         * Before starting background thread Show Progress Dialog
-	         * */
+	         * 
 	        @Override
 	        protected void onPreExecute() {
 	            super.onPreExecute();
@@ -249,7 +293,7 @@ public class C_Store_information extends Activity {
 	 
 	        /**
 	         * Getting product details in background thread
-	         * */
+	         * 
 	        protected String doInBackground(String... params1) {
 	 
 	            // updating UI from Background Thread
@@ -279,9 +323,18 @@ public class C_Store_information extends Activity {
 	 
 	                            // get first product object from JSON Array
 	                            JSONObject product = productObj.getJSONObject(0);
-	                            setui(product);
+	                           // setui(product);
 	                            // product with this pid found
-	                            // Edit Text
+	                            // Edit Text.
+	                            csemail = (EditText) findViewById(R.id.scemail);
+	                            csname = (EditText) findViewById(R.id.scname);
+	                            csphone = (EditText) findViewById(R.id.scphone);
+	                            csaddress= (EditText) findViewById(R.id.scaddress);
+	                            
+	                            csemail.setText(product.getString(TAG_EMAIL));
+	                            csname.setText(product.getString(TAG_NAME));
+	                            csphone.setText(product.getString(TAG_PHONE));
+	                            csaddress.setText(product.getString(TAG_ADDRESS)); 
 	                            
 	                        }else{
 	                            // product with pid not found
@@ -295,7 +348,7 @@ public class C_Store_information extends Activity {
 	            return null;
 	        }
 	 
-	  } 
+	  } */
 	  
-	 
 }
+

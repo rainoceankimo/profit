@@ -61,7 +61,7 @@ public class CreateFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	private static String url_all_products = "http://10.51.202.142/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.107/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -174,8 +174,8 @@ public class CreateFragment extends Fragment {
 			 ListAdapter adapter = new SimpleAdapter(
 						getActivity(), productsList,
 						R.layout.list_item, new String[] { TAG_UID,
-                                TAG_NAME,TAG_PHONE},
-						new int[] {R.id.uid,R.id.name,R.id.phone});
+                                TAG_NAME,TAG_PHONE,TAG_EMAIL,TAG_ADDRESS},
+						new int[] {R.id.uid,R.id.name,R.id.phone,R.id.email,R.id.address});
 				// updating listview
 				lv.setAdapter(adapter);
 			 // ArrayAdapter<String> adapter = 
@@ -194,14 +194,25 @@ public class CreateFragment extends Fragment {
 	        	       // }
 	        	    String uid = ((TextView) view.findViewById(R.id.uid)).getText()
 	                        .toString();
+	        	    String email = ((TextView) view.findViewById(R.id.email)).getText()
+	                        .toString();
+	        	    String name = ((TextView) view.findViewById(R.id.name)).getText()
+	                        .toString();
+	        	    String phone = ((TextView) view.findViewById(R.id.phone)).getText()
+	                        .toString();
+	        	    String address = ((TextView) view.findViewById(R.id.address)).getText()
+	                        .toString();
 	                // Starting new intent
 	                Intent in = new Intent(getActivity(),
 	                        C_Store_information.class);
 	                // sending pid to next activity
 	                in.putExtra(TAG_UID, uid);
-	 
+	                in.putExtra(TAG_EMAIL, email);
+	                in.putExtra(TAG_NAME, name);
+	                in.putExtra(TAG_PHONE, phone);
+	                in.putExtra(TAG_ADDRESS, address);
 	                // starting new activity and expecting some response back
-	                startActivityForResult(in, 100);
+	                startActivity(in);
 	        		
 	        		
 	        		
