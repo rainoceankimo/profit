@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -98,12 +99,19 @@ public class S_Tradedetail extends Activity {
 	private ProgressDialog pDialog;
 
 	JSONParser jsonParser = new JSONParser();
+	JSONParser jParser = new JSONParser();
 	
-	private static String url_create_product = "http://10.51.202.142/addQpon/add_coupon.php";
+	private static String url_create_product = "http://192.168.0.109/addQpon/add_coupon.php";
+	private static String url_all_products = "http://192.168.0.109/addQpon/getqpontot.php";
 	
 	private static final String TAG_SUCCESS = "success";
+	private static final String TAG_ISSUE = "issueqpon";
+	private static final String TAG_COUPONID = "couponid";
+	private static final String TAG_MONEY = "money";
+	private static final String TAG_USERNAME = "username";
 	
-	
+	//JSONArray
+	JSONArray coupons = null;
 	
 	private TextView showtradetype,showtradedate,showtradeconsumption,trademaxdiscount,
 	                 tradecoupongrant,tradegrantdenominations,trademembername,
@@ -120,6 +128,13 @@ public class S_Tradedetail extends Activity {
 	private Button btnrecode;
 	
 	SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	
+	public String judge,Qponmoney;
+	
+	
+	
+	
+	
     
 
 	@Override
@@ -129,6 +144,8 @@ public class S_Tradedetail extends Activity {
 		
 		AppController globalVariable = (AppController)getApplicationContext();
 		Bundle extras = getIntent().getExtras();
+		judge = extras.getString("result");
+		
 		
 		TradedetailDbHandler tradedetailDbHandler = 
 				new TradedetailDbHandler(getApplicationContext(), DB_FILE, null, 1);
@@ -174,112 +191,134 @@ public class S_Tradedetail extends Activity {
 	    	Toast.makeText(S_Tradedetail.this, "ERROR", Toast.LENGTH_SHORT).show();
 	    }
 		
+		showtradetype = (TextView) findViewById(R.id.showtype);
+		showtradedate = (TextView) findViewById(R.id.trade_date);
+		showtradeconsumption = (TextView) findViewById(R.id.trade_consumption);
+		trademaxdiscount = (TextView) findViewById(R.id.trade_maxdiscount);
+		tradecoupongrant = (TextView) findViewById(R.id.trade_coupongrant);
+		tradegrantdenominations = (TextView) findViewById(R.id.trade_grantdenominations);
+		trademembername = (TextView) findViewById(R.id.trade_membername);
+		tradecouponuse = (TextView) findViewById(R.id.trade_couponuse);
+		tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
+		tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
+		tradetotalmoney = (TextView) findViewById(R.id.trade_totalmoney);
+		
+		
 		showrules();
-
+        
+		
+		
+	/*	if(J_success == 1){
+	    	QponNo = judge;
+	    	Qponuse = "有";
+	    	usedenominations = Integer.valueOf(Qponmoney);
+	    }else
+	    {
+	    	memname = judge;
+	    	QponNo = "無";
+	    	Qponuse = "無";
+	    	usedenominations = 0;
+	    	Toast.makeText(S_Tradedetail.this, "!!!OMG!!!", Toast.LENGTH_LONG).show(); 
+	    }
+	    */
+		
 		
 		// 交易明細-show
 		if (globalVariable.tradetypeNO == 0){
 
-		    showtradetype = (TextView) findViewById(R.id.showtype);
 		    tradetype = "一般結帳";
 		    showtradetype.setText(globalVariable.tradetype);
 		
-		    showtradedate = (TextView) findViewById(R.id.trade_date);
 		    tradedate = sDateFormat.format(new java.util.Date());
 		    showtradedate.setText("日期："+ tradedate );
-		
-		    showtradeconsumption = (TextView) findViewById(R.id.trade_consumption);
+
 		    tradeconsumption = globalVariable.settlea_totalmoney;
 		    showtradeconsumption.setText("消費金錢："+ tradeconsumption);
-		
-		    trademaxdiscount = (TextView) findViewById(R.id.trade_maxdiscount);
+
 		    //trademaxdiscount.setText("折扣上限："+ globalVariable.settlea_MaxDiscount);
 		    tradediscount = 0;
 		    trademaxdiscount.setVisibility(View.GONE);
-		  
-		    tradecoupongrant = (TextView) findViewById(R.id.trade_coupongrant);
+
 		    Qpongrant = "無";
 		    tradecoupongrant.setVisibility(View.GONE);
-		  
-		    tradegrantdenominations = (TextView) findViewById(R.id.trade_grantdenominations);
+
 		    grantdenominations = 0;
 		    tradegrantdenominations.setVisibility(View.GONE);
-		  
-		    trademembername = (TextView) findViewById(R.id.trade_membername);
+
 		    //trademembername.setVisibility(View.GONE);
 		    memname = "無";
 		    trademembername.setText("會員名稱："+"無");
-		  
-		    tradecouponuse = (TextView) findViewById(R.id.trade_couponuse);
+
 		    Qponuse = "無";
 		    tradecouponuse.setVisibility(View.GONE);
-		  
-		    tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
+
 		    QponNo = "無";
 		    tradecouponNo.setVisibility(View.GONE);
-		   
-		    tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
-		    usedenominations = 0;
+
+		    //usedenominations = 0;
 		    tradeusedenominations.setVisibility(View.GONE);
-		  
-		    tradetotalmoney = (TextView) findViewById(R.id.trade_totalmoney);
+
 		    tradettmoney = globalVariable.settlea_totalmoney;
 		    tradetotalmoney.setText("總計金額："+ tradettmoney );
 
 		}
 		else if (globalVariable.tradetypeNO == 1){
-			
-			
-			
-			showtradetype = (TextView) findViewById(R.id.showtype);
+
 			tradetype = "會員結帳";
 			showtradetype.setText(globalVariable.tradetype);
-			
-			showtradedate = (TextView) findViewById(R.id.trade_date);
+
 			tradedate = sDateFormat.format(new java.util.Date());
 			showtradedate.setText("日期："+ tradedate );
-			 
-			showtradeconsumption = (TextView) findViewById(R.id.trade_consumption);
+
 			tradeconsumption = globalVariable.settlea_totalmoney;
 			SHOWR();
 			showtradeconsumption.setText("消費金錢："+ tradeconsumption);
-			
-			trademaxdiscount = (TextView) findViewById(R.id.trade_maxdiscount);
+
 			tradediscount = globalVariable.settlea_MaxDiscount;
 		    trademaxdiscount.setText("折扣上限："+ tradediscount);
-		    
-		    tradecoupongrant = (TextView) findViewById(R.id.trade_coupongrant);
+
 		    if(yorn == 1){
 		    	Qpongrant = "有";
 		    }else{
 		    	Qpongrant = "無";
 		    }
 		    tradecoupongrant.setText("折價券發放：" + Qpongrant);
-		    
-		    tradegrantdenominations = (TextView) findViewById(R.id.trade_grantdenominations);
+
 		    //grantdenominations
 		    tradegrantdenominations.setText("發放面額：" + grantdenominations);
 		    
-		    trademembername = (TextView) findViewById(R.id.trade_membername);
+		    //new JudgeQponid().execute();
+
 		    memname = extras.getString("result");
 		    trademembername.setText("會員名稱："+ memname);
-		    
-		    tradecouponuse = (TextView) findViewById(R.id.trade_couponuse);
+
 		    Qponuse = "無";
 		    tradecouponuse.setText("折價券使用：" + Qponuse);
-		    
-		    tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
+
 		    QponNo = "無";
 		    tradecouponNo.setText("折價券序號：" + QponNo);
-		    
-		    tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
+
 		    usedenominations = 0;
 		    tradeusedenominations.setText("使用面額：" +  usedenominations);
 		    
-		    tradetotalmoney = (TextView) findViewById(R.id.trade_totalmoney);
+		 /*   memname = trademembername.getText().toString();
+		    QponNo = tradecouponNo.getText().toString();
+		    Qponmoney = tradeusedenominations.getText().toString();
+		    usedenominations = Integer.valueOf(Qponmoney);
+		    
+		    trademembername.setText("會員名稱："+ memname);
+		    tradecouponNo.setText("折價券序號：" + QponNo);
+		    tradeusedenominations.setText("使用面額：" +  Qponmoney); */
+            
+		    
+		    //usedenominations = Integer.valueOf("10");
+		   
+		    
 		    tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
-		    tradetotalmoney.setText("總計金額：" + tradettmoney);
+		    tradetotalmoney.setText("總計金額：" + tradettmoney);   
 		}
+		
+		
 		
 		btnrecode = (Button)findViewById(R.id.trade_btn);
 		btnrecode.setOnClickListener(btnAddOnClick);
@@ -313,6 +352,8 @@ public class S_Tradedetail extends Activity {
 	}
 	
 	
+	
+	
 	//DB
 	private View.OnClickListener btnAddOnClick = new View.OnClickListener() {
 		@Override
@@ -335,12 +376,17 @@ public class S_Tradedetail extends Activity {
 			mtradeDb.insert(DB_TABLE, null, newRow);
 			
 			//Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
+			if (yorn == 1){
+				new CreateNewQpon().execute();
+			}else
+			{
+				
+			}
 			
-			new CreateNewQpon().execute();
 			
-		/*	Intent intent = new Intent();
+			Intent intent = new Intent();
 			intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
-			startActivity(intent);    //觸發換頁   */
+			startActivity(intent);    //觸發換頁   
 			
 		}
     };
@@ -425,8 +471,6 @@ public class S_Tradedetail extends Activity {
 		protected String doInBackground(String... args) {
 			
 			db = new SQLiteHandler_Stores(getApplicationContext());
-			 
-	        // session manager
 	        session = new SessionManager_Stores(getApplicationContext());
 	        
 	        HashMap<String, String> user = db.getUserDetails();
@@ -486,6 +530,75 @@ public class S_Tradedetail extends Activity {
 		}
     	
     }
+    // ------
+    
+    
+    // judge qponid
+    class JudgeQponid extends AsyncTask<String, String, String> {
+        
+    	@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(S_Tradedetail.this);
+			pDialog.setMessage("Loading products. Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... args) {
+			
+	        String couponid = judge;
+			
+	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        params.add(new BasicNameValuePair("couponid",couponid));
+	        
+	        JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+	        Log.d("gogogo", json.toString());
+	        
+	        try {
+				// Checking for SUCCESS TAG
+				int success = json.getInt(TAG_SUCCESS);
+
+				if (success == 1) {
+					// products found
+					// Getting Array of Products
+					coupons = json.getJSONArray(TAG_ISSUE);
+					
+					
+						JSONObject c = coupons.getJSONObject(0);
+
+						trademembername = (TextView) findViewById(R.id.trade_membername);
+						tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
+						tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
+						
+						trademembername.setText(c.getString(TAG_USERNAME));
+						tradeusedenominations.setText(c.getString(TAG_MONEY));
+						//Qponmoney = tradeusedenominations.getText().toString();
+						tradecouponNo.setText(judge);
+						tradecouponuse.setText("折價券使用：" + ""+"有");
+
+						
+				} else {
+					
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} 
+	        
+			
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) 
+		{
+			   // dismiss the dialog once done
+			   pDialog.dismiss();
+		}
+    	
+    }
+    // ------ 
     
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
