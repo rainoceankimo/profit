@@ -48,7 +48,7 @@ public class S_Coupon_Buy extends Activity  {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://10.51.202.142/couponconnect/create.php";
+	private static String url_create_product = "http://192.168.0.109/couponconnect/create.php";
 	 private SQLiteHandler_Stores db;
 	    private SessionManager_Stores session;
 	// JSON Node names
