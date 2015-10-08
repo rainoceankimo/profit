@@ -30,32 +30,34 @@ public class C_mod_inform extends Activity {
 	private ProgressDialog nDialog;
 	Button bt;
 	private EditText textName;
-    private EditText textEmail;
+ 
     private EditText textPhone;
     String mail;
+    String uid, created_at,idnumber;
+    JSONParser jasonParser = new JSONParser();
     private SQLiteHandler db;
     private SessionManager session;
     private static final String TAG_SUCCESS = "success";
-    private static final String url_update_product = "http://10.51.202.142/storedetail/updatestoresdetail.php";
+    private static final String url_update_product = "http://192.168.0.109/memberdetail/updatememberdetail.php";
 	private static final String TAG_EMAIL = "email";
 	private static final String TAG_NAME = "name";
 	private static final String TAG_PHONE = "phone";
-	private static final String TAG_ADDRESS = "address";
-	private static final String TAG_DB = "android_stores";
+
+	private static final String TAG_DB = "android_api";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_c_mod_inform);
 		
-		textName = (EditText) findViewById(R.id.txtemail);
-        textEmail = (EditText) findViewById(R.id.txtname);
-        textPhone = (EditText) findViewById(R.id.scpassward);
+		textName = (EditText) findViewById(R.id.txtname1);
+       
+        textPhone = (EditText) findViewById(R.id.scpassward1);
         bt = (Button) findViewById(R.id.bt);
 		bt.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread
 
-			
+				new updatenew().execute();
 				Toast.makeText(C_mod_inform.this, "上傳成功", Toast.LENGTH_SHORT).show();
 
 				Intent intent = new Intent();
@@ -75,12 +77,14 @@ public class C_mod_inform extends Activity {
         HashMap<String, String> user = db.getUserDetails();
         mail = user.get("email");
         String name = user.get("name");
-        String email = user.get("email");
+        uid = user.get("uid");;
+        created_at = user.get("created_at");;
+        idnumber = user.get("idnumber");;
         String phone = user.get("phone");
  
         // Displaying the user details on the screen
         textName.setText(name);
-        textEmail.setText(email);
+   
         textPhone.setText(phone);
 		
 		
@@ -129,7 +133,7 @@ public class C_mod_inform extends Activity {
         
         return super.onKeyDown(keyCode, event);
     }
-  /*  class updatenew extends AsyncTask<String, String, String> {
+    class updatenew extends AsyncTask<String, String, String> {
 
 		
 		@Override
@@ -145,20 +149,20 @@ public class C_mod_inform extends Activity {
 		/**
 		 * Saving product
 		 */
-	/*	protected String doInBackground(String... args) {
+		protected String doInBackground(String... args) {
 
 			// getting updated data from EditTexts
 			String email = mail;
 			String name = textName.getText().toString();
 			String phone = textPhone.getText().toString();
-			String password = textPassword.getText().toString();
+			
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair(TAG_EMAIL, email));
 			params.add(new BasicNameValuePair(TAG_NAME, name));
 			params.add(new BasicNameValuePair(TAG_PHONE, phone));
-			params.add(new BasicNameValuePair(TAG_ADDRESS, address));
+		
 
 			// sending modified data through http request
 			// Notice that update product url accepts POST method
@@ -170,7 +174,7 @@ public class C_mod_inform extends Activity {
 
 				if (success == 1) {
                  db.deleteUsers();
-                 db.addUser(name, email, phone, address, uid, created_at);
+                 db.addUser(name, email,idnumber, phone, uid, created_at);
 				} else {
 					// failed to update product
 				}
@@ -184,10 +188,10 @@ public class C_mod_inform extends Activity {
 		/**
 		 * After completing background task Dismiss the progress dialog
 		 **/
-	/*	protected void onPostExecute(String file_url) {
+		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once product uupdated
 			nDialog.dismiss();
 		}
-	*/
+    }
 }
 

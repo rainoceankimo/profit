@@ -96,7 +96,8 @@ String created_at;
 		idnum = user.get("idnumber");
 		String phone = user.get("phone");
 		String address = user.get("address");
-
+		created_at = user.get("created_at");
+		uid = user.get("uid");
 		// Displaying the user details on the screen
 		textName.setText(name);
 		textEmail.setText(email);
