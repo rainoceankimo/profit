@@ -38,20 +38,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import helper.SQLiteHandler;
+import helper.SessionManager;
 public class S_Analysis_Sources extends Activity {
 	public static   JSONParser jParser = new JSONParser();
-	  
+	private SQLiteHandler db;
+    private SessionManager session;
 	 public static ArrayList<HashMap<String, String>> productsList;
 		
 	private float[] ydata[];
 	private static final int SERIES_NR = 1;
-
+    String time,time2,time3;
 	public static  String TAG_SUCCESS = "success";
 	public static  String TAG_PRODUCTS = "products";
 	public static String TAG_PID = "pid";
 	public static  String TAG_NAME = "name";
 	public static  String TAG_PRICE = "price";
+	public static  String TAG_YEAR = "year";
+	public static  String TAG_MONTH = "month";
+	public static  String TAG_DAY = "day";
 	// products JSONArray
+	
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
 	private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
@@ -60,8 +67,13 @@ public class S_Analysis_Sources extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.s_analysis_sources);
+		   Intent intime = getIntent();
+		   time = intime.getStringExtra(TAG_YEAR);
+		   time2 = intime.getStringExtra(TAG_MONTH);
+		
 		new LoadAllProducts().execute();
 		productsList = new ArrayList<HashMap<String, String>>(10);	 
+		
 		
 	}
 
@@ -84,70 +96,48 @@ public class S_Analysis_Sources extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	protected void onTry() {
-		/*pDialog = ProgressDialog.show(S_Analysis_Revenue.this,
-		        "弄い", "叫单3...",true);
-		new Thread(new Runnable(){
-		    @Override
-		    public void run() {
-		        try{
-		            Thread.sleep(6000);
-		        }
-		        catch(Exception e){
-		            e.printStackTrace();
-		        }
-		        finally{
-		            pDialog.dismiss();
-		        }
-		    } 
-		}).start();*/
+		
 		XYMultipleSeriesRenderer renderer = getBarDemoRenderer();
 		Intent intent = ChartFactory.getBarChartIntent ( this , getBarDemoDataset(), renderer, Type. DEFAULT );
 		startActivity(intent);
 		finish();
+		
 		}
 	private XYMultipleSeriesDataset getBarDemoDataset() {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-
-		//final int nr = 1;
-	    //String t = productsList.get(1).get(TAG_PRICE);
-		//Double t1=Double.parseDouble(t);
-		//String q = productsList.get(2).get(TAG_PRICE);
-		//Double q1=Double.parseDouble(q);
-		for ( int i = 0; i < SERIES_NR ; i++) {
-		CategorySeries series = new CategorySeries( "ч基ㄩ眎计"  );
-		for ( int k = 0; k < productsList.size(); k++) {
-			String r = productsList.get(k).get(TAG_PRICE);
-			Double r1=Double.parseDouble(r);
-			series.add( r1 );
-		}
-		/*
-		for ( int z = 0; z < 1; z++) {
-		series.add(t1);
-		}
-		for ( int w = 0; w < nr; w++) {
-		series.add(q1);
-		}
-		*/
+				for ( int i = 0; i < SERIES_NR ; i++) {
+					CategorySeries series = new CategorySeries( "ч基ㄩ眎计"  );
+					for ( int k = 0; k < productsList.size(); k++) {
+						if( productsList.get(k).get(TAG_YEAR) ==time && productsList.get(k).get(TAG_MONTH)==time2)
+					{
+						String r = productsList.get(k).get(TAG_PRICE);
+						Double r1=Double.parseDouble(r);
+						series.add( r1 );
+					}		   
+		       }
 		dataset.addSeries(series.toXYSeries());
-		}
+		   }
+		
 		return dataset;
-		}                
+		}      
+
 		public XYMultipleSeriesRenderer getBarDemoRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
 		 //int PID= Integer.valueOf(TAG_PID);
 		 //int[] yo =new int[PID];
+		
 		int qw=5;
 		double ts=1;
-		renderer.setPanEnabled(false, true);
-			/*String[] d =new String[10];
-			 d[1]="1231";
-			 d[2]="21";
-			 d[3]="123";
-			 d[4]="12321";
-			 d[5]="12ww1";
-			 d[6]="ww";*/
+		  renderer.setPanEnabled(false, true);
+		    db = new SQLiteHandler(getApplicationContext());
+	        // session manager
+	        session = new SessionManager(getApplicationContext());
+	        HashMap<String, String> user = db.getUserDetails();
+	        String username = user.get("name");
 			 for(int i=0;i<products.length();i++){
-				 renderer.addXTextLabel(i+1, productsList.get(i).get(TAG_NAME));
+				 if(username==productsList.get(i).get(TAG_NAME))
+				 {
+				 renderer.addXTextLabel(i+1, productsList.get(i).get(TAG_NAME));}
 			 }
 		   /*for(int i=0;i<6;i++){
 			renderer.addXTextLabel(i, d[i]);
@@ -221,12 +211,12 @@ public class S_Analysis_Sources extends Activity {
 		        /**
 		         * Before starting background thread Show Progress Dialog
 		         * */
-		        @Override
-		        protected void onPreExecute() {
+		       // @Override
+		       /* protected void onPreExecute() {
 		            super.onPreExecute();
 		           
-		        }
-
+		        }*/
+		       
 		        /**
 		         * getting All products from url
 		         * */
@@ -256,7 +246,7 @@ public class S_Analysis_Sources extends Activity {
 		                        String id = c.getString(TAG_PID);
 		                        String name = c.getString(TAG_NAME);
 		                        String price = c.getString(TAG_PRICE);
-		                        
+		                        String year = c.getString(TAG_YEAR);
 		                        // creating new HashMap
 		                        HashMap<String, String> map = new HashMap<String, String>();
 
@@ -264,7 +254,7 @@ public class S_Analysis_Sources extends Activity {
 		                        map.put(TAG_PID, id);
 		                        map.put(TAG_NAME, name);
 		                        map.put(TAG_PRICE, price);
-		                        
+		                        map.put(TAG_YEAR, year);
 		                        // adding HashList to ArrayList
 		                        productsList.add(map);
 		                    }

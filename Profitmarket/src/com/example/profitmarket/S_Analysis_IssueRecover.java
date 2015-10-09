@@ -61,6 +61,7 @@ public class S_Analysis_IssueRecover extends Activity {
 	public static String TAG_PID = "pid";
 	public static  String TAG_NAME = "name";
 	public static  String TAG_PRICE = "price";
+	public static  String TAG_TIME = "time";
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;

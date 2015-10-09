@@ -123,10 +123,6 @@ public class S_Analysis_Revenue extends Activity {
 		mRenderer.setZoomEnabled(false);
 		mRenderer.setBackgroundColor(Color.CYAN);
 		mRenderer.setLegendTextSize(30);
-
-
-
-
 		mChartView.setOnClickListener(new View.OnClickListener() {  
 		@Override  
 		public void onClick(View v) {  
@@ -291,6 +287,18 @@ public class S_Analysis_Revenue extends Activity {
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		drawpie();
 	}
     
