@@ -100,55 +100,22 @@ public class S_SettleaCcounts extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	
+	// SHOW出對話視窗
 	public void MyDialog( ){
-	//private View.OnClickListener btnBtnscalearOnClick = new View.OnClickListener() {
-
-		//@Override
-		//public void onClick(View v) {
 			
 			MyAlertDialog mDlgLogin = new MyAlertDialog(S_SettleaCcounts.this);
-			//mDlgLogin = new Dialog(S_SettleaCcounts.this);
-			mDlgLogin.setTitle("確認會員");
+			mDlgLogin.setTitle("提示折扣上限 & 選擇結帳方式");
 			mDlgLogin.setCancelable(true);
 			mDlgLogin.setMessage("折扣最多為總金錢"+" "+ outputmoney + " " +"元"+"的20%為 ："+ maxdiscount  + "元");
-			//mDlgLogin.setContentView(R.layout.s__yesor_no__mem);
-			
+
 			mDlgLogin.setButton(DialogInterface.BUTTON_POSITIVE, "一般結帳", altDlgPositiveBtnOnClk);
 			mDlgLogin.setButton(DialogInterface.BUTTON_NEGATIVE, "會員結帳", altDlgNegativeBtnOnClk);
-			
-			
-			//Discount = (int) (outputmoney *0.2);
-			//showmoney.setText("折扣最多為總金錢"+" "+ outputmoney +" " +"的20%為 ："+ Discount );
-			
+
 			mDlgLogin.show();	
-		//}
-		
-	 //};
 	};
    
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        
-        if (keyCode == KeyEvent.KEYCODE_BACK)
-        {
-            // Show home screen when pressing "back" button,
-            //  so that this app won't be closed accidentally
-        	Intent intent = new Intent();  
-    	    intent.setClass(S_SettleaCcounts.this,S_Mainmenu.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
-            
-            return true;
-        }
-        
-        return super.onKeyDown(keyCode, event);
-    }
-    public void account_onClick(View v){
-		Intent intent = new Intent(); 
-		intent.setClass(S_SettleaCcounts.this,S_Tradedetail.class);
-		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
-	}
-    
+    // 對話視窗中按 "一般結帳"
     private  DialogInterface.OnClickListener altDlgPositiveBtnOnClk = new  DialogInterface.OnClickListener() {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
@@ -167,6 +134,7 @@ public class S_SettleaCcounts extends Activity {
 		}
 	};
 	
+	// 對話視窗中按 "會員結帳"
 	private  DialogInterface.OnClickListener altDlgNegativeBtnOnClk = new  DialogInterface.OnClickListener() {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
@@ -183,6 +151,31 @@ public class S_SettleaCcounts extends Activity {
             
 		}
 	};
+	
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+        
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            // Show home screen when pressing "back" button,
+            //  so that this app won't be closed accidentally
+        	Intent intent = new Intent();  
+    	    intent.setClass(S_SettleaCcounts.this,S_Mainmenu.class);
+    	   startActivity(intent);    //觸發換頁
+    	   finish();   //結束本頁
+            
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
+	
+ /*   public void account_onClick(View v){
+		Intent intent = new Intent(); 
+		intent.setClass(S_SettleaCcounts.this,S_Tradedetail.class);
+		startActivity(intent);    //觸發換頁
+		finish();   //結束本頁
+	 }    */
 	
 
 }

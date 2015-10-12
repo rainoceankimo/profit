@@ -225,7 +225,7 @@ public class CreateFragment extends Fragment {
 	        	       // }
 	       
 	        		
-	        	
+	        	//productsList.get(1).get("name);
 	        }
 	        	
 	        	

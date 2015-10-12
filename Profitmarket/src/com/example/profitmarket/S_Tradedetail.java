@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import app.AppConfig_Stores;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,12 +17,13 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.ContentValues;
-
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
@@ -81,7 +83,7 @@ public class S_Tradedetail extends Activity {
 	int[] ciumy;
 	int[] cigmy;
 	int savetc = 0;
-	int yorn = 0;
+	int YorN = 0;
 	int cinum = 0;
 	
 	ArrayList<Integer> use = new ArrayList<Integer>();
@@ -101,8 +103,9 @@ public class S_Tradedetail extends Activity {
 	JSONParser jsonParser = new JSONParser();
 	JSONParser jParser = new JSONParser();
 	
-	private static String url_create_product = "http://192.168.0.109/addQpon/add_coupon.php";
-	private static String url_all_products = "http://192.168.0.109/addQpon/getqpontot.php";
+	
+	//private static String url_create_product = "http://192.168.43.218/addQpon/add_coupon.php";
+	//private static String url_all_products = "http://192.168.43.218/addQpon/getqpontot.php";
 	
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ISSUE = "issueqpon";
@@ -110,8 +113,6 @@ public class S_Tradedetail extends Activity {
 	private static final String TAG_MONEY = "money";
 	private static final String TAG_USERNAME = "username";
 	
-	//JSONArray
-	JSONArray coupons = null;
 	
 	private TextView showtradetype,showtradedate,showtradeconsumption,trademaxdiscount,
 	                 tradecoupongrant,tradegrantdenominations,trademembername,
@@ -127,12 +128,14 @@ public class S_Tradedetail extends Activity {
 
 	private Button btnrecode;
 	
+	
 	SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	
 	public String judge,Qponmoney;
 	
+	public int qponuseYorN = 0;
 	
-	
+	ArrayList<HashMap<String, String>> RdQponList;
 	
 	
     
@@ -142,9 +145,17 @@ public class S_Tradedetail extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_tradedetail);
 		
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+		    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		    StrictMode.setThreadPolicy(policy);
+		}
+		
+		
 		AppController globalVariable = (AppController)getApplicationContext();
 		Bundle extras = getIntent().getExtras();
 		judge = extras.getString("result");
+		
+		RdQponList = new ArrayList<HashMap<String, String>>();
 		
 		
 		TradedetailDbHandler tradedetailDbHandler = 
@@ -203,26 +214,9 @@ public class S_Tradedetail extends Activity {
 		tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
 		tradetotalmoney = (TextView) findViewById(R.id.trade_totalmoney);
 		
-		
+		//讀入Qpon發放規則
 		showrules();
-        
-		
-		
-	/*	if(J_success == 1){
-	    	QponNo = judge;
-	    	Qponuse = "有";
-	    	usedenominations = Integer.valueOf(Qponmoney);
-	    }else
-	    {
-	    	memname = judge;
-	    	QponNo = "無";
-	    	Qponuse = "無";
-	    	usedenominations = 0;
-	    	Toast.makeText(S_Tradedetail.this, "!!!OMG!!!", Toast.LENGTH_LONG).show(); 
-	    }
-	    */
-		
-		
+
 		// 交易明細-show
 		if (globalVariable.tradetypeNO == 0){
 
@@ -263,7 +257,9 @@ public class S_Tradedetail extends Activity {
 
 		}
 		else if (globalVariable.tradetypeNO == 1){
-
+       
+			
+			
 			tradetype = "會員結帳";
 			showtradetype.setText(globalVariable.tradetype);
 
@@ -277,7 +273,7 @@ public class S_Tradedetail extends Activity {
 			tradediscount = globalVariable.settlea_MaxDiscount;
 		    trademaxdiscount.setText("折扣上限："+ tradediscount);
 
-		    if(yorn == 1){
+		    if(YorN == 1){
 		    	Qpongrant = "有";
 		    }else{
 		    	Qpongrant = "無";
@@ -287,43 +283,41 @@ public class S_Tradedetail extends Activity {
 		    //grantdenominations
 		    tradegrantdenominations.setText("發放面額：" + grantdenominations);
 		    
-		    //new JudgeQponid().execute();
+		    
 
 		    memname = extras.getString("result");
-		    trademembername.setText("會員名稱："+ memname);
-
-		    Qponuse = "無";
-		    tradecouponuse.setText("折價券使用：" + Qponuse);
-
-		    QponNo = "無";
-		    tradecouponNo.setText("折價券序號：" + QponNo);
-
-		    usedenominations = 0;
-		    tradeusedenominations.setText("使用面額：" +  usedenominations);
-		    
-		 /*   memname = trademembername.getText().toString();
-		    QponNo = tradecouponNo.getText().toString();
-		    Qponmoney = tradeusedenominations.getText().toString();
-		    usedenominations = Integer.valueOf(Qponmoney);
-		    
-		    trademembername.setText("會員名稱："+ memname);
-		    tradecouponNo.setText("折價券序號：" + QponNo);
-		    tradeusedenominations.setText("使用面額：" +  Qponmoney); */
-            
-		    
-		    //usedenominations = Integer.valueOf("10");
 		   
+		    Qponuse = "無";
 		    
+		    QponNo = "無";
+		    
+		    usedenominations = 0;
+		    
+		    new JudgeQponid().execute();
+		    
+		    
+		    // TODO Auto-generated method stub
+
+
 		    tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
+		    
+		    
+		    trademembername.setText("會員名稱："+ memname);
+		    tradecouponuse.setText("折價券使用：" + Qponuse);
+		    tradecouponNo.setText("折價券序號：" + QponNo);
+		    tradeusedenominations.setText("使用面額：" +  usedenominations);
 		    tradetotalmoney.setText("總計金額：" + tradettmoney);   
 		}
 		
 		
 		
 		btnrecode = (Button)findViewById(R.id.trade_btn);
+		
 		btnrecode.setOnClickListener(btnAddOnClick);
 	}
 
+	
+	//-------------------------------------------------
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -350,49 +344,10 @@ public class S_Tradedetail extends Activity {
 		mtradeDb.close();
 		//pDialog.dismiss();
 	}
+	//-------------------------------------------------
 	
-	
-	
-	
-	//DB
-	private View.OnClickListener btnAddOnClick = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-			ContentValues newRow = new ContentValues();
-			newRow.put(TYPE,tradetype);
-			newRow.put(DATE,tradedate);
-			newRow.put(CONSUMPTION,tradeconsumption);
-			newRow.put(DISCOUNT,tradediscount);
-			newRow.put(GRANT,Qpongrant);
-			newRow.put(GRANTDENOMINATIONS,grantdenominations);
-			newRow.put(MEMNAME,memname);
-			newRow.put(QPONUSE,Qponuse);
-			newRow.put(QPONNO,QponNo);
-			newRow.put(USEDENOMINATIONS,usedenominations);
-			newRow.put(TRADETTMONEY,tradettmoney);
-			
-			mtradeDb.insert(DB_TABLE, null, newRow);
-			
-			//Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
-			if (yorn == 1){
-				new CreateNewQpon().execute();
-			}else
-			{
-				
-			}
-			
-			
-			Intent intent = new Intent();
-			intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
-			startActivity(intent);    //觸發換頁   
-			
-		}
-    };
-    
- 
-    public void showrules(){
+	// 讀入Qpon發放規則
+	public void showrules(){
 		Cursor c = MyrulesDb.query(true, DB_TBNAME, columns2,null, null, null, null, null, null);
 		
 		if (c.getCount() != 0) {
@@ -417,27 +372,32 @@ public class S_Tradedetail extends Activity {
 				
 				
 			}
-		}	
+		}else
+		{
+			
+		}
 			
 	}
-    
-    public void SHOWR(){
+	//-------------------------------------------------
+	
+	//寫入Qpon發放規則
+	public void SHOWR(){
     	
     	if (tradeconsumption != 0){
     		savetc = tradeconsumption;
-    		Toast.makeText(S_Tradedetail.this, ""+ savetc, Toast.LENGTH_SHORT).show();
+    		//Toast.makeText(S_Tradedetail.this, ""+ savetc, Toast.LENGTH_SHORT).show();
     	}else
     	{
-    		Toast.makeText(S_Tradedetail.this, "NO THING", Toast.LENGTH_LONG).show();
+    		Toast.makeText(S_Tradedetail.this, "NO THING", Toast.LENGTH_SHORT).show();
     	}
     	
     	if(savetc!=0){
-    		yorn = 0;
+    		YorN = 0;
     		grantdenominations=0;
     		
     		for(int i = 0; i < cinum ; i++) {
     			if(savetc >= ciumy[i]){
-    				yorn = 1;
+    				YorN = 1;
     				grantdenominations = cigmy[i];
     				
     			}else{
@@ -448,10 +408,185 @@ public class S_Tradedetail extends Activity {
     		
     	}else
     	{
-    		Toast.makeText(S_Tradedetail.this, "ERROR", Toast.LENGTH_LONG).show();
+    		Toast.makeText(S_Tradedetail.this, "ERROR", Toast.LENGTH_SHORT).show();
     	}
     	
     }
+	//-------------------------------------------------
+	
+	
+	
+	
+	// SHOW出對話視窗
+	public void MyDialog( ){
+		MyAlertDialog mDlgLogin = new MyAlertDialog(S_Tradedetail.this);
+		mDlgLogin.setTitle("提示!");
+		mDlgLogin.setCancelable(true);
+		mDlgLogin.setMessage("折價券面額：$"+ usedenominations + "超過  折扣上限；$" + tradediscount + "\n");
+		
+		mDlgLogin.setButton(DialogInterface.BUTTON_POSITIVE, "重選折價券", altDlgPositiveBtnOnClk);
+		mDlgLogin.setButton(DialogInterface.BUTTON_NEGATIVE, "直接使用", altDlgNegativeBtnOnClk);
+
+		mDlgLogin.show();
+	}
+	
+	// 對話視窗中按 "重選折價券"
+    private  DialogInterface.OnClickListener altDlgPositiveBtnOnClk = new  DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			
+			Intent intent = new Intent(S_Tradedetail.this,
+					S_Capture.class);
+            startActivity(intent);
+            finish(); 
+
+		}
+	};
+	
+	// 對話視窗中按"直接使用"
+	private  DialogInterface.OnClickListener altDlgNegativeBtnOnClk = new  DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			
+			usedenominations = tradediscount;
+			AppController globalVariable = (AppController)getApplicationContext();
+			tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
+			
+			tradeusedenominations.setText("使用面額：" +  usedenominations);
+		    tradetotalmoney.setText("總計金額：" + tradettmoney);
+            
+		}
+	};
+	
+	//-------------------------------------------------
+	
+	//SQLite 存店家交易紀錄
+	private View.OnClickListener btnAddOnClick = new View.OnClickListener() {
+		// TODO Auto-generated method stub
+		@Override
+		public void onClick(View v) {
+			
+			
+			if( usedenominations > tradediscount ){
+				MyDialog( );
+				
+			}else
+			{
+		
+				ContentValues newRow = new ContentValues();
+				newRow.put(TYPE,tradetype);
+				newRow.put(DATE,tradedate);
+				newRow.put(CONSUMPTION,tradeconsumption);
+				newRow.put(DISCOUNT,tradediscount);
+				newRow.put(GRANT,Qpongrant);
+				newRow.put(GRANTDENOMINATIONS,grantdenominations);
+				newRow.put(MEMNAME,memname);
+				newRow.put(QPONUSE,Qponuse);
+				newRow.put(QPONNO,QponNo);
+				newRow.put(USEDENOMINATIONS,usedenominations);
+				newRow.put(TRADETTMONEY,tradettmoney);
+			
+				mtradeDb.insert(DB_TABLE, null, newRow);
+			
+				//Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
+				if (YorN == 1){
+					new CreateNewQpon().execute();
+				}else
+				{
+				
+				}
+				
+				new CreateCustomerRcords().execute();
+
+				Intent intent = new Intent();
+				intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
+				startActivity(intent);    //觸發換頁   
+			
+			
+			}
+		}
+    };
+    //-------------------------------------------------
+ 
+    // keep Customer Rcords
+    class CreateCustomerRcords extends AsyncTask<String, String, String> {
+        
+    	@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			
+			pDialog = new ProgressDialog(S_Tradedetail.this);
+			pDialog.setMessage("Creating Product..");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+    	
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
+			db = new SQLiteHandler_Stores(getApplicationContext());
+	        session = new SessionManager_Stores(getApplicationContext());
+	        
+	        HashMap<String, String> user = db.getUserDetails();
+	        String userid = user.get("name");
+	        
+	        String username = memname;
+	        String consumption = String.valueOf(tradeconsumption);
+	        String discount = String.valueOf(tradediscount);
+	        String qpongrant = Qpongrant;
+	        String grantqpondenominations = String.valueOf(grantdenominations);
+	        String couponuse = Qponuse;
+	        String qponid = QponNo;
+	        String useqpondenominations = String.valueOf(usedenominations);
+	        String totalmoney = String.valueOf(tradettmoney);
+	        
+	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        params.add(new BasicNameValuePair("username", username));
+	        params.add(new BasicNameValuePair("storename", userid));
+	        params.add(new BasicNameValuePair("consumption", consumption));
+	        params.add(new BasicNameValuePair("discount", discount));
+	        params.add(new BasicNameValuePair("qpongrant", qpongrant));
+	        params.add(new BasicNameValuePair("grantdenominations", grantqpondenominations));
+	        params.add(new BasicNameValuePair("qponuse", couponuse));
+	        params.add(new BasicNameValuePair("qponid", qponid));
+	        params.add(new BasicNameValuePair("usedenominations", useqpondenominations));
+	        params.add(new BasicNameValuePair("totalmoney", totalmoney));
+	        
+	        JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.URL_create_ctrrecords, "POST", params);
+	        Log.d("Create ctrrecords", json.toString());
+	        
+	        try {
+				int success = json.getInt(TAG_SUCCESS);
+
+				if (success == 1) {
+					
+				} else 
+				{
+					
+				}
+			}
+		
+			
+			catch (JSONException e) 
+			{
+				e.printStackTrace();
+			}
+	        
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) 
+		{
+				// dismiss the dialog once done
+			   pDialog.dismiss();
+	
+		}
+    	
+    }
+    
+    //-------------------------------------------------
     
     //save Qpon
     class CreateNewQpon extends AsyncTask<String, String, String> {
@@ -474,7 +609,7 @@ public class S_Tradedetail extends Activity {
 	        session = new SessionManager_Stores(getApplicationContext());
 	        
 	        HashMap<String, String> user = db.getUserDetails();
-	        String userid = user.get("email");
+	        String userid = user.get("name");
 			
 	        String money = String.valueOf(grantdenominations);
 			String username = memname;
@@ -486,7 +621,7 @@ public class S_Tradedetail extends Activity {
 			
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_create_product, "POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_create_tdaddcoupon, "POST", params);
 
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -516,9 +651,6 @@ public class S_Tradedetail extends Activity {
 				e.printStackTrace();
 			}
 			
-		
-			
-			
 			return null;
 		}
 
@@ -530,7 +662,7 @@ public class S_Tradedetail extends Activity {
 		}
     	
     }
-    // ------
+    //-------------------------------------------------
     
     
     // judge qponid
@@ -547,58 +679,103 @@ public class S_Tradedetail extends Activity {
 		}
 
 		@Override
-		protected String doInBackground(String... args) {
+		protected String doInBackground(String... params) {
 			
-	        String couponid = judge;
-			
-	        List<NameValuePair> params = new ArrayList<NameValuePair>();
-	        params.add(new BasicNameValuePair("couponid",couponid));
-	        
-	        JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
-	        Log.d("gogogo", json.toString());
-	        
-	        try {
-				// Checking for SUCCESS TAG
-				int success = json.getInt(TAG_SUCCESS);
+			runOnUiThread(new Runnable() {
+                public void run() {
 
-				if (success == 1) {
-					// products found
-					// Getting Array of Products
-					coupons = json.getJSONArray(TAG_ISSUE);
+                	int success;
+                	
+                	try {
+                		String couponid = judge;
+                		List<NameValuePair> params = new ArrayList<NameValuePair>();
+                    	params.add(new BasicNameValuePair("couponid",couponid));
+    	        
+                    	JSONObject json = jParser.makeHttpRequest(AppConfig_Stores.URL_GET_TDCOUPON, "GET", params);
+                    	Log.d("gogogo", json.toString());
+                		
+                    	// TODO Auto-generated method stub
+                		// Checking for SUCCESS TAG
+                		 success = json.getInt(TAG_SUCCESS);
+
+                		if (success == 1) {
+                			// products found
+                			// Getting Array of Products
+                			JSONArray couponObj = json.getJSONArray(TAG_ISSUE);
+                			//coupons = json.getJSONArray(TAG_ISSUE);
 					
 					
-						JSONObject c = coupons.getJSONObject(0);
+                			JSONObject c = couponObj.getJSONObject(0);
 
-						trademembername = (TextView) findViewById(R.id.trade_membername);
-						tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
-						tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
+                			trademembername = (TextView) findViewById(R.id.trade_membername);
+                			tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
+                			tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
 						
-						trademembername.setText(c.getString(TAG_USERNAME));
-						tradeusedenominations.setText(c.getString(TAG_MONEY));
-						//Qponmoney = tradeusedenominations.getText().toString();
-						tradecouponNo.setText(judge);
-						tradecouponuse.setText("折價券使用：" + ""+"有");
+                			trademembername.setText("會員名稱："+ c.getString(TAG_USERNAME));
+                			tradecouponuse.setText("折價券使用：" + "有");
+                			tradecouponNo.setText("折價券序號："+ judge);
+                			tradeusedenominations.setText("使用面額：" +c.getString(TAG_MONEY));
 
+                			AppController globalVariable = (AppController)getApplicationContext();
+                			tradettmoney = globalVariable.settlea_totalmoney - Integer.valueOf(c.getString(TAG_MONEY));
+                			tradetotalmoney.setText("總計金額：" + tradettmoney);
+                			
+                			
+                			Qponuse = "有";
+           					memname = c.getString(TAG_USERNAME);
+           					QponNo = judge;
+           					usedenominations = Integer.valueOf(c.getString(TAG_MONEY));
+                			
+                			
+                			
+                	/*		String qponid = judge;
+                			String money =  c.getString(TAG_MONEY);
+                			String username = c.getString(TAG_USERNAME);
+                			
+                		    
+                		    
+                		    HashMap<String, String> map = new HashMap<String, String>();
+                		    map.put(TAG_COUPONID,qponid);
+                		    map.put(TAG_MONEY,money);
+                		    map.put(TAG_USERNAME,username);
+                		    
+                		    
+                		    RdQponList.add(map);     */
 						
-				} else {
+                		} else {
 					
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} 
+                		}
+                	} catch (JSONException e) {
+                			e.printStackTrace();
+                	} 
 	        
-			
-			return null;
-		}
+                }
+            });
+ 
+            return null;
+        }
+				
 		
-		protected void onPostExecute(String file_url) 
-		{
-			   // dismiss the dialog once done
-			   pDialog.dismiss();
-		}
-    	
-    }
-    // ------ 
+        protected void onPostExecute(String file_url) 
+        {
+             
+        	// dismiss the dialog once done
+            pDialog.dismiss();
+        	 
+        /*	 S_Tradedetail.this.runOnUiThread(new Runnable() {
+   				public void run() {
+   					Qponuse = "有";
+   					memname = RdQponList.get(0).get(TAG_USERNAME);
+   					QponNo = RdQponList.get(0).get(TAG_COUPONID);
+   					usedenominations = Integer.valueOf(RdQponList.get(0).get(TAG_MONEY));
+   				}
+               });     */
+               
+         }
+		
+    }	
+    //-------------------------------------------------	
+ 
     
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
