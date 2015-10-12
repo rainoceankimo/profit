@@ -70,4 +70,13 @@
         android:layout_toLeftOf="@+id/email"
          />
 
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/email"
+        android:layout_alignParentLeft="true"
+         android:visibility="gone"
+        android:text="TextView" />
+
 </RelativeLayout>

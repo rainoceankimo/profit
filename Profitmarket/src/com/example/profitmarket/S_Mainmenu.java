@@ -1,19 +1,45 @@
 package com.example.profitmarket;
 
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager_Stores;
 import android.content.Intent;
 
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager_Stores;
+
 public class S_Mainmenu extends Activity {
+    
+	private TextView showname;
+	
+	private SQLiteHandler_Stores db;
+    private SessionManager_Stores session;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_mainmenu);
+		
+
+		showname = (TextView) findViewById(R.id.s_mttV1);
+		
+		db = new SQLiteHandler_Stores(getApplicationContext());
+        session = new SessionManager_Stores(getApplicationContext());
+        
+        HashMap<String, String> user = db.getUserDetails();
+        String userid = user.get("name");
+		
+        showname.setText(userid);
+        
+        
 	}
 
 	@Override

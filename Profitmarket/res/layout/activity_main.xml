@@ -29,9 +29,12 @@
             android:id="@+id/textView1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text=" "
+            android:text="舊市潤市"
             android:textSize="35dip"
-            android:background="@color/blue30" />
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/blue30"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.profitmarket.S_Coupon_Buy.postnew;
 import com.example.profitmarket.S_Coupon_Management.DownloadData;
 
 import android.app.Activity;
@@ -33,11 +32,12 @@ import helper.SessionManager_Stores;
 
 public class S_Stores_Center_Amend extends Activity {
 
-	private static final String url_update_product = "http://192.168.0.107/storedetail/updatestoresdetail.php";
+	private static final String url_update_product = "http://192.168.0.102/storedetail/updatestoresdetail.php";
+	
 	private ProgressDialog nDialog;
 	private EditText textName;
-    String uid;
-    String created_at;
+String uid;
+String created_at;
 	private TextView textEmail;
 	private EditText textPhone;
 	private EditText textAddress;
@@ -50,7 +50,7 @@ public class S_Stores_Center_Amend extends Activity {
 
 	private static final String TAG_EMAIL = "email";
 	private static final String TAG_NAME = "name";
-	private static final String KEY_IDNUMBER = "idnumber";
+
 	private static final String TAG_PHONE = "phone";
 	private static final String TAG_ADDRESS = "address";
 	private static final String TAG_DB = "android_stores";
@@ -95,7 +95,8 @@ public class S_Stores_Center_Amend extends Activity {
 		idnum = user.get("idnumber");
 		String phone = user.get("phone");
 		String address = user.get("address");
-
+		created_at = user.get("created_at");
+		uid = user.get("uid");
 		// Displaying the user details on the screen
 		textName.setText(name);
 		textEmail.setText(email);
@@ -168,7 +169,7 @@ public class S_Stores_Center_Amend extends Activity {
 
 			// getting updated data from EditTexts
 			String email = mail;
-			String idnumber = idnum;
+			
 			String name = textName.getText().toString();
 			String phone = textPhone.getText().toString();
 			String address = textAddress.getText().toString();
@@ -177,7 +178,6 @@ public class S_Stores_Center_Amend extends Activity {
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair(TAG_EMAIL, email));
 			params.add(new BasicNameValuePair(TAG_NAME, name));
-			params.add(new BasicNameValuePair(KEY_IDNUMBER, idnumber));
 			params.add(new BasicNameValuePair(TAG_PHONE, phone));
 			params.add(new BasicNameValuePair(TAG_ADDRESS, address));
 
@@ -191,7 +191,7 @@ public class S_Stores_Center_Amend extends Activity {
 
 				if (success == 1) {
                  db.deleteUsers();
-                 db.addUser(name, email, idnumber, phone, address, uid, created_at);
+                 db.addUser(name, email, idnum, phone, address, uid, created_at);
 				} else {
 					// failed to update product
 				}

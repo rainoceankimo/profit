@@ -44,6 +44,7 @@ public class CreateFragment extends Fragment {
 	public static   JSONParser jParser = new JSONParser();
 	  
 	 public static ArrayList<HashMap<String, String>> productsList;
+	 public static ArrayList<HashMap<String, String>> productsList2;
 	 CustomListAdapter2 adapter;
 	private float[] ydata[];
 	public static  String TAG_SUCCESS = "success";
@@ -53,6 +54,7 @@ public class CreateFragment extends Fragment {
 	public static  String TAG_ADDRESS = "address";
 	public static  String TAG_PHONE = "phone";
 	public static  String TAG_UID = "uid";
+	public static  String TAG_TYPE = "type";
 	String[] z = new String[100];
 	String[] cost = new String[100];
 	String[] x = new String[100];
@@ -61,7 +63,7 @@ public class CreateFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	private static String url_all_products = "http://192.168.0.107/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.109/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -135,18 +137,25 @@ public class CreateFragment extends Fragment {
 	                        String name = c.getString(TAG_NAME);
 	                        String address = c.getString(TAG_ADDRESS);
 	                        String phone = c.getString(TAG_PHONE);
+	                        String type = c.getString(TAG_TYPE);
+	                        Double type1=Double.parseDouble(type);
+	                        if(type1==0){
+	                         HashMap<String, String> map = new HashMap<String, String>();
+	                           map.put(TAG_UID, uid);
+	  	                        map.put(TAG_EMAIL, email);
+	  	                        map.put(TAG_NAME, name);
+	  	                        map.put(TAG_ADDRESS, address);
+	  	                        map.put(TAG_PHONE,phone);
+	  	                        map.put(TAG_TYPE,type);
+	  	                        // adding HashList to ArrayList
+	  	                        productsList.add(map);
+	                        	
+	                        }
 	                        // creating new HashMap
-	                        HashMap<String, String> map = new HashMap<String, String>();
+	                      
 
 	                        // adding each child node to HashMap key => value
-	                        map.put(TAG_UID, uid);
-	                        map.put(TAG_EMAIL, email);
-	                        map.put(TAG_NAME, name);
-	                        map.put(TAG_ADDRESS, address);
-	                        map.put(TAG_PHONE,phone);
-
-	                        // adding HashList to ArrayList
-	                        productsList.add(map);
+	                      
 	                    }
 	                } 
 	            } catch (JSONException e) {
@@ -174,8 +183,8 @@ public class CreateFragment extends Fragment {
 			 ListAdapter adapter = new SimpleAdapter(
 						getActivity(), productsList,
 						R.layout.list_item, new String[] { TAG_UID,
-                                TAG_NAME,TAG_PHONE,TAG_EMAIL,TAG_ADDRESS},
-						new int[] {R.id.uid,R.id.name,R.id.phone,R.id.email,R.id.address});
+                                TAG_NAME,TAG_PHONE,TAG_EMAIL,TAG_ADDRESS,TAG_TYPE},
+						new int[] {R.id.uid,R.id.name,R.id.phone,R.id.email,R.id.address,R.id.type});
 				// updating listview
 				lv.setAdapter(adapter);
 			 // ArrayAdapter<String> adapter = 
@@ -192,6 +201,7 @@ public class CreateFragment extends Fragment {
 	        		   // intent.setClass(getActivity(),C_Store_information.class);
 	        		   // startActivity(intent);    //Ä²µo´«­¶
 	        	       // }
+	        		
 	        	    String uid = ((TextView) view.findViewById(R.id.uid)).getText()
 	                        .toString();
 	        	    String email = ((TextView) view.findViewById(R.id.email)).getText()

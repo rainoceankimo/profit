@@ -58,7 +58,7 @@ import android.widget.Toast;
 public class S_Coupon_Rules extends Fragment {
 	
 	CustomListAdapter2 adapter;
-	EditText input,showw;
+	EditText input;
 	ListView list;
 	Spinner spinner;
 	private SQLiteHandler_Stores db;
@@ -109,7 +109,7 @@ public class S_Coupon_Rules extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.s_coupon_rules, container, false);
 		input = (EditText) v.findViewById(R.id.abc);
-		showw =  (EditText) v.findViewById(R.id.edtabcc);
+		
 		
 		AppController globalVariable = (AppController)getActivity().getApplicationContext();
 		

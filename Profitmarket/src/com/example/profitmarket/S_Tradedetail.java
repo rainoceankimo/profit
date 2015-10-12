@@ -422,7 +422,7 @@ public class S_Tradedetail extends Activity {
 		MyAlertDialog mDlgLogin = new MyAlertDialog(S_Tradedetail.this);
 		mDlgLogin.setTitle("提示!");
 		mDlgLogin.setCancelable(true);
-		mDlgLogin.setMessage("折價券面額：$"+ usedenominations + "超過  折扣上限；$" + tradediscount + "\n");
+		mDlgLogin.setMessage("折價券面額:$"+ usedenominations + " 超過  折扣上限:$" + tradediscount + "\n");
 		
 		mDlgLogin.setButton(DialogInterface.BUTTON_POSITIVE, "重選折價券", altDlgPositiveBtnOnClk);
 		mDlgLogin.setButton(DialogInterface.BUTTON_NEGATIVE, "直接使用", altDlgNegativeBtnOnClk);
