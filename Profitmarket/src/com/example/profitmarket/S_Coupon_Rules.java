@@ -244,9 +244,11 @@ public class S_Coupon_Rules extends Fragment {
 		@Override
 		public void onClick(View arg0) {
 
-
+			
+			
 			String moneyinput = input.getText().toString();
-
+			int Much = Integer.valueOf(moneyinput);
+			int Much1 = Integer.valueOf(item);
 			try {
 				if (input.getText().toString().startsWith("0")) {
 					input.setText("");
@@ -258,8 +260,9 @@ public class S_Coupon_Rules extends Fragment {
 					Toast.makeText(getActivity(), "不能為空白", Toast.LENGTH_SHORT).show();
 				}
 
-				else {
-                    
+				else if(Much<Much1){
+					Toast.makeText(getActivity(), "價錢太低瞜", Toast.LENGTH_SHORT).show();
+				}else{
 					
 					
 					cost[k] = input.getText().toString();
