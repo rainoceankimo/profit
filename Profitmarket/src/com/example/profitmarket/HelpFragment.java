@@ -63,7 +63,7 @@ public class HelpFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	private static String url_all_products = "http://192.168.0.109/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.103/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {

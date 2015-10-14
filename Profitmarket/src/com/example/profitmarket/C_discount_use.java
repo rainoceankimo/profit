@@ -66,7 +66,7 @@ public class C_discount_use extends ListActivity {
 	ArrayList<HashMap<String, String>> couponsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://192.168.0.109/addQpon/getcoupon.php";
+	private static String url_all_products = "http://192.168.0.111/addQpon/getcoupon.php";
 	
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";

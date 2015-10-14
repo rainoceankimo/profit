@@ -17,6 +17,7 @@ import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,17 +46,20 @@ import android.os.Bundle;
 import android.view.View;  
 import android.view.ViewGroup.LayoutParams;  
 import android.widget.LinearLayout;  
-import android.widget.Toast;  
+import android.widget.Toast;
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager_Stores;  
 
 
 public class S_Analysis_IssueRecover extends Activity {
 	public static   JSONParser jParser = new JSONParser();
 
 	public static ArrayList<HashMap<String, String>> productsList;
-			
+	public static ArrayList<HashMap<String, String>> productsList1;		
 	private float[] ydata[];
 	private static final int SERIES_NR = 1;
-
+	private SQLiteHandler_Stores db;
+	private SessionManager_Stores session;
 	public static  String TAG_SUCCESS = "success";
 	public static  String TAG_PRODUCTS = "products";
 	public static String TAG_PID = "pid";
@@ -65,7 +69,8 @@ public class S_Analysis_IssueRecover extends Activity {
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.102/android_connect/get_issue.php";
+	private static String url_all_products2 = "http://192.168.0.102/android_connect/get_issue2.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	private static int[] COLORS = new int[] { Color.YELLOW, Color.BLUE,Color.MAGENTA, Color.DKGRAY ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  
@@ -79,8 +84,9 @@ public class S_Analysis_IssueRecover extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_analysis_issue_recover);
 		new LoadAllProducts().execute();
-
+		new LoadAllProducts2().execute();
 		productsList = new ArrayList<HashMap<String, String>>(10);
+		productsList1 = new ArrayList<HashMap<String, String>>(10);
 		mRenderer.setApplyBackgroundColor(true);  
 		mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));  
 		mRenderer.setChartTitleTextSize(20);  
@@ -91,7 +97,7 @@ public class S_Analysis_IssueRecover extends Activity {
 		mRenderer.setZoomButtonsVisible(true);  
 		mRenderer.setStartAngle(90);  
 		//mRenderer.setChartTitle("ч基ㄩㄓ方┍產参璸");
-		mRenderer.setChartTitle("ч基ㄩ犁Μ癪膍参璸");
+		mRenderer.setChartTitle("ч基ㄩㄏノ眎计参璸");
 		mRenderer.setChartTitleTextSize(30);
 		
 	}
@@ -136,7 +142,7 @@ public class S_Analysis_IssueRecover extends Activity {
 		if (seriesSelection == null) {  
 		Toast.makeText(S_Analysis_IssueRecover.this,"No chart element was clicked",Toast.LENGTH_SHORT).show();  
 		} else {  
-		Toast.makeText(S_Analysis_IssueRecover.this,"Chart element data point index "+ (seriesSelection.getPointIndex()+1) + " was clicked" + " point value="+ seriesSelection.getValue(), Toast.LENGTH_SHORT).show();  
+		Toast.makeText(S_Analysis_IssueRecover.this,  " 眎计="+ seriesSelection.getValue()+"眎", Toast.LENGTH_SHORT).show();  
 		}  
 		}  
 		});  
@@ -163,40 +169,74 @@ public class S_Analysis_IssueRecover extends Activity {
 
 
 		private void drawpie(){
-			String t = productsList.get(0).get(TAG_PID);
-			Double t1=Double.parseDouble(t);
-			String q = productsList.get(1).get(TAG_PID);
-			Double q1=Double.parseDouble(q);
-			String a = productsList.get(2).get(TAG_PID);
-			Double a1=Double.parseDouble(a);
-			String b = productsList.get(3).get(TAG_PID);
+			 Intent intime = getIntent();
+			 String  timeY =  intime.getStringExtra("year");
 			
-			Double b1=Double.parseDouble(b);
-			double[] VALUES = new double[4];
-			VALUES[0]=t1;
-			VALUES[1]=q1;
-			VALUES[2]=a1;
-			VALUES[3]=b1;
+			
+			String t = productsList.get(0).get("SUM(howp)");
+			Double t1=Double.parseDouble(t);
+			String q = productsList.get(1).get("SUM(howp)");
+			Double q1=Double.parseDouble(q);
+			String a = productsList.get(2).get("SUM(howp)");
+			Double a1=Double.parseDouble(a);
+			String b = productsList.get(3).get("SUM(howp)");
+             Double timeYD=Double.parseDouble(timeY);
+             Double b1=Double.parseDouble(b); 
+             
+             
+             double[] VALUES2 = new double[productsList1.size()];
+			 double as=0;
+            double size1 =productsList.size();
+            double size2 =productsList1.size();
+             double size3= size2/size1;
+             String page = productsList1.get(0).get("SUM(howp)");
+			 Double page2 = Double.parseDouble(page);
+			 for(int i=0;i<productsList.size();i++)
+			 {
+				  String pagess = productsList.get(i).get("SUM(howp)");
+				  Double page233 = Double.parseDouble(pagess);
+				 as=as+page233;
+							 
+				 
+			 }
+			 
+			 double getas;
+			 getas=as;
+			double all=getas-page2;
+			 
+			double[] VALUES = new double[2];
+			
 			
 			//Double  all=t1+q1+a1+b1;
 			
 			//String[] NAME_LIST = new String[] { t, q, };
 				
-			String c = productsList.get(0).get(TAG_NAME);
-			String d = productsList.get(1).get(TAG_NAME);
-			String e = productsList.get(2).get(TAG_NAME);
-			String r = productsList.get(3).get(TAG_NAME);
+			String c = productsList.get(0).get("month");
+			String d = productsList.get(1).get("month");
+			String e = productsList.get(2).get("month");
+			String r = productsList.get(3).get("month");
 			String[] NAME_LIST=new String[4];
-			NAME_LIST[0]=c;
-			NAME_LIST[1]=d;
+			NAME_LIST[0]="ゼㄏノ";
+			NAME_LIST[1]="ㄏノ";
 			NAME_LIST[2]=e;
 			NAME_LIST[3]=r;
+			VALUES[0]=all;
+			VALUES[1]=page2;
 			
+		
 			//String  NAME_LIST[] = (String[]) productsList.toArray(new String[0]);
 			//Double  VALUES[] = (Double[]) productsList.toArray(new Double[0]);
-			for (int i = 0; i <4; i++) { 
-
-			mSeries.add(NAME_LIST[i]+(VALUES[i]) , VALUES[i]); 
+			for (int i = 0; i <2; i++) { 
+				 String  timey = productsList.get(i).get("year");
+				 Double timeyr=Double.parseDouble(timey);
+				 //int timeyear = Integer.parseInt(time);
+				 String  time2 = intime.getStringExtra("month");
+				 Double timeMH=Double.parseDouble(time2);
+				 String  timem = productsList.get(i).get("month");
+				 Double timemh =Double.parseDouble(timem);
+				if( (timeYD-timeyr==0&&timeMH-timemh==0)){
+					
+			mSeries.add(NAME_LIST[i]+(VALUES[i]), VALUES[i]); 
 
 			SimpleSeriesRenderer renderer = new SimpleSeriesRenderer(); 
 
@@ -205,6 +245,7 @@ public class S_Analysis_IssueRecover extends Activity {
 			renderer.setColor(COLORS[i % COLORS.length]);
 
 			mRenderer.addSeriesRenderer(renderer);  
+				}
 			}  
 			  
 			if (mChartView != null) {  
@@ -244,7 +285,13 @@ public class S_Analysis_IssueRecover extends Activity {
          * */
         protected String doInBackground(String... args) {
             // Building Parameters
+        	db = new SQLiteHandler_Stores(getApplicationContext());
+            // session manager
+            session = new SessionManager_Stores(getApplicationContext());
+            HashMap<String, String> user = db.getUserDetails();
+            String issue_store = user.get("name");
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("issue_store", issue_store));
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
@@ -265,20 +312,108 @@ public class S_Analysis_IssueRecover extends Activity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String id = c.getString(TAG_PID);
-                        String name = c.getString(TAG_NAME);
-                        String price = c.getString(TAG_PRICE);
-                        
+                        String year = c.getString("year");
+                        String month = c.getString("month");
+                        String yesorno = c.getString("yesorno");
+                        String howp = c.getString("SUM(howp)");
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
-
+                    
                         // adding each child node to HashMap key => value
-                        map.put(TAG_PID, id);
-                        map.put(TAG_NAME, name);
-                        map.put(TAG_PRICE, price);
+                        map.put("year", year);
+                        map.put("month",month);
+                        map.put("yesorno",  yesorno);
+                        map.put("SUM(howp)", howp);
                         
                         // adding HashList to ArrayList
                         productsList.add(map);
+                       // Double yesorno1=Double.parseDouble(yesorno);
+                      //  if(yesorno1==1)
+                        //{
+                       // 	 HashMap<String, String> map1 = new HashMap<String, String>();
+                       //    map1.put("year", year);
+                       //     map1.put("month",month);
+                       //     map1.put("yesorno",  yesorno);
+                       //     map1.put("SUM(howp)", howp);
+                        	
+                       //     productsList1.add(map1);
+                       // }
+                        
+                        
+                    }
+                } 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }  
+    }
+    
+    
+    class LoadAllProducts2 extends AsyncTask <String, String, String> {
+      	 
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+           
+        }
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            // Building Parameters
+        	db = new SQLiteHandler_Stores(getApplicationContext());
+            // session manager
+            session = new SessionManager_Stores(getApplicationContext());
+            HashMap<String, String> user = db.getUserDetails();
+            String issue_store = user.get("name");
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("issue_store", issue_store));
+            // getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(url_all_products2, "GET", params);
+
+            // Check your log cat for JSON reponse
+            Log.d("All Products2: ", json.toString());
+
+            try {
+                // Checking for SUCCESS TAG
+                int success = json.getInt(TAG_SUCCESS);
+                 
+                if (success == 1) {
+                    // products found
+                    // Getting Array of Products
+                    products = json.getJSONArray("products2");
+
+                    // looping through All Products
+                    for (int i = 0; i < products.length(); i++) {
+                        JSONObject c = products.getJSONObject(i);
+
+                        // Storing each json item in variable
+                        String year = c.getString("year");
+                        String month = c.getString("month");
+                        String yesorno = c.getString("yesorno");
+                        String howp = c.getString("SUM(howp)");
+                        // creating new HashMap
+                        HashMap<String, String> map1 = new HashMap<String, String>();
+                    
+                        // adding each child node to HashMap key => value
+                        map1.put("year", year);
+                        map1.put("month",month);
+                        map1.put("yesorno",  yesorno);
+                        map1.put("SUM(howp)", howp);
+                        
+                        // adding HashList to ArrayList
+                        productsList1.add(map1);
+                    
+                     
+                     
+                        
+                        
                     }
                 } 
             } catch (JSONException e) {
@@ -287,13 +422,12 @@ public class S_Analysis_IssueRecover extends Activity {
 
             return null;
         }
-    
-    @Override
-	protected void onPostExecute(String result) {
-		// TODO Auto-generated method stub
-		super.onPostExecute(result);
-		drawpie();
-	}
-    
+        @Override
+    	protected void onPostExecute(String result) {
+    		// TODO Auto-generated method stub
+    		super.onPostExecute(result);
+    		drawpie();
+    	}
     }
+ 
 }
