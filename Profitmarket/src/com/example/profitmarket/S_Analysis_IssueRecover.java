@@ -69,8 +69,8 @@ public class S_Analysis_IssueRecover extends Activity {
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.102/android_connect/get_issue.php";
-	private static String url_all_products2 = "http://192.168.0.102/android_connect/get_issue2.php";
+	private static String url_all_products = "http://192.168.0.103/android_connect/get_issue.php";
+	private static String url_all_products2 = "http://192.168.0.103/android_connect/get_issue2.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	private static int[] COLORS = new int[] { Color.YELLOW, Color.BLUE,Color.MAGENTA, Color.DKGRAY ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  
