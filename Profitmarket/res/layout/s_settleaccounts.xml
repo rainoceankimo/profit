@@ -30,7 +30,7 @@
             android:id="@+id/ttmoney"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="請輸入總金額："
+            android:hint="請輸入消費金額："
             android:inputType="number"
             android:textColor="@color/black"
             android:textColorHint="@color/input_login_hint" />
@@ -42,8 +42,7 @@
             android:layout_marginTop="35dp"
             android:padding="15dip"
             android:text="確定"
-            android:textSize="20dip"
-            android:onClick="account_onClick" />
+            android:textSize="20dip" />
         
      </LinearLayout>   
     

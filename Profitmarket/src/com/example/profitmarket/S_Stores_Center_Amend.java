@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.profitmarket.S_Coupon_Buy.postnew;
 import com.example.profitmarket.S_Coupon_Management.DownloadData;
 
 import android.app.Activity;

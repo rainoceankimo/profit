@@ -70,7 +70,7 @@ public class S_Analysis_Whereabouts extends Activity {
 	// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.103/android_connect/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.103/analysis/get_all_issue.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -133,51 +133,13 @@ public class S_Analysis_Whereabouts extends Activity {
 		private XYMultipleSeriesDataset getBarDemoDataset() {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		 Intent intime = getIntent();
-		 String  timeY =  intime.getStringExtra("year");
-		 
-		 /*Map<String, Integer> map = new TreeMap<String, Integer>();  
-         map.put("d", 2);  
-         map.put("c", 1);  
-         map.put("b", 4);  
-         map.put("a", 3);  
-         List<Map.Entry<String, Integer>> infoIds1 = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());  
-         Collections.sort(infoIds1, new Comparator<Map.Entry<String, Integer>>() {  
-             public int compare(Map.Entry<String, Integer> o1,  
-                     Map.Entry<String, Integer> o2) {  
-                 return (o1.getValue()).toString().compareTo(o2.getValue().toString());  
-             }  
-         });   
-         for (int s = 0; s < infoIds1.size(); s++) {  
-             //String id = infoIds1.get(s).toString(); 
-             Log.d("All Products2: ",infoIds1.get(s).toString()  );
-         }
-         Set<Entry<String, Integer>> set = map.entrySet();  
-         Iterator<Entry<String, Integer>> iterator2 = set.iterator(); */
-		// for(int s=0;s<productsList.size();s++){
-		//	 Map<Integer, String > treeMap = new TreeMap<Integer, String>();  
-		//	 String s1 =productsList.get(s).get("SUM(howp)");
-		//	 int is = Integer.parseInt(s1);
-		//	 String r1 = productsList.get(s).get("receive_store");
-		//	 int r2 = Integer.parseInt(r1);
- 		//	 treeMap.put(is, r1);
- 			 
-		// }
-		   //Map<Integer, String > treeMap = new TreeMap<Integer, String>();  
-	      //  treeMap.put(12, "a");  
-	      //  treeMap.put(14, "c");  
-	      //  treeMap.put(13, "e");  
-	       // treeMap.put(15, "d");  
-	        //List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
-	        //
-	       // Collections.sort(arrayList,new myComparator());  
-	      
-	       
-        
+		
+
 		for ( int i = 0; i < SERIES_NR ; i++) {
 		CategorySeries series = new CategorySeries(  "ч基眎计"  );
 		
-		for ( int k = 0; k <productsList.size(); k++) {
-			
+		for ( int k = 0; k <products.length(); k++) {
+			 String  timeY =  intime.getStringExtra("year");
 			  Map<Integer, String> treeMap = new TreeMap<Integer, String>(  
 		                new Comparator<Integer>() {  
 		  
@@ -192,59 +154,30 @@ public class S_Analysis_Whereabouts extends Activity {
 			// int r2 = Integer.parseInt(r1);
  			 treeMap.put(is, r1);
 			
- 	        List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
+ 	         List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
 			
- 	       Iterator<Integer> iter = treeMap.keySet().iterator();  
- 	      // Iterator iterator = treeMap.entrySet().iterator();
+ 	         Iterator<Integer> iter = treeMap.keySet().iterator();  
  	     
-			
-			
 			 Double timeYD=Double.parseDouble(timeY);
 			 
-			 String  timey = productsList.get(k).get("year");
+			 String  timey = productsList.get(k).get("YEAR(created_date)");
 			 Double timeyr=Double.parseDouble(timey);
 			 //int timeyear = Integer.parseInt(time);
 			 
 			 String  time2 = intime.getStringExtra("month");
 			 Double timeMH=Double.parseDouble(time2);
 			
-			 String  timem = productsList.get(k).get("month");
+			 String  timem = productsList.get(k).get("MONTH(created_date)");
 	
 			 Double timemh =Double.parseDouble(timem);
-			if( (timeYD-timeyr==0&&timeMH-timemh==0)){
-			//	String rd =(String)arr2.get(k);
-			//	Double rd2=Double.parseDouble(rd);
-		//	int r2 = arr[k];
-			
-			//Double r1=Double.parseDouble(r);
-				// while (iterator2.hasNext()) {  
-				     //    Entry<String, Integer> entry = iterator2.next();  
-				     //    int qe= entry.getValue() ; 
-				// for ( Iterator<String> iter = treeMap.values().iterator(); iter.hasNext(); ) {
-			      //      String key = iter.next();
-			        //    int is = Integer.parseInt(key);
-			         //   System.out.println( key + " = " + treeMap.get( key ) );
-				
-				//  for(Entry<Integer, String> mapper: arrayList){  
-				     //    Integer qaw = mapper.getKey();
-				    //     String s = String.valueOf(qaw); 
-				       //  int is = Integer.parseInt(qaw);
-				  //       series.add(qaw);
-				   //       Log.d("All Products23: ", s );
-				     //   }  
+			 if( (timeYD-timeyr==0&&timeMH-timemh==0)){
 				  while (iter.hasNext()) {
 					  Integer key = iter.next();  
 			 	      String qaw =  treeMap.get(key);
-				         String s = String.valueOf(qaw); 
-				       //  int is3 = Integer.parseInt(qaw);
-				       //  int is5 = Integer.parseInt(key);
+				         String s = String.valueOf(qaw);      
 				         series.add(key);
 				          Log.d("All Products23: ", s );
 			 	      }
-			       // }
-				     	
-
-             //}  
 			
 			}
 		}
@@ -252,70 +185,11 @@ public class S_Analysis_Whereabouts extends Activity {
 		}
 		return dataset;
 		}                
-		
-		
 
 		public XYMultipleSeriesRenderer getBarDemoRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		 //int PID= Integer.valueOf(TAG_PID);
-		 //int[] yo =new int[PID];
-		int qw=5;
-		double ts=1;	 
-		/*Map<String, Integer> map = new HashMap<String, Integer>();  
-        map.put("d", 2);  
-        map.put("c", 1);  
-        map.put("b", 4);  
-        map.put("a", 3);  
-        List<Map.Entry<String, Integer>> infoIds1 = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());  
-        
-        Collections.sort(infoIds1, new Comparator<Map.Entry<String, Integer>>() {  
-            public int compare(Map.Entry<String, Integer> o1,  
-                    Map.Entry<String, Integer> o2) {  
-                return (o1.getValue()).toString().compareTo(o2.getValue().toString());  
-            }  
-        });   
-        for (int s = 0; s < infoIds1.size(); s++) {  
-            String id = infoIds1.get(s).toString(); 
-            Log.d("All Products2: ",infoIds1.get(s).toString()  );
-        }
-        Set<Entry<String, Integer>> set = map.entrySet();  
-        Iterator<Entry<String, Integer>> iterator2 = set.iterator();  
-    
-     
-       */
-		// Map<String, Integer> treeMap = new TreeMap<String, Integer>();  
-	      //  treeMap.put("a", 12);  
-	      //  treeMap.put("c", 14);  
-	      //  treeMap.put("e", 13);  
-	      //  treeMap.put("d", 15);  
-	      //  List<Entry<String,Integer>> arrayList = new ArrayList<Entry<String,Integer>>(treeMap.entrySet());  
-	        //
-	       // Collections.sort(arrayList,new myComparator());  
-	       // for(Entry<String,Integer> mapper: arrayList){  
-	         
-	       //   Log.d("All Products234: ", mapper.getKey()  );
-	       // }  
-		
 		renderer.setPanEnabled(false, true);
 		
-	//	 for ( int v = 0; v <productsList.size(); v++) {
-			  
-				//String r = productsList.get(v).get("SUM(howp)");
-			//	int intValue = Integer.parseInt(r);
-			//	String rr = productsList.get(v).get("receive_store");
-			//	arr2.add(r);
-			//	arr2.add(rr);
-				 
-				  //arr[v]=intValue;	    
-			//		}
-		//  Collections.sort(arr2);
-	      //  String username = user.get("name");
-//		 for(Entry<String,Integer> mapper: arrayList){  
-			 
-	//		  String qe=  ( String) mapper.getKey();
-	//		  Log.d("All Products231: ", mapper.getKey()  
-	//		);
-			  
 	 for(int i=0;i<products.length();i++){
 				// String name2=productsList.get(i).get(TAG_NAME);
 				// if(username.equals(name2)){
@@ -405,14 +279,14 @@ public class S_Analysis_Whereabouts extends Activity {
 		renderer.setChartTitle( "ч基ㄩㄏノ┍產だ猂" );
 		renderer.setXTitle( "ㄏノ┍產 " );
 		renderer.setChartTitleTextSize(40);
-		renderer.setPanEnabled(false, false);
-		renderer.setYTitle("ч基ㄩㄏノ秖  ");
+		renderer.setPanEnabled(true, false);
+		renderer.setYTitle("ч基ㄩ眎计  ");
 		renderer.setAxisTitleTextSize(25);
 		renderer.setBarSpacing(0.5);
 		renderer.setXAxisMin(0.5);
 		renderer.setXAxisMax(products.length());
 		renderer.setYAxisMin(0);
-		renderer.setYAxisMax(1000);
+		renderer.setYAxisMax(100);
 		}
 		 public boolean onKeyDown(int keyCode, KeyEvent event) {
 		        
@@ -457,7 +331,8 @@ public class S_Analysis_Whereabouts extends Activity {
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
             // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
+            Log.d("All Products_ISSUE: ", json.toString());
+            
 
             try {
                 // Checking for SUCCESS TAG
@@ -466,34 +341,34 @@ public class S_Analysis_Whereabouts extends Activity {
                 if (success == 1) {
                     // products found
                     // Getting Array of Products
-                    products = json.getJSONArray(TAG_PRODUCTS);
-
+                    products = json.getJSONArray("issueqpon");
+                   
                     // looping through All Products
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject c = products.getJSONObject(i);
-
+                      
                         // Storing each json item in variable
                        // String id = c.getString(TAG_PID);
-                        String name = c.getString(TAG_NAME);
+                      //  String name = c.getString(TAG_NAME);
                       //  String price = c.getString(TAG_PRICE);
-                        String year = c.getString(TAG_YEAR);
-                        String month = c.getString(TAG_MONTH);
+                        String YEARcreated_date = c.getString("YEAR(created_date)");
+                        String MONTHcreated_date = c.getString("MONTH(created_date)");
                         String receive_store = c.getString("receive_store");
                         String howp = c.getString("SUM(howp)");
-                       
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
                       //  map.put(TAG_PID, id);
-                        map.put(TAG_NAME, name);
+                      //  map.put(TAG_NAME, name);
                        // map.put(TAG_PRICE, price);
-                        map.put(TAG_YEAR, year);
-                        map.put(TAG_MONTH, month);
+                        map.put("YEAR(created_date)", YEARcreated_date);
+                        map.put("MONTH(created_date)", MONTHcreated_date);
                         map.put("receive_store", receive_store);
                         map.put("SUM(howp)",howp);
                         // adding HashList to ArrayList
                         productsList.add(map);
+
                     }
                 } 
             } catch (JSONException e) {

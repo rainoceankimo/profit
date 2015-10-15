@@ -3,6 +3,7 @@ package com.example.profitmarket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import app.AppConfig_Stores;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -48,7 +49,9 @@ public class S_Coupon_Buy extends Activity  {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	private static String url_create_product = "http://192.168.0.109/couponconnect/create.php";
+	
+	//private static String url_create_product = "http://192.168.0.109/couponconnect/create.php";
+	
 	 private SQLiteHandler_Stores db;
 	    private SessionManager_Stores session;
 	// JSON Node names
@@ -91,7 +94,7 @@ public class S_Coupon_Buy extends Activity  {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-				// TODO Auto-generated method stub
+
 
 				if (itemname[position] == null) {
 					Toast.makeText(S_Coupon_Buy.this, "½Ð¿é¤J", Toast.LENGTH_SHORT).show();
@@ -107,7 +110,7 @@ public class S_Coupon_Buy extends Activity  {
 					final String strSelectedItem1 = imgid[+position];
 					EditText editHowMuch = (EditText) mDlgLogin.findViewById(R.id.edithowmuch);
 					EditText editHowMany = (EditText) mDlgLogin.findViewById(R.id.edithowmany);
-					// TODO Auto-generated method stub
+
 					editHowMuch.setText(strSelectedItem);
 					editHowMany.setText(strSelectedItem1);
 
@@ -173,7 +176,7 @@ public class S_Coupon_Buy extends Activity  {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+
 			try {
 				if (input.getText().toString().startsWith("0")) {
 					input.setText("");
@@ -219,7 +222,7 @@ public class S_Coupon_Buy extends Activity  {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+
 			for (int i = 0; i < itemname.length; i++) {
 				itemname[i] = "";
 				imgid[i] = "";
@@ -318,7 +321,7 @@ public class S_Coupon_Buy extends Activity  {
 			
 				// getting JSON Object
 				// Note that create product url accepts POST method
-				JSONObject json = jsonParser.makeHttpRequest(url_create_product, "POST", params);
+				JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_create_buycoupon, "POST", params);
 
 				// check log cat fro response
 				Log.d("Create Response", json.toString());

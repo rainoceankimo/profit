@@ -111,7 +111,7 @@ public class S_TransactionRecords extends ListActivity {
 	    }
 	    
 	    
-	    	ABCC();  
+	    	//ABCC();  
 			SHOWLIST();
 			clicklist();
 	   

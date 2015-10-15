@@ -26,7 +26,7 @@ public class S_Analysis extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_analysis_view);
-	    ss =(TextView)findViewById(R.id.timeresult);
+	
 	    button1 = (Button)findViewById(R.id.button1);
 	    button3 = (Button)findViewById(R.id.button3);
 	    button4 = (Button)findViewById(R.id.button4);

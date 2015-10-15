@@ -63,7 +63,7 @@ public class CreateFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	private static String url_all_products = "http://192.168.0.103/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.100/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -141,7 +141,7 @@ public class CreateFragment extends Fragment {
 	                        Double type1=Double.parseDouble(type);
 	                        if(type1==0){
 	                         HashMap<String, String> map = new HashMap<String, String>();
-	                           map.put(TAG_UID, uid);
+	                            map.put(TAG_UID, uid);
 	  	                        map.put(TAG_EMAIL, email);
 	  	                        map.put(TAG_NAME, name);
 	  	                        map.put(TAG_ADDRESS, address);
@@ -235,7 +235,7 @@ public class CreateFragment extends Fragment {
 	        	       // }
 	       
 	        		
-	        	
+	        	//productsList.get(1).get("name);
 	        }
 	        	
 	        	

@@ -18,6 +18,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import app.AppConfig_Stores;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,7 +58,7 @@ import android.widget.Toast;
 public class S_Coupon_Rules extends Fragment {
 	
 	CustomListAdapter2 adapter;
-	EditText input,showw;
+	EditText input;
 	ListView list;
 	Spinner spinner;
 	private SQLiteHandler_Stores db;
@@ -82,7 +83,7 @@ public class S_Coupon_Rules extends Fragment {
 	JSONArray spin = null;
 	private View v;
 	
-	private static String url_all_products = "http://192.168.0.109/couponconnect/spinner.php";
+	//private static String url_all_products = "http://192.168.43.218/couponconnect/spinner.php";
 	
 	
 	private static final String DB_DBNAME = "rules.db",
@@ -108,7 +109,7 @@ public class S_Coupon_Rules extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.s_coupon_rules, container, false);
 		input = (EditText) v.findViewById(R.id.abc);
-		showw =  (EditText) v.findViewById(R.id.edtabcc);
+		
 		
 		AppController globalVariable = (AppController)getActivity().getApplicationContext();
 		
@@ -151,7 +152,7 @@ public class S_Coupon_Rules extends Fragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-				// TODO Auto-generated method stub
+
 				if (cost[position] == null) {
 					Toast.makeText(getActivity(), "請輸入", Toast.LENGTH_SHORT).show();
 				} else {
@@ -166,14 +167,14 @@ public class S_Coupon_Rules extends Fragment {
 			
 					EditText editHowMuch = (EditText) mDlgLogin.findViewById(R.id.edithowmuc);
 					final Spinner spinn = (Spinner) mDlgLogin.findViewById(R.id.spinner1);
-					// TODO Auto-generated method stub
+
 					editHowMuch.setText(strSelectedItem);
 					ArrayAdapter<Integer> ad = new ArrayAdapter<Integer>(getActivity(),
 							android.R.layout.simple_dropdown_item_1line, list1);
 					spinn.setAdapter(ad);
 					spinn.setOnItemSelectedListener(new OnItemSelectedListener() {
 						public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-							// TODO Auto-generated method stub
+
 
 							item = spinn.getSelectedItem().toString();
 
@@ -183,7 +184,7 @@ public class S_Coupon_Rules extends Fragment {
 						}
 
 						public void onNothingSelected(AdapterView<?> arg0) {
-							// TODO Auto-generated method stub
+
 						}
 					});
 
@@ -242,10 +243,12 @@ public class S_Coupon_Rules extends Fragment {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
 
+			
+			
 			String moneyinput = input.getText().toString();
-
+			int Much = Integer.valueOf(moneyinput);
+			int Much1 = Integer.valueOf(item);
 			try {
 				if (input.getText().toString().startsWith("0")) {
 					input.setText("");
@@ -257,8 +260,9 @@ public class S_Coupon_Rules extends Fragment {
 					Toast.makeText(getActivity(), "不能為空白", Toast.LENGTH_SHORT).show();
 				}
 
-				else {
-                    
+				else if(Much<Much1){
+					Toast.makeText(getActivity(), "價錢太低瞜", Toast.LENGTH_SHORT).show();
+				}else{
 					
 					
 					cost[k] = input.getText().toString();
@@ -297,7 +301,7 @@ public class S_Coupon_Rules extends Fragment {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+
 			
 			
 			
@@ -387,7 +391,7 @@ public class S_Coupon_Rules extends Fragment {
 
 			params.add(new BasicNameValuePair("userid", userid));
 			// getting JSON string from URL
-			JSONObject json = Parser.makeHttpRequest(url_all_products, "GET", params);
+			JSONObject json = Parser.makeHttpRequest(AppConfig_Stores.url_get_crcoupon, "GET", params);
 
 			// Check your log cat for JSON reponse
 
@@ -453,7 +457,7 @@ public class S_Coupon_Rules extends Fragment {
 			sp.setAdapter(adp1);
 			sp.setOnItemSelectedListener(new OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-					// TODO Auto-generated method stub
+
 
 					item = sp.getSelectedItem().toString();
 
@@ -463,7 +467,7 @@ public class S_Coupon_Rules extends Fragment {
 				}
 
 				public void onNothingSelected(AdapterView<?> arg0) {
-					// TODO Auto-generated method stub
+
 				}
 			});
 

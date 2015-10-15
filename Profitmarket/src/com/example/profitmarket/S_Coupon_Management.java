@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import app.AppConfig_Stores;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +47,7 @@ public class S_Coupon_Management  extends ListFragment {
 	ArrayList<HashMap<String, String>> productsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://192.168.0.109/couponconnect/getallcoupon.php";
+	//private static String url_all_products = "http://192.168.43.218/couponconnect/getallcoupon.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -113,7 +114,7 @@ public class S_Coupon_Management  extends ListFragment {
 			    params.add(new BasicNameValuePair("userid", userid));
 			    
 			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+			JSONObject json = jParser.makeHttpRequest(AppConfig_Stores.url_get_scmallcoupon, "GET", params);
 	
 			// Check your log cat for JSON reponse
 		

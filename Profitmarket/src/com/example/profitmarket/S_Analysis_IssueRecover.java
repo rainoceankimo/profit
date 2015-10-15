@@ -69,8 +69,8 @@ public class S_Analysis_IssueRecover extends Activity {
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.103/android_connect/get_issue.php";
-	private static String url_all_products2 = "http://192.168.0.103/android_connect/get_issue2.php";
+	private static String url_all_products = "http://192.168.0.103/analysis/get_coupon_no_use.php";
+	private static String url_all_products2 = "http://192.168.0.103/analysis/get_coupon_used.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	private static int[] COLORS = new int[] { Color.YELLOW, Color.BLUE,Color.MAGENTA, Color.DKGRAY ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  
@@ -132,7 +132,7 @@ public class S_Analysis_IssueRecover extends Activity {
 		mRenderer.setLegendTextSize(30);
 
 
-
+           
 
 		mChartView.setOnClickListener(new View.OnClickListener() {  
 		@Override  
@@ -173,53 +173,54 @@ public class S_Analysis_IssueRecover extends Activity {
 			 String  timeY =  intime.getStringExtra("year");
 			
 			
-			String t = productsList.get(0).get("SUM(howp)");
-			Double t1=Double.parseDouble(t);
-			String q = productsList.get(1).get("SUM(howp)");
-			Double q1=Double.parseDouble(q);
-			String a = productsList.get(2).get("SUM(howp)");
-			Double a1=Double.parseDouble(a);
-			String b = productsList.get(3).get("SUM(howp)");
+		//	String t = productsList.get(0).get("SUM(howp)");
+		//	Double t1=Double.parseDouble(t);
+		//	String q = productsList.get(1).get("SUM(howp)");
+		//	Double q1=Double.parseDouble(q);
+		//	String a = productsList.get(2).get("SUM(howp)");
+		//	Double a1=Double.parseDouble(a);
+		//	String b = productsList.get(3).get("SUM(howp)");
              Double timeYD=Double.parseDouble(timeY);
-             Double b1=Double.parseDouble(b); 
+          //   Double b1=Double.parseDouble(b); 
              
              
-             double[] VALUES2 = new double[productsList1.size()];
-			 double as=0;
+             int[] VALUES2 = new int[productsList1.size()];
+             int as=0;
             double size1 =productsList.size();
             double size2 =productsList1.size();
              double size3= size2/size1;
              String page = productsList1.get(0).get("SUM(howp)");
-			 Double page2 = Double.parseDouble(page);
+             int  page2 = Integer.parseInt(page);
+             
 			 for(int i=0;i<productsList.size();i++)
 			 {
 				  String pagess = productsList.get(i).get("SUM(howp)");
-				  Double page233 = Double.parseDouble(pagess);
+				  int page233 =  Integer.parseInt(pagess);
 				 as=as+page233;
 							 
 				 
 			 }
 			 
-			 double getas;
+			 int getas;
 			 getas=as;
-			double all=getas-page2;
-			 
-			double[] VALUES = new double[2];
+			 int all=getas-page2;
+			 int a = page2/getas;
+			 int[] VALUES = new int[2];
 			
 			
 			//Double  all=t1+q1+a1+b1;
 			
 			//String[] NAME_LIST = new String[] { t, q, };
 				
-			String c = productsList.get(0).get("month");
-			String d = productsList.get(1).get("month");
-			String e = productsList.get(2).get("month");
-			String r = productsList.get(3).get("month");
+		//	String c = productsList.get(0).get("month");
+		//	String d = productsList.get(1).get("month");
+		//	String e = productsList.get(2).get("month");
+		//	String r = productsList.get(3).get("month");
 			String[] NAME_LIST=new String[4];
 			NAME_LIST[0]="未使用";
 			NAME_LIST[1]="已使用";
-			NAME_LIST[2]=e;
-			NAME_LIST[3]=r;
+		//	NAME_LIST[2]=e;
+		//	NAME_LIST[3]=r;
 			VALUES[0]=all;
 			VALUES[1]=page2;
 			
@@ -227,16 +228,16 @@ public class S_Analysis_IssueRecover extends Activity {
 			//String  NAME_LIST[] = (String[]) productsList.toArray(new String[0]);
 			//Double  VALUES[] = (Double[]) productsList.toArray(new Double[0]);
 			for (int i = 0; i <2; i++) { 
-				 String  timey = productsList.get(i).get("year");
+				 String  timey = productsList.get(0).get("YEAR(created_date)");
 				 Double timeyr=Double.parseDouble(timey);
 				 //int timeyear = Integer.parseInt(time);
 				 String  time2 = intime.getStringExtra("month");
 				 Double timeMH=Double.parseDouble(time2);
-				 String  timem = productsList.get(i).get("month");
+				 String  timem = productsList.get(0).get("MONTH(created_date)");
 				 Double timemh =Double.parseDouble(timem);
 				if( (timeYD-timeyr==0&&timeMH-timemh==0)){
 					
-			mSeries.add(NAME_LIST[i]+(VALUES[i]), VALUES[i]); 
+			mSeries.add(NAME_LIST[i]+(VALUES[i]+"張"), VALUES[i]); 
 
 			SimpleSeriesRenderer renderer = new SimpleSeriesRenderer(); 
 
@@ -290,13 +291,18 @@ public class S_Analysis_IssueRecover extends Activity {
             session = new SessionManager_Stores(getApplicationContext());
             HashMap<String, String> user = db.getUserDetails();
             String issue_store = user.get("name");
+            
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+            
             params.add(new BasicNameValuePair("issue_store", issue_store));
+            
             // getting JSON string from URL
+            
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
             // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
+            
+            Log.d("All Products1: ", json.toString());
 
             try {
                 // Checking for SUCCESS TAG
@@ -312,16 +318,16 @@ public class S_Analysis_IssueRecover extends Activity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String year = c.getString("year");
-                        String month = c.getString("month");
+                        String YEARcreated_date = c.getString("YEAR(created_date)");
+                        String MONTHcreated_date = c.getString("MONTH(created_date)");
                         String yesorno = c.getString("yesorno");
                         String howp = c.getString("SUM(howp)");
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
                     
                         // adding each child node to HashMap key => value
-                        map.put("year", year);
-                        map.put("month",month);
+                        map.put("YEAR(created_date)",YEARcreated_date);
+                        map.put("MONTH(created_date)",MONTHcreated_date);
                         map.put("yesorno",  yesorno);
                         map.put("SUM(howp)", howp);
                         
@@ -394,16 +400,16 @@ public class S_Analysis_IssueRecover extends Activity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String year = c.getString("year");
-                        String month = c.getString("month");
+                        String YEARcreated_date = c.getString("YEAR(created_date)");
+                        String MONTHcreated_date = c.getString("MONTH(created_date)");
                         String yesorno = c.getString("yesorno");
                         String howp = c.getString("SUM(howp)");
                         // creating new HashMap
                         HashMap<String, String> map1 = new HashMap<String, String>();
                     
                         // adding each child node to HashMap key => value
-                        map1.put("year", year);
-                        map1.put("month",month);
+                        map1.put("YEAR(created_date)",YEARcreated_date);
+                        map1.put("MONTH(created_date)",MONTHcreated_date);
                         map1.put("yesorno",  yesorno);
                         map1.put("SUM(howp)", howp);
                         

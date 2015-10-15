@@ -134,6 +134,7 @@
             android:layout_height="wrap_content"
             android:padding="10dip"
             android:text="確定" />
+
     </LinearLayout>
 
 </LinearLayout>
