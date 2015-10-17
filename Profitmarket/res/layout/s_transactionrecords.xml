@@ -17,17 +17,6 @@
         android:textColor="#000000"
         android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/btnclickqr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:text="確定"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
@@ -48,11 +37,23 @@
     </LinearLayout>
 
     <ListView
-       android:id="@+id/android:list"
+        android:id="@+id/android:list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnclickqr"
         android:layout_below="@+id/linearLayout1"
         android:layout_centerHorizontal="true" >
+
     </ListView>
+
+    <Button
+        android:id="@+id/btnclickqr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="確定"
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
 </RelativeLayout>

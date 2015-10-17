@@ -74,8 +74,8 @@ public class C_Store_information extends Activity {
 	  
 	
 	
-	   JSONParser jsonParser = new JSONParser();
-	   private static final String url_product_detials = "http://192.168.0.109/android_connect2/get_product_details.php";
+	  JSONParser jsonParser = new JSONParser();
+	   //private static final String url_product_detials = "http://192.168.0.109/android_connect2/get_product_details.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class C_Store_information extends Activity {
 		       
 		       csid.setText(uid);
 		       csemail.setText(email);
-		       csname.setText(name);
+		       csname.setText("©±®a¦WºÙ¡G"+name);
 		       csphone.setText(phone);
 		       csaddress.setText(address);
 		       

@@ -7,13 +7,65 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 public class C_mem_view extends Activity {
+	
+	private ImageButton showstore,membercenter,coupon,records;
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_c_mem_view);
+		
+		showstore = (ImageButton)findViewById(R.id.cmvibtn1);
+		membercenter = (ImageButton)findViewById(R.id.cmvibtn2);
+		coupon = (ImageButton)findViewById(R.id.cmvibtn3);
+		records = (ImageButton)findViewById(R.id.cmvibtn4);
+		
+		showstore.setOnClickListener(new Button.OnClickListener(){ 
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent();  
+        	    intent.setClass(C_mem_view.this,C_search_store.class);
+        	    startActivity(intent);    //觸發換頁
+        	    finish();   //結束本頁
+            }         
+        }); 
+		
+		membercenter.setOnClickListener(new Button.OnClickListener(){ 
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent();  
+        	    intent.setClass(C_mem_view.this,C_mem_center.class);
+        	    startActivity(intent);    //觸發換頁
+        	    finish();   //結束本頁
+            }         
+        }); 
+		
+		coupon.setOnClickListener(new Button.OnClickListener(){ 
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent();  
+        	    intent.setClass(C_mem_view.this,C_discount_use.class);
+        	    startActivity(intent);    //觸發換頁
+        	    finish();   //結束本頁
+            }         
+        }); 
+		
+		records.setOnClickListener(new Button.OnClickListener(){ 
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent();  
+        	    intent.setClass(C_mem_view.this,C_record.class);
+        	    startActivity(intent);    //觸發換頁
+        	    finish();   //結束本頁
+            }         
+        }); 
+		
 	}
 
 	@Override
@@ -34,7 +86,7 @@ public class C_mem_view extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	public void c_mem_onClick(View v) {
+/*	public void c_mem_onClick(View v) {
 	    Intent intent = new Intent();  
 	    intent.setClass(C_mem_view.this,C_mem_center.class);
 	    startActivity(intent);    //觸發換頁
@@ -61,8 +113,9 @@ public class C_mem_view extends Activity {
 	   startActivity(intent);    //觸發換頁
 	   finish();   //結束本頁
 	
-    }
-public boolean onKeyDown(int keyCode, KeyEvent event) {
+    } */
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
         
         if (keyCode == KeyEvent.KEYCODE_BACK)
         {

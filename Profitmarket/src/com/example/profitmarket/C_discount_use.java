@@ -116,7 +116,7 @@ public class C_discount_use extends ListActivity {
 	            	String qponid = ((TextView) view.findViewById(R.id.dctlttv05)).getText().toString();
 	            	
 	            	mDlgLogin = new Dialog(C_discount_use.this);
-	    			mDlgLogin.setTitle("QR Code");
+	    			mDlgLogin.setTitle("§é»ù¨é QR Code");
 	    			mDlgLogin.setCancelable(true);
 	    			mDlgLogin.setContentView(R.layout.activity_c_mem_qrcode);
 	    			qrImgImageView = (ImageView) mDlgLogin.findViewById(R.id.imageView_abc);
@@ -181,6 +181,8 @@ public class C_discount_use extends ListActivity {
 		
 		@Override
 		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
 			// SqLite database handler
 	        db = new SQLiteHandler(getApplicationContext());
 	 
@@ -267,7 +269,7 @@ public class C_discount_use extends ListActivity {
 		public void onClick(View v) {
 			
 			mDlgLogin = new Dialog(C_discount_use.this);
-			mDlgLogin.setTitle("QR Code");
+			mDlgLogin.setTitle("·|­û QR Code");
 			mDlgLogin.setCancelable(true);
 			mDlgLogin.setContentView(R.layout.activity_c_mem_qrcode);
 			qrImgImageView = (ImageView) mDlgLogin.findViewById(R.id.imageView_abc);

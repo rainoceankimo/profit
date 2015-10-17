@@ -1,4 +1,7 @@
 package com.example.profitmarket;
+
+import app.AppConfig;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +41,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager_Stores;
 
+
+
 public class CreateFragment extends Fragment {
 	private View v;
 	ListView lv;
@@ -63,7 +68,7 @@ public class CreateFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	private static String url_all_products = "http://192.168.0.109/android_connect2/get_all_products.php";
+	//private static String url_all_products = "http://192.168.0.105/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,7 +118,7 @@ public class CreateFragment extends Fragment {
 	            // Building Parameters
 	            List<NameValuePair> params = new ArrayList<NameValuePair>();
 	            // getting JSON string from URL
-	            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+	            JSONObject json = jParser.makeHttpRequest(AppConfig.url_all_products, "GET", params);
 	            
 	            // Check your log cat for JSON reponse
 	            Log.d("All Products: ", json.toString());
@@ -133,15 +138,15 @@ public class CreateFragment extends Fragment {
 
 	                        // Storing each json item in variable
 	                        String uid = c.getString(TAG_UID);
-	                        String email = c.getString(TAG_EMAIL);
+	                        String email = "e-mail¡G" + c.getString(TAG_EMAIL);
 	                        String name = c.getString(TAG_NAME);
-	                        String address = c.getString(TAG_ADDRESS);
-	                        String phone = c.getString(TAG_PHONE);
+	                        String address = "¦a§}¡G"+c.getString(TAG_ADDRESS);
+	                        String phone = "¹q¸Ü¡G"+c.getString(TAG_PHONE);
 	                        String type = c.getString(TAG_TYPE);
 	                        Double type1=Double.parseDouble(type);
 	                        if(type1==0){
 	                         HashMap<String, String> map = new HashMap<String, String>();
-	                           map.put(TAG_UID, uid);
+	                            map.put(TAG_UID, uid);
 	  	                        map.put(TAG_EMAIL, email);
 	  	                        map.put(TAG_NAME, name);
 	  	                        map.put(TAG_ADDRESS, address);

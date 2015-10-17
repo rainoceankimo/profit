@@ -1,147 +1,96 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCFFFF" >
+    android:background="#CCFFFF"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="fill_parent" 
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:background="#FF6633"
         android:gravity="center"
         android:text="店家資訊"
-        android:textSize="36sp"
         android:textColor="#000000"
-        android:background="#0FFF3F" />
+        android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+    <LinearLayout
+         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="19dp"
-        android:text="電子信箱："
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/scphone"
-        android:layout_alignBottom="@+id/scphone"
-        android:layout_toLeftOf="@+id/textView5"
-        android:text="電話："
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/scname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:layout_marginBottom="20dp"
+            
+            android:textSize="20sp"
+            android:textColor="@color/input_login" />
 
-   
+        <TextView
+            android:id="@+id/scemail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            
+            android:textSize="20sp"
+            android:textColor="@color/input_login" />
 
-    <TextView
-        android:id="@+id/scphone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scaddress"
-        android:layout_below="@+id/scname"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:enabled="false"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/scphone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            
+            android:textSize="20sp"
+            android:textColor="@color/input_login" />
 
-    <TextView
-        android:id="@+id/scemail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_alignLeft="@+id/scphone"
-        android:layout_alignParentRight="true"
-        android:ems="10"
-        android:textColor="#000000"
-        android:inputType="textEmailAddress"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/scaddress"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            
+            android:textSize="20sp"
+            android:textColor="@color/input_login" />
 
-    <TextView
-        android:id="@+id/scname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scemail"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/scemail"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:enabled="false"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/csid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:textColor="@color/input_login" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/scname"
-        android:layout_alignBottom="@+id/scname"
-        android:layout_toLeftOf="@+id/textView5"
-        android:text="名稱："
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="簡介"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/csid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView5"
-        android:layout_alignParentLeft="true"
-        android:visibility="gone"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="等待資訊中..."
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textaddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="34dp"
-        android:text="地址："
-        android:textColor="#000000"
-        android:textSize="20sp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textaddress"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:text="簡介"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView6"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="等待資訊中..."
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/scaddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView6"
-        android:layout_toRightOf="@+id/textView7"
-        android:ems="10"
-        android:enabled="false"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
-</RelativeLayout>
+</LinearLayout>

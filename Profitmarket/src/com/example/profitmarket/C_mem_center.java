@@ -70,7 +70,7 @@ public class C_mem_center extends Activity
         textPhone.setText(phone);
         
         try {
-			String contentString = textName.getText().toString();
+			String contentString = textEmail.getText().toString();
 			if (contentString != null && contentString.trim().length() > 0) {
 				
 				Bitmap qrCodeBitmap =EncodingHandler.createQRCode(contentString, 600);

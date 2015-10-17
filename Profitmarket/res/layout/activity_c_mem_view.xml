@@ -28,104 +28,97 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/cmvibtn4"
         android:layout_width="130dip"
         android:layout_height="130dip"
-        android:layout_alignLeft="@+id/imageButton2"
-        android:layout_alignStart="@+id/imageButton2"
-        android:layout_alignTop="@+id/imageButton3"
+        android:layout_alignLeft="@+id/cmvibtn2"
+        android:layout_alignStart="@+id/cmvibtn2"
+        android:layout_alignTop="@+id/cmvibtn3"
         android:background="@drawable/c_search"
-        android:contentDescription="@drawable/c_search"
-        android:onClick="C_research_onClick" />
+        android:contentDescription="@drawable/c_search" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/cmvibtn2"
         android:layout_width="130dip"
         android:layout_height="130dip"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/imageButton1"
-        android:layout_marginBottom="65dp"
-        android:background="@drawable/c_folder"
-        android:contentDescription="@drawable/c_folder"
-        android:onClick="c_use_onClick" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="130dip"
-        android:layout_height="130dip"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginLeft="16dp"
-        android:layout_toEndOf="@+id/imageButton1"
-        android:layout_toRightOf="@+id/imageButton1"
+        android:layout_alignTop="@+id/cmvibtn1"
+        android:layout_marginLeft="40dp"
+        android:layout_toEndOf="@+id/cmvibtn1"
+        android:layout_toRightOf="@+id/cmvibtn1"
         android:background="@drawable/c_member"
-        android:contentDescription="@drawable/c_member"
-        android:onClick="c_mem_onClick" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton3"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_below="@+id/imageButton2"
-        android:layout_toLeftOf="@+id/imageButton2"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="查詢店家"
-        android:textSize="30sp"
-        android:textColor="#000000" />
+        android:contentDescription="@drawable/c_member" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton4"
-        android:layout_alignLeft="@+id/imageButton4"
-        android:layout_alignRight="@+id/imageButton4"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/cmvibtn4"
+        android:layout_alignRight="@+id/cmvibtn4"
         android:layout_alignTop="@+id/textView2"
         android:gravity="center_vertical|center_horizontal"
         android:text="會員中心"
-        android:textSize="30sp"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/imageButton3"
-        android:layout_below="@+id/imageButton4"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="折價券查看及使用"
-        android:textSize="25sp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton4"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/imageButton4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/cmvibtn4"
+        android:layout_alignRight="@+id/cmvibtn4"
         android:layout_alignTop="@+id/textView4"
         android:gravity="center_vertical|center_horizontal"
-        android:text="查詢交易紀錄"
-        android:textSize="25sp"
-        android:textColor="#000000" />
+        android:text="交易紀錄"
+        android:textColor="#000000"
+        android:textSize="30sp" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/cmvibtn1"
         android:layout_width="130dip"
         android:layout_height="130dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="34dp"
         android:background="@drawable/c_store"
-        android:contentDescription="@drawable/c_store"
-        android:onClick="c_sstore__onClick" />
+        android:contentDescription="@drawable/c_store" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cmvibtn1"
+        android:layout_below="@+id/cmvibtn1"
+        android:layout_toLeftOf="@+id/cmvibtn2"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="查詢店家"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <ImageButton
+        android:id="@+id/cmvibtn3"
+        android:layout_width="130dip"
+        android:layout_height="130dip"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/c_folder"
+        android:contentDescription="@drawable/c_folder" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cmvibtn3"
+        android:layout_alignRight="@+id/cmvibtn3"
+        android:layout_below="@+id/cmvibtn3"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="折價券"
+        android:textColor="#000000"
+        android:textSize="30sp" />
 
 </RelativeLayout>

@@ -35,7 +35,7 @@ public class S_TransactionRecords extends ListActivity {
 	public static final String TID = "id";
 	public static final String TYPE = "type";
 	public static final String DATE = "date";
-	public static final String CONSUMPTION = "cousumption";
+	public static final String CONSUMPTION = "consumption";
 	public static final String DISCOUNT = "discount";
 	public static final String GRANT = "grant";
 	public static final String GRANTDENOMINATIONS = "grantdenominations";
@@ -43,11 +43,12 @@ public class S_TransactionRecords extends ListActivity {
 	public static final String QPONUSE = "Qponuse";
 	public static final String QPONNO = "QponNo";
 	public static final String USEDENOMINATIONS = "usedenominations";
+	public static final String COUNTCONSUMPTION = "countconsumption";
 	public static final String TRADETTMONEY = "tradettmoney";
 
 
 	String[] columns = 
-			 {TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,TRADETTMONEY};
+			 {TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,COUNTCONSUMPTION,TRADETTMONEY};
 
 	private SQLiteDatabase mtradeDb;
 	
@@ -95,6 +96,7 @@ public class S_TransactionRecords extends ListActivity {
 	        			          QPONUSE + " TEXT," +
 	        			          QPONNO + " TEXT," +
 	        			          USEDENOMINATIONS + " TEXT," +
+	        			          COUNTCONSUMPTION + " TEXT," +
 	        			          TRADETTMONEY + " TEXT);");
 	        	
 	        	Toast.makeText(S_TransactionRecords.this, "新增成功", Toast.LENGTH_SHORT).show();
@@ -239,12 +241,12 @@ public class S_TransactionRecords extends ListActivity {
         	c.moveToFirst();
         	showrecod.setText(c.getString(0) + c.getString(1)  + c.getString(2) + c.getString(3) + c.getString(4)
 			                 + c.getString(5) + c.getString(6) + c.getString(7) + c.getString(8) + c.getString(9)
-			                 + c.getString(10) +  c.getString(11));
+			                 + c.getString(10) +  c.getString(12));
 			
 			while (c.moveToNext())
 				showrecod.append("\n" + c.getString(0) + c.getString(1)  + c.getString(2) + c.getString(3) + c.getString(4)
                                      + c.getString(5) + c.getString(6) + c.getString(7) + c.getString(8) + c.getString(9)
-                                     + c.getString(10) +  c.getString(11));
+                                     + c.getString(10) +  c.getString(12));
         }
         
     }
