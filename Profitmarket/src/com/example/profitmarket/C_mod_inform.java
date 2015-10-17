@@ -41,6 +41,7 @@ public class C_mod_inform extends Activity {
     private SessionManager session;
     private static final String TAG_SUCCESS = "success";
     //private static final String url_update_product = "http://192.168.0.109/memberdetail/updatememberdetail.php";
+
 	private static final String TAG_EMAIL = "email";
 	private static final String TAG_NAME = "name";
 	private static final String TAG_PHONE = "phone";

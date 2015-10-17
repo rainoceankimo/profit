@@ -64,7 +64,7 @@ public class S_Analysis_Revenue extends Activity {
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.103/android_connect/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	private static int[] COLORS = new int[] { Color.YELLOW, Color.BLUE,Color.MAGENTA, Color.DKGRAY ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  

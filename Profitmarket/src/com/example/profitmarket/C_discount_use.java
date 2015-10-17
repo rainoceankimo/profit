@@ -67,7 +67,7 @@ public class C_discount_use extends ListActivity {
 	ArrayList<HashMap<String, String>> couponsList;
 
 	// url to get all products list
-	//private static String url_all_products = "http://192.168.43.218/addQpon/getcoupon.php";
+	private static String url_all_products = "http://192.168.0.111/addQpon/getcoupon.php";
 	
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -194,7 +194,7 @@ public class C_discount_use extends ListActivity {
 	        params.add(new BasicNameValuePair("username",username));
 	        
 	        // getting JSON string from URL
-	        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_qponmessage, "GET", params);
+	        JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 			
 	        try {
 				// Checking for SUCCESS TAG

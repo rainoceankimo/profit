@@ -1,6 +1,7 @@
 package app;
 
 public class AppConfig_Stores {
+	
     // Server user login url
     public static String URL_LOGIN = "http://192.168.0.101/android_login_stores/";
 
@@ -21,5 +22,11 @@ public class AppConfig_Stores {
 
     // use to S_Coupon_Buy
     public static String url_create_buycoupon = "http://192.168.0.101/couponconnect/create.php";
+
+    
+    
+    
+    
+
     
 }

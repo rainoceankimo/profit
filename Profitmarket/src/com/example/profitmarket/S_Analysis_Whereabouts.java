@@ -3,10 +3,17 @@ package com.example.profitmarket;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeMap;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.chart.BarChart.Type;
@@ -15,6 +22,7 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,32 +46,67 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import helper.SQLiteHandler;
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager;
+import helper.SessionManager_Stores;
 public class S_Analysis_Whereabouts extends Activity {
 	
-	public static   JSONParser jParser = new JSONParser();
-	  
-	 public static ArrayList<HashMap<String, String>> productsList;
-		
-	private float[] ydata[];
+	public static JSONParser jParser = new JSONParser();
+	private SQLiteHandler_Stores db;
+	private SessionManager_Stores session;
+	public static ArrayList<HashMap<String, String>> productsList;
+	public  ArrayList arr2= new ArrayList();
+	private int[] ydata[];
 	private static final int SERIES_NR = 1;
-
+    
 	public static  String TAG_SUCCESS = "success";
 	public static  String TAG_PRODUCTS = "products";
 	public static String TAG_PID = "pid";
 	public static  String TAG_NAME = "name";
 	public static  String TAG_PRICE = "price";
+	public static  String TAG_YEAR = "year";
+	public static  String TAG_MONTH = "month";
 	// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.103/analysis/get_all_issue.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.s_analysis_whereabouts);
 		new LoadAllProducts().execute();
-		productsList = new ArrayList<HashMap<String, String>>(10);	  
+		productsList = new ArrayList<HashMap<String, String>>();	  
 	}
+	 /* public static void main(String[] args) {
+		     //初始化ArrayList
+		     ArrayList<String> myList = new ArrayList<String>();
+		     myList.add(productsList.get(0).get("receive"));
+		     myList.add("Apple");
+		     myList.add("Design");
+		     myList.add("Center");
+		 	String r = productsList.get(0).get("SUM(howp)");
+		     //將排序前的資料顯示出來
+		     System.out.println("排序前：");
+		     for (String str : myList) {
+		     System.out.println(str);
+		     }
+
+		     //進行排序
+		     Collections.sort(myList);
+		     System.out.println("\n");
+
+		     //將排序後的資料顯示出來
+		     System.out.println("排序後：");
+		     for (String str : myList) {
+		     System.out.println(str);
+		     }
+		    }*/
+		
+	
+	
+	
 	protected void onTry() {
 		/*pDialog = ProgressDialog.show(S_Analysis_Revenue.this,
 		        "讀取中", "請等待3秒...",true);
@@ -86,49 +129,112 @@ public class S_Analysis_Whereabouts extends Activity {
 		startActivity(intent);
 		finish();
 		}
+
 		private XYMultipleSeriesDataset getBarDemoDataset() {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+		 Intent intime = getIntent();
+		
 
-		//final int nr = 1;
-	    //String t = productsList.get(1).get(TAG_PRICE);
-		//Double t1=Double.parseDouble(t);
-		//String q = productsList.get(2).get(TAG_PRICE);
-		//Double q1=Double.parseDouble(q);
 		for ( int i = 0; i < SERIES_NR ; i++) {
-		CategorySeries series = new CategorySeries( "折價券張數"  );
-		for ( int k = 0; k < productsList.size(); k++) {
-			String r = productsList.get(k).get(TAG_PRICE);
-			Double r1=Double.parseDouble(r);
-			series.add( r1 );
+		CategorySeries series = new CategorySeries(  "折價卷張數"  );
+		
+		for ( int k = 0; k <products.length(); k++) {
+			 String  timeY =  intime.getStringExtra("year");
+			  Map<Integer, String> treeMap = new TreeMap<Integer, String>(  
+		                new Comparator<Integer>() {  
+		  
+		                    @Override  
+		                    public int compare(Integer o1, Integer o2) {  
+		                        return o2.compareTo(o1);//降序  
+		                    }  
+		                });   
+			 String s1 =productsList.get(k).get("SUM(howp)");
+			 int is = Integer.parseInt(s1);
+			 String r1 = productsList.get(k).get("receive_store");
+			// int r2 = Integer.parseInt(r1);
+ 			 treeMap.put(is, r1);
+			
+ 	         List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
+			
+ 	         Iterator<Integer> iter = treeMap.keySet().iterator();  
+ 	     
+			 Double timeYD=Double.parseDouble(timeY);
+			 
+			 String  timey = productsList.get(k).get("YEAR(created_date)");
+			 Double timeyr=Double.parseDouble(timey);
+			 //int timeyear = Integer.parseInt(time);
+			 
+			 String  time2 = intime.getStringExtra("month");
+			 Double timeMH=Double.parseDouble(time2);
+			
+			 String  timem = productsList.get(k).get("MONTH(created_date)");
+	
+			 Double timemh =Double.parseDouble(timem);
+			 if( (timeYD-timeyr==0&&timeMH-timemh==0)){
+				  while (iter.hasNext()) {
+					  Integer key = iter.next();  
+			 	      String qaw =  treeMap.get(key);
+				         String s = String.valueOf(qaw);      
+				         series.add(key);
+				          Log.d("All Products23: ", s );
+			 	      }
+			
+			}
 		}
-		/*
-		for ( int z = 0; z < 1; z++) {
-		series.add(t1);
-		}
-		for ( int w = 0; w < nr; w++) {
-		series.add(q1);
-		}
-		*/
 		dataset.addSeries(series.toXYSeries());
 		}
 		return dataset;
 		}                
+
 		public XYMultipleSeriesRenderer getBarDemoRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		 //int PID= Integer.valueOf(TAG_PID);
-		 //int[] yo =new int[PID];
-		int qw=5;
-		double ts=1;
 		renderer.setPanEnabled(false, true);
-			/*String[] d =new String[10];
-			 d[1]="1231";
-			 d[2]="21";
-			 d[3]="123";
-			 d[4]="12321";
-			 d[5]="12ww1";
-			 d[6]="ww";*/
-			 for(int i=0;i<products.length();i++){
-				 renderer.addXTextLabel(i+1, productsList.get(i).get(TAG_NAME));
+		
+	 for(int i=0;i<products.length();i++){
+				// String name2=productsList.get(i).get(TAG_NAME);
+				// if(username.equals(name2)){
+				// renderer.addXTextLabel(i+1, productsList.get(i).get("receive_store"));
+				// }	
+		 Map<Integer, String> treeMap = new TreeMap<Integer, String>(  
+	                new Comparator<Integer>() {  
+	  
+	                    @Override  
+	                    public int compare(Integer o1, Integer o2) {  
+	                        return o2.compareTo(o1);//降序  
+	                    }  
+	                });   
+		 String s1 =productsList.get(i).get("SUM(howp)");
+		 int is = Integer.parseInt(s1);
+		 String r1 = productsList.get(i).get("receive_store");
+		// int r2 = Integer.parseInt(r1);
+		 treeMap.put(is, r1);
+		
+      List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
+		
+     Iterator<Integer> iter = treeMap.keySet().iterator();  
+			//String rrr =(String)arr2.get(i);
+			//Double rd2=Double.parseDouble(rd);
+			//String rrr = productsList.get(i).get("receive_store");
+		// for (Iterator it = map.entrySet().iterator(); it.hasNext();) {
+			//   Map.Entry mapEntry = (Map.Entry) it.next();
+      while (iter.hasNext()) {
+		  Integer key = iter.next();  
+ 	      String qaw =  treeMap.get(key);
+	         String s = String.valueOf(qaw); 
+	       //  int is3 = Integer.parseInt(qaw);
+	       //  int is5 = Integer.parseInt(key);
+	         renderer.addXTextLabel(i+1,qaw);
+	         //series.add(qaw);
+	          Log.d("All Products234: ", s );
+ 	      }
+			 
+	         // Log.d("All Products23: ", mapper.getKey()  );
+	              
+			  // String qe=  ( String) mapper.getKey();
+		       // String s = String.valueOf(qe);
+		         
+		
+		  //}
 			 }
 		   /*for(int i=0;i<6;i++){
 			renderer.addXTextLabel(i, d[i]);
@@ -138,13 +244,13 @@ public class S_Analysis_Whereabouts extends Activity {
 		   renderer.addTextLabel(3,"帥哥的店");
 		   renderer.addTextLabel(4,"帥哥的店2"); 
 		*/
-		renderer.setMargins(new int[] {40, 50, 15, 0}); 
+		renderer.setMargins(new int[] {40, 50, 25, 25}); 
 		renderer.setApplyBackgroundColor(true);
 		renderer.setBackgroundColor(Color.WHITE);
 		renderer.setMarginsColor(Color.CYAN);
 		renderer.setXLabelsAlign(Align.CENTER);            
 		renderer.setYLabelsAlign(Align.CENTER); 
-		renderer.setLabelsTextSize(20); 
+		renderer.setLabelsTextSize(10); 
 		renderer.setZoomEnabled(false,false);
 		renderer.setXLabels(0); 
 		renderer.setShowGrid(true);
@@ -173,14 +279,14 @@ public class S_Analysis_Whereabouts extends Activity {
 		renderer.setChartTitle( "折價券使用店家分析" );
 		renderer.setXTitle( "使用店家 " );
 		renderer.setChartTitleTextSize(40);
-		renderer.setPanEnabled(false, false);
-		renderer.setYTitle("折價券使用量  ");
+		renderer.setPanEnabled(true, false);
+		renderer.setYTitle("折價券張數  ");
 		renderer.setAxisTitleTextSize(25);
-		renderer.setBarSpacing(0.1);
+		renderer.setBarSpacing(0.5);
 		renderer.setXAxisMin(0.5);
-		renderer.setXAxisMax(10.5);
+		renderer.setXAxisMax(products.length());
 		renderer.setYAxisMin(0);
-		renderer.setYAxisMax(1000);
+		renderer.setYAxisMax(100);
 		}
 		 public boolean onKeyDown(int keyCode, KeyEvent event) {
 		        
@@ -212,12 +318,21 @@ public class S_Analysis_Whereabouts extends Activity {
          * */
         protected String doInBackground(String... args) {
             // Building Parameters
+        	
+        	db = new SQLiteHandler_Stores(getApplicationContext());
+	        // session manager
+	        session = new SessionManager_Stores(getApplicationContext());
+	        HashMap<String, String> user = db.getUserDetails();
+	        String issue_store = user.get("name");
+	        
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("issue_store", issue_store));
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
             // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
+            Log.d("All Products_ISSUE: ", json.toString());
+            
 
             try {
                 // Checking for SUCCESS TAG
@@ -226,27 +341,34 @@ public class S_Analysis_Whereabouts extends Activity {
                 if (success == 1) {
                     // products found
                     // Getting Array of Products
-                    products = json.getJSONArray(TAG_PRODUCTS);
-
+                    products = json.getJSONArray("issueqpon");
+                   
                     // looping through All Products
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject c = products.getJSONObject(i);
-
+                      
                         // Storing each json item in variable
-                        String id = c.getString(TAG_PID);
-                        String name = c.getString(TAG_NAME);
-                        String price = c.getString(TAG_PRICE);
-                        
+                       // String id = c.getString(TAG_PID);
+                      //  String name = c.getString(TAG_NAME);
+                      //  String price = c.getString(TAG_PRICE);
+                        String YEARcreated_date = c.getString("YEAR(created_date)");
+                        String MONTHcreated_date = c.getString("MONTH(created_date)");
+                        String receive_store = c.getString("receive_store");
+                        String howp = c.getString("SUM(howp)");
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
-                        map.put(TAG_PID, id);
-                        map.put(TAG_NAME, name);
-                        map.put(TAG_PRICE, price);
-                        
+                      //  map.put(TAG_PID, id);
+                      //  map.put(TAG_NAME, name);
+                       // map.put(TAG_PRICE, price);
+                        map.put("YEAR(created_date)", YEARcreated_date);
+                        map.put("MONTH(created_date)", MONTHcreated_date);
+                        map.put("receive_store", receive_store);
+                        map.put("SUM(howp)",howp);
                         // adding HashList to ArrayList
                         productsList.add(map);
+
                     }
                 } 
             } catch (JSONException e) {
@@ -261,6 +383,15 @@ public class S_Analysis_Whereabouts extends Activity {
     		
     }
       
-        
 }
+    
+    
+    
+    class myComparator implements Comparator<Map.Entry<Integer, String>>{  
+    	  
+        public int compare(Entry<Integer, String> o1,  
+                Entry<Integer, String> o2) {  
+            return o1.getKey()-o2.getKey();  
+        }  
+    }
 }

@@ -67,6 +67,7 @@ public class ReadFragment extends Fragment {
 	public static JSONArray products = null;
 	
 	//private static String url_all_products = "http://192.168.0.109/android_connect2/get_all_products.php";
+
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,16 +84,7 @@ public class ReadFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.fragment_create, container, false);
-		
-		//adapter = new CustomListAdapter2(getActivity(), z, cost, x, howmuch, y);
-		// ListView lv = (ListView)v.findViewById(R.id.listView1);
-		// String[] arr = new String[]{
-		         //  " t","q","a","b"};
-      // ArrayAdapter<String> adapter = 
-            //new ArrayAdapter<String>(getActivity(),
-            //    android.R.layout.simple_list_item_1,arr);
-     //   lv.setAdapter(adapter);
-		
+
 		return v;
 		
 	}

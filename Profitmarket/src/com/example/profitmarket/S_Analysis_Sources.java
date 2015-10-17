@@ -3,10 +3,17 @@ package com.example.profitmarket;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeMap;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.chart.BarChart.Type;
@@ -15,11 +22,12 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.profitmarket.S_Analysis_Revenue.LoadAllProducts;
+
 
 import android.R.color;
 import android.app.Activity;
@@ -39,16 +47,19 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import helper.SQLiteHandler;
+import helper.SQLiteHandler_Stores;
 import helper.SessionManager;
+import helper.SessionManager_Stores;
 public class S_Analysis_Sources extends Activity {
-	public static   JSONParser jParser = new JSONParser();
-	private SQLiteHandler db;
-    private SessionManager session;
-	 public static ArrayList<HashMap<String, String>> productsList;
-		
-	private float[] ydata[];
+	
+	public static JSONParser jParser = new JSONParser();
+	private SQLiteHandler_Stores db;
+	private SessionManager_Stores session;
+	public static ArrayList<HashMap<String, String>> productsList;
+	public  ArrayList arr2= new ArrayList();
+	private int[] ydata[];
 	private static final int SERIES_NR = 1;
-    String time,time2,time3;
+    
 	public static  String TAG_SUCCESS = "success";
 	public static  String TAG_PRODUCTS = "products";
 	public static String TAG_PID = "pid";
@@ -56,88 +67,147 @@ public class S_Analysis_Sources extends Activity {
 	public static  String TAG_PRICE = "price";
 	public static  String TAG_YEAR = "year";
 	public static  String TAG_MONTH = "month";
-	public static  String TAG_DAY = "day";
 	// products JSONArray
-	
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://10.3.204.2/android_connect/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.103/analysis/get_all_receive.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.s_analysis_sources);
-		   Intent intime = getIntent();
-		   time = intime.getStringExtra(TAG_YEAR);
-		   time2 = intime.getStringExtra(TAG_MONTH);
-		
+		//setContentView(R.layout.s_analysis_whereabouts);
 		new LoadAllProducts().execute();
-		productsList = new ArrayList<HashMap<String, String>>(10);	 
-		
-		
+		productsList = new ArrayList<HashMap<String, String>>();	  
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.s__analysis__sources, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 	protected void onTry() {
-		
+		/*pDialog = ProgressDialog.show(S_Analysis_Revenue.this,
+		        "弄い", "叫单3...",true);
+		new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try{
+		            Thread.sleep(6000);
+		        }
+		        catch(Exception e){
+		            e.printStackTrace();
+		        }
+		        finally{
+		            pDialog.dismiss();
+		        }
+		    } 
+		}).start();*/
 		XYMultipleSeriesRenderer renderer = getBarDemoRenderer();
 		Intent intent = ChartFactory.getBarChartIntent ( this , getBarDemoDataset(), renderer, Type. DEFAULT );
 		startActivity(intent);
 		finish();
-		
 		}
-	private XYMultipleSeriesDataset getBarDemoDataset() {
+
+		private XYMultipleSeriesDataset getBarDemoDataset() {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-				for ( int i = 0; i < SERIES_NR ; i++) {
-					CategorySeries series = new CategorySeries( "ч基ㄩ眎计"  );
-					for ( int k = 0; k < productsList.size(); k++) {
-						if( productsList.get(k).get(TAG_YEAR) ==time && productsList.get(k).get(TAG_MONTH)==time2)
-					{
-						String r = productsList.get(k).get(TAG_PRICE);
-						Double r1=Double.parseDouble(r);
-						series.add( r1 );
-					}		   
-		       }
-		dataset.addSeries(series.toXYSeries());
-		   }
+		 Intent intime = getIntent();
 		
+
+		for ( int i = 0; i < SERIES_NR ; i++) {
+		CategorySeries series = new CategorySeries(  "ч基眎计"  );
+		
+		for ( int k = 0; k <products.length(); k++) {
+			 String  timeY =  intime.getStringExtra("year");
+			  Map<Integer, String> treeMap = new TreeMap<Integer, String>(  
+		                new Comparator<Integer>() {  
+		  
+		                    @Override  
+		                    public int compare(Integer o1, Integer o2) {  
+		                        return o2.compareTo(o1);//  
+		                    }  
+		                });   
+			 String s1 =productsList.get(k).get("SUM(howp)");
+			 int is = Integer.parseInt(s1);
+			 String r1 = productsList.get(k).get("issue_store");
+			// int r2 = Integer.parseInt(r1);
+ 			 treeMap.put(is, r1);
+			
+ 	         List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
+			
+ 	         Iterator<Integer> iter = treeMap.keySet().iterator();  
+ 	     
+			 Double timeYD=Double.parseDouble(timeY);
+			 
+			 String  timey = productsList.get(k).get("YEAR(created_date)");
+			 Double timeyr=Double.parseDouble(timey);
+			 //int timeyear = Integer.parseInt(time);
+			 
+			 String  time2 = intime.getStringExtra("month");
+			 Double timeMH=Double.parseDouble(time2);
+			
+			 String  timem = productsList.get(k).get("MONTH(created_date)");
+	
+			 Double timemh =Double.parseDouble(timem);
+			 if( (timeYD-timeyr==0&&timeMH-timemh==0)){
+				  while (iter.hasNext()) {
+					  Integer key = iter.next();  
+			 	      String qaw =  treeMap.get(key);
+				         String s = String.valueOf(qaw);      
+				         series.add(key);
+				          Log.d("All Products23: ", s );
+			 	      }
+			
+			}
+		}
+		dataset.addSeries(series.toXYSeries());
+		}
 		return dataset;
-		}      
+		}                
 
 		public XYMultipleSeriesRenderer getBarDemoRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		 //int PID= Integer.valueOf(TAG_PID);
-		 //int[] yo =new int[PID];
+		renderer.setPanEnabled(false, true);
 		
-		int qw=5;
-		double ts=1;
-		  renderer.setPanEnabled(false, true);
-		    db = new SQLiteHandler(getApplicationContext());
-	        // session manager
-	        session = new SessionManager(getApplicationContext());
-	        HashMap<String, String> user = db.getUserDetails();
-	        String username = user.get("name");
-			 for(int i=0;i<products.length();i++){
-				 if(username==productsList.get(i).get(TAG_NAME))
-				 {
-				 renderer.addXTextLabel(i+1, productsList.get(i).get(TAG_NAME));}
+	 for(int i=0;i<products.length();i++){
+				// String name2=productsList.get(i).get(TAG_NAME);
+				// if(username.equals(name2)){
+				// renderer.addXTextLabel(i+1, productsList.get(i).get("receive_store"));
+				// }	
+		 Map<Integer, String> treeMap = new TreeMap<Integer, String>(  
+	                new Comparator<Integer>() {  
+	  
+	                    @Override  
+	                    public int compare(Integer o1, Integer o2) {  
+	                        return o2.compareTo(o1);//  
+	                    }  
+	                });   
+		 String s1 =productsList.get(i).get("SUM(howp)");
+		 int is = Integer.parseInt(s1);
+		 String r1 = productsList.get(i).get("issue_store");
+		// int r2 = Integer.parseInt(r1);
+		 treeMap.put(is, r1);
+		
+      List<Entry<Integer, String>> arrayList = new ArrayList<Entry<Integer, String>>(treeMap.entrySet());  
+		
+     Iterator<Integer> iter = treeMap.keySet().iterator();  
+			//String rrr =(String)arr2.get(i);
+			//Double rd2=Double.parseDouble(rd);
+			//String rrr = productsList.get(i).get("receive_store");
+		// for (Iterator it = map.entrySet().iterator(); it.hasNext();) {
+			//   Map.Entry mapEntry = (Map.Entry) it.next();
+      while (iter.hasNext()) {
+		  Integer key = iter.next();  
+ 	      String qaw =  treeMap.get(key);
+	         String s = String.valueOf(qaw); 
+	       //  int is3 = Integer.parseInt(qaw);
+	       //  int is5 = Integer.parseInt(key);
+	         renderer.addXTextLabel(i+1,qaw);
+	         //series.add(qaw);
+	          Log.d("All Products234: ", s );
+ 	      }
+			 
+	         // Log.d("All Products23: ", mapper.getKey()  );
+	              
+			  // String qe=  ( String) mapper.getKey();
+		       // String s = String.valueOf(qe);
+		         
+		
+		  //}
 			 }
 		   /*for(int i=0;i<6;i++){
 			renderer.addXTextLabel(i, d[i]);
@@ -147,13 +217,13 @@ public class S_Analysis_Sources extends Activity {
 		   renderer.addTextLabel(3,"┍");
 		   renderer.addTextLabel(4,"┍2"); 
 		*/
-		renderer.setMargins(new int[] {40, 50, 15, 0}); 
+		renderer.setMargins(new int[] {25, 30, 10, 15}); 
 		renderer.setApplyBackgroundColor(true);
 		renderer.setBackgroundColor(Color.WHITE);
 		renderer.setMarginsColor(Color.CYAN);
 		renderer.setXLabelsAlign(Align.CENTER);            
 		renderer.setYLabelsAlign(Align.CENTER); 
-		renderer.setLabelsTextSize(20); 
+		renderer.setLabelsTextSize(15); 
 		renderer.setZoomEnabled(false,false);
 		renderer.setXLabels(0); 
 		renderer.setShowGrid(true);
@@ -162,10 +232,12 @@ public class S_Analysis_Sources extends Activity {
 		renderer.setYLabelsColor(0, Color.BLACK);
 		renderer.setGridColor(Color.BLUE);
 		renderer.setLabelsColor(Color.BLACK);
-		renderer.setLegendTextSize(20);
+		renderer.setLegendTextSize(30);
+		//renderer.setXLabelsAngle(15);
+		
 		SimpleSeriesRenderer r = new SimpleSeriesRenderer();
 		r.setColor(Color.RED );
-
+     
 		renderer.addSeriesRenderer(r);
 		        
 		//r = new SimpleSeriesRenderer();
@@ -174,22 +246,23 @@ public class S_Analysis_Sources extends Activity {
 
 		//renderer.addSeriesRenderer(r);
 		renderer.setDisplayChartValues(true);
-		renderer.setChartValuesTextSize(20);
+		renderer.setChartValuesTextSize(30);
 		setChartSettings(renderer);
 		return renderer;
 		}
 		private void setChartSettings(XYMultipleSeriesRenderer renderer) {
-		renderer.setChartTitle( "ч基ㄩㄏノ┍產だ猂" );
-		renderer.setXTitle( "ㄏノ┍產 " );
+		renderer.setChartTitle( "ч基ㄩㄓ方┍產だ猂" );
+		renderer.setXTitle( "ㄓ方┍產 " );
 		renderer.setChartTitleTextSize(40);
-		renderer.setPanEnabled(false, false);
-		renderer.setYTitle("ч基ㄩㄏノ秖  ");
+		renderer.setPanEnabled(true, false);
+		renderer.setYTitle("ч基ㄩ眎计  ");
 		renderer.setAxisTitleTextSize(25);
-		renderer.setBarSpacing(0.1);
+		renderer.setBarSpacing(0.2);
 		renderer.setXAxisMin(0.5);
-		renderer.setXAxisMax(10.5);
+	
+		renderer.setXAxisMax(products.length());
 		renderer.setYAxisMin(0);
-		renderer.setYAxisMax(1000);
+		renderer.setYAxisMax(100);
 		}
 		 public boolean onKeyDown(int keyCode, KeyEvent event) {
 		        
@@ -205,70 +278,96 @@ public class S_Analysis_Sources extends Activity {
 		        
 		        return super.onKeyDown(keyCode, event);
 		    }
+    class LoadAllProducts extends AsyncTask <String, String, String> {
+   	 
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+           
+        }
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            // Building Parameters
+        	
+        	db = new SQLiteHandler_Stores(getApplicationContext());
+	        // session manager
+	        session = new SessionManager_Stores(getApplicationContext());
+	        HashMap<String, String> user = db.getUserDetails();
+	        String receive_store = user.get("name");
+	        
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("receive_store", receive_store));
+            // getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+
+            // Check your log cat for JSON reponse
+            Log.d("All Products_RECEIVE: ", json.toString());
+            
+
+            try {
+                // Checking for SUCCESS TAG
+                int success = json.getInt(TAG_SUCCESS);
+                 
+                if (success == 1) {
+                    // products found
+                    // Getting Array of Products
+                    products = json.getJSONArray("issueqpon");
+                   
+                    // looping through All Products
+                    for (int i = 0; i < products.length(); i++) {
+                        JSONObject c = products.getJSONObject(i);
+                      
+                        // Storing each json item in variable
+                       // String id = c.getString(TAG_PID);
+                      //  String name = c.getString(TAG_NAME);
+                      //  String price = c.getString(TAG_PRICE);
+                        String YEARcreated_date = c.getString("YEAR(created_date)");
+                        String MONTHcreated_date = c.getString("MONTH(created_date)");
+                        String issue_store = c.getString("issue_store");
+                        String howp = c.getString("SUM(howp)");
+                        // creating new HashMap
+                        HashMap<String, String> map = new HashMap<String, String>();
+
+                        // adding each child node to HashMap key => value
+                      //  map.put(TAG_PID, id);
+                      //  map.put(TAG_NAME, name);
+                       // map.put(TAG_PRICE, price);
+                        map.put("YEAR(created_date)", YEARcreated_date);
+                        map.put("MONTH(created_date)", MONTHcreated_date);
+                        map.put("issue_store", issue_store);
+                        map.put("SUM(howp)",howp);
+                        // adding HashList to ArrayList
+                        productsList.add(map);
+
+                    }
+                } 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+        protected void onPostExecute(String result) {
+    		super.onPostExecute(result);
+    		onTry();
+    		
+    }
+      
+}
     
-		 class LoadAllProducts extends AsyncTask <String, String, String> {
-		   	 
-		        /**
-		         * Before starting background thread Show Progress Dialog
-		         * */
-		       // @Override
-		       /* protected void onPreExecute() {
-		            super.onPreExecute();
-		           
-		        }*/
-		       
-		        /**
-		         * getting All products from url
-		         * */
-		        protected String doInBackground(String... args) {
-		            // Building Parameters
-		            List<NameValuePair> params = new ArrayList<NameValuePair>();
-		            // getting JSON string from URL
-		            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
-
-		            // Check your log cat for JSON reponse
-		            Log.d("All Products: ", json.toString());
-
-		            try {
-		                // Checking for SUCCESS TAG
-		                int success = json.getInt(TAG_SUCCESS);
-		                 
-		                if (success == 1) {
-		                    // products found
-		                    // Getting Array of Products
-		                    products = json.getJSONArray(TAG_PRODUCTS);
-
-		                    // looping through All Products
-		                    for (int i = 0; i < products.length(); i++) {
-		                        JSONObject c = products.getJSONObject(i);
-
-		                        // Storing each json item in variable
-		                        String id = c.getString(TAG_PID);
-		                        String name = c.getString(TAG_NAME);
-		                        String price = c.getString(TAG_PRICE);
-		                        String year = c.getString(TAG_YEAR);
-		                        // creating new HashMap
-		                        HashMap<String, String> map = new HashMap<String, String>();
-
-		                        // adding each child node to HashMap key => value
-		                        map.put(TAG_PID, id);
-		                        map.put(TAG_NAME, name);
-		                        map.put(TAG_PRICE, price);
-		                        map.put(TAG_YEAR, year);
-		                        // adding HashList to ArrayList
-		                        productsList.add(map);
-		                    }
-		                } 
-		            } catch (JSONException e) {
-		                e.printStackTrace();
-		            }
-
-		            return null;
-		        }
-		        protected void onPostExecute(String result) {
-		    		super.onPostExecute(result);
-		    		onTry();
-		    		
-		    }
-		 }
+    
+    
+    class myComparator implements Comparator<Map.Entry<Integer, String>>{  
+    	  
+        public int compare(Entry<Integer, String> o1,  
+                Entry<Integer, String> o2) {  
+            return o1.getKey()-o2.getKey();  
+        }  
+    }
 }

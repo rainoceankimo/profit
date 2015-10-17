@@ -20,13 +20,16 @@ public class S_Analysis extends Activity {
  private DatePicker mDatepicker;
  private static TextView ss;
  String s;
- Button button2;
+ Button  button1,button2, button3, button4;
  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_analysis_view);
-	    ss =(TextView)findViewById(R.id.timeresult);
+	
+	    button1 = (Button)findViewById(R.id.button1);
+	    button3 = (Button)findViewById(R.id.button3);
+	    button4 = (Button)findViewById(R.id.button4);
 	    button2 = (Button)findViewById(R.id.button2);
 	    
 		button2.setOnClickListener(new OnClickListener() {     
@@ -102,7 +105,215 @@ public class S_Analysis extends Activity {
                 
             }  
 		});
-    }  
+       button3.setOnClickListener(new OnClickListener() {     
+			
+            public void onClick(View v) {  
+                final DatePicker datePicker = new DatePicker(S_Analysis.this);  
+                datePicker.setCalendarViewShown(false);  
+   
+                //
+                try {  
+                    Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+                    daySpinner.setAccessible(true);  
+                    ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+                } catch (NoSuchFieldException e) {  
+                    e.printStackTrace();  
+                } catch (IllegalArgumentException e) {  
+                    e.printStackTrace();  
+                } catch (IllegalAccessException e) {  
+                    e.printStackTrace();  
+                }  
+   
+               // Calendar minCalendar = Calendar.getInstance();  
+               // minCalendar.get(Calendar.HOUR_OF_DAY);  
+              //  minCalendar.get(Calendar.MINUTE);  
+              //  minCalendar.get(Calendar.SECOND);  
+               // datePicker.setMinDate(minCalendar.getTimeInMillis());  
+   
+               // Calendar	maxCalendar = Calendar.getInstance();  
+               // maxCalendar.add(Calendar.YEAR,10);  
+               // maxCalendar.add(Calendar.MONTH,12);  
+               // datePicker.setMaxDate(maxCalendar.getTimeInMillis());  
+   
+                final Calendar	curCalendar = Calendar.getInstance();  
+                datePicker.init(curCalendar.get(Calendar.YEAR),  
+                curCalendar.get(Calendar.MONTH),  
+                curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+   
+                AlertDialog.Builder	builder = new AlertDialog.Builder(S_Analysis.this);  
+                builder.setView(datePicker);  
+                builder.setTitle("請選擇日期");  
+                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+    	        	public void onClick(DialogInterface dialog, int id) {
+    	        		Intent intime = new Intent();
+    	    			intime.setClass(S_Analysis.this,S_Analysis_Whereabouts.class);
+    	    			int year =datePicker.getYear();
+    	    			String years = Integer.toString(year); 
+    	    			int month = (datePicker.getMonth()+1);
+    	    			String months = Integer.toString(month); 
+    	    			intime.putExtra("year", years);
+    	    			intime.putExtra("month", months);
+
+    	    			startActivity(intime);    //觸發換頁
+    	        		//ss.setText("你設定的日期是" +
+    	        		//years+"年" +
+    	        		//months + "月" );
+    	        		
+    	        	}
+    	        });
+                
+                
+                AlertDialog	dialog = builder.create();  
+                dialog.setCanceledOnTouchOutside(true);  
+                dialog.show();  
+                
+                
+                
+                
+                
+                
+              //  ss.setText("你設定的日期是" +
+                	//	datePicker.getYear()+"年"+
+                		//(datePicker.getMonth()+1)+"月");
+                
+            }  
+		});
+       button1.setOnClickListener(new OnClickListener() {     
+			
+           public void onClick(View v) {  
+               final DatePicker datePicker = new DatePicker(S_Analysis.this);  
+               datePicker.setCalendarViewShown(false);  
+  
+               //
+               try {  
+                   Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+                   daySpinner.setAccessible(true);  
+                   ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+               } catch (NoSuchFieldException e) {  
+                   e.printStackTrace();  
+               } catch (IllegalArgumentException e) {  
+                   e.printStackTrace();  
+               } catch (IllegalAccessException e) {  
+                   e.printStackTrace();  
+               }  
+  
+            
+  
+               final Calendar	curCalendar = Calendar.getInstance();  
+               datePicker.init(curCalendar.get(Calendar.YEAR),  
+               curCalendar.get(Calendar.MONTH),  
+               curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+  
+               AlertDialog.Builder	builder = new AlertDialog.Builder(S_Analysis.this);  
+               builder.setView(datePicker);  
+               builder.setTitle("請選擇日期");  
+               builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+   	        	public void onClick(DialogInterface dialog, int id) {
+   	        		Intent intime = new Intent();
+   	    			intime.setClass(S_Analysis.this,S_Analysis_IssueRecover.class);
+   	    			int year =datePicker.getYear();
+   	    			String years = Integer.toString(year); 
+   	    			int month = (datePicker.getMonth()+1);
+   	    			String months = Integer.toString(month); 
+   	    			intime.putExtra("year", years);
+   	    			intime.putExtra("month", months);
+
+   	    			startActivity(intime);    //觸發換頁
+   	        	
+   	        		
+   	        	}
+   	        });
+               
+               
+               AlertDialog	dialog = builder.create();  
+               dialog.setCanceledOnTouchOutside(true);  
+               dialog.show();  
+               
+               
+               
+               
+               
+               
+             //  ss.setText("你設定的日期是" +
+               	//	datePicker.getYear()+"年"+
+               		//(datePicker.getMonth()+1)+"月");
+               
+           }  
+		});
+       button4.setOnClickListener(new OnClickListener() {     
+			
+           public void onClick(View v) {  
+               final DatePicker datePicker = new DatePicker(S_Analysis.this);  
+               datePicker.setCalendarViewShown(false);  
+  
+               //
+               try {  
+                   Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+                   daySpinner.setAccessible(true);  
+                   ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+               } catch (NoSuchFieldException e) {  
+                   e.printStackTrace();  
+               } catch (IllegalArgumentException e) {  
+                   e.printStackTrace();  
+               } catch (IllegalAccessException e) {  
+                   e.printStackTrace();  
+               }  
+  
+              // Calendar minCalendar = Calendar.getInstance();  
+              // minCalendar.get(Calendar.HOUR_OF_DAY);  
+             //  minCalendar.get(Calendar.MINUTE);  
+             //  minCalendar.get(Calendar.SECOND);  
+              // datePicker.setMinDate(minCalendar.getTimeInMillis());  
+  
+              // Calendar	maxCalendar = Calendar.getInstance();  
+              // maxCalendar.add(Calendar.YEAR,10);  
+              // maxCalendar.add(Calendar.MONTH,12);  
+              // datePicker.setMaxDate(maxCalendar.getTimeInMillis());  
+  
+               final Calendar	curCalendar = Calendar.getInstance();  
+               datePicker.init(curCalendar.get(Calendar.YEAR),  
+               curCalendar.get(Calendar.MONTH),  
+               curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+  
+               AlertDialog.Builder	builder = new AlertDialog.Builder(S_Analysis.this);  
+               builder.setView(datePicker);  
+               builder.setTitle("請選擇日期");  
+               builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+   	        	public void onClick(DialogInterface dialog, int id) {
+   	        		Intent intime = new Intent();
+   	    			intime.setClass(S_Analysis.this,S_Analysis_Revenue.class);
+   	    			int year =datePicker.getYear();
+   	    			String years = Integer.toString(year); 
+   	    			int month = (datePicker.getMonth()+1);
+   	    			String months = Integer.toString(month); 
+   	    			intime.putExtra("year", years);
+   	    			intime.putExtra("month", months);
+
+   	    			startActivity(intime);    //觸發換頁
+   	        		//ss.setText("你設定的日期是" +
+   	        		//years+"年" +
+   	        		//months + "月" );
+   	        		
+   	        	}
+   	        });
+               
+               
+               AlertDialog	dialog = builder.create();  
+               dialog.setCanceledOnTouchOutside(true);  
+               dialog.show();  
+               
+               
+               
+               
+               
+               
+             //  ss.setText("你設定的日期是" +
+               	//	datePicker.getYear()+"年"+
+               		//(datePicker.getMonth()+1)+"月");
+               
+           }  
+		});
+    }    
 
 
 		//Calendar now = Calendar.getInstance();
@@ -182,12 +393,12 @@ public class S_Analysis extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void s_goIssueRecover_onClick(View v){
+	/*public void s_goIssueRecover_onClick(View v){
 		Intent intent = new Intent();
 		intent.setClass(S_Analysis.this,S_Analysis_IssueRecover.class);
 		startActivity(intent);    //觸發換頁
 		finish();   //結束本頁
-	}
+	}*/
 	
 /*	public void s_goSources_onClick(View v){
 		Intent intent = new Intent();
@@ -196,20 +407,20 @@ public class S_Analysis extends Activity {
 		   //結束本頁
 	}*/
 	
-	public void s_goWhereabouts_onClick(View v){
+	/*public void s_goWhereabouts_onClick(View v){
 		Intent intent = new Intent();
 		intent.setClass(S_Analysis.this,S_Analysis_Whereabouts.class);
 		startActivity(intent);    //觸發換頁
 		 //結束本頁
-	}
+	}*/
 	
 	
-	public void s_goRevenue_onClick(View v){
+	/*public void s_goRevenue_onClick(View v){
 		Intent intent = new Intent();
 		intent.setClass(S_Analysis.this,S_Analysis_Revenue.class);
 		startActivity(intent);    //觸發換頁
 		finish();   //結束本頁
-	}
+	}*/
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
