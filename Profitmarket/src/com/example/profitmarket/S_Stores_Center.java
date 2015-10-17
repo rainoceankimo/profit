@@ -82,12 +82,6 @@ public class S_Stores_Center extends Activity {
 		S_Stores_Center.this.finish();   //結束本頁
 	}
 	
-	public void s_merchandise_onClick(View v){
-		Intent intent = new Intent(); 
-		intent.setClass(S_Stores_Center.this,AllProductsActivity.class);
-		startActivity(intent);    //觸發換頁
-		finish();   //結束本頁
-	}
 	
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         

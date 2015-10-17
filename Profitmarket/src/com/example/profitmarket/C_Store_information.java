@@ -12,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.profitmarket.CreateFragment.LoadAllProducts;
-import com.example.profitmarket.EditProductActivity.GetProductDetails;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -91,7 +90,7 @@ public class C_Store_information extends Activity {
 		       
 		       csid.setText(uid);
 		       csemail.setText(email);
-		       csname.setText("©±®a¦WºÙ¡G"+name);
+		       csname.setText(name);
 		       csphone.setText(phone);
 		       csaddress.setText(address);
 

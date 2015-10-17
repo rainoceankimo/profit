@@ -138,6 +138,14 @@
         android:textColor="#000000"
         android:textSize="20sp" />
 
+    <EditText
+        android:id="@+id/s_scraedttv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:ems="10" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -147,14 +155,5 @@
         android:text="簡介"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/s_scraedttv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnclic"
-        android:layout_marginBottom="50dip"
-        android:layout_centerHorizontal="true"
-        android:ems="10" />
 
 </RelativeLayout>

@@ -510,7 +510,7 @@ public class S_Tradedetail extends Activity {
 				Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
 				
 				if(qponuseYorN == 1){
-					new CreateCustomerRcords().execute();
+					//new CreateCustomerRcords().execute();
 				}else{
 					
 				}

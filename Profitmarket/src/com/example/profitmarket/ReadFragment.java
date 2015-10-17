@@ -128,10 +128,10 @@ public class ReadFragment extends Fragment {
 
 	                        // Storing each json item in variable
 	                        String uid = c.getString(TAG_UID);
-	                        String email = "e-mail¡G" + c.getString(TAG_EMAIL);
+	                        String email = c.getString(TAG_EMAIL);
 	                        String name = c.getString(TAG_NAME);
-	                        String address = "¦a§}¡G"+c.getString(TAG_ADDRESS);
-	                        String phone = "¹q¸Ü¡G"+c.getString(TAG_PHONE);
+	                        String address = c.getString(TAG_ADDRESS);
+	                        String phone = c.getString(TAG_PHONE);
 	                        String type = c.getString(TAG_TYPE);
 	                        Double type1=Double.parseDouble(type);
 	                        if(type1==1){
