@@ -97,7 +97,7 @@ public class S_Analysis_IssueRecover extends Activity {
 		mRenderer.setZoomButtonsVisible(true);  
 		mRenderer.setStartAngle(90);  
 		//mRenderer.setChartTitle("ч基ㄩㄓ方┍產参璸");
-		mRenderer.setChartTitle("ч基ㄩㄏノ眎计参璸");
+		mRenderer.setChartTitle("ч基ㄩㄏノ瞯");
 		mRenderer.setChartTitleTextSize(30);
 		
 	}

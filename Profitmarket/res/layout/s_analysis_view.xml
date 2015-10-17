@@ -35,7 +35,7 @@
         android:layout_alignLeft="@+id/button2"
         android:layout_marginBottom="32dp"
         android:onClick="s_goWhereabouts_onClick"
-        android:text="折價券使用店家統計"
+        android:text="折價券使用店家"
         android:textColor="#000000"
         android:textSize="25sp" />
 
@@ -47,7 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:onClick="s_goSources_onClick"
-        android:text="折價券來源店家統計"
+        android:text="折價券來源店家"
         android:textColor="#000000"
         android:textSize="25sp" />
 
