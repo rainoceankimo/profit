@@ -262,7 +262,7 @@ public class S_Analysis_Sources extends Activity {
 	
 		renderer.setXAxisMax(products.length());
 		renderer.setYAxisMin(0);
-		renderer.setYAxisMax(100);
+		renderer.setYAxisMax(15);
 		}
 		 public boolean onKeyDown(int keyCode, KeyEvent event) {
 		        

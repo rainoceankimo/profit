@@ -46,6 +46,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import helper.SQLiteHandler;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager;
@@ -104,7 +105,15 @@ public class S_Analysis_Whereabouts extends Activity {
 		     }
 		    }*/
 		
-	
+	protected void onTime(){
+		
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 	protected void onTry() {
@@ -180,7 +189,9 @@ public class S_Analysis_Whereabouts extends Activity {
 			 	      }
 			
 			}
+			 
 		}
+		
 		dataset.addSeries(series.toXYSeries());
 		}
 		return dataset;
@@ -286,7 +297,7 @@ public class S_Analysis_Whereabouts extends Activity {
 		renderer.setXAxisMin(0.5);
 		renderer.setXAxisMax(products.length());
 		renderer.setYAxisMin(0);
-		renderer.setYAxisMax(100);
+		renderer.setYAxisMax(15);
 		}
 		 public boolean onKeyDown(int keyCode, KeyEvent event) {
 		        
@@ -351,24 +362,29 @@ public class S_Analysis_Whereabouts extends Activity {
                        // String id = c.getString(TAG_PID);
                       //  String name = c.getString(TAG_NAME);
                       //  String price = c.getString(TAG_PRICE);
+                        
                         String YEARcreated_date = c.getString("YEAR(created_date)");
                         String MONTHcreated_date = c.getString("MONTH(created_date)");
                         String receive_store = c.getString("receive_store");
                         String howp = c.getString("SUM(howp)");
                         // creating new HashMap
+                        
+                        
+                        
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
                       //  map.put(TAG_PID, id);
                       //  map.put(TAG_NAME, name);
                        // map.put(TAG_PRICE, price);
+                        
                         map.put("YEAR(created_date)", YEARcreated_date);
                         map.put("MONTH(created_date)", MONTHcreated_date);
                         map.put("receive_store", receive_store);
                         map.put("SUM(howp)",howp);
                         // adding HashList to ArrayList
                         productsList.add(map);
-
+                        
                     }
                 } 
             } catch (JSONException e) {

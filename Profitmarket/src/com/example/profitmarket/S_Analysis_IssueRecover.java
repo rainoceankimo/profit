@@ -72,7 +72,7 @@ public class S_Analysis_IssueRecover extends Activity {
 	private static String url_all_products = "http://192.168.0.103/analysis/get_coupon_no_use.php";
 	private static String url_all_products2 = "http://192.168.0.103/analysis/get_coupon_used.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
-	private static int[] COLORS = new int[] { Color.YELLOW, Color.BLUE,Color.MAGENTA, Color.DKGRAY ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
+	private static int[] COLORS = new int[] { Color.MAGENTA, Color.BLUE ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  
 	 
 	private CategorySeries mSeries = new CategorySeries("");  
@@ -90,15 +90,15 @@ public class S_Analysis_IssueRecover extends Activity {
 		mRenderer.setApplyBackgroundColor(true);  
 		mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));  
 		mRenderer.setChartTitleTextSize(20);  
-		mRenderer.setLabelsTextSize(15);
+		mRenderer.setLabelsTextSize(18);
 		mRenderer.setLabelsColor(Color.RED);
-		mRenderer.setLegendTextSize(15);  
+		mRenderer.setLegendTextSize(20);  
 		mRenderer.setMargins(new int[] { 20, 30, 15, 0 });  
 		mRenderer.setZoomButtonsVisible(true);  
 		mRenderer.setStartAngle(90);  
 		//mRenderer.setChartTitle("ч基ㄩㄓ方┍產参璸");
-		mRenderer.setChartTitle("ч基ㄩㄏノ瞯");
-		mRenderer.setChartTitleTextSize(30);
+		mRenderer.setChartTitle("ч基ㄩ犁Μ癪膍");
+		mRenderer.setChartTitleTextSize(60);
 		
 	}
 	@Override
@@ -217,8 +217,8 @@ public class S_Analysis_IssueRecover extends Activity {
 		//	String e = productsList.get(2).get("month");
 		//	String r = productsList.get(3).get("month");
 			String[] NAME_LIST=new String[4];
-			NAME_LIST[0]="ゼㄏノ";
-			NAME_LIST[1]="ㄏノ";
+			NAME_LIST[0]="ㄏノ綪扳肂";
+			NAME_LIST[1]="ゼㄏノ綪扳肂";
 		//	NAME_LIST[2]=e;
 		//	NAME_LIST[3]=r;
 			VALUES[0]=all;
@@ -237,7 +237,7 @@ public class S_Analysis_IssueRecover extends Activity {
 				 Double timemh =Double.parseDouble(timem);
 				if( (timeYD-timeyr==0&&timeMH-timemh==0)){
 					
-			mSeries.add(NAME_LIST[i]+(VALUES[i]+"眎"), VALUES[i]); 
+			mSeries.add(NAME_LIST[i], VALUES[i]); 
 
 			SimpleSeriesRenderer renderer = new SimpleSeriesRenderer(); 
 

@@ -62,7 +62,7 @@ public class ReadFragment extends Fragment {
 	String[] y = new String[100];
 	// products JSONArray
 	public static JSONArray products = null;	
-	private static String url_all_products = "http://192.168.0.100/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.101/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
