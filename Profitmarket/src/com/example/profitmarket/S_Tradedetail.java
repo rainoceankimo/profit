@@ -303,7 +303,7 @@ public class S_Tradedetail extends Activity {
 		    
 		    new JudgeQponid().execute();
 		    
-		    //new Createprofitrecord().execute();
+		   
 		   // Toast.makeText(S_Tradedetail.this, "" + Qponuse, Toast.LENGTH_SHORT).show();
 		    
 		    
@@ -506,11 +506,13 @@ public class S_Tradedetail extends Activity {
 				{
 				
 				}
+				
+				new CreateCustomerRcords().execute();
 
 				Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
-				
+
 				if(qponuseYorN == 1){
-					//new CreateCustomerRcords().execute();
+					 new Createprofitrecord().execute();
 				}else{
 					
 				}
@@ -530,16 +532,7 @@ public class S_Tradedetail extends Activity {
     // keep Customer Rcords
     class CreateCustomerRcords extends AsyncTask<String, String, String> {
         
-    	@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			
-			pDialog = new ProgressDialog(S_Tradedetail.this);
-			pDialog.setMessage("Creating Customer Rcords..");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(false);
-			pDialog.show();
-		}
+    	
     	
 		@Override
 		protected String doInBackground(String... args) {
@@ -601,7 +594,7 @@ public class S_Tradedetail extends Activity {
 		protected void onPostExecute(String file_url) 
 		{
 				// dismiss the dialog once done
-			   pDialog.dismiss();
+			   
 	
 		}
     	
@@ -625,7 +618,7 @@ public class S_Tradedetail extends Activity {
 	        String couponid = QponNo;
 	        String kmoney = String.valueOf(usedenominations);
 	        
-	        double countmoney = (double) usedenominations * 0.05;
+	        double countmoney = (double) usedenominations;
 	        
 	        String kprofitmoney = String.valueOf(countmoney);
 	        String issue_store = saveissue_store ;
@@ -639,6 +632,7 @@ public class S_Tradedetail extends Activity {
 	        
 	        
 	        JSONObject jsonp = PParser.makeHttpRequest(AppConfig_Stores.URL_create_profitrecord, "POST", params);
+	        
 	        Log.d("Create profitrecords", jsonp.toString());
 	        
 	        try {

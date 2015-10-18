@@ -67,13 +67,14 @@ public class C_discount_use extends ListActivity {
 	ArrayList<HashMap<String, String>> couponsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://192.168.0.111/addQpon/getcoupon.php";
+	//private static String url_all_products = "http://192.168.0.111/addQpon/getcoupon.php";
 	
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ISSUE = "issueqpon";
 	private static final String TAG_DEADLINE = "deadline";
 	private static final String TAG_MONEY = "money";
+	private static final String TAG_YESORNO = "yesorno";
 	private static final String TAG_COUPONID = "couponid";
 	private static final String TAG_COUPONID1 = "couponid1";
 	
@@ -194,7 +195,7 @@ public class C_discount_use extends ListActivity {
 	        params.add(new BasicNameValuePair("username",username));
 	        
 	        // getting JSON string from URL
-	        JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+	        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_qponmessage, "GET", params);
 			
 	        try {
 				// Checking for SUCCESS TAG
@@ -208,21 +209,30 @@ public class C_discount_use extends ListActivity {
 					for (int i = 0; i < coupons.length(); i++) {
 						JSONObject c = coupons.getJSONObject(i);
 						
-						String deadline = "期限：" + c.getString(TAG_DEADLINE);
-						String money = "面額："+c.getString(TAG_MONEY) + "元";
-						String couponid = "序號："+c.getString(TAG_COUPONID);
-						String couponid1 = c.getString(TAG_COUPONID);
 						
-						HashMap<String, String> map = new HashMap<String, String>();
+						int[] check = new int[coupons.length()];
 						
-						map.put(TAG_DEADLINE,deadline);
-						map.put(TAG_MONEY,money);
-						map.put(TAG_COUPONID,couponid);
-						map.put(TAG_COUPONID1,couponid1);
+						check[i] = Integer.valueOf(c.getString(TAG_YESORNO));
 						
 						
-						couponsList.add(map);
+						if (check[i] != 1){
+							String deadline = "期限：" + c.getString(TAG_DEADLINE);
+							String money = "面額："+c.getString(TAG_MONEY) + "元";
+							String couponid = "序號："+c.getString(TAG_COUPONID);
+							String couponid1 = c.getString(TAG_COUPONID);
 						
+							HashMap<String, String> map = new HashMap<String, String>();
+						
+							map.put(TAG_DEADLINE,deadline);
+							map.put(TAG_MONEY,money);
+							map.put(TAG_COUPONID,couponid);
+							map.put(TAG_COUPONID1,couponid1);
+						
+						
+							couponsList.add(map);
+						}else{
+							
+						}
 					}
 				} else {
 					
