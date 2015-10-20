@@ -7,13 +7,46 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
 
 public class S_Records_InquireShare extends Activity {
+	
+	
+	private Button clickreceivable,
+				   clickpayable;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.s_records_inquireshare);
+		
+		
+		clickreceivable = (Button) findViewById(R.id.btnclickreceivable);
+		clickpayable = (Button) findViewById(R.id.btnclickpayable);
+		
+		clickreceivable.setOnClickListener(new Button.OnClickListener(){ 
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent();  
+        	    intent.setClass(S_Records_InquireShare.this,S_Records_ShareGet.class);
+        	    startActivity(intent);    //觸發換頁
+        	    finish();   //結束本頁
+            }         
+        }); 
+		
+		clickpayable.setOnClickListener(new Button.OnClickListener(){ 
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent();  
+        	    intent.setClass(S_Records_InquireShare.this,S_Records_SharegIssue.class);
+        	    startActivity(intent);    //觸發換頁
+        	    finish();   //結束本頁
+            }         
+        }); 
+		
 	}
 
 	@Override

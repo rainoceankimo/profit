@@ -129,7 +129,7 @@ public class C_recorditem extends Activity {
 				
 		        // getting JSON string from URL
 		        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_memrecorditem, "GET", params);
-		        Log.d("Get Response", json.toString());
+		        Log.d("Get item Response", json.toString());
 				
 		        try {
 					// Checking for SUCCESS TAG

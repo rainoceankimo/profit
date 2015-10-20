@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#CCFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <TextView
+            android:id="@+id/rsissttV1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="30dip"
+            android:text="分潤細項" />
+
+        <TextView
+            android:id="@+id/rsissttV2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="20dip"
+            android:text="類型：分潤金額(付出)" />
+
+        <TextView
+            android:id="@+id/rsissttV3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="20dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/rsissttV4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="20dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/rsissttV5"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="20dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/rsissttV6"
+           	android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="20dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/rsissttV7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginBottom="10dip"
+            android:padding="10dp"
+            android:textSize="20dip"
+            android:text="TextView" />
+        
+    </LinearLayout>
+
+</LinearLayout>

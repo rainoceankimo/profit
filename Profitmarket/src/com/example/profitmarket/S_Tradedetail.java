@@ -273,6 +273,8 @@ public class S_Tradedetail extends Activity {
 			showtradedate.setText("日期："+ tradedate );
 
 			tradeconsumption = globalVariable.settlea_totalmoney;
+			
+			//
 			SHOWR();
 			showtradeconsumption.setText("消費金錢："+ tradeconsumption);
 
@@ -618,9 +620,9 @@ public class S_Tradedetail extends Activity {
 	        String couponid = QponNo;
 	        String kmoney = String.valueOf(usedenominations);
 	        
-	        double countmoney = (double) usedenominations;
+	        double countmoney = (double) usedenominations * 0.05;
 	        
-	        String kprofitmoney = String.valueOf(countmoney);
+	        String kprofitmoney = Double.toString(countmoney);
 	        String issue_store = saveissue_store ;
 	        
 	        List<NameValuePair> params = new ArrayList<NameValuePair>();
