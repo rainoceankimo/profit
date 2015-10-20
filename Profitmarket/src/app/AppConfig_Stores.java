@@ -23,10 +23,11 @@ public class AppConfig_Stores {
     // use to S_Coupon_Buy
     public static String url_create_buycoupon = "http://192.168.0.104/couponconnect/create.php";
 
+    //use to S_Records_ShareGet
+    public static String url_get_profitrecord = "http://192.168.0.104/profitrecord/getprofitrecord.php";
     
-    
-    
-    
+    //use to S_Records_ShareIssue
+    public static String url_get_profitrecordIssue = "http://192.168.0.104/profitrecord/getprofitrecord_issue.php";
 
     
 }

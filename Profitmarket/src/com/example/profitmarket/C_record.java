@@ -166,6 +166,7 @@ public class C_record extends ListActivity {
 			
 	        // getting JSON string from URL
 	        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_memrecord, "GET", params);
+	        
 	        Log.d("Get Response rd", json.toString());
 			
 	        try {
@@ -217,8 +218,6 @@ public class C_record extends ListActivity {
 								new int[] { R.id.c_rlttv1, R.id.c_rlttv2 });
 						// updating listview
 						setListAdapter(adapter);
-					   
-					   
 				   }
 			   });
 			   
@@ -237,8 +236,7 @@ public class C_record extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
 				
-				String pid1 = ((TextView) view.findViewById(R.id.c_rlttv1)).getText()
-						.toString();
+				String pid1 = ((TextView) view.findViewById(R.id.c_rlttv1)).getText().toString();
 				
 				Intent in = new Intent(C_record.this,
 						C_recorditem.class);

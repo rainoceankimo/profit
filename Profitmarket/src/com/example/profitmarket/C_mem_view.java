@@ -23,8 +23,8 @@ public class C_mem_view extends Activity {
 		
 		showstore = (ImageButton)findViewById(R.id.cmvibtn1);
 		membercenter = (ImageButton)findViewById(R.id.cmvibtn2);
-		coupon = (ImageButton)findViewById(R.id.cmvibtn3);
-		records = (ImageButton)findViewById(R.id.cmvibtn4);
+		coupon = (ImageButton)findViewById(R.id.cmvibtn4);
+		records = (ImageButton)findViewById(R.id.cmvibtn3);
 		
 		showstore.setOnClickListener(new Button.OnClickListener(){ 
             @Override
@@ -86,34 +86,7 @@ public class C_mem_view extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-/*	public void c_mem_onClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_mem_view.this,C_mem_center.class);
-	    startActivity(intent);    //觸發換頁
-	    finish();   //結束本頁
-	}
-	public void c_sstore__onClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_mem_view.this,C_search_store.class);
-	    startActivity(intent);    //觸發換頁
-	    finish();   //結束本頁
-	
-    }
-	
-	public void c_use_onClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_mem_view.this,C_discount_use.class);
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
-	
-    }
-	public void C_research_onClick(View v) {
-	    Intent intent = new Intent();  
-	    intent.setClass(C_mem_view.this,C_record.class);
-	   startActivity(intent);    //觸發換頁
-	   finish();   //結束本頁
-	
-    } */
+
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
         
@@ -123,8 +96,8 @@ public class C_mem_view extends Activity {
             //  so that this app won't be closed accidentally
         	Intent intent = new Intent();  
     	    intent.setClass(C_mem_view.this,C_Logout.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
+    	    startActivity(intent);    //觸發換頁
+    	    finish();   //結束本頁
             
             return true;
         }
