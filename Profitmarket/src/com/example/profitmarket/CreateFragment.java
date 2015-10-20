@@ -1,4 +1,7 @@
 package com.example.profitmarket;
+
+import app.AppConfig;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +66,7 @@ public class CreateFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	private static String url_all_products = "http://192.168.0.101/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.104/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {

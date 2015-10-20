@@ -55,7 +55,7 @@ public class S_Tradedetail extends Activity {
 	public static final String TID = "id";
 	public static final String TYPE = "type";
 	public static final String DATE = "date";
-	public static final String CONSUMPTION = "cousumption";
+	public static final String CONSUMPTION = "consumption";
 	public static final String DISCOUNT = "discount";
 	public static final String GRANT = "grant";
 	public static final String GRANTDENOMINATIONS = "grantdenominations";
@@ -63,11 +63,12 @@ public class S_Tradedetail extends Activity {
 	public static final String QPONUSE = "Qponuse";
 	public static final String QPONNO = "QponNo";
 	public static final String USEDENOMINATIONS = "usedenominations";
+	public static final String COUNTCONSUMPTION = "countconsumption";
 	public static final String TRADETTMONEY = "tradettmoney";
 	
 	
 	String[] columns = 
-		{TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,TRADETTMONEY};
+		{TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,COUNTCONSUMPTION,TRADETTMONEY};
 
 	private SQLiteDatabase mtradeDb;
 	
@@ -79,6 +80,7 @@ public class S_Tradedetail extends Activity {
 	public static final String RID = "id";
 	public static final String USEMONEY = "usemoney";
 	public static final String GRANTMONEY = "grantmoney";
+	
 
 	int[] ciumy;
 	int[] cigmy;
@@ -102,6 +104,7 @@ public class S_Tradedetail extends Activity {
 
 	JSONParser jsonParser = new JSONParser();
 	JSONParser jParser = new JSONParser();
+	JSONParser PParser = new JSONParser();
 	
 	
 	//private static String url_create_product = "http://192.168.43.218/addQpon/add_coupon.php";
@@ -112,6 +115,7 @@ public class S_Tradedetail extends Activity {
 	private static final String TAG_COUPONID = "couponid";
 	private static final String TAG_MONEY = "money";
 	private static final String TAG_USERNAME = "username";
+	public static final String ISSUE_STORE = "issue_store";
 	
 	
 	private TextView showtradetype,showtradedate,showtradeconsumption,trademaxdiscount,
@@ -124,6 +128,7 @@ public class S_Tradedetail extends Activity {
 			    tradediscount = 0,
 			    grantdenominations = 0,
 			    usedenominations = 0,
+			    tradecountconsumption = 0,
 			    tradettmoney = 0;
 
 	private Button btnrecode;
@@ -131,7 +136,7 @@ public class S_Tradedetail extends Activity {
 	
 	SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	
-	public String judge,Qponmoney;
+	public String judge,Qponmoney,saveissue_store;
 	
 	public int qponuseYorN = 0;
 	
@@ -153,7 +158,7 @@ public class S_Tradedetail extends Activity {
 		
 		AppController globalVariable = (AppController)getApplicationContext();
 		Bundle extras = getIntent().getExtras();
-		judge = extras.getString("result");
+		
 		
 		RdQponList = new ArrayList<HashMap<String, String>>();
 		
@@ -187,6 +192,7 @@ public class S_Tradedetail extends Activity {
 	        			          QPONUSE + " TEXT," +
 	        			          QPONNO + " TEXT," +
 	        			          USEDENOMINATIONS + " TEXT," +
+	        			          COUNTCONSUMPTION + " TEXT," +
 	        			          TRADETTMONEY + " TEXT);");
 	        	
 	        	Toast.makeText(S_Tradedetail.this, "新增成功", Toast.LENGTH_SHORT).show();
@@ -258,7 +264,7 @@ public class S_Tradedetail extends Activity {
 		}
 		else if (globalVariable.tradetypeNO == 1){
        
-			
+			judge = extras.getString("result");
 			
 			tradetype = "會員結帳";
 			showtradetype.setText(globalVariable.tradetype);
@@ -293,14 +299,18 @@ public class S_Tradedetail extends Activity {
 		    
 		    usedenominations = 0;
 		    
+		    
+		    
 		    new JudgeQponid().execute();
+		    
+		   
+		   // Toast.makeText(S_Tradedetail.this, "" + Qponuse, Toast.LENGTH_SHORT).show();
 		    
 		    
 		    // TODO Auto-generated method stub
-
-
-		    tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
 		    
+		    tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
+		    tradecountconsumption = globalVariable.settlea_totalmoney - usedenominations;
 		    
 		    trademembername.setText("會員名稱："+ memname);
 		    tradecouponuse.setText("折價券使用：" + Qponuse);
@@ -484,6 +494,7 @@ public class S_Tradedetail extends Activity {
 				newRow.put(QPONUSE,Qponuse);
 				newRow.put(QPONNO,QponNo);
 				newRow.put(USEDENOMINATIONS,usedenominations);
+				newRow.put(COUNTCONSUMPTION,tradecountconsumption);
 				newRow.put(TRADETTMONEY,tradettmoney);
 			
 				mtradeDb.insert(DB_TABLE, null, newRow);
@@ -498,9 +509,19 @@ public class S_Tradedetail extends Activity {
 				
 				new CreateCustomerRcords().execute();
 
-				Intent intent = new Intent();
+				Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
+
+				if(qponuseYorN == 1){
+					 new Createprofitrecord().execute();
+				}else{
+					
+				}
+				
+				
+
+			/*	Intent intent = new Intent();
 				intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
-				startActivity(intent);    //觸發換頁   
+				startActivity(intent);    //觸發換頁     */
 			
 			
 			}
@@ -511,16 +532,7 @@ public class S_Tradedetail extends Activity {
     // keep Customer Rcords
     class CreateCustomerRcords extends AsyncTask<String, String, String> {
         
-    	@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			
-			pDialog = new ProgressDialog(S_Tradedetail.this);
-			pDialog.setMessage("Creating Product..");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(false);
-			pDialog.show();
-		}
+    	
     	
 		@Override
 		protected String doInBackground(String... args) {
@@ -543,6 +555,7 @@ public class S_Tradedetail extends Activity {
 	        String totalmoney = String.valueOf(tradettmoney);
 	        
 	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        
 	        params.add(new BasicNameValuePair("username", username));
 	        params.add(new BasicNameValuePair("storename", userid));
 	        params.add(new BasicNameValuePair("consumption", consumption));
@@ -555,6 +568,7 @@ public class S_Tradedetail extends Activity {
 	        params.add(new BasicNameValuePair("totalmoney", totalmoney));
 	        
 	        JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.URL_create_ctrrecords, "POST", params);
+	        
 	        Log.d("Create ctrrecords", json.toString());
 	        
 	        try {
@@ -580,10 +594,82 @@ public class S_Tradedetail extends Activity {
 		protected void onPostExecute(String file_url) 
 		{
 				// dismiss the dialog once done
-			   pDialog.dismiss();
+			   
 	
 		}
     	
+    }
+    
+    //-------------------------------------------------
+    
+    // keep profit record
+    class Createprofitrecord extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
+			db = new SQLiteHandler_Stores(getApplicationContext());
+	        session = new SessionManager_Stores(getApplicationContext());
+	        
+	        HashMap<String, String> user = db.getUserDetails();
+	        String userid = user.get("name");
+	        
+	        String couponid = QponNo;
+	        String kmoney = String.valueOf(usedenominations);
+	        
+	        double countmoney = (double) usedenominations;
+	        
+	        String kprofitmoney = String.valueOf(countmoney);
+	        String issue_store = saveissue_store ;
+	        
+	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        params.add(new BasicNameValuePair("issue_store", issue_store));
+	        params.add(new BasicNameValuePair("couponid", couponid));
+	        params.add(new BasicNameValuePair("money", kmoney));
+	        params.add(new BasicNameValuePair("profitmoney", kprofitmoney));
+	        params.add(new BasicNameValuePair("receive_store", userid));
+	        
+	        
+	        JSONObject jsonp = PParser.makeHttpRequest(AppConfig_Stores.URL_create_profitrecord, "POST", params);
+	        
+	        Log.d("Create profitrecords", jsonp.toString());
+	        
+	        try {
+	        	
+				int success = jsonp.getInt(TAG_SUCCESS);
+
+				if (success == 1) {
+					
+					//Toast.makeText(S_Tradedetail.this, "保存MYQL成功", Toast.LENGTH_LONG).show();
+					Intent i = new Intent(getApplicationContext(), S_Mainmenu.class);
+					startActivity(i);
+					
+					// closing this screen
+					finish();  
+					
+				} else 
+				{
+					
+				}
+			}
+		
+			
+			catch (JSONException e) 
+			{
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+    	
+		protected void onPostExecute(String file_url) 
+		{
+				// dismiss the dialog once done
+			   pDialog.dismiss();
+	
+		}
+		
     }
     
     //-------------------------------------------------
@@ -596,7 +682,7 @@ public class S_Tradedetail extends Activity {
 			super.onPreExecute();
 			
 			pDialog = new ProgressDialog(S_Tradedetail.this);
-			pDialog.setMessage("Creating Product..");
+			pDialog.setMessage("Creating New Qpon..");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
 			pDialog.show();
@@ -604,6 +690,7 @@ public class S_Tradedetail extends Activity {
 
 		@Override
 		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
 			
 			db = new SQLiteHandler_Stores(getApplicationContext());
 	        session = new SessionManager_Stores(getApplicationContext());
@@ -624,7 +711,7 @@ public class S_Tradedetail extends Activity {
 			JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_create_tdaddcoupon, "POST", params);
 
 			// check log cat fro response
-			Log.d("Create Response", json.toString());
+			Log.d("Create Qpon", json.toString());
 			
 			// check for success tag
 			try {
@@ -632,12 +719,12 @@ public class S_Tradedetail extends Activity {
 
 				if (success == 1) {
 					
-					//Toast.makeText(S_Tradedetail.this, "保存MYQL成功", Toast.LENGTH_LONG).show();
+				/*	//Toast.makeText(S_Tradedetail.this, "保存MYQL成功", Toast.LENGTH_LONG).show();
 					Intent i = new Intent(getApplicationContext(), S_Mainmenu.class);
 					startActivity(i);
 					
 					// closing this screen
-					finish();
+					finish();   */
 					
 				} else 
 				{
@@ -721,13 +808,16 @@ public class S_Tradedetail extends Activity {
                 			tradetotalmoney.setText("總計金額：" + tradettmoney);
                 			
                 			
+                			saveissue_store = c.getString(ISSUE_STORE);
+                			qponuseYorN = 1;
                 			Qponuse = "有";
            					memname = c.getString(TAG_USERNAME);
            					QponNo = judge;
            					usedenominations = Integer.valueOf(c.getString(TAG_MONEY));
                 			
                 			
-                			
+           					
+           					
                 	/*		String qponid = judge;
                 			String money =  c.getString(TAG_MONEY);
                 			String username = c.getString(TAG_USERNAME);
@@ -757,22 +847,10 @@ public class S_Tradedetail extends Activity {
 				
 		
         protected void onPostExecute(String file_url) 
-        {
-             
+        {            
         	// dismiss the dialog once done
             pDialog.dismiss();
-        	 
-        /*	 S_Tradedetail.this.runOnUiThread(new Runnable() {
-   				public void run() {
-   					Qponuse = "有";
-   					memname = RdQponList.get(0).get(TAG_USERNAME);
-   					QponNo = RdQponList.get(0).get(TAG_COUPONID);
-   					usedenominations = Integer.valueOf(RdQponList.get(0).get(TAG_MONEY));
-   				}
-               });     */
-               
-         }
-		
+         }	
     }	
     //-------------------------------------------------	
  

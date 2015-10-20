@@ -1,47 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lla"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8de0fd"
     android:orientation="vertical"
     tools:context="com.example.profitmarket.C_record" >
 
-    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF6633"
+        android:gravity="center"
+        android:text="查詢交易紀錄"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="fill_parent"
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="82dp"
-            android:background="#FF6633"
-            android:gravity="center"
-            android:text="查詢交易紀錄"
-            android:textColor="#000000"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:enabled="false"
+            android:padding="8dp"
+            android:textSize="25dip" />
 
-    <EditText
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btDate"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="選擇日期" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp"
-        android:layout_toLeftOf="@+id/btDate"
-        android:layout_weight="0.42"
-        android:ems="10" >
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
 
-        <requestFocus />
-    </EditText>
+        <ListView
+            android:id="@+id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
 
-    <Button
-        android:id="@+id/btDate"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvDate"
-        android:layout_alignParentRight="true"
-        android:layout_weight="0"
-        android:text="選擇日期" />
+    </LinearLayout>
 
-    
-
-</RelativeLayout>
+</LinearLayout>

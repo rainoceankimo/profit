@@ -12,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.profitmarket.CreateFragment.LoadAllProducts;
-import com.example.profitmarket.EditProductActivity.GetProductDetails;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -66,7 +65,9 @@ public class C_Store_information extends Activity {
 	  private Handler mThreadHandler;
 	  private HandlerThread mThread; 
 
-	   JSONParser jsonParser = new JSONParser();
+	  JSONParser jsonParser = new JSONParser();
+	   //private static final String url_product_detials = "http://192.168.0.109/android_connect2/get_product_details.php";
+
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

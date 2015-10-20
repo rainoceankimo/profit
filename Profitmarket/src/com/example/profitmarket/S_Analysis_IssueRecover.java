@@ -69,8 +69,8 @@ public class S_Analysis_IssueRecover extends Activity {
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.103/analysis/get_coupon_no_use.php";
-	private static String url_all_products2 = "http://192.168.0.103/analysis/get_coupon_used.php";
+	private static String url_all_products = "http://192.168.0.104/analysis/get_coupon_no_use.php";
+	private static String url_all_products2 = "http://192.168.0.104/analysis/get_coupon_used.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	private static int[] COLORS = new int[] { Color.MAGENTA, Color.BLUE ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  
@@ -97,7 +97,7 @@ public class S_Analysis_IssueRecover extends Activity {
 		mRenderer.setZoomButtonsVisible(true);  
 		mRenderer.setStartAngle(90);  
 		//mRenderer.setChartTitle("ч基ㄩㄓ方┍產参璸");
-		mRenderer.setChartTitle("ч基ㄩ犁Μ癪膍");
+		mRenderer.setChartTitle("ч基ㄩㄏノ瞯");
 		mRenderer.setChartTitleTextSize(60);
 		
 	}
@@ -184,7 +184,7 @@ public class S_Analysis_IssueRecover extends Activity {
           //   Double b1=Double.parseDouble(b); 
              
              
-             int[] VALUES2 = new int[productsList1.size()];
+          //   int[] VALUES2 = new int[productsList1.size()];
              int as=0;
             double size1 =productsList.size();
             double size2 =productsList1.size();
@@ -217,12 +217,12 @@ public class S_Analysis_IssueRecover extends Activity {
 		//	String e = productsList.get(2).get("month");
 		//	String r = productsList.get(3).get("month");
 			String[] NAME_LIST=new String[4];
-			NAME_LIST[0]="ㄏノ綪扳肂";
-			NAME_LIST[1]="ゼㄏノ綪扳肂";
+			NAME_LIST[0]="ㄏノ";
+			NAME_LIST[1]="ゼㄏノ";
 		//	NAME_LIST[2]=e;
 		//	NAME_LIST[3]=r;
-			VALUES[0]=all;
-			VALUES[1]=page2;
+			VALUES[0]=page2;
+			VALUES[1]=all;
 			
 		
 			//String  NAME_LIST[] = (String[]) productsList.toArray(new String[0]);
@@ -237,7 +237,7 @@ public class S_Analysis_IssueRecover extends Activity {
 				 Double timemh =Double.parseDouble(timem);
 				if( (timeYD-timeyr==0&&timeMH-timemh==0)){
 					
-			mSeries.add(NAME_LIST[i], VALUES[i]); 
+			mSeries.add(NAME_LIST[i]+VALUES[i]+"眎", VALUES[i]); 
 
 			SimpleSeriesRenderer renderer = new SimpleSeriesRenderer(); 
 

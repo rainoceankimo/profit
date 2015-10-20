@@ -71,7 +71,7 @@ public class S_Analysis_Whereabouts extends Activity {
 	// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.103/analysis/get_all_issue.php";
+	private static String url_all_products = "http://192.168.0.104/analysis/get_all_issue.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +147,7 @@ public class S_Analysis_Whereabouts extends Activity {
 		for ( int i = 0; i < SERIES_NR ; i++) {
 		CategorySeries series = new CategorySeries(  "折價卷張數"  );
 		
-		for ( int k = 0; k <products.length(); k++) {
+		for ( int k = 0; k <productsList.size(); k++) {
 			 String  timeY =  intime.getStringExtra("year");
 			  Map<Integer, String> treeMap = new TreeMap<Integer, String>(  
 		                new Comparator<Integer>() {  
@@ -187,13 +187,17 @@ public class S_Analysis_Whereabouts extends Activity {
 				         series.add(key);
 				          Log.d("All Products23: ", s );
 			 	      }
-			
+	 
 			}
-			 
+			  else{
+				  Toast.makeText(this, "本月份尚未有資料", Toast.LENGTH_LONG).show();
+				  break;
+			  }
 		}
-		
+		finish();
 		dataset.addSeries(series.toXYSeries());
 		}
+		
 		return dataset;
 		}                
 
@@ -201,7 +205,7 @@ public class S_Analysis_Whereabouts extends Activity {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
 		renderer.setPanEnabled(false, true);
 		
-	 for(int i=0;i<products.length();i++){
+	 for(int i=0;i<productsList.size();i++){
 				// String name2=productsList.get(i).get(TAG_NAME);
 				// if(username.equals(name2)){
 				// renderer.addXTextLabel(i+1, productsList.get(i).get("receive_store"));
@@ -295,7 +299,7 @@ public class S_Analysis_Whereabouts extends Activity {
 		renderer.setAxisTitleTextSize(25);
 		renderer.setBarSpacing(0.5);
 		renderer.setXAxisMin(0.5);
-		renderer.setXAxisMax(products.length());
+		renderer.setXAxisMax(productsList.size());
 		renderer.setYAxisMin(0);
 		renderer.setYAxisMax(15);
 		}
@@ -362,22 +366,24 @@ public class S_Analysis_Whereabouts extends Activity {
                        // String id = c.getString(TAG_PID);
                       //  String name = c.getString(TAG_NAME);
                       //  String price = c.getString(TAG_PRICE);
-                        
+	                   String[] check =  new String[products.length()];
+	                   check[i] = String.valueOf(c.getString("receive_store"));
+	                  
                         String YEARcreated_date = c.getString("YEAR(created_date)");
                         String MONTHcreated_date = c.getString("MONTH(created_date)");
                         String receive_store = c.getString("receive_store");
                         String howp = c.getString("SUM(howp)");
                         // creating new HashMap
                         
-                        
-                        
+						
+                        Double howps=Double.parseDouble(howp);
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
                       //  map.put(TAG_PID, id);
                       //  map.put(TAG_NAME, name);
                        // map.put(TAG_PRICE, price);
-                        
+                        if (howps!=0){
                         map.put("YEAR(created_date)", YEARcreated_date);
                         map.put("MONTH(created_date)", MONTHcreated_date);
                         map.put("receive_store", receive_store);
@@ -385,8 +391,10 @@ public class S_Analysis_Whereabouts extends Activity {
                         // adding HashList to ArrayList
                         productsList.add(map);
                         
-                    }
-                } 
+	                   }
+                  
+				}
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

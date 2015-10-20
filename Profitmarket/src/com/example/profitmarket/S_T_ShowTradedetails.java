@@ -27,18 +27,8 @@ import android.widget.Toast;
 
 public class S_T_ShowTradedetails extends Activity {
 	
-	private TextView stxtid,
-    				 stxtname,
-    				 stxtsex,
-    				 stxtaddress,
-    				 stxtAA,
-    				 stxtBB,
-    				 stxtCC,
-    				 stxtDD,
-    				 stxtEE,
-    				 stxtFF,
-    				 stxtGG,
-    				 stxtHH;
+	private TextView stxtid,stxtname,stxtsex,stxtaddress,stxtAA,stxtBB,
+    				 stxtCC,stxtDD,stxtEE,stxtFF,stxtGG,stxtHH;
 	
 	String pid;
 	private static final String TAG_PID = "pid";
@@ -49,7 +39,7 @@ public class S_T_ShowTradedetails extends Activity {
 	public static final String TID = "id";
 	public static final String TYPE = "type";
 	public static final String DATE = "date";
-	public static final String CONSUMPTION = "cousumption";
+	public static final String CONSUMPTION = "consumption";
 	public static final String DISCOUNT = "discount";
 	public static final String GRANT = "grant";
 	public static final String GRANTDENOMINATIONS = "grantdenominations";
@@ -57,11 +47,12 @@ public class S_T_ShowTradedetails extends Activity {
 	public static final String QPONUSE = "Qponuse";
 	public static final String QPONNO = "QponNo";
 	public static final String USEDENOMINATIONS = "usedenominations";
+	public static final String COUNTCONSUMPTION = "countconsumption";
 	public static final String TRADETTMONEY = "tradettmoney";
 
 
 	String[] columns = 
-		     {TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,TRADETTMONEY};
+		     {TID,TYPE,DATE,CONSUMPTION,DISCOUNT,GRANT,GRANTDENOMINATIONS,MEMNAME,QPONUSE,QPONNO,USEDENOMINATIONS,COUNTCONSUMPTION,TRADETTMONEY};
 
 	private SQLiteDatabase mtradeDb;
 	
@@ -147,7 +138,7 @@ public class S_T_ShowTradedetails extends Activity {
 			stxtEE.setText("折價券使用："+c.getString(8));
 			stxtFF.setText("折價券序號："+c.getString(9));
 			stxtGG.setText("使用面額："+c.getString(10));
-			stxtHH.setText("總計金額："+c.getString(11));
+			stxtHH.setText("總計金額："+c.getString(12));
 			
 		}
 		

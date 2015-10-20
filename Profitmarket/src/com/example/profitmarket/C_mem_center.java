@@ -46,9 +46,9 @@ public class C_mem_center extends Activity
 		setContentView(R.layout.activity_c_mem_center);
 		
 		
-		textName = (EditText) findViewById(R.id.txtname);
-        textEmail = (EditText) findViewById(R.id.txtemail);
-        textPhone = (EditText) findViewById(R.id.textphone);
+		textName = (EditText) findViewById(R.id.c_mctxtname);
+        textEmail = (EditText) findViewById(R.id.c_mctxtemail);
+        textPhone = (EditText) findViewById(R.id.c_mctextphone);
         qrcodeImageView = (ImageView) findViewById(R.id.QRimageshow1);
               
         
@@ -70,10 +70,10 @@ public class C_mem_center extends Activity
         textPhone.setText(phone);
         
         try {
-			String contentString = textName.getText().toString();
+			String contentString = textEmail.getText().toString();
 			if (contentString != null && contentString.trim().length() > 0) {
 				
-				Bitmap qrCodeBitmap =EncodingHandler.createQRCode(contentString, 600);
+				Bitmap qrCodeBitmap =EncodingHandler.createQRCode(contentString, 500);
 				qrcodeImageView.setImageBitmap(qrCodeBitmap);
 				
 			}else {

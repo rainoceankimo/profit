@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="#0FFF3F"
         android:gravity="center"
-        android:text="歷史紀錄及資料分析"
+        android:text="歷史記錄及資料分析"
         android:textColor="#000000"
         android:textSize="30sp" />
 
@@ -22,7 +22,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="查詢交易紀錄"
+        android:text="查詢交易記錄"
         android:textColor="#000000"
         android:textSize="30sp"
         android:onClick="s_inquiretransaction_onClick" />
@@ -45,7 +45,7 @@
         android:layout_height="100dp"
         android:layout_alignLeft="@+id/btnclickqr"
         android:layout_centerVertical="true"
-        android:text="查詢分潤紀錄"
+        android:text="查詢分潤記錄"
         android:textColor="#000000"
         android:textSize="30sp"
         android:onClick="s_inquireshare_onClick" />
