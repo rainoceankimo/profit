@@ -72,6 +72,7 @@ public class S_Analysis_Sources extends Activity {
 	// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
+	private static String url_all_products = "http://192.168.0.102/analysis/get_all_receive.php";
 
 	//private static String url_all_products = "http://192.168.0.103/analysis/get_all_receive.php";
 
@@ -308,7 +309,7 @@ public class S_Analysis_Sources extends Activity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("receive_store", receive_store));
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(AppConfig_Stores.url_get_recordtoAS, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
             // Check your log cat for JSON reponse
             Log.d("All Products_RECEIVE: ", json.toString());

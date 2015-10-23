@@ -1,5 +1,6 @@
 package com.example.profitmarket;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -13,11 +14,13 @@ import org.json.JSONObject;
 
 import com.example.profitmarket.C_discount_use.DownloadQponData;
 
-import android.app.Activity;  
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;  
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;  
@@ -42,7 +45,8 @@ import helper.SessionManager;
 import android.widget.TableRow;
 import android.widget.TextView;  
 import android.widget.TimePicker;
-import android.widget.AdapterView.OnItemClickListener;  
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;  
 
 public class C_record extends ListActivity {
 
@@ -54,12 +58,12 @@ public class C_record extends ListActivity {
 	 private SessionManager session;
 
 	 private ProgressDialog pDialog;
-		
+	
 	 // Creating JSON Parser object
 	 JSONParser jParser = new JSONParser();
 
 	 ArrayList<HashMap<String, String>> recordsList;
-	 
+	 ArrayList<HashMap<String, String>> recordsList2;
 	 JSONArray records = null;
 	 
 	 private static final String TAG_SUCCESS = "success";
@@ -106,6 +110,9 @@ public class C_record extends ListActivity {
 		//選擇日期
 		btDate.setOnClickListener(new Button.OnClickListener() {  
 		   public void onClick(View v) {  
+			   
+			   
+			   
 		      showDatePickerDialog();            
 		   }  
 		});
@@ -317,23 +324,78 @@ public class C_record extends ListActivity {
 	// choose date
 	public void showDatePickerDialog() {  
 		  // 設定初始日期  
-		  final Calendar c = Calendar.getInstance();  
-		  mYear = c.get(Calendar.YEAR);  
-		  mMonth = c.get(Calendar.MONTH);  
-		  mDay = c.get(Calendar.DAY_OF_MONTH);  
-		  
-		  // 跳出日期選擇器  
-		  DatePickerDialog dpd = new DatePickerDialog(this,  
-		    new DatePickerDialog.OnDateSetListener() {  
-		     public void onDateSet(DatePicker view, int year,  
-		       int monthOfYear, int dayOfMonth) {  
-		      // 完成選擇，顯示日期  
-		      tvDate.setText(year + "-" + (monthOfYear + 1) + "-"  
-		        + dayOfMonth);  
-		  
-		     }  
-		    }, mYear, mMonth, mDay);  
-		  dpd.show();  
+		   final DatePicker datePicker = new DatePicker(C_record.this);  
+           datePicker.setCalendarViewShown(false);  
+
+           //
+           try {  
+               Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+               daySpinner.setAccessible(true);  
+               ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+           } catch (NoSuchFieldException e) {  
+               e.printStackTrace();  
+           } catch (IllegalArgumentException e) {  
+               e.printStackTrace();  
+           } catch (IllegalAccessException e) {  
+               e.printStackTrace();  
+           }  
+
+          // Calendar minCalendar = Calendar.getInstance();  
+          // minCalendar.get(Calendar.HOUR_OF_DAY);  
+         //  minCalendar.get(Calendar.MINUTE);  
+         //  minCalendar.get(Calendar.SECOND);  
+          // datePicker.setMinDate(minCalendar.getTimeInMillis());  
+
+          // Calendar	maxCalendar = Calendar.getInstance();  
+          // maxCalendar.add(Calendar.YEAR,10);  
+          // maxCalendar.add(Calendar.MONTH,12);  
+          // datePicker.setMaxDate(maxCalendar.getTimeInMillis());  
+
+           final Calendar	curCalendar = Calendar.getInstance();  
+           datePicker.init(curCalendar.get(Calendar.YEAR),  
+           curCalendar.get(Calendar.MONTH),  
+           curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+
+           AlertDialog.Builder	builder = new AlertDialog.Builder(C_record.this);  
+           builder.setView(datePicker);  
+           builder.setTitle("請選擇日期");  
+           builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+	        	public void onClick(DialogInterface dialog, int id) {	        
+	        		int year =datePicker.getYear();
+	    			String years = Integer.toString(year); 
+	    			int month = (datePicker.getMonth()+1);
+	    			String months = Integer.toString(month); 	        		
+	        		for(int i=0;i< recordsList.size();i++){
+	        		//Intent intime = new Intent();
+	    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
+	    			String yr=recordsList.get(i).get("YEAR(created_date)");
+	    			String mh=recordsList.get(i).get("MONTH(created_date)");
+	    			int yr2 = Integer.parseInt(yr);
+	    			int mh2 = Integer.parseInt(mh);
+	    			if(year-yr2==0&&month-mh2==0){
+	    		//	intime.putExtra("year", years);
+	    		//	intime.putExtra("month", months);
+	    				new DownloadrecordData2().execute();
+						//adapter.notify();
+	        		
+	    			//startActivity(intime);    //觸發換頁
+	        		//ss.setText("你設定的日期是" +
+	        		//years+"年" +
+	        		//months + "月" );
+	    			}
+	        		}	
+	        	}
+	        });
+           
+           
+           AlertDialog	dialog = builder.create();  
+           dialog.setCanceledOnTouchOutside(true);  
+           dialog.show();  
+
+       
+           
+    
+
 	}  	
 	// ---------------
 	 
@@ -353,4 +415,153 @@ public class C_record extends ListActivity {
         
         return super.onKeyDown(keyCode, event);
 	 }
+	 class DownloadrecordData2 extends AsyncTask<String, String, String> {
+	        
+			@Override
+			protected void onPreExecute() {
+				super.onPreExecute();
+				pDialog = new ProgressDialog(C_record.this);
+				pDialog.setMessage("Loading records. Please wait...");
+				pDialog.setIndeterminate(false);
+				pDialog.setCancelable(false);
+				pDialog.show();
+			}
+
+			@Override
+			protected String doInBackground(String... args) {
+				// TODO Auto-generated method stub
+				
+				// SqLite database handler
+		        db = new SQLiteHandler(getApplicationContext());
+		        // session manager
+		        session = new SessionManager(getApplicationContext());
+		        HashMap<String, String> user = db.getUserDetails();
+		        String username = user.get("email");
+		        List<NameValuePair> params = new ArrayList<NameValuePair>();
+		        params.add(new BasicNameValuePair("username",username));
+				
+		        // getting JSON string from URL
+		        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_memrecord, "GET", params);
+		        
+		        Log.d("Get Response rd2", json.toString());
+				
+		        try {
+					// Checking for SUCCESS TAG
+					int success = json.getInt(TAG_SUCCESS);
+
+					if (success == 1) {
+						// products found
+						// Getting Array of Products
+						records = json.getJSONArray(TAG_ISSUE);
+						
+						for (int i = 0; i < records.length(); i++) {
+							JSONObject c2 = records.getJSONObject(i);
+							
+							String uid = c2.getString(UID);
+							String date = c2.getString(CREATED_DATE);
+							String storename = c2.getString(STORENAME);
+							String consumption = c2.getString(CONSUMPTION);
+							String discount = c2.getString(DISCOUNT);
+							String qpongrant = c2.getString(QPONGRANT);
+							String grantdenominations = c2.getString(GRANTDENOMINATIONS);
+							String qponuse = c2.getString(QPONUSE);
+							String qponid = c2.getString(QPONID);
+							String usedenominations = c2.getString(USEDENOMINATIONS);
+							String totalmoney = c2.getString(TOTALMONEY);
+							String YEARcreated_date = c2.getString("YEAR(created_date)");
+							String MONTHcreated_date = c2.getString("MONTH(created_date)");
+							
+							HashMap<String, String> map = new HashMap<String, String>();
+					
+							map.put(UID,uid);
+							map.put(CREATED_DATE,date);
+							map.put(STORENAME,storename);
+							map.put(CONSUMPTION,consumption);
+							map.put(DISCOUNT,discount);
+							map.put(QPONGRANT,qpongrant);
+							map.put(GRANTDENOMINATIONS,grantdenominations);
+							map.put(QPONUSE,qponuse);
+							map.put(QPONID,qponid);
+							map.put(USEDENOMINATIONS,usedenominations);
+							map.put(TOTALMONEY,totalmoney);
+							map.put("YEAR(created_date)",YEARcreated_date);
+							map.put("MONTH(created_date)",MONTHcreated_date);
+							recordsList2.add(map);
+							
+						}
+					} else {
+						
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}		
+				
+				return null;
+			}
+			
+			protected void onPostExecute(String file_url) 
+			{
+				   // dismiss the dialog once done
+				   pDialog.dismiss();
+				   
+				   C_record.this.runOnUiThread(new Runnable() {
+					   @Override
+					   public void run() {
+						   // TODO Auto-generated method stub
+						   ListAdapter adapter = new SimpleAdapter(
+								   C_record.this, recordsList,
+									R.layout.activity_c_recodelist, new String[] { UID,
+											CREATED_DATE,STORENAME,CONSUMPTION,DISCOUNT,
+											QPONGRANT,GRANTDENOMINATIONS,QPONUSE,QPONID,
+											USEDENOMINATIONS,TOTALMONEY},
+									new int[] { R.id.c_rlttv1, R.id.c_rlttv2, R.id.c_rlttv3, 
+												R.id.c_rlttv4, R.id.c_rlttv5, R.id.c_rlttv6, 
+												R.id.c_rlttv7, R.id.c_rlttv8, R.id.c_rlttv9, 
+												R.id.c_rlttv10, R.id.c_rlttv11 });
+							// updating listview
+							setListAdapter(adapter);
+							adapter.notify();
+							ListView lv = getListView();
+							lv.setOnItemClickListener(new OnItemClickListener() {
+							
+								@Override
+								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+									// TODO Auto-generated method stub
+							
+									String uids = ((TextView) view.findViewById(R.id.c_rlttv1)).getText().toString();
+									String dates = ((TextView) view.findViewById(R.id.c_rlttv2)).getText().toString();
+									String storenames = ((TextView) view.findViewById(R.id.c_rlttv3)).getText().toString();
+									String consumptions = ((TextView) view.findViewById(R.id.c_rlttv4)).getText().toString();
+									String discounts = ((TextView) view.findViewById(R.id.c_rlttv5)).getText().toString();
+									String qpongrants = ((TextView) view.findViewById(R.id.c_rlttv6)).getText().toString();
+									String grantdenominationses = ((TextView) view.findViewById(R.id.c_rlttv7)).getText().toString();
+									String qponuses = ((TextView) view.findViewById(R.id.c_rlttv8)).getText().toString();
+									String qponids = ((TextView) view.findViewById(R.id.c_rlttv9)).getText().toString();
+									String usedenominationses = ((TextView) view.findViewById(R.id.c_rlttv10)).getText().toString();
+									String totalmoneys = ((TextView) view.findViewById(R.id.c_rlttv11)).getText().toString();
+									
+									Intent in = new Intent(C_record.this,
+											C_recorditem.class);
+									// sending pid to next activity
+									in.putExtra(UID, uids);
+									in.putExtra(CREATED_DATE, dates);
+									in.putExtra(STORENAME, storenames);
+									in.putExtra(CONSUMPTION, consumptions);
+									in.putExtra(DISCOUNT, discounts);
+									in.putExtra(QPONGRANT, qpongrants);
+									in.putExtra(GRANTDENOMINATIONS, grantdenominationses);
+									in.putExtra(QPONUSE, qponuses);
+									in.putExtra(QPONID, qponids);
+									in.putExtra(USEDENOMINATIONS, usedenominationses);
+									in.putExtra(TOTALMONEY, totalmoneys);
+									
+									startActivityForResult(in, 100);			
+					   		    }
+						
+				
+		});
+	 
+					   }
+				   });
+			}}
 }

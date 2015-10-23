@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="140dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="30dp"
                 android:gravity="center_vertical|center_horizontal"
@@ -46,9 +46,10 @@
 
             <EditText
                 android:id="@+id/c_mctxtemail"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:background="@null"
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
@@ -68,7 +69,7 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="140dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="25dp"
                 android:gravity="center_vertical|center_horizontal"
@@ -83,9 +84,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:ems="20"
-                android:enabled="false"
+                android:enabled="false" 
+                 android:background="@null"
                 android:inputType="textEmailAddress"
-                android:textSize="25dip" />
+                android:scrollbars="none"
+                android:textSize="25dip"
+                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -102,9 +106,10 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="140dp"
+                android:layout_width="75dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="25dp"
+                android:layout_weight="0.42"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="電話號碼:"
                 android:textColor="#000000"
@@ -117,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:ems="20"
+                 android:background="@null"
                 android:enabled="false"
                 android:inputType="phone"
                 android:textSize="25dip" />
@@ -153,6 +159,9 @@
             android:background="#FFFFFF"
             android:onClick="c_mod_inform_onClick"
             android:padding="10dip"
+            android:dashWidth="5dp"
+            android:dashGap="3dp"
+            
             android:text="修改會員資訊"
             android:textSize="25dip" />
 

@@ -71,6 +71,8 @@ public class S_Analysis_IssueRecover extends Activity {
 		// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
+	private static String url_all_products = "http://192.168.0.102/analysis/get_coupon_no_use.php";
+	private static String url_all_products2 = "http://192.168.0.102/analysis/get_coupon_used.php";
 	//private static String url_all_products = "http://192.168.0.103/analysis/get_coupon_no_use.php";
 	//private static String url_all_products2 = "http://192.168.0.103/analysis/get_coupon_used.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
@@ -300,7 +302,7 @@ public class S_Analysis_IssueRecover extends Activity {
             
             // getting JSON string from URL
             
-            JSONObject json = jParser.makeHttpRequest(AppConfig_Stores.url_get_recordtoAIRnouse, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
             // Check your log cat for JSON reponse
             
@@ -383,7 +385,7 @@ public class S_Analysis_IssueRecover extends Activity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("issue_store", issue_store));
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(AppConfig_Stores.url_get_recordtoAIRuse, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(url_all_products2, "GET", params);
 
             // Check your log cat for JSON reponse
             Log.d("All Products2: ", json.toString());
