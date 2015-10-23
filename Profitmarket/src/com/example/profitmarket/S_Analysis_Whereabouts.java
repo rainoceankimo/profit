@@ -15,6 +15,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
+import app.AppConfig_Stores;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.chart.BarChart.Type;
 import org.achartengine.model.CategorySeries;
@@ -26,8 +28,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 
 import android.R.color;
 import android.app.Activity;
@@ -51,6 +51,7 @@ import helper.SQLiteHandler;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager;
 import helper.SessionManager_Stores;
+
 public class S_Analysis_Whereabouts extends Activity {
 	
 	public static JSONParser jParser = new JSONParser();
@@ -72,6 +73,9 @@ public class S_Analysis_Whereabouts extends Activity {
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
 	private static String url_all_products = "http://192.168.0.102/analysis/get_all_issue.php";
+
+	//private static String url_all_products = "http://192.168.0.103/analysis/get_all_issue.php";
+
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

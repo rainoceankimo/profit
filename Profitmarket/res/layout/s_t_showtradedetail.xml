@@ -34,7 +34,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
 
         <TextView
             android:id="@+id/stxtsex"
@@ -45,7 +45,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
 
         <TextView
             android:id="@+id/stxtaddress"
@@ -56,7 +56,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxAA"
@@ -67,7 +67,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxBB"
@@ -78,7 +78,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxCC"
@@ -89,7 +89,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxDD"
@@ -100,7 +100,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxEE"
@@ -111,7 +111,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxFF"
@@ -122,7 +122,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxGG"
@@ -133,7 +133,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         <TextView
             android:id="@+id/stxHH"
@@ -144,7 +144,7 @@
             android:gravity="center"
             android:padding="10dip"
             android:textColor="@color/black"
-            android:textSize="10dip" />
+            android:textSize="20dip" />
         
         
     </LinearLayout>

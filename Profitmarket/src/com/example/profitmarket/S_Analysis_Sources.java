@@ -15,6 +15,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
+import app.AppConfig_Stores;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.chart.BarChart.Type;
 import org.achartengine.model.CategorySeries;
@@ -71,6 +73,9 @@ public class S_Analysis_Sources extends Activity {
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
 	private static String url_all_products = "http://192.168.0.102/analysis/get_all_receive.php";
+
+	//private static String url_all_products = "http://192.168.0.103/analysis/get_all_receive.php";
+
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

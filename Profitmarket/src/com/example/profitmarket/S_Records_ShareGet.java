@@ -182,7 +182,7 @@ public class S_Records_ShareGet extends ListActivity {
 										TAG_CREATED_DATE,TAG_ISSUE_STORE,TAG_COUPONID,TAG_MONEY,
 										TAG_PROFITMONEY,TAG_RECEIVE_STORE},
 								new int[] { R.id.rslttv1, R.id.rslttv2, R.id.rslttv3, R.id.rslttv4,
-										R.id.rslttv5,R.id.rslttv6,R.id.rslttv7 });
+											R.id.rslttv5,R.id.rslttv6,R.id.rslttv7 });
 						// updating listview
 						setListAdapter(adapter);
 

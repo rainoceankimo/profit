@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import app.AppConfig_Stores;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
@@ -71,6 +73,8 @@ public class S_Analysis_IssueRecover extends Activity {
 	private ProgressDialog pDialog;
 	private static String url_all_products = "http://192.168.0.102/analysis/get_coupon_no_use.php";
 	private static String url_all_products2 = "http://192.168.0.102/analysis/get_coupon_used.php";
+	//private static String url_all_products = "http://192.168.0.103/analysis/get_coupon_no_use.php";
+	//private static String url_all_products2 = "http://192.168.0.103/analysis/get_coupon_used.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	private static int[] COLORS = new int[] { Color.MAGENTA, Color.BLUE ,Color.BLACK,Color.GRAY,Color.LTGRAY,Color.RED,Color.WHITE,Color.rgb(221,160 ,221)};  
 	//private static double[] VALUES = new double[] { 10, 11, 12, 13 };  

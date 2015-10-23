@@ -4,9 +4,11 @@ public class AppConfig_Stores {
 	
     // Server user login url
     public static String URL_LOGIN = "http://192.168.0.102/android_login_stores/";
+  
 
     // Server user register url
     public static String URL_REGISTER = "http://192.168.0.102/android_login_stores/";
+   
 
     // use to S_Tradedetail
     public static String url_create_tdaddcoupon = "http://192.168.0.102/addQpon/add_coupon.php";

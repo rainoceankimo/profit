@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -195,6 +196,7 @@ public class C_discount_use extends ListActivity {
 	        
 	        // getting JSON string from URL
 	        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_qponmessage, "GET", params);
+	        Log.d("Get Qpon Message", json.toString());
 			
 	        try {
 				// Checking for SUCCESS TAG
