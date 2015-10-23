@@ -64,10 +64,8 @@ public class ReadFragment extends Fragment {
 	String[] howmuch = new String[100];
 	String[] y = new String[100];
 	// products JSONArray
-	public static JSONArray products = null;
-	
-	//private static String url_all_products = "http://192.168.0.109/android_connect2/get_all_products.php";
-
+	public static JSONArray products = null;	
+	private static String url_all_products = "http://192.168.0.104/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +106,7 @@ public class ReadFragment extends Fragment {
 	            // Building Parameters
 	            List<NameValuePair> params = new ArrayList<NameValuePair>();
 	            // getting JSON string from URL
-	            JSONObject json = jParser.makeHttpRequest(AppConfig.url_all_products, "GET", params);
+	            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 	            
 	            // Check your log cat for JSON reponse
 	            Log.d("All Products: ", json.toString());

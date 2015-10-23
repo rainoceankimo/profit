@@ -41,8 +41,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager_Stores;
 
-
-
 public class CreateFragment extends Fragment {
 	private View v;
 	ListView lv;
@@ -68,7 +66,7 @@ public class CreateFragment extends Fragment {
 	// products JSONArray
 	public static JSONArray products = null;
 	
-	//private static String url_all_products = "http://192.168.0.105/android_connect2/get_all_products.php";
+	private static String url_all_products = "http://192.168.0.104/android_connect2/get_all_products.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,7 +116,7 @@ public class CreateFragment extends Fragment {
 	            // Building Parameters
 	            List<NameValuePair> params = new ArrayList<NameValuePair>();
 	            // getting JSON string from URL
-	            JSONObject json = jParser.makeHttpRequest(AppConfig.url_all_products, "GET", params);
+	            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 	            
 	            // Check your log cat for JSON reponse
 	            Log.d("All Products: ", json.toString());

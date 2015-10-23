@@ -129,10 +129,10 @@ public final class R {
         public static final int btnclickqr=0x7f070018;
         public static final int btnclickreceivable=0x7f07009e;
         public static final int btnsclear=0x7f0700c3;
-        public static final int button1=0x7f07007b;
-        public static final int button2=0x7f07007a;
-        public static final int button3=0x7f070079;
-        public static final int button4=0x7f070078;
+        public static final int button1=0x7f070078;
+        public static final int button2=0x7f070079;
+        public static final int button3=0x7f07007a;
+        public static final int button4=0x7f07007b;
         public static final int c=0x7f070070;
         public static final int c_idnumber=0x7f070050;
         public static final int c_loemail=0x7f07004b;
