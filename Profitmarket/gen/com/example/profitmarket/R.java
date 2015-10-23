@@ -50,8 +50,8 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int black=0x7f02002c;
-        public static final int blue=0x7f02002f;
+        public static final int black=0x7f020030;
+        public static final int blue=0x7f020033;
         public static final int c_clothes=0x7f020000;
         public static final int c_favorite=0x7f020001;
         public static final int c_folder=0x7f020002;
@@ -60,7 +60,7 @@ public final class R {
         public static final int c_more=0x7f020005;
         public static final int c_search=0x7f020006;
         public static final int c_store=0x7f020007;
-        public static final int darkgray=0x7f02002d;
+        public static final int darkgray=0x7f020031;
         public static final int drawer_shadow=0x7f020008;
         public static final int ic_action_about=0x7f020009;
         public static final int ic_action_camera=0x7f02000a;
@@ -80,24 +80,28 @@ public final class R {
         public static final int ic_action_share=0x7f020018;
         public static final int ic_action_video=0x7f020019;
         public static final int ic_drawer=0x7f02001a;
-        public static final int ic_launcher=0x7f02001b;
-        public static final int icon_1=0x7f02001c;
-        public static final int icon_2=0x7f02001d;
-        public static final int icon_3=0x7f02001e;
-        public static final int icon_4=0x7f02001f;
-        public static final int icon_5=0x7f020020;
-        public static final int qr_code_bg=0x7f020021;
-        public static final int s_buycoupon=0x7f020022;
-        public static final int s_clearing=0x7f020023;
-        public static final int s_coupon=0x7f020024;
-        public static final int s_records=0x7f020025;
-        public static final int s_start_customer=0x7f020026;
-        public static final int s_start_stores=0x7f020027;
-        public static final int s_storephoto=0x7f020028;
-        public static final int s_stores=0x7f020029;
-        public static final int scan_line=0x7f02002a;
-        public static final int shadow=0x7f02002b;
-        public static final int white=0x7f02002e;
+        public static final int ic_icon=0x7f02001b;
+        public static final int ic_launcher=0x7f02001c;
+        public static final int icon_1=0x7f02001d;
+        public static final int icon_2=0x7f02001e;
+        public static final int icon_3=0x7f02001f;
+        public static final int icon_4=0x7f020020;
+        public static final int icon_5=0x7f020021;
+        public static final int qr_code_bg=0x7f020022;
+        public static final int s_analysis=0x7f020023;
+        public static final int s_buycoupon=0x7f020024;
+        public static final int s_clearing=0x7f020025;
+        public static final int s_coupon=0x7f020026;
+        public static final int s_records=0x7f020027;
+        public static final int s_start_customer=0x7f020028;
+        public static final int s_start_stores=0x7f020029;
+        public static final int s_storephoto=0x7f02002a;
+        public static final int s_stores=0x7f02002b;
+        public static final int scan_line=0x7f02002c;
+        public static final int shadow=0x7f02002d;
+        public static final int shape=0x7f02002e;
+        public static final int snew=0x7f02002f;
+        public static final int white=0x7f020032;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f070057;

@@ -1,5 +1,6 @@
 package com.example.profitmarket;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -13,11 +14,13 @@ import org.json.JSONObject;
 
 import com.example.profitmarket.C_discount_use.DownloadQponData;
 
-import android.app.Activity;  
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;  
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;  
@@ -106,6 +109,9 @@ public class C_record extends ListActivity {
 		//選擇日期
 		btDate.setOnClickListener(new Button.OnClickListener() {  
 		   public void onClick(View v) {  
+			   
+			   
+			   
 		      showDatePickerDialog();            
 		   }  
 		});
@@ -256,23 +262,69 @@ public class C_record extends ListActivity {
 	// choose date
 	public void showDatePickerDialog() {  
 		  // 設定初始日期  
-		  final Calendar c = Calendar.getInstance();  
-		  mYear = c.get(Calendar.YEAR);  
-		  mMonth = c.get(Calendar.MONTH);  
-		  mDay = c.get(Calendar.DAY_OF_MONTH);  
-		  
-		  // 跳出日期選擇器  
-		  DatePickerDialog dpd = new DatePickerDialog(this,  
-		    new DatePickerDialog.OnDateSetListener() {  
-		     public void onDateSet(DatePicker view, int year,  
-		       int monthOfYear, int dayOfMonth) {  
-		      // 完成選擇，顯示日期  
-		      tvDate.setText(year + "-" + (monthOfYear + 1) + "-"  
-		        + dayOfMonth);  
-		  
-		     }  
-		    }, mYear, mMonth, mDay);  
-		  dpd.show();  
+		   final DatePicker datePicker = new DatePicker(C_record.this);  
+           datePicker.setCalendarViewShown(false);  
+
+           //
+           try {  
+               Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+               daySpinner.setAccessible(true);  
+               ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+           } catch (NoSuchFieldException e) {  
+               e.printStackTrace();  
+           } catch (IllegalArgumentException e) {  
+               e.printStackTrace();  
+           } catch (IllegalAccessException e) {  
+               e.printStackTrace();  
+           }  
+
+          // Calendar minCalendar = Calendar.getInstance();  
+          // minCalendar.get(Calendar.HOUR_OF_DAY);  
+         //  minCalendar.get(Calendar.MINUTE);  
+         //  minCalendar.get(Calendar.SECOND);  
+          // datePicker.setMinDate(minCalendar.getTimeInMillis());  
+
+          // Calendar	maxCalendar = Calendar.getInstance();  
+          // maxCalendar.add(Calendar.YEAR,10);  
+          // maxCalendar.add(Calendar.MONTH,12);  
+          // datePicker.setMaxDate(maxCalendar.getTimeInMillis());  
+
+           final Calendar	curCalendar = Calendar.getInstance();  
+           datePicker.init(curCalendar.get(Calendar.YEAR),  
+           curCalendar.get(Calendar.MONTH),  
+           curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+
+           AlertDialog.Builder	builder = new AlertDialog.Builder(C_record.this);  
+           builder.setView(datePicker);  
+           builder.setTitle("請選擇日期");  
+           builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+	        	public void onClick(DialogInterface dialog, int id) {
+	        		/*Intent intime = new Intent();
+	    			intime.setClass(C_record.this,S_Analysis_Sources.class);
+	    			int year =datePicker.getYear();
+	    			String years = Integer.toString(year); 
+	    			int month = (datePicker.getMonth()+1);
+	    			String months = Integer.toString(month); 
+	    			intime.putExtra("year", years);
+	    			intime.putExtra("month", months);
+
+	    			startActivity(intime);    //觸發換頁*/
+	        		//ss.setText("你設定的日期是" +
+	        		//years+"年" +
+	        		//months + "月" );
+	        		
+	        	}
+	        });
+           
+           
+           AlertDialog	dialog = builder.create();  
+           dialog.setCanceledOnTouchOutside(true);  
+           dialog.show();  
+
+       
+           
+    
+
 	}  	
 	// ---------------
 	 

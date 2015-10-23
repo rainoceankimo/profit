@@ -71,7 +71,7 @@ public class S_Analysis_Whereabouts extends Activity {
 	// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.104/analysis/get_all_issue.php";
+	private static String url_all_products = "http://192.168.0.102/analysis/get_all_issue.php";
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

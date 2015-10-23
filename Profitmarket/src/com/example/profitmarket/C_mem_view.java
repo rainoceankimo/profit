@@ -1,5 +1,7 @@
 package com.example.profitmarket;
 
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,24 +10,36 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import helper.SQLiteHandler;
+import helper.SessionManager;
 
 public class C_mem_view extends Activity {
 	
 	private ImageButton showstore,membercenter,coupon,records;
-	
-	
+	  private SQLiteHandler db;
+	    private SessionManager session;
+	private TextView textName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_c_mem_view);
-		
+		  db = new SQLiteHandler(getApplicationContext());
+		  
+	        // session manager
+	        session = new SessionManager(getApplicationContext());			
+	        HashMap<String, String> user = db.getUserDetails();
+	        String name = user.get("name");
+	        
 		showstore = (ImageButton)findViewById(R.id.cmvibtn1);
 		membercenter = (ImageButton)findViewById(R.id.cmvibtn2);
 		coupon = (ImageButton)findViewById(R.id.cmvibtn4);
 		records = (ImageButton)findViewById(R.id.cmvibtn3);
-		
+		textName = (TextView) findViewById(R.id.textView1);
+		   textName.setText(name);
 		showstore.setOnClickListener(new Button.OnClickListener(){ 
             @Override
             public void onClick(View v) {
