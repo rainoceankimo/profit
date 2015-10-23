@@ -66,10 +66,10 @@ public class C_record extends ListActivity {
 	 private static final String TAG_ISSUE = "memberrecord";
 	 private static final String UID = "uid";
 	 private static final String CREATED_DATE = "created_date";
-	 private static final String USERNAME = "username";
+	 //private static final String USERNAME = "username";
 	 private static final String STORENAME = "storename";
 	 private static final String CONSUMPTION = "consumption";
-	 private static final String DISCOUBT = "discount";
+	 private static final String DISCOUNT = "discount";
 	 private static final String QPONGRANT = "qpongrant";
 	 private static final String GRANTDENOMINATIONS = "grantdenominations";
 	 private static final String QPONUSE = "qponuse";
@@ -145,7 +145,7 @@ public class C_record extends ListActivity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(C_record.this);
-			pDialog.setMessage("Loading products. Please wait...");
+			pDialog.setMessage("Loading records. Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
 			pDialog.show();
@@ -183,11 +183,30 @@ public class C_record extends ListActivity {
 						
 						String uid = c.getString(UID);
 						String date = c.getString(CREATED_DATE);
+						String storename = c.getString(STORENAME);
+						String consumption = c.getString(CONSUMPTION);
+						String discount = c.getString(DISCOUNT);
+						String qpongrant = c.getString(QPONGRANT);
+						String grantdenominations = c.getString(GRANTDENOMINATIONS);
+						String qponuse = c.getString(QPONUSE);
+						String qponid = c.getString(QPONID);
+						String usedenominations = c.getString(USEDENOMINATIONS);
+						String totalmoney = c.getString(TOTALMONEY);
+						
 						
 						HashMap<String, String> map = new HashMap<String, String>();
 						
 						map.put(UID,uid);
 						map.put(CREATED_DATE,date);
+						map.put(STORENAME,storename);
+						map.put(CONSUMPTION,consumption);
+						map.put(DISCOUNT,discount);
+						map.put(QPONGRANT,qpongrant);
+						map.put(GRANTDENOMINATIONS,grantdenominations);
+						map.put(QPONUSE,qponuse);
+						map.put(QPONID,qponid);
+						map.put(USEDENOMINATIONS,usedenominations);
+						map.put(TOTALMONEY,totalmoney);
 						
 						recordsList.add(map);
 						
@@ -214,15 +233,57 @@ public class C_record extends ListActivity {
 					   ListAdapter adapter = new SimpleAdapter(
 							   C_record.this, recordsList,
 								R.layout.activity_c_recodelist, new String[] { UID,
-										CREATED_DATE},
-								new int[] { R.id.c_rlttv1, R.id.c_rlttv2 });
+										CREATED_DATE,STORENAME,CONSUMPTION,DISCOUNT,
+										QPONGRANT,GRANTDENOMINATIONS,QPONUSE,QPONID,
+										USEDENOMINATIONS,TOTALMONEY},
+								new int[] { R.id.c_rlttv1, R.id.c_rlttv2, R.id.c_rlttv3, 
+											R.id.c_rlttv4, R.id.c_rlttv5, R.id.c_rlttv6, 
+											R.id.c_rlttv7, R.id.c_rlttv8, R.id.c_rlttv9, 
+											R.id.c_rlttv10, R.id.c_rlttv11 });
 						// updating listview
 						setListAdapter(adapter);
-				   }
-			   });
-			   
-		}		   
-		
+						
+						ListView lv = getListView();
+						lv.setOnItemClickListener(new OnItemClickListener() {
+						
+							@Override
+							public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+								// TODO Auto-generated method stub
+						
+								String uids = ((TextView) view.findViewById(R.id.c_rlttv1)).getText().toString();
+								String dates = ((TextView) view.findViewById(R.id.c_rlttv2)).getText().toString();
+								String storenames = ((TextView) view.findViewById(R.id.c_rlttv3)).getText().toString();
+								String consumptions = ((TextView) view.findViewById(R.id.c_rlttv4)).getText().toString();
+								String discounts = ((TextView) view.findViewById(R.id.c_rlttv5)).getText().toString();
+								String qpongrants = ((TextView) view.findViewById(R.id.c_rlttv6)).getText().toString();
+								String grantdenominationses = ((TextView) view.findViewById(R.id.c_rlttv7)).getText().toString();
+								String qponuses = ((TextView) view.findViewById(R.id.c_rlttv8)).getText().toString();
+								String qponids = ((TextView) view.findViewById(R.id.c_rlttv9)).getText().toString();
+								String usedenominationses = ((TextView) view.findViewById(R.id.c_rlttv10)).getText().toString();
+								String totalmoneys = ((TextView) view.findViewById(R.id.c_rlttv11)).getText().toString();
+								
+								Intent in = new Intent(C_record.this,
+										C_recorditem.class);
+								// sending pid to next activity
+								in.putExtra(UID, uids);
+								in.putExtra(CREATED_DATE, dates);
+								in.putExtra(STORENAME, storenames);
+								in.putExtra(CONSUMPTION, consumptions);
+								in.putExtra(DISCOUNT, discounts);
+								in.putExtra(QPONGRANT, qpongrants);
+								in.putExtra(GRANTDENOMINATIONS, grantdenominationses);
+								in.putExtra(QPONUSE, qponuses);
+								in.putExtra(QPONID, qponids);
+								in.putExtra(USEDENOMINATIONS, usedenominationses);
+								in.putExtra(TOTALMONEY, totalmoneys);
+								
+								startActivityForResult(in, 100);			
+				   		    }
+					
+					}); 
+		   		}
+	   		});
+		}
 	}
 	// ------------------
 	

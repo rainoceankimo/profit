@@ -23,8 +23,8 @@ public class C_mem_view extends Activity {
 		
 		showstore = (ImageButton)findViewById(R.id.cmvibtn1);
 		membercenter = (ImageButton)findViewById(R.id.cmvibtn2);
-		coupon = (ImageButton)findViewById(R.id.cmvibtn4);
-		records = (ImageButton)findViewById(R.id.cmvibtn3);
+		coupon = (ImageButton)findViewById(R.id.cmvibtn3);
+		records = (ImageButton)findViewById(R.id.cmvibtn4);
 		
 		showstore.setOnClickListener(new Button.OnClickListener(){ 
             @Override

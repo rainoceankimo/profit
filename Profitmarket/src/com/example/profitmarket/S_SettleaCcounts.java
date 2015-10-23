@@ -18,6 +18,7 @@ import android.widget.Toast;
 import app.AppController;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 
 
 public class S_SettleaCcounts extends Activity {
@@ -30,6 +31,17 @@ public class S_SettleaCcounts extends Activity {
 	public int outputmoney;
 	public int maxdiscount;
 	
+	
+	private static final String DB_DBNAME = "percents.db",
+            					DB_TBNAME = "percents";
+
+	public static final String PID = "id";
+	public static final String HOWMUCH = "howmuch";
+
+
+	String[] columns = {PID,HOWMUCH};
+
+	private SQLiteDatabase MypercentDb;
 	
  
 	@Override
