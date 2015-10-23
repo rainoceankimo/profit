@@ -7,10 +7,14 @@ public class AppConfig_Stores {
 
     // Server user register url
     public static String URL_REGISTER = "http://chaoiok.net78.net/android_login_stores/";
+    
+    // use to S_Stores_Center_Amend
+    public static String url_update_store = "http://192.168.0.102/storedetail/updatestoresdetail.php";
 
     // use to S_Tradedetail
     public static String url_create_tdaddcoupon = "http://192.168.0.102/addQpon/add_coupon.php";
     public static String URL_GET_TDCOUPON = "http://192.168.0.102/addQpon/getqpontot.php";
+    
     public static String URL_create_ctrrecords = "http://192.168.0.102/trade_details/memberrecord.php";
     public static String URL_create_profitrecord = "http://192.168.0.102/profitrecord/profitrecord.php";
 

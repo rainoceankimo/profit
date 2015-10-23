@@ -14,7 +14,7 @@ public class AppConfig {
     //use to CreatFragment
     //use to HelpFragment
     //use to ReadFragment
-    public static String url_all_products = "http://192.168.0.102/android_connect2/get_all_products.php";
+    public static String url_all_products = "http://192.168.0.102/android_connect2/get_all_storemessage.php";
     
     //use to C_record
     public static String url_get_memrecord = "http://192.168.0.102/trade_details/getrecords.php";
