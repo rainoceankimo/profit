@@ -63,9 +63,7 @@ public class C_mod_inform extends Activity {
 				new updatenew().execute();
 				Toast.makeText(C_mod_inform.this, "上傳成功", Toast.LENGTH_SHORT).show();
 
-				Intent intent = new Intent();
-				intent.setClass(C_mod_inform.this, C_mem_view.class);
-				startActivity(intent); // 觸發換頁
+				
 
 			}
 		}
@@ -178,6 +176,11 @@ public class C_mod_inform extends Activity {
 				if (success == 1) {
                  db.deleteUsers();
                  db.addUser(name, email,idnumber, phone, uid, created_at);
+                 
+                 Intent intent = new Intent();
+ 				 intent.setClass(C_mod_inform.this, C_mem_view.class);
+ 				 startActivity(intent); // 觸發換頁
+                 
 				} else {
 					// failed to update product
 				}

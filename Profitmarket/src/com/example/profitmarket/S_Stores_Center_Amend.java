@@ -34,7 +34,7 @@ import helper.SessionManager_Stores;
 
 public class S_Stores_Center_Amend extends Activity {
 
-	private static final String url_update_product = "http://192.168.0.102/storedetail/updatestoresdetail.php";
+	//private static final String url_update_product = "http://192.168.0.102/storedetail/updatestoresdetail.php";
 	
 	private ProgressDialog nDialog;
 	private EditText textName;

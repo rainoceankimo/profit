@@ -69,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:padding="1dp"
                 android:text="TextView"
-                android:textSize="1dip" />
+                android:textSize="1dip"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/rsissuettv4"
@@ -77,7 +78,8 @@
                 android:layout_height="wrap_content"
                 android:padding="1dp"
                 android:text="TextView"
-                android:textSize="1dip" />
+                android:textSize="1dip"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/rsissuettv5"
@@ -85,7 +87,8 @@
                 android:layout_height="wrap_content"
                 android:padding="1dp"
                 android:text="TextView"
-                android:textSize="1dip" />
+                android:textSize="1dip"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/rsissuettv6"
@@ -93,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:padding="1dp"
                 android:text="TextView"
-                android:textSize="1dip" />
+                android:textSize="1dip"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/rsissuettv7"
@@ -101,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:padding="1dp"
                 android:text="TextView"
-                android:textSize="1dip" />
+                android:textSize="1dip"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>
