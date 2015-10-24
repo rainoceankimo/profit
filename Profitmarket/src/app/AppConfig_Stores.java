@@ -3,15 +3,15 @@ package app;
 public class AppConfig_Stores {
 	
     // Server user login url
-    public static String URL_LOGIN = "http://192.168.0.102/android_login_stores/";
+    public static String URL_LOGIN = "http://192.168.0.103/android_login_stores/";
   
 
     // Server user register url
-    public static String URL_REGISTER = "http://192.168.0.102/android_login_stores/";
+    public static String URL_REGISTER = "http://192.168.0.103/android_login_stores/";
    
 
     // use to S_Tradedetail
-    public static String url_create_tdaddcoupon = "http://192.168.0.102/addQpon/add_coupon.php";
+    public static String url_create_tdaddcoupon = "http://192.168.0.103/addQpon/add_coupon.php";
     public static String URL_GET_TDCOUPON = "http://192.168.0.102/addQpon/getqpontot.php";
     public static String URL_create_ctrrecords = "http://192.168.0.102/trade_details/memberrecord.php";
     public static String URL_create_profitrecord = "http://192.168.0.102/profitrecord/profitrecord.php";
