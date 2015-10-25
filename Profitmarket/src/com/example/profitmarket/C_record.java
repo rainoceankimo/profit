@@ -53,7 +53,7 @@ public class C_record extends ListActivity {
 	 private TextView tvDate, tvTime;  
 	 private Button btDate, btTime;  
 	 private int mYear, mMonth, mDay, mHour, mMinute; 
-	 
+	 public int year;
 	 private SQLiteHandler db;
 	 private SessionManager session;
 
@@ -64,6 +64,7 @@ public class C_record extends ListActivity {
 
 	 ArrayList<HashMap<String, String>> recordsList;
 	 ArrayList<HashMap<String, String>> recordsList2;
+	 ArrayList<HashMap<String, String>> recordsList3;
 	 JSONArray records = null;
 	 
 	 private static final String TAG_SUCCESS = "success";
@@ -99,26 +100,118 @@ public class C_record extends ListActivity {
         session = new SessionManager(getApplicationContext());
         
         recordsList = new ArrayList<HashMap<String, String>>();
-
+        recordsList2 = new ArrayList<HashMap<String, String>>();
+        recordsList3 = new ArrayList<HashMap<String, String>>();
 		
 		tvDate = (TextView) findViewById(R.id.tvDate);  
 		btDate = (Button) findViewById(R.id.btDate);
 		
 		
 		new DownloadrecordData().execute();
-
+		
 		//選擇日期
 		btDate.setOnClickListener(new Button.OnClickListener() {  
 		   public void onClick(View v) {  
 			   
+			   final DatePicker datePicker = new DatePicker(C_record.this);  
+	           datePicker.setCalendarViewShown(false);  
+
+	           //
+	           try {  
+	               Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+	               daySpinner.setAccessible(true);  
+	               ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+	           } catch (NoSuchFieldException e) {  
+	               e.printStackTrace();  
+	           } catch (IllegalArgumentException e) {  
+	               e.printStackTrace();  
+	           } catch (IllegalAccessException e) {  
+	               e.printStackTrace();  
+	           }  
+	           final Calendar	curCalendar = Calendar.getInstance();  
+	           datePicker.init(curCalendar.get(Calendar.YEAR),  
+	           curCalendar.get(Calendar.MONTH),  
+	           curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+
+	           AlertDialog.Builder	builder = new AlertDialog.Builder(C_record.this);  
+	           builder.setView(datePicker);  
+	           builder.setTitle("請選擇日期");  
+	           builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+		        	public void onClick(DialogInterface dialog, int id) {	        
+		        		int yearss =datePicker.getYear();
+		    			String years = Integer.toString(yearss); 
+		    			int month = (datePicker.getMonth()+1);
+		    			String months = Integer.toString(month);
+		        		for(int i=0;i< recordsList2.size();i++){
+		        		//Intent intime = new Intent();
+		    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
+		    			String yr=recordsList2.get(i).get("YEAR(created_date)");
+		    			String mh=recordsList2.get(i).get("MONTH(created_date)");
+		    			int yr2 = Integer.parseInt(yr);
+		    			int mh2 = Integer.parseInt(mh);
+		    			if(yearss-yr2==0&&month-mh2==0){
+		    			
+		    				String uid2 = recordsList2.get(i).get(UID);
+							String date2 = recordsList2.get(i).get(CREATED_DATE);							
+							String storename2 = recordsList2.get(i).get(STORENAME);							
+							String consumption2 =  recordsList2.get(i).get(CONSUMPTION);													
+							String discount2 = recordsList2.get(i).get(DISCOUNT);														
+							String qpongrant2 = recordsList2.get(i).get(QPONGRANT);														
+							String grantdenominations2 = recordsList2.get(i).get(GRANTDENOMINATIONS);													
+							String qponuse2 = recordsList2.get(i).get(QPONUSE);														
+							String qponid2 = recordsList2.get(i).get(QPONID);						 							
+							String usedenominations2 = recordsList2.get(i).get(USEDENOMINATIONS);														
+							String totalmoney2 = recordsList2.get(i).get(TOTALMONEY);		
+		    				HashMap<String, String> map3 = new HashMap<String, String>();		    				
+		    				map3.put(UID,uid2);
+							map3.put(CREATED_DATE,date2);
+							map3.put(STORENAME,storename2);
+							map3.put(CONSUMPTION,consumption2);
+							map3.put(DISCOUNT,discount2);
+							map3.put(QPONGRANT,qpongrant2);
+							map3.put(GRANTDENOMINATIONS,grantdenominations2);
+							map3.put(QPONUSE,qponuse2);
+							map3.put(QPONID,qponid2);
+							map3.put(USEDENOMINATIONS,usedenominations2);
+							map3.put(TOTALMONEY,totalmoney2);
+							//recordsList3.add(map3);
+							
+							recordsList.clear();
+							recordsList.add(map3);
+							SimpleAdapter adapter2 = new SimpleAdapter(
+									   C_record.this, recordsList,
+										R.layout.activity_c_recodelist, new String[] {UID,
+												CREATED_DATE,STORENAME,CONSUMPTION,DISCOUNT,
+												QPONGRANT,GRANTDENOMINATIONS,QPONUSE,QPONID,
+												USEDENOMINATIONS,TOTALMONEY},
+										new int[] { R.id.c_rlttv1, R.id.c_rlttv2, R.id.c_rlttv3, 
+													R.id.c_rlttv4, R.id.c_rlttv5, R.id.c_rlttv6, 
+													R.id.c_rlttv7, R.id.c_rlttv8, R.id.c_rlttv9, 
+													R.id.c_rlttv10, R.id.c_rlttv11 });
+								// updating listview
+								setListAdapter(adapter2);
+								adapter2.notifyDataSetChanged();
+		    				
+		    			}
+		    			  tvDate.setText(yearss+"-"+month);
+		        		}	
+		        	}
+		        });
+	         
+	           
+	           AlertDialog	dialog = builder.create();  
+	           dialog.setCanceledOnTouchOutside(true);  
+	           dialog.show();  
+
+	       
+	            
 			   
-			   
-		      showDatePickerDialog();            
+		         
 		   }  
 		});
 		// ------------------
 		
-		clicklist();
+		
 		
 		
 	}
@@ -189,19 +282,46 @@ public class C_record extends ListActivity {
 						JSONObject c = records.getJSONObject(i);
 						
 						String uid = c.getString(UID);
-						String date = c.getString(CREATED_DATE);
-						String storename = c.getString(STORENAME);
-						String consumption = c.getString(CONSUMPTION);
-						String discount = c.getString(DISCOUNT);
-						String qpongrant = c.getString(QPONGRANT);
-						String grantdenominations = c.getString(GRANTDENOMINATIONS);
-						String qponuse = c.getString(QPONUSE);
-						String qponid = c.getString(QPONID);
-						String usedenominations = c.getString(USEDENOMINATIONS);
-						String totalmoney = c.getString(TOTALMONEY);
+						String uid2 = c.getString(UID);
 						
+						String date = c.getString(CREATED_DATE);
+						String date2 = c.getString(CREATED_DATE);
+						
+						String storename = c.getString(STORENAME);
+						String storename2 = c.getString(STORENAME);
+						
+						String consumption = c.getString(CONSUMPTION);
+						String consumption2 = c.getString(CONSUMPTION);
+						
+						String discount = c.getString(DISCOUNT);
+						String discount2 = c.getString(DISCOUNT);
+						
+						String qpongrant = c.getString(QPONGRANT);
+						String qpongrant2 = c.getString(QPONGRANT);
+						
+						String grantdenominations = c.getString(GRANTDENOMINATIONS);
+						String grantdenominations2 = c.getString(GRANTDENOMINATIONS);
+						
+						String qponuse = c.getString(QPONUSE);
+						String qponuse2 = c.getString(QPONUSE);
+						
+						String qponid = c.getString(QPONID);
+						String qponid2 = c.getString(QPONID);
+						
+						String usedenominations = c.getString(USEDENOMINATIONS);
+						String usedenominations2 = c.getString(USEDENOMINATIONS);
+						
+						String totalmoney = c.getString(TOTALMONEY);
+						String totalmoney2 = c.getString(TOTALMONEY);
+						
+						String YEARcreated_date = c.getString("YEAR(created_date)");
+						String YEARcreated_date2 = c.getString("YEAR(created_date)");
+						
+						String MONTHcreated_date = c.getString("MONTH(created_date)");
+						String MONTHcreated_date2 = c.getString("MONTH(created_date)");
 						
 						HashMap<String, String> map = new HashMap<String, String>();
+						HashMap<String, String> map2 = new HashMap<String, String>();
 						
 						map.put(UID,uid);
 						map.put(CREATED_DATE,date);
@@ -214,8 +334,26 @@ public class C_record extends ListActivity {
 						map.put(QPONID,qponid);
 						map.put(USEDENOMINATIONS,usedenominations);
 						map.put(TOTALMONEY,totalmoney);
+						map.put("YEAR(created_date)",YEARcreated_date);
+						map.put("MONTH(created_date)",MONTHcreated_date);
 						
 						recordsList.add(map);
+						
+						map2.put(UID,uid);
+						map2.put(CREATED_DATE,date);
+						map2.put(STORENAME,storename);
+						map2.put(CONSUMPTION,consumption);
+						map2.put(DISCOUNT,discount);
+						map2.put(QPONGRANT,qpongrant);
+						map2.put(GRANTDENOMINATIONS,grantdenominations);
+						map2.put(QPONUSE,qponuse);
+						map2.put(QPONID,qponid);
+						map2.put(USEDENOMINATIONS,usedenominations);
+						map2.put(TOTALMONEY,totalmoney);
+						map2.put("YEAR(created_date)",YEARcreated_date);
+						map2.put("MONTH(created_date)",MONTHcreated_date);
+						
+						recordsList2.add(map2);
 						
 					}
 				} else {
@@ -237,7 +375,7 @@ public class C_record extends ListActivity {
 				   @Override
 				   public void run() {
 					   // TODO Auto-generated method stub
-					   ListAdapter adapter = new SimpleAdapter(
+					   SimpleAdapter adapter = new SimpleAdapter(
 							   C_record.this, recordsList,
 								R.layout.activity_c_recodelist, new String[] { UID,
 										CREATED_DATE,STORENAME,CONSUMPTION,DISCOUNT,
@@ -251,6 +389,7 @@ public class C_record extends ListActivity {
 						setListAdapter(adapter);
 						
 						ListView lv = getListView();
+						//lv.setDivider(null);
 						lv.setOnItemClickListener(new OnItemClickListener() {
 						
 							@Override
@@ -324,76 +463,7 @@ public class C_record extends ListActivity {
 	// choose date
 	public void showDatePickerDialog() {  
 		  // 設定初始日期  
-		   final DatePicker datePicker = new DatePicker(C_record.this);  
-           datePicker.setCalendarViewShown(false);  
-
-           //
-           try {  
-               Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
-               daySpinner.setAccessible(true);  
-               ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
-           } catch (NoSuchFieldException e) {  
-               e.printStackTrace();  
-           } catch (IllegalArgumentException e) {  
-               e.printStackTrace();  
-           } catch (IllegalAccessException e) {  
-               e.printStackTrace();  
-           }  
-
-          // Calendar minCalendar = Calendar.getInstance();  
-          // minCalendar.get(Calendar.HOUR_OF_DAY);  
-         //  minCalendar.get(Calendar.MINUTE);  
-         //  minCalendar.get(Calendar.SECOND);  
-          // datePicker.setMinDate(minCalendar.getTimeInMillis());  
-
-          // Calendar	maxCalendar = Calendar.getInstance();  
-          // maxCalendar.add(Calendar.YEAR,10);  
-          // maxCalendar.add(Calendar.MONTH,12);  
-          // datePicker.setMaxDate(maxCalendar.getTimeInMillis());  
-
-           final Calendar	curCalendar = Calendar.getInstance();  
-           datePicker.init(curCalendar.get(Calendar.YEAR),  
-           curCalendar.get(Calendar.MONTH),  
-           curCalendar.get(Calendar.DAY_OF_MONTH),null);  
-
-           AlertDialog.Builder	builder = new AlertDialog.Builder(C_record.this);  
-           builder.setView(datePicker);  
-           builder.setTitle("請選擇日期");  
-           builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-	        	public void onClick(DialogInterface dialog, int id) {	        
-	        		int year =datePicker.getYear();
-	    			String years = Integer.toString(year); 
-	    			int month = (datePicker.getMonth()+1);
-	    			String months = Integer.toString(month); 	        		
-	        		for(int i=0;i< recordsList.size();i++){
-	        		//Intent intime = new Intent();
-	    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
-	    			String yr=recordsList.get(i).get("YEAR(created_date)");
-	    			String mh=recordsList.get(i).get("MONTH(created_date)");
-	    			int yr2 = Integer.parseInt(yr);
-	    			int mh2 = Integer.parseInt(mh);
-	    			if(year-yr2==0&&month-mh2==0){
-	    		//	intime.putExtra("year", years);
-	    		//	intime.putExtra("month", months);
-	    				new DownloadrecordData2().execute();
-						//adapter.notify();
-	        		
-	    			//startActivity(intime);    //觸發換頁
-	        		//ss.setText("你設定的日期是" +
-	        		//years+"年" +
-	        		//months + "月" );
-	    			}
-	        		}	
-	        	}
-	        });
-           
-           
-           AlertDialog	dialog = builder.create();  
-           dialog.setCanceledOnTouchOutside(true);  
-           dialog.show();  
-
-       
-           
+		   
     
 
 	}  	
@@ -415,7 +485,7 @@ public class C_record extends ListActivity {
         
         return super.onKeyDown(keyCode, event);
 	 }
-	 class DownloadrecordData2 extends AsyncTask<String, String, String> {
+	/* class DownloadrecordData2 extends AsyncTask<String, String, String> {
 	        
 			@Override
 			protected void onPreExecute() {
@@ -471,22 +541,22 @@ public class C_record extends ListActivity {
 							String YEARcreated_date = c2.getString("YEAR(created_date)");
 							String MONTHcreated_date = c2.getString("MONTH(created_date)");
 							
-							HashMap<String, String> map = new HashMap<String, String>();
+							HashMap<String, String> map2 = new HashMap<String, String>();
 					
-							map.put(UID,uid);
-							map.put(CREATED_DATE,date);
-							map.put(STORENAME,storename);
-							map.put(CONSUMPTION,consumption);
-							map.put(DISCOUNT,discount);
-							map.put(QPONGRANT,qpongrant);
-							map.put(GRANTDENOMINATIONS,grantdenominations);
-							map.put(QPONUSE,qponuse);
-							map.put(QPONID,qponid);
-							map.put(USEDENOMINATIONS,usedenominations);
-							map.put(TOTALMONEY,totalmoney);
-							map.put("YEAR(created_date)",YEARcreated_date);
-							map.put("MONTH(created_date)",MONTHcreated_date);
-							recordsList2.add(map);
+							map2.put(UID,uid);
+							map2.put(CREATED_DATE,date);
+							map2.put(STORENAME,storename);
+							map2.put(CONSUMPTION,consumption);
+							map2.put(DISCOUNT,discount);
+							map2.put(QPONGRANT,qpongrant);
+							map2.put(GRANTDENOMINATIONS,grantdenominations);
+							map2.put(QPONUSE,qponuse);
+							map2.put(QPONID,qponid);
+							map2.put(USEDENOMINATIONS,usedenominations);
+							map2.put(TOTALMONEY,totalmoney);
+							map2.put("YEAR(created_date)",YEARcreated_date);
+							map2.put("MONTH(created_date)",MONTHcreated_date);
+							recordsList2.add(map2);
 							
 						}
 					} else {
@@ -508,8 +578,8 @@ public class C_record extends ListActivity {
 					   @Override
 					   public void run() {
 						   // TODO Auto-generated method stub
-						   ListAdapter adapter = new SimpleAdapter(
-								   C_record.this, recordsList,
+						   ListAdapter adapter2 = new SimpleAdapter(
+								   C_record.this, recordsList2,
 									R.layout.activity_c_recodelist, new String[] { UID,
 											CREATED_DATE,STORENAME,CONSUMPTION,DISCOUNT,
 											QPONGRANT,GRANTDENOMINATIONS,QPONUSE,QPONID,
@@ -519,8 +589,8 @@ public class C_record extends ListActivity {
 												R.id.c_rlttv7, R.id.c_rlttv8, R.id.c_rlttv9, 
 												R.id.c_rlttv10, R.id.c_rlttv11 });
 							// updating listview
-							setListAdapter(adapter);
-							adapter.notify();
+							setListAdapter(adapter2);
+							adapter2.notify();;
 							ListView lv = getListView();
 							lv.setOnItemClickListener(new OnItemClickListener() {
 							
@@ -563,5 +633,5 @@ public class C_record extends ListActivity {
 	 
 					   }
 				   });
-			}}
+			}}*/
 }

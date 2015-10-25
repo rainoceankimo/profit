@@ -114,7 +114,7 @@ public class C_discount_use extends ListActivity {
 	            public void onItemClick(AdapterView<?> parent, View view,
 	                    int position, long id) {
 	                
-	            	String qponid = ((TextView) view.findViewById(R.id.dctlttv05)).getText().toString();
+	            	String qponid = ((TextView) view.findViewById(R.id.dctlttv5)).getText().toString();
 	            	
 	            	mDlgLogin = new Dialog(C_discount_use.this);
 	    			mDlgLogin.setTitle("§é»ù¨é QR Code");
@@ -261,7 +261,7 @@ public class C_discount_use extends ListActivity {
 								C_discount_use.this, couponsList,
 								R.layout.activity_c_dctlist, new String[] { TAG_DEADLINE,
 										TAG_MONEY,TAG_COUPONID,TAG_COUPONID1},
-								new int[] { R.id.dctlttv02, R.id.dctlttv03, R.id.dctlttv04, R.id.dctlttv05 });
+								new int[] { R.id.dctlttv2, R.id.dctlttv3, R.id.dctlttv4, R.id.dctlttv5 });
 						// updating listview
 						setListAdapter(adapter);
 					}

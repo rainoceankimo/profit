@@ -38,7 +38,8 @@
         <ListView
             android1:id="@+id/android:list"
             android1:layout_width="match_parent"
-            android1:layout_height="wrap_content" >
+            android1:layout_height="wrap_content"
+            android:background="@drawable/listview_shape" >
         </ListView>
 
     </LinearLayout>

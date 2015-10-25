@@ -3,10 +3,13 @@ package app;
 public class AppConfig_Stores {
 	
     // Server user login url
+   
     public static String URL_LOGIN = "http://chaoiok.net78.net/android_login_stores/";
   
 
     // Server user register url
+  
+   
 
     public static String URL_REGISTER = "http://chaoiok.net78.net/android_login_stores/";
     
@@ -14,6 +17,7 @@ public class AppConfig_Stores {
     public static String url_update_store = "http://chaoiok.net78.net/storedetail/updatestoresdetail.php";
 
     // use to S_Tradedetail
+ 
     public static String url_create_tdaddcoupon = "http://chaoiok.net78.net/addQpon/add_coupon.php";
     public static String URL_GET_TDCOUPON = "http://chaoiok.net78.net/addQpon/getqpontot.php";
     

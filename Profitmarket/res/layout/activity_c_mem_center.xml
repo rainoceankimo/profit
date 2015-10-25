@@ -30,7 +30,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
@@ -53,7 +53,8 @@
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
-                android:textSize="25dip" />
+                android:textSize="25dip" 
+                android:textColor="#000000"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -64,7 +65,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
@@ -73,23 +74,24 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="25dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="姓名:"
+                android:text="會員姓名:"
                 android:textColor="#000000"
                 android:textSize="25dip"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/c_mctxtname"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
+                android:background="@null"
                 android:ems="20"
-                android:enabled="false" 
-                 android:background="@null"
+                android:enabled="false"
                 android:inputType="textEmailAddress"
                 android:scrollbars="none"
                 android:textSize="25dip"
-                android:visibility="visible" />
+                android:visibility="visible" 
+                android:textColor="#000000"/>
 
         </LinearLayout>
 
@@ -101,15 +103,14 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="75dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="25dp"
-                android:layout_weight="0.42"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="電話號碼:"
                 android:textColor="#000000"
@@ -118,14 +119,16 @@
 
             <EditText
                 android:id="@+id/c_mctextphone"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
+                android:background="@null"
                 android:ems="20"
-                 android:background="@null"
                 android:enabled="false"
                 android:inputType="phone"
-                android:textSize="25dip" />
+                android:textSize="25dip"
+                android:textColor="#000000" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -156,14 +159,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/shape"
             android:onClick="c_mod_inform_onClick"
             android:padding="10dip"
             android:dashWidth="5dp"
             android:dashGap="3dp"
             
             android:text="修改會員資訊"
-            android:textSize="25dip" />
+            android:textSize="25dip" 
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
