@@ -23,119 +23,117 @@
         android:textSize="36sp" />
     
     </LinearLayout>
-    
-    
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="100dip"
-        android:layout_height="100dip"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/s_stores"
-        android:onClick="s_storescenter_onClick" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_alignRight="@+id/imageButton1"
         android:layout_below="@+id/imageButton1"
+        android:onClick="s_storescenter_onClick"
         android:text="店家中心"
         android:textColor="#000000"
-        android:textSize="24sp"
-        android:onClick="s_storescenter_onClick" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton4"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="34dp"
-        android:text="購買折價券"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:onClick="s_couponbuy_onClick" />
-    
-    
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="100dip"
-        android:layout_height="100dip"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="15dp"
-        android:background="#CCFFFF"
-        android:src="@drawable/s_coupon"
-        android:onClick="s_couponmanagement_onClick" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="100dip"
-        android:layout_height="100dip"
-        android:layout_above="@+id/textView5"
-        android:layout_alignLeft="@+id/imageButton2"
-        android:layout_marginTop="15dp"
-        android:background="#CCFFFF"
-        android:src="@drawable/s_clearing"
-        android:onClick="s_settleaccounts_onClick" />
-    
-    
-    
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageButton3"
-        android:layout_marginLeft="25dp"
-        android:text="折價券管理"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:onClick="s_couponmanagement_onClick" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton5"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="44dp"
-        android:text="結帳管理"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:onClick="s_settleaccounts_onClick" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton5"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp"
+        android:onClick="s_records_onClick"
         android:text="歷史紀錄及資料分析"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_above="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/s_records"
         android:onClick="s_records_onClick" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="48dp"
+        android:background="@drawable/s_coupon"
+        android:onClick="s_couponmanagement_onClick" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="100dip"
         android:layout_height="100dip"
         android:layout_above="@+id/textView3"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_marginRight="10dp"
-        android:background="#CCFFFF"
-        android:src="@drawable/s_buycoupon"
-        android:onClick="s_couponbuy_onClick" />
+        android:layout_alignLeft="@+id/imageButton4"
+        android:onClick="s_couponbuy_onClick"
+        android:src="@drawable/s_buycoupon" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/imageButton1"
         android:layout_width="100dip"
         android:layout_height="100dip"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:onClick="s_records_onClick"
-        android:src="@drawable/s_records" />
+        android:layout_alignLeft="@+id/imageButton3"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="49dp"
+        android:background="@drawable/s_stores"
+        android:onClick="s_storescenter_onClick" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="105dip"
+        android:layout_height="105dip"
+        android:layout_alignTop="@+id/imageButton3"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/textView4"
+        android:background="@drawable/s_clearing"
+        android:onClick="s_settleaccounts_onClick" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="120dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton4"
+        android:layout_alignRight="@+id/imageButton4"
+        android:layout_below="@+id/imageButton4"
+        android:onClick="s_settleaccounts_onClick"
+        android:text="結帳管理"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="22dp"
+        android:gravity="center"
+        android:onClick="s_couponmanagement_onClick"
+        android:text="折價券管理"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginLeft="6dp"
+        android:layout_toRightOf="@+id/textView4"
+        android:gravity="center"
+        android:onClick="s_couponbuy_onClick"
+        android:text="購買折價券"
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
 </RelativeLayout>
