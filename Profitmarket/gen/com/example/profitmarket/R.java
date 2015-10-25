@@ -221,8 +221,8 @@ public final class R {
         public static final int imageButton1=0x7f070050;
         public static final int imageButton2=0x7f070051;
         public static final int imageButton3=0x7f07009e;
-        public static final int imageButton4=0x7f07009d;
-        public static final int imageButton5=0x7f07009f;
+        public static final int imageButton4=0x7f07009f;
+        public static final int imageButton5=0x7f07009d;
         public static final int imageView1=0x7f070012;
         public static final int imageViewIcon=0x7f07006b;
         public static final int imageView_abc=0x7f070023;
@@ -289,7 +289,7 @@ public final class R {
         public static final int scaphone=0x7f070047;
         public static final int scemail=0x7f07000c;
         public static final int scname=0x7f07000b;
-        public static final int scpassward1=0x7f07002a;
+        public static final int scpassward1=0x7f070029;
         public static final int scphone=0x7f070009;
         public static final int showtype=0x7f0700dd;
         public static final int spinner1=0x7f070060;
@@ -339,7 +339,7 @@ public final class R {
         public static final int tvDate=0x7f070036;
         public static final int txtemail=0x7f070045;
         public static final int txtname=0x7f070048;
-        public static final int txtname1=0x7f070029;
+        public static final int txtname1=0x7f07002a;
         public static final int type=0x7f070067;
         public static final int uid=0x7f070065;
     }
