@@ -142,41 +142,44 @@ public class C_record extends ListActivity {
 		    			String years = Integer.toString(yearss); 
 		    			int month = (datePicker.getMonth()+1);
 		    			String months = Integer.toString(month);
-		        		for(int i=0;i< recordsList.size();i++){
+		        		for(int i=0;i< recordsList2.size();i++){
 		        		//Intent intime = new Intent();
 		    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
-		    			String yr=recordsList.get(i).get("YEAR(created_date)");
-		    			String mh=recordsList.get(i).get("MONTH(created_date)");
+		    			String yr=recordsList2.get(i).get("YEAR(created_date)");
+		    			String mh=recordsList2.get(i).get("MONTH(created_date)");
 		    			int yr2 = Integer.parseInt(yr);
 		    			int mh2 = Integer.parseInt(mh);
 		    			if(yearss-yr2==0&&month-mh2==0){
-		    				String uid = recordsList.get(i).get(UID);
-							String date = recordsList.get(i).get(CREATED_DATE);							
-							String storename = recordsList.get(i).get(STORENAME);							
-							String consumption =  recordsList.get(i).get(CONSUMPTION);													
-							String discount = recordsList.get(i).get(DISCOUNT);														
-							String qpongrant = recordsList.get(i).get(QPONGRANT);														
-							String grantdenominations = recordsList.get(i).get(GRANTDENOMINATIONS);													
-							String qponuse = recordsList.get(i).get(QPONUSE);														
-							String qponid = recordsList.get(i).get(QPONID);						 							
-							String usedenominations = recordsList.get(i).get(USEDENOMINATIONS);														
-							String totalmoney = recordsList.get(i).get(TOTALMONEY);		
+		    			
+		    				String uid2 = recordsList2.get(i).get(UID);
+							String date2 = recordsList2.get(i).get(CREATED_DATE);							
+							String storename2 = recordsList2.get(i).get(STORENAME);							
+							String consumption2 =  recordsList2.get(i).get(CONSUMPTION);													
+							String discount2 = recordsList2.get(i).get(DISCOUNT);														
+							String qpongrant2 = recordsList2.get(i).get(QPONGRANT);														
+							String grantdenominations2 = recordsList2.get(i).get(GRANTDENOMINATIONS);													
+							String qponuse2 = recordsList2.get(i).get(QPONUSE);														
+							String qponid2 = recordsList2.get(i).get(QPONID);						 							
+							String usedenominations2 = recordsList2.get(i).get(USEDENOMINATIONS);														
+							String totalmoney2 = recordsList2.get(i).get(TOTALMONEY);		
 		    				HashMap<String, String> map3 = new HashMap<String, String>();		    				
-		    				map3.put(UID,uid);
-							map3.put(CREATED_DATE,date);
-							map3.put(STORENAME,storename);
-							map3.put(CONSUMPTION,consumption);
-							map3.put(DISCOUNT,discount);
-							map3.put(QPONGRANT,qpongrant);
-							map3.put(GRANTDENOMINATIONS,grantdenominations);
-							map3.put(QPONUSE,qponuse);
-							map3.put(QPONID,qponid);
-							map3.put(USEDENOMINATIONS,usedenominations);
-							map3.put(TOTALMONEY,totalmoney);
-							recordsList3.add(map3);
-		    				
+		    				map3.put(UID,uid2);
+							map3.put(CREATED_DATE,date2);
+							map3.put(STORENAME,storename2);
+							map3.put(CONSUMPTION,consumption2);
+							map3.put(DISCOUNT,discount2);
+							map3.put(QPONGRANT,qpongrant2);
+							map3.put(GRANTDENOMINATIONS,grantdenominations2);
+							map3.put(QPONUSE,qponuse2);
+							map3.put(QPONID,qponid2);
+							map3.put(USEDENOMINATIONS,usedenominations2);
+							map3.put(TOTALMONEY,totalmoney2);
+							//recordsList3.add(map3);
+							
+							recordsList.clear();
+							recordsList.add(map3);
 							SimpleAdapter adapter2 = new SimpleAdapter(
-									   C_record.this, recordsList3,
+									   C_record.this, recordsList,
 										R.layout.activity_c_recodelist, new String[] {UID,
 												CREATED_DATE,STORENAME,CONSUMPTION,DISCOUNT,
 												QPONGRANT,GRANTDENOMINATIONS,QPONUSE,QPONID,
@@ -186,15 +189,15 @@ public class C_record extends ListActivity {
 													R.id.c_rlttv7, R.id.c_rlttv8, R.id.c_rlttv9, 
 													R.id.c_rlttv10, R.id.c_rlttv11 });
 								// updating listview
-							
 								setListAdapter(adapter2);
 								adapter2.notifyDataSetChanged();
 		    				
 		    			}
+		    			  tvDate.setText(yearss+"-"+month);
 		        		}	
 		        	}
 		        });
-	           
+	         
 	           
 	           AlertDialog	dialog = builder.create();  
 	           dialog.setCanceledOnTouchOutside(true);  
@@ -208,7 +211,7 @@ public class C_record extends ListActivity {
 		});
 		// ------------------
 		
-		clicklist();
+		
 		
 		
 	}
@@ -336,19 +339,20 @@ public class C_record extends ListActivity {
 						
 						recordsList.add(map);
 						
-						map2.put("UID2",uid2);
-						map.put("CREATED_DATE2",date2);
-						map.put("STORENAME2",storename2);
-						map.put("CONSUMPTION2",consumption2);
-						map.put("DISCOUNT2",discount2);
-						map.put("QPONGRANT2",qpongrant2);
-						map.put("GRANTDENOMINATIONS2",grantdenominations2);
-						map.put("QPONUSE2",qponuse2);
-						map.put("QPONID2",qponid2);
-						map.put("USEDENOMINATIONS2",usedenominations2);
-						map.put("TOTALMONEY2",totalmoney2);
-						map.put("YEAR(created_date)2",YEARcreated_date2);
-						map.put("MONTH(created_date)2",MONTHcreated_date2);
+						map2.put(UID,uid);
+						map2.put(CREATED_DATE,date);
+						map2.put(STORENAME,storename);
+						map2.put(CONSUMPTION,consumption);
+						map2.put(DISCOUNT,discount);
+						map2.put(QPONGRANT,qpongrant);
+						map2.put(GRANTDENOMINATIONS,grantdenominations);
+						map2.put(QPONUSE,qponuse);
+						map2.put(QPONID,qponid);
+						map2.put(USEDENOMINATIONS,usedenominations);
+						map2.put(TOTALMONEY,totalmoney);
+						map2.put("YEAR(created_date)",YEARcreated_date);
+						map2.put("MONTH(created_date)",MONTHcreated_date);
+						
 						recordsList2.add(map2);
 						
 					}
@@ -385,6 +389,7 @@ public class C_record extends ListActivity {
 						setListAdapter(adapter);
 						
 						ListView lv = getListView();
+						//lv.setDivider(null);
 						lv.setOnItemClickListener(new OnItemClickListener() {
 						
 							@Override

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import app.AppConfig_Stores;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -32,12 +34,12 @@ import helper.SessionManager_Stores;
 
 public class S_Stores_Center_Amend extends Activity {
 
-	private static final String url_update_product = "http://192.168.0.102/storedetail/updatestoresdetail.php";
+	//private static final String url_update_product = "http://192.168.0.102/storedetail/updatestoresdetail.php";
 	
 	private ProgressDialog nDialog;
 	private EditText textName;
-String uid;
-String created_at;
+	String uid;
+	String created_at;
 	private TextView textEmail;
 	private EditText textPhone;
 	private EditText textAddress;
@@ -183,7 +185,7 @@ String created_at;
 
 			// sending modified data through http request
 			// Notice that update product url accepts POST method
-			JSONObject jjson = jasonParser.makeHttpRequest(url_update_product, "POST", params);
+			JSONObject jjson = jasonParser.makeHttpRequest(AppConfig_Stores.url_update_store, "POST", params);
 
 			// check json success tag
 			try {

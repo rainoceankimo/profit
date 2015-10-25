@@ -2,7 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/listview_shape"
     android:orientation="vertical" >
+    
+ 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF7744" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="25dip"
+            android:textColor="#000000"
             android:text="消費時間：" />
 
     </LinearLayout>
@@ -30,11 +39,11 @@
 
             <TextView
                 android:id="@+id/c_rlttv1"
-                android:layout_width="wrap_content"
+                android:layout_width="59dp"
                 android:layout_height="wrap_content"
                 android:text="abc"
-                android:visibility="invisible"
-                 android:textSize="25dip" />
+                android:textSize="25dip"
+                android:visibility="invisible" />
 
         </LinearLayout>
 
@@ -43,15 +52,16 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/c_rlttv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/black" 
-                android:textSize="25dip" />
-
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/c_rlttv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="25dip" />
 
     </LinearLayout>
 
@@ -70,7 +80,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/c_rlttv4"
@@ -78,7 +89,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv5"
@@ -86,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv6"
@@ -94,7 +107,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv7"
@@ -102,7 +116,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv8"
@@ -110,7 +125,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv9"
@@ -118,7 +134,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv10"
@@ -126,7 +143,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/c_rlttv11"
@@ -134,7 +152,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:padding="1dp"
-                android:textSize="1dip" />
+                android:textSize="1dip" 
+                android:visibility="gone"/>
         </LinearLayout>
 
     </LinearLayout>

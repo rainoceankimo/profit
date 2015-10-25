@@ -29,8 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 import android.R.color;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,6 +50,8 @@ import helper.SQLiteHandler;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager;
 import helper.SessionManager_Stores;
+
+
 public class S_Analysis_Sources extends Activity {
 	
 	public static JSONParser jParser = new JSONParser();
@@ -72,9 +72,8 @@ public class S_Analysis_Sources extends Activity {
 	// products JSONArray
 	public static JSONArray products = null;
 	private ProgressDialog pDialog;
-	private static String url_all_products = "http://192.168.0.102/analysis/get_all_receive.php";
-
-	//private static String url_all_products = "http://192.168.0.103/analysis/get_all_receive.php";
+	
+	//private static String url_all_products = "http://192.168.0.102/analysis/get_all_receive.php";
 
 	private ArrayList<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 	@Override
@@ -309,7 +308,7 @@ public class S_Analysis_Sources extends Activity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("receive_store", receive_store));
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(AppConfig_Stores.url_get_recordtoAS, "GET", params);
 
             // Check your log cat for JSON reponse
             Log.d("All Products_RECEIVE: ", json.toString());

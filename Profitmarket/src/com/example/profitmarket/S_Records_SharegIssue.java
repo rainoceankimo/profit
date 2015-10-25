@@ -1,6 +1,8 @@
 package com.example.profitmarket;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,8 +15,10 @@ import org.json.JSONObject;
 import com.example.profitmarket.S_Records_ShareGet.DownloadProfitRecord;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +33,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.DatePicker;
 import app.AppConfig_Stores;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager_Stores;
@@ -39,6 +45,9 @@ public class S_Records_SharegIssue extends ListActivity {
 	private SessionManager_Stores session;
 	
 	private ProgressDialog pDialog;
+	
+	 private TextView tvDate, tvTime;  
+	 private Button btDate, btTime; 
 
 	JSONParser jsonParser = new JSONParser();
 	
@@ -46,6 +55,7 @@ public class S_Records_SharegIssue extends ListActivity {
 	JSONArray profitrecord = null;
 	
 	ArrayList<HashMap<String, String>> profitrecordList;
+	ArrayList<HashMap<String, String>> profitrecordList2;
 	
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ISSUE = "profitrecord";
@@ -70,11 +80,101 @@ public class S_Records_SharegIssue extends ListActivity {
         session = new SessionManager_Stores(getApplicationContext());
 		
 		profitrecordList = new ArrayList<HashMap<String, String>>();
-		
+		profitrecordList2 = new ArrayList<HashMap<String, String>>();
 		
 		new DownloadProfitRecord().execute();
-		
-		
+	
+		tvDate = (TextView) findViewById(R.id.S_receiveDate_issue); 
+		btDate = (Button) findViewById(R.id.S_btreceiveDate_issue);
+		btDate.setOnClickListener(new Button.OnClickListener() {  
+			   public void onClick(View v) {  
+				   
+				   final DatePicker datePicker = new DatePicker(S_Records_SharegIssue.this);  
+		           datePicker.setCalendarViewShown(false);  
+
+		           //
+		           try {  
+		               Field daySpinner =datePicker.getClass().getDeclaredField("mDaySpinner");  
+		               daySpinner.setAccessible(true);  
+		               ((View)daySpinner.get(datePicker)).setVisibility(View.GONE);  
+		           } catch (NoSuchFieldException e) {  
+		               e.printStackTrace();  
+		           } catch (IllegalArgumentException e) {  
+		               e.printStackTrace();  
+		           } catch (IllegalAccessException e) {  
+		               e.printStackTrace();  
+		           }  
+		           final Calendar	curCalendar = Calendar.getInstance();  
+		           datePicker.init(curCalendar.get(Calendar.YEAR),  
+		           curCalendar.get(Calendar.MONTH),  
+		           curCalendar.get(Calendar.DAY_OF_MONTH),null);  
+
+		           AlertDialog.Builder	builder = new AlertDialog.Builder(S_Records_SharegIssue.this);  
+		           builder.setView(datePicker);  
+		           builder.setTitle("請選擇日期");  
+		           builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+			        	public void onClick(DialogInterface dialog, int id) {	        
+			        		int yearss =datePicker.getYear();
+			    			String years = Integer.toString(yearss); 
+			    			int month = (datePicker.getMonth()+1);
+			    			String months = Integer.toString(month);
+			        		for(int i=0;i< profitrecordList2.size();i++){
+			        		//Intent intime = new Intent();
+			    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
+			    			String yr=profitrecordList2.get(i).get("YEAR(created_date)");
+			    			String mh=profitrecordList2.get(i).get("MONTH(created_date)");
+			    			int yr2 = Integer.parseInt(yr);
+			    			int mh2 = Integer.parseInt(mh);
+			    			if(yearss-yr2==0&&month-mh2==0){
+			    			
+			    				String uid2 = profitrecordList2.get(i).get(TAG_UID);
+								String date2 = profitrecordList2.get(i).get(TAG_CREATED_DATE);							
+								String storename2 = profitrecordList2.get(i).get(TAG_ISSUE_STORE);							
+								String consumption2 =  profitrecordList2.get(i).get(TAG_COUPONID);													
+								String discount2 = profitrecordList2.get(i).get(TAG_MONEY);														
+								String qpongrant2 = profitrecordList2.get(i).get(TAG_PROFITMONEY);														
+								String grantdenominations2 = profitrecordList2.get(i).get(TAG_RECEIVE_STORE);													
+							
+			    				HashMap<String, String> map3 = new HashMap<String, String>();		    				
+			    				map3.put(TAG_UID,uid2);
+								map3.put(TAG_CREATED_DATE,date2);
+								map3.put(TAG_ISSUE_STORE,storename2);
+								map3.put(TAG_COUPONID,consumption2);
+								map3.put(TAG_MONEY,discount2);
+								map3.put(TAG_PROFITMONEY,qpongrant2);
+								map3.put(TAG_RECEIVE_STORE,grantdenominations2);
+								//recordsList3.add(map3);
+								
+								 profitrecordList.clear();
+								 profitrecordList.add(map3);
+								SimpleAdapter adapter2 = new SimpleAdapter(
+								 S_Records_SharegIssue.this, profitrecordList,
+								R.layout.s_records_sharegissue_list, new String[] { TAG_UID,
+								TAG_CREATED_DATE,TAG_ISSUE_STORE,TAG_COUPONID,TAG_MONEY,
+								TAG_PROFITMONEY,TAG_RECEIVE_STORE},
+								new int[] { R.id.rsissuettv1, R.id.rsissuettv2, R.id.rsissuettv3, R.id.rsissuettv4,
+								R.id.rsissuettv5,R.id.rsissuettv6,R.id.rsissuettv7 });
+									// updating listview
+									setListAdapter(adapter2);
+									adapter2.notifyDataSetChanged();
+			    				
+			    			}
+			    			  tvDate.setText(yearss+"-"+month);
+			        		}	
+			        	}
+			        });
+		           
+		           
+		           AlertDialog	dialog = builder.create();  
+		           dialog.setCanceledOnTouchOutside(true);  
+		           dialog.show();  
+
+		       
+		            
+				   
+			         
+			   }  
+			});
 		
 		
 	}
@@ -113,7 +213,7 @@ public class S_Records_SharegIssue extends ListActivity {
 			params.add(new BasicNameValuePair("receive_store",receive_store));
 			
 			JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_get_profitrecordIssue, "GET", params);
-	        
+	                                                                       
 	        Log.d("get profitrecords issue", json.toString());
 	        
 	        try {
@@ -136,8 +236,16 @@ public class S_Records_SharegIssue extends ListActivity {
 						String money = c.getString(TAG_MONEY);
 						String profitmoney = c.getString(TAG_PROFITMONEY);
 						String receivestore = c.getString(TAG_RECEIVE_STORE);
-
+						String YEARcreated_date = c.getString("YEAR(created_date)");
+						String YEARcreated_date2 = c.getString("YEAR(created_date)");
+						
+						String MONTHcreated_date = c.getString("MONTH(created_date)");
+						String MONTHcreated_date2 = c.getString("MONTH(created_date)");
+						
+						
 						HashMap<String, String> map = new HashMap<String, String>();
+						HashMap<String, String> map2 = new HashMap<String, String>();
+						
 						
 						map.put(TAG_UID,uid);
 						map.put(TAG_CREATED_DATE,date);
@@ -146,9 +254,24 @@ public class S_Records_SharegIssue extends ListActivity {
 						map.put(TAG_MONEY,money);
 						map.put(TAG_PROFITMONEY,profitmoney);
 						map.put(TAG_RECEIVE_STORE,receivestore);
-						
+						map.put("YEAR(created_date)",YEARcreated_date);
+						map.put("MONTH(created_date)",MONTHcreated_date);
 						
 						profitrecordList.add(map);
+						
+						map2.put(TAG_UID,uid);
+						map2.put(TAG_CREATED_DATE,date);
+						map2.put(TAG_ISSUE_STORE,issuestore);
+						map2.put(TAG_COUPONID,qponid);
+						map2.put(TAG_MONEY,money);
+						map2.put(TAG_PROFITMONEY,profitmoney);
+						map2.put(TAG_RECEIVE_STORE,receivestore);
+						map2.put("YEAR(created_date)",YEARcreated_date);
+						map2.put("MONTH(created_date)",MONTHcreated_date);
+						
+						profitrecordList2.add(map2);
+						
+						
 					}
 					
 				} else {
@@ -172,7 +295,7 @@ public class S_Records_SharegIssue extends ListActivity {
 				   @Override
 				   public void run() {
 					   // TODO Auto-generated method stub
-					   ListAdapter adapter = new SimpleAdapter(
+					   SimpleAdapter adapter = new SimpleAdapter(
 							   S_Records_SharegIssue.this, profitrecordList,
 								R.layout.s_records_sharegissue_list, new String[] { TAG_UID,
 										TAG_CREATED_DATE,TAG_ISSUE_STORE,TAG_COUPONID,TAG_MONEY,
@@ -183,6 +306,7 @@ public class S_Records_SharegIssue extends ListActivity {
 					   setListAdapter(adapter);
 						
 					   ListView lv = getListView();
+					   lv.setDivider(null);
 					   lv.setOnItemClickListener(new OnItemClickListener() {
 
 						   	@Override

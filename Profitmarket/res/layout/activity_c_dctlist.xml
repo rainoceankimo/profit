@@ -1,89 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+      <ImageView
+          android:id="@+id/imageView1"
+          android:layout_width="120dp"
+          android:layout_height="120dp"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/ticket2"
+          android:src="@drawable/c_ticket" />
 
-        <TextView
-            android:id="@+id/dctlttv01"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/black" 
-            android:textSize="20dip"
-            android:text="折價券" />
+       <TextView
+           android:id="@+id/dctlttv5"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/dctlttv02"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="10dp"
+           android:paddingLeft="20dp"
+           android:text="TextView"
+           android:textColor="@color/black"
+           android:textSize="15dip" 
+             android:visibility="gone"/>
 
-    </LinearLayout>
+       <TextView
+           android:id="@+id/dctlttv4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/ticket1"
+           android:layout_marginTop="10dp"
+           android:layout_toRightOf="@+id/imageView1"
+           android:gravity="center"
+           android:text="序號"
+           android:textColor="@color/black"
+           android:textSize="15dip" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+       <TextView
+           android:id="@+id/ticket1"
+           android:layout_width="174dp"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           android:layout_toRightOf="@+id/imageView1"
+           android:gravity="center"
+           android:text="折價券"
+           android:textColor="@color/black"
+           android:textSize="20dip" />
 
-        <TextView
-            android:id="@+id/dctlttv02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/black" 
-            android:textSize="20dip"
-            android:text="期限" />
+       <TextView
+           android:id="@+id/dctlttv3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignLeft="@+id/dctlttv4"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/dctlttv4"
+           android:layout_marginTop="11dp"
+           android:gravity="center"
+           android:paddingLeft="20dp"
+           android:text="面額"
+           android:textColor="@color/black"
+           android:textSize="15dip" />
 
-    </LinearLayout>
+       <TextView
+           android:id="@+id/dctlttv2"
+           android:layout_width="60dp"
+           android:layout_height="wrap_content"
+           android:layout_alignBottom="@+id/imageView1"
+           android:layout_alignLeft="@+id/dctlttv3"
+           android:layout_alignParentRight="true"
+           android:gravity="center"
+           android:text="期限"
+           android:textColor="@color/black"
+           android:textSize="15dip" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/dctlttv03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:paddingLeft="20dp" 
-                android:textSize="15dip"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/dctlttv04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="15dip" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/dctlttv05"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="15dip"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
