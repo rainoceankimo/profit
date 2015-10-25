@@ -139,7 +139,7 @@ public class C_Register extends Activity {
                                 String created_at = user.getString("created_at");
  
                                 // Inserting row in users table
-                                db.addUser(name, email, idnumber, phone, uid, created_at);
+                                //db.addUser(name, email, idnumber, phone, uid, created_at);
  
                                 // Launch login activity
                                 Intent intent = new Intent(C_Register.this,C_Login.class);

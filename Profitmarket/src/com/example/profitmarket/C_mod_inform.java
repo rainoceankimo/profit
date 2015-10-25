@@ -110,7 +110,6 @@ public class C_mod_inform extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	
 	public void c_mem_check_onClick(View v) {
 	    Intent intent = new Intent();  
 	    intent.setClass(C_mod_inform.this,C_mem_view.class);
@@ -134,6 +133,8 @@ public class C_mod_inform extends Activity {
         
         return super.onKeyDown(keyCode, event);
     }
+    
+    
     class updatenew extends AsyncTask<String, String, String> {
 
 		

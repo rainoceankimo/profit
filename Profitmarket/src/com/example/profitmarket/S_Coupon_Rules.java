@@ -85,7 +85,7 @@ public class S_Coupon_Rules extends Fragment {
 	
 	//private static String url_all_products = "http://192.168.43.218/couponconnect/spinner.php";
 	
-	
+	//rules DB
 	private static final String DB_DBNAME = "rules.db",
                                 DB_TBNAME = "rules";
 	
