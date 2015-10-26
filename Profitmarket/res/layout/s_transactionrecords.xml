@@ -11,10 +11,10 @@
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#0FFF3F"
+        android:background="#99BBFF"
         android:gravity="center"
         android:text="交易記錄"
-        android:textColor="#000000"
+       android:textColor="#FFFFFF"
         android:textSize="36sp" />
 
     <LinearLayout
