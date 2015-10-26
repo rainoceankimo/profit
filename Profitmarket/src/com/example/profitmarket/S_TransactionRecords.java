@@ -119,7 +119,7 @@ public class S_TransactionRecords extends ListActivity {
 	   
 	   
 	    
-	    mBtnshow.setOnClickListener(btnListOnClick);
+
 		
 	}
 	
@@ -142,18 +142,7 @@ public class S_TransactionRecords extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private View.OnClickListener btnListOnClick = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-			Intent intent = new Intent();
-			intent.setClass(S_TransactionRecords.this,S_Mainmenu.class);
-			startActivity(intent);    //Ä²µo´«­¶
-			finish(); 
-			
-		}
-	};
+
 	
     public void SHOWLIST(){
 		
