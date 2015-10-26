@@ -118,6 +118,7 @@ public class S_Records_SharegIssue extends ListActivity {
 			    			String years = Integer.toString(yearss); 
 			    			int month = (datePicker.getMonth()+1);
 			    			String months = Integer.toString(month);
+			    			 profitrecordList.clear();
 			        		for(int i=0;i< profitrecordList2.size();i++){
 			        		//Intent intime = new Intent();
 			    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
@@ -145,7 +146,7 @@ public class S_Records_SharegIssue extends ListActivity {
 								map3.put(TAG_RECEIVE_STORE,grantdenominations2);
 								//recordsList3.add(map3);
 								
-								 profitrecordList.clear();
+								
 								 profitrecordList.add(map3);
 								SimpleAdapter adapter2 = new SimpleAdapter(
 								 S_Records_SharegIssue.this, profitrecordList,

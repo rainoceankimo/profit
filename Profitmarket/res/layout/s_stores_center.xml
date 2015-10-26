@@ -35,8 +35,9 @@
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="19dp"
-        android:text="電子信箱："
-        android:textColor="#000000"
+        android:text="電子信箱:"
+        android:background="@drawable/s_button_shape6"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
     <TextView
@@ -45,9 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/scphone"
         android:layout_alignBottom="@+id/scphone"
-        android:layout_toLeftOf="@+id/textView5"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_toLeftOf="@+id/scname"
+        android:background="@drawable/s_button_shape6"
         android:text="電話："
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
     <TextView
@@ -79,13 +82,12 @@
         android:id="@+id/scphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scaddress"
+        android:layout_alignLeft="@+id/scname"
         android:layout_below="@+id/scname"
         android:layout_marginTop="17dp"
         android:ems="10"
         android:enabled="false"
         android:textColor="#000000"
-         android:background="@null"
         android:textSize="20sp" />
 
     <EditText
@@ -96,7 +98,7 @@
         android:layout_alignBottom="@+id/textView7"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/textView7"
-        android:background="@drawable/s_button_shape5"
+          android:textColor="#000000"
         android:ems="10"
         android:enabled="false"
         android:inputType="textEmailAddress" />
@@ -105,14 +107,13 @@
         android:id="@+id/scname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scemail"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/scemail"
         android:layout_marginTop="22dp"
+        android:layout_toRightOf="@+id/textView2"
         android:ems="10"
         android:enabled="false"
         android:textColor="#000000"
-         android:background="@null"
         android:textSize="20sp" />
 
     <TextView
@@ -121,20 +122,23 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/scname"
         android:layout_alignBottom="@+id/scname"
-        android:layout_toLeftOf="@+id/textView5"
+        android:layout_alignLeft="@+id/textView7"
+        android:background="@drawable/s_button_shape6"
         android:text="名稱："
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
         android:layout_below="@+id/textView4"
         android:layout_marginTop="18dp"
-        android:layout_toLeftOf="@+id/textView5"
+        android:layout_toLeftOf="@+id/scname"
+        android:background="@drawable/s_button_shape6"
         android:text="地址："
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
     <EditText
@@ -143,14 +147,14 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/scphone"
         android:layout_alignParentRight="true"
-        android:background="@null"
         android:ems="10"
         android:enabled="false"
         android:textColor="#000000"
         android:textSize="20sp" >
 
-        <requestFocus />
+      
     </EditText>
 
 </RelativeLayout>
