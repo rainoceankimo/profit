@@ -52,8 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/s_button_shape5"
+        android:textColor="#FFFFFF"
         android:text="確定"
-        android:textColor="#000000"
+      
         android:textSize="20sp" />
 
 </RelativeLayout>

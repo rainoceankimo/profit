@@ -9,10 +9,10 @@
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#0FFF3F"
+        android:background="#99BBFF"
         android:gravity="center"
         android:text="分析"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
     <Button
@@ -24,8 +24,9 @@
         android:layout_marginTop="26dp"
         android:onClick="s_goIssueRecover_onClick"
         android:text="折價券使用率"
-        android:textColor="#000000"
-        android:textSize="25sp" />
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" 
+        android:background="@drawable/s_button_shape"/>
 
     <Button
         android:id="@+id/button2"
@@ -36,7 +37,8 @@
         android:layout_marginTop="29dp"
         android:onClick="s_goSources_onClick"
         android:text="折價券來源店家"
-        android:textColor="#000000"
+        android:background="@drawable/s_button_shape2"
+        android:textColor="#FFFFFF"
         android:textSize="25sp" />
 
     <Button
@@ -48,7 +50,8 @@
         android:layout_marginTop="35dp"
         android:onClick="s_goWhereabouts_onClick"
         android:text="折價券使用店家"
-        android:textColor="#000000"
+        android:background="@drawable/s_button_shape3"
+        android:textColor="#FFFFFF"
         android:textSize="25sp" />
 
     <Button
@@ -59,8 +62,9 @@
         android:layout_below="@+id/button3"
         android:layout_marginTop="26dp"
         android:onClick="s_goRevenue_onClick"
+        android:background="@drawable/s_button_shape4"
         android:text="折價券營收貢獻"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="25sp" />
 
 </RelativeLayout>

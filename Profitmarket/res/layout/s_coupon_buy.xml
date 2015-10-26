@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="4"
-        android:background="#7373B9"
+       android:background="#99BBFF"
         android:gravity="center"
         android:text="購買折價券"
-        android:textColor="#000000"
+          android:textColor="#FFFFFF"
         android:textSize="36sp" />
 
     <LinearLayout
@@ -51,20 +51,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1.00"
-                android:background="@drawable/shape"
+                android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
                 android:text="新增" 
                 android:textSize="25dp"
-                android:textColor="#000000" />
+               />
 
             <Button
                 android:id="@+id/clear"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1.00"
-                android:background="#84C1FF"
+               android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
                    android:textSize="25dp"
                 android:text="清除"
-                android:textColor="#000000" />
+               />
 
         </LinearLayout>
     </LinearLayout>
@@ -115,9 +117,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-             android:background="#FF2D2D"
-            android:text="購買"
+              android:background="@drawable/s_button_shape5"
             android:textColor="#FFFFFF"
+            android:text="購買"
+           
             android:textSize="25sp" />
     </LinearLayout>
 

@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="#0FFF3F"
+        android:background="#99BBFF"
+           android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="折價券管理"
-        android:textColor="#000000"
+      
         android:textSize="36sp" />
 
     <LinearLayout
@@ -58,6 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
+            android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
         android:text="查看現有折價券" />
 
     <Button
@@ -66,20 +69,25 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/cmbtna"
         android:layout_alignBottom="@+id/cmbtna"
+            android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
         android:layout_alignParentLeft="true"
         android:onClick="s_gocouponrules_onClick"
         android:text="設定發行規則"
-        android:textColor="#000000" />
+        />
 
     <Button
         android:id="@+id/btnclickqr"
         android:layout_width="125dp"
+        
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout1"
         android:layout_alignParentRight="true"
         android:onClick="s_gocouponissuing_onClick"
         android:text="發行中折價券"
-        android:textColor="#000000" />
+            android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
+         />
 
   <FrameLayout
       android:id="@+id/layout_container"
