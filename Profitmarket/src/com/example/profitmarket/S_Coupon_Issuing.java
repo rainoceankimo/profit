@@ -19,7 +19,7 @@ import app.AppController;
 public class S_Coupon_Issuing extends Fragment {
 	
 	private View v;
-	EditText showw,showw1;
+	EditText showw;
 	Button btnaa;
 	
 	ArrayList<Integer> use = new ArrayList<Integer>();
@@ -46,7 +46,7 @@ public class S_Coupon_Issuing extends Fragment {
 		
 
 		showw = (EditText) v.findViewById(R.id.ciedta);
-		showw1 = (EditText) v.findViewById(R.id.ciedtb);
+		//showw1 = (EditText) v.findViewById(R.id.ciedtb);
 		btnaa = (Button) v.findViewById(R.id.cibtna);
 		
 		RulesDbHandler rulesDbHandler = 
@@ -81,16 +81,15 @@ public class S_Coupon_Issuing extends Fragment {
 		}
 				
 				
+		
 		showall();
-		showrules();
 		
 			
 		
 		return v;
 	}
 	
-	public void showall()
-    {
+	public void showall(){
 		Cursor c = MyrulesDb.query(true, DB_TBNAME, columns,null, null, null, null, null, null);
 		
 		if (c == null)
@@ -107,14 +106,14 @@ public class S_Coupon_Issuing extends Fragment {
 		}
 		else {
 			c.moveToFirst();
-			showw.setText(c.getString(0) + c.getString(1)  + c.getString(2));
+			showw.setText("消費達"+" " + c.getString(1) + " " + "元發放折價券"+" "+ c.getString(2)+" " +"元");
 			
 			while (c.moveToNext())
-				showw.append("\n" + c.getString(0) + c.getString(1)  + c.getString(2));
+				showw.append("\n" + "消費達"+" " + c.getString(1) + " " + "元發放折價券"+" "+ c.getString(2)+" " +"元");
 		}
-    }
+    }  
 	
-	public void showrules(){
+/*	public void showrules(){
 		Cursor c = MyrulesDb.query(true, DB_TBNAME, columns,null, null, null, null, null, null);
 		
 		if (c == null)
@@ -140,12 +139,12 @@ public class S_Coupon_Issuing extends Fragment {
 				ciumy[i] = use.get(i);
 				cigmy[i] = grant.get(i);
 				
-				showw1.append(""+ ciumy[i] + "&" + cigmy[i]);
+				showw.append("消費達"+" "+ciumy[i]+" "+ "元發放折價券"+" "+ cigmy[i]+" " +"元"+"\n");
 			}
 		}else
 		{
 			
 		}
 			
-	}
+	}   */
 }

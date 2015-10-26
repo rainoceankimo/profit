@@ -28,12 +28,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/ciedtb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -41,14 +35,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/cibtna"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/s_button_shape5"
-            android:textColor="#FFFFFF"
-            android:text="Button" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/cibtna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/s_button_shape5"
+        android:text="確定"
+        android:textSize="20dip"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
