@@ -168,7 +168,7 @@ public class S_Stores_Center_Amend extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			ialog = new ProgressDialog(S_Stores_Center_Amend.this);
-			ialog.setMessage("Loading products. Please wait...");
+			ialog.setMessage("Loading  Please wait...");
 			ialog.setIndeterminate(false);
 			ialog.setCancelable(false);
 			ialog.show();

@@ -40,7 +40,7 @@ public class C_Store_information extends Activity {
 	 String email;
 	 String name;
 	 String phone;
-	 String address;
+	 String address,instroduction;
 	 
 	 public static ArrayList<HashMap<String, String>> productsList;
 	 CustomListAdapter2 adapter;
@@ -60,7 +60,7 @@ public class C_Store_information extends Activity {
     TextView csname;
     TextView csphone;
     TextView csaddress;
-	TextView csid;
+	TextView csid,inst;
 	  private Handler mUI_Handler=new Handler();
 	  private Handler mThreadHandler;
 	  private HandlerThread mThread; 
@@ -81,19 +81,19 @@ public class C_Store_information extends Activity {
 			   csname=(TextView)findViewById(R.id.scname);
 			   csphone=(TextView)findViewById(R.id.scphone);
 			   csaddress=(TextView)findViewById(R.id.scaddress);
-
+			   inst=(TextView)findViewById(R.id.scintroduction); 
 		     
 		       email=i.getStringExtra(TAG_EMAIL);
 		       name=i.getStringExtra(TAG_NAME);
 		       phone=i.getStringExtra(TAG_PHONE);
 		       address=i.getStringExtra(TAG_ADDRESS);
-		       
+		       instroduction=i.getStringExtra("introduction");
 		     
 		       csemail.setText(email);
 		       csname.setText(name);
 		       csphone.setText(phone);
 		       csaddress.setText(address);
-
+		       inst.setText(instroduction);
 	}
 
 	@Override

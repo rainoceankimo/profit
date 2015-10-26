@@ -123,7 +123,7 @@ public class S_Stores_Center extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			ialog = new ProgressDialog(S_Stores_Center.this);
-			ialog.setMessage("Loading products. Please wait...");
+			ialog.setMessage("Loading . Please wait...");
 			ialog.setIndeterminate(false);
 			ialog.setCancelable(false);
 			ialog.show();

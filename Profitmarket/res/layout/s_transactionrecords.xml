@@ -1,61 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CCFFFF"
+    android:orientation="vertical"
     tools:context="com.example.profitmarket.S_TransactionRecords" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="#0FFF3F"
+        android:background="#99BBFF"
         android:gravity="center"
         android:text="交易記錄"
-        android:textColor="#000000"
+       android:textColor="#FFFFFF"
         android:textSize="36sp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:orientation="vertical" >
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
 
-        <TextView android:text="TextView"
+        <TextView
             android:id="@+id/edttr"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:visibility="gone"  />
+            android:text="TextView"
+            android:visibility="gone" />
 
+        <ListView
+            android:id="@+id/android:list"
+            android:layout_width="wrap_content"
+            android:layout_height="462dp" >
+        </ListView>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/android:list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnclickqr"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_centerHorizontal="true" >
-
-    </ListView>
-
-    <Button
-        android:id="@+id/btnclickqr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/s_button_shape5"
-        android:textColor="#FFFFFF"
-        android:text="確定"
-      
-        android:textSize="20sp" />
-
-</RelativeLayout>
+</LinearLayout>
