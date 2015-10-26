@@ -4,10 +4,15 @@ import app.AppConfig_Stores;
 import app.AppController;
 import helper.SessionManager_Stores;
 import helper.SQLiteHandler_Stores;
- 
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
- 
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
@@ -15,6 +20,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,10 +33,11 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.profitmarket.S_Tradedetail.updateuseQpon;
  
 public class S_Login extends Activity {
     // LogCat tag
-    private static final String TAG1 = S_Register.class.getSimpleName();
+    private static final String TAG1 = S_Login.class.getSimpleName();
 	
     private Button btnLogin;
     private Button btnLinkToRegister;
@@ -39,6 +46,16 @@ public class S_Login extends Activity {
     private ProgressDialog pDialog;
     private SessionManager_Stores session;
     private SQLiteHandler_Stores db;
+    //public String openstore;
+    
+    JSONParser jsonParser = new JSONParser();
+    
+	private static final String TAG_SUCCESS = "success";
+	private static final String TAG_ISSUE = "users";
+	private static final String TAG_OPENSTORE = "openstore";
+	
+	public String openstore; 
+	public int checkopenstore; 
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +76,8 @@ public class S_Login extends Activity {
         
         // SQLite database handler
         db = new SQLiteHandler_Stores(getApplicationContext());
+        
+        
  
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
@@ -78,12 +97,26 @@ public class S_Login extends Activity {
                 String idnumber = "";
                 String phone = "";
                 String address = "";
+                
+                new Getstoremessage().execute();
  
                 // Check for empty data in the form
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
+                	
                     checkLogin(email, password, idnumber, phone, address);
-            
+                    
+                    if (checkopenstore == 1){
+                    	Intent intent = new Intent(S_Login.this,S_Logout.class);
+                        startActivity(intent);
+                        finish();
+                    }else
+                    {
+                    	Toast.makeText(S_Login.this, "" + checkopenstore, Toast.LENGTH_SHORT).show();
+                    }
+                    
+                    
+                    
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
@@ -116,8 +149,7 @@ public class S_Login extends Activity {
         pDialog.setMessage("Logging in ...");
         showDialog();
  
-        StringRequest strReq = new StringRequest(Method.POST,
-        		AppConfig_Stores.URL_REGISTER, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Method.POST,AppConfig_Stores.URL_REGISTER, new Response.Listener<String>() {
  
                     @Override
                     public void onResponse(String response) {
@@ -142,19 +174,20 @@ public class S_Login extends Activity {
                                 String idnumber = user.getString("idnumber");
                                 String phone = user.getString("phone");
                                 String address = user.getString("address");
-                                String created_at = user.getString("created_at");
-                                
+                                String created_at = user.getString("created_at");                              
  
                                 // Inserting row in users table
                                 db.addUser(name, email, idnumber, phone, address, uid, created_at);
                                 
                                 session.setLogin(true);
+                                
+                                //Toast.makeText(S_Login.this, "" + openstore, Toast.LENGTH_SHORT).show();
  
                                 // Launch main activity
-                                Intent intent = new Intent(S_Login.this,
+                             /*   Intent intent = new Intent(S_Login.this,
                                 		S_Logout.class);
                                 startActivity(intent);
-                                finish();
+                                finish();  */
                                 
                             } else {
                                 // Error in login. Get the error message
@@ -198,7 +231,60 @@ public class S_Login extends Activity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
- 
+    //-------------------------------------------
+    
+    // get store message
+    class Getstoremessage extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
+			db = new SQLiteHandler_Stores(getApplicationContext());
+	        session = new SessionManager_Stores(getApplicationContext());
+	        
+	        HashMap<String, String> user = db.getUserDetails();
+	        String email = user.get("email");
+	        
+	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        params.add(new BasicNameValuePair("email", email));
+	
+	        JSONObject gjson = jsonParser.makeHttpRequest(AppConfig_Stores.URL_GET_STOREMESSAGE, "POST", params);
+	        Log.d("get message", gjson.toString());
+	        
+	        try {
+     			int success = gjson.getInt(TAG_SUCCESS);
+
+     			if (success == 1) {
+     				
+     				 JSONArray couponObj = gjson.getJSONArray("users");
+
+					 JSONObject c = couponObj.getJSONObject(0);
+
+					 openstore = c.getString("openstore");
+					 checkopenstore = Integer.valueOf(openstore);
+					 
+   			         
+                      
+     			} else {
+     				// failed to update product
+     			}
+     		} catch (JSONException e) {
+     			e.printStackTrace();
+     		}
+
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) 
+		{
+				// dismiss the dialog once done
+			   pDialog.dismiss();
+		}
+    	
+    }
+    // -------------------------------------------
+    
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();

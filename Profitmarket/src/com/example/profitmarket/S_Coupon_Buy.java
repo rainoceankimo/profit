@@ -148,7 +148,7 @@ public class S_Coupon_Buy extends Activity  {
 													int Many = Integer.valueOf(itemname[i]);
 													int Many1 = Integer.valueOf(imgid[i]);
 													total = total + (Many * Many1);
-													sum = (total * 1 + total * 1 / 20);
+													sum = (total * 1 + total * 3 / 100);
 												}
 
 												else {

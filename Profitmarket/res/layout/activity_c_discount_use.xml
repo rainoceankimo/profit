@@ -4,7 +4,7 @@
     android:id="@+id/lla"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:background="#8de0fd"
+   	android:background="#8de0fd"
     android1:orientation="vertical"
     tools:context="com.example.profitmarket.C_discount_use" >
 
@@ -28,12 +28,12 @@
         android:paddingRight="20dp" >
 
         <Button
-            android1:id="@+id/btnclickqr"
-            android1:layout_width="fill_parent"
-            android1:layout_height="wrap_content"
-            android1:padding="15dip"
-            android1:text="會員二維圖"
-            android1:textSize="25dp" />
+            android:id="@+id/btnclickqr"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dip"
+            android:text="會員二維圖"
+            android:textSize="25dp" />
 
         <ListView
             android1:id="@+id/android:list"

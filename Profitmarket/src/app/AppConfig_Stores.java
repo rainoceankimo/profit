@@ -4,13 +4,10 @@ public class AppConfig_Stores {
 	
     // Server user login url
    
-    public static String URL_LOGIN = "http://chaoiok.net78.net/android_login_stores/";
-  
+    public static String URL_LOGIN = "http://192.168.0.104/android_login_stores/";
+    public static String URL_GET_STOREMESSAGE = "http://192.168.0.104/storedetail/getstroedata.php";
 
     // Server user register url
-  
-   
-
     public static String URL_REGISTER = "http://chaoiok.net78.net/android_login_stores/";
     
     // use to S_Stores_Center_Amend
