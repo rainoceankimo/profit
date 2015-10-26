@@ -250,8 +250,13 @@ public class S_Coupon_Rules extends Fragment {
 			int Much = Integer.valueOf(moneyinput);
 			int Much1 = Integer.valueOf(item);
 			try {
+				if ((input.getText().toString().length())==0){
+					input.setText(null);
+					
+					Toast.makeText(getActivity(), "不可以空空如也", Toast.LENGTH_SHORT).show();
+				}
 				if (input.getText().toString().startsWith("0")) {
-					input.setText("");
+					input.setText(null);
 
 					Toast.makeText(getActivity(), "不能為零", Toast.LENGTH_SHORT).show();
 				}
@@ -279,15 +284,13 @@ public class S_Coupon_Rules extends Fragment {
 					
 					
 
-					input.setText("");
+					input.setText(null);
 
 					Toast.makeText(getActivity(), "新增成功", Toast.LENGTH_SHORT).show();
 
 				}
-			} catch (NumberFormatException e) {
-				Toast.makeText(getActivity(), "欄位不能為空", Toast.LENGTH_SHORT).show();
 			} catch (Exception e) {
-				Toast.makeText(getActivity(), "不能超過十個選項喔", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "不能再新增瞜", Toast.LENGTH_SHORT).show();
 			}
 		}
 	};
@@ -306,16 +309,16 @@ public class S_Coupon_Rules extends Fragment {
 			
 			
 			for (int i = 0; i < cost.length; i++) {
-				cost[i] = "";
-				howmuch[i] = "";
-				x[i] = "";
-				y[i] = "";
-				z[i] = "";
+				cost[i] = null;
+				howmuch[i] = null;
+				x[i] = null;
+				y[i] = null;
+				z[i] = null;
 			}
 			k = 0;
 			
 			
-			input.setText("");
+			input.setText(null);
 			
 			adapter.notifyDataSetChanged();
 		}

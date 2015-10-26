@@ -31,7 +31,7 @@ import app.AppController;
 import helper.SQLiteHandler_Stores;
 import helper.SessionManager_Stores;
 
-public class S_Coupon_Buy extends Activity  {
+public class S_Coupon_Buy extends Activity {
 	JSONParser jsonParser = new JSONParser();
 	CustomListAdapter adapter;
 	EditText input;
@@ -49,11 +49,13 @@ public class S_Coupon_Buy extends Activity  {
 	int total = 0;
 	int sum = 0;
 	ProgressDialog aDialog;
-	
-	//private static String url_create_product = "http://192.168.0.109/couponconnect/create.php";
-	
-	 private SQLiteHandler_Stores db;
-	    private SessionManager_Stores session;
+
+
+	// private static String url_create_product =
+	// "http://192.168.0.109/couponconnect/create.php";
+
+	private SQLiteHandler_Stores db;
+	private SessionManager_Stores session;
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 
@@ -78,23 +80,24 @@ public class S_Coupon_Buy extends Activity  {
 		buy.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				// creating new product in background thread
-		        
+
 				new postnew().execute();
-				Toast.makeText(S_Coupon_Buy.this, "上傳成功", Toast.LENGTH_SHORT).show();
-				
-				Intent intent = new Intent(); 
-				intent.setClass(S_Coupon_Buy.this,S_Mainmenu.class);
-				startActivity(intent);    //觸發換頁
-		
-			}}
 			
+				Toast.makeText(S_Coupon_Buy.this, "購買成功", Toast.LENGTH_SHORT).show();
+			
+				Intent intent = new Intent();
+				intent.setClass(S_Coupon_Buy.this, S_Mainmenu.class);
+				startActivity(intent); // 觸發換頁
+
+			}
+		}
+
 		);
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-
 
 				if (itemname[position] == null) {
 					Toast.makeText(S_Coupon_Buy.this, "請輸入", Toast.LENGTH_SHORT).show();
@@ -176,44 +179,50 @@ public class S_Coupon_Buy extends Activity  {
 
 		@Override
 		public void onClick(View arg0) {
+			try{
+			if ((input.getText().toString().length())==0){
+				input.setText(null);
+				input1.setText(null);
+				Toast.makeText(S_Coupon_Buy.this, "空", Toast.LENGTH_SHORT).show();
+			}
+			else if ((input1.getText().toString().length())==0){
+				input.setText(null);
+				input1.setText(null);
+				Toast.makeText(S_Coupon_Buy.this, "空", Toast.LENGTH_SHORT).show();
+			}
 
-			try {
-				if (input.getText().toString().startsWith("0")) {
+				else if (input.getText().toString().startsWith("0")) {
+					input.setText(null);
+					input1.setText(null);
+					Toast.makeText(S_Coupon_Buy.this, "面額開頭不能為零", Toast.LENGTH_SHORT).show();
+				} else if (input1.getText().toString().startsWith("0")) {
+					input.setText(null);
+					input1.setText(null);
+					Toast.makeText(S_Coupon_Buy.this, "張數開頭不能為零", Toast.LENGTH_SHORT).show();
+				}
+
+				else {
+
+					itemname[k] = input.getText().toString();
+					imgid[k] = input1.getText().toString();
+
+					list.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
+					int Much = Integer.valueOf(itemname[k]);
+					int Much1 = Integer.valueOf(imgid[k]);
+					x[k] = "元折價券";
+					y[k] = "張";
+					k++;
+					total = total + (Much * Much1);
+					sum = (total * 1 + total * 1 / 20);
 					input.setText("");
 					input1.setText("");
-					Toast.makeText(S_Coupon_Buy.this, "面額開頭不能為零", Toast.LENGTH_SHORT).show();
-				} else {
-					if (input1.getText().toString().startsWith("0")) {
-						input.setText("");
-						input1.setText("");
-						Toast.makeText(S_Coupon_Buy.this, "張數開頭不能為零", Toast.LENGTH_SHORT).show();
-					}
+					tv.setText("總金額為" + total + "元");
+					tv1.setText("抽成後總金額為" + sum + "元");
+					Toast.makeText(S_Coupon_Buy.this, "新增成功", Toast.LENGTH_SHORT).show();
 
-					else {
-
-						itemname[k] = input.getText().toString();
-						imgid[k] = input1.getText().toString();
-
-						list.setAdapter(adapter);
-						adapter.notifyDataSetChanged();
-						int Much = Integer.valueOf(itemname[k]);
-						int Much1 = Integer.valueOf(imgid[k]);
-						x[k] = "元折價券";
-						y[k] = "張";
-						k++;
-						total = total + (Much * Much1);
-						sum = (total * 1 + total * 1 / 20);
-						input.setText("");
-						input1.setText("");
-						tv.setText("總金額為" + total + "元");
-						tv1.setText("抽成後總金額為" + sum + "元");
-						Toast.makeText(S_Coupon_Buy.this, "新增成功", Toast.LENGTH_SHORT).show();
-
-					}
 				}
-			} catch (NumberFormatException e) {
-				Toast.makeText(S_Coupon_Buy.this, "欄位不能為空", Toast.LENGTH_SHORT).show();
-			} catch (Exception e) {
+			}catch (Exception e) {
 				Toast.makeText(S_Coupon_Buy.this, "不能超過十個選項喔", Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -224,18 +233,18 @@ public class S_Coupon_Buy extends Activity  {
 		public void onClick(View arg0) {
 
 			for (int i = 0; i < itemname.length; i++) {
-				itemname[i] = "";
-				imgid[i] = "";
-				x[i] = "";
-				y[i] = "";
+				itemname[i] = null;
+				imgid[i] = null;
+				x[i] = null;
+				y[i] = null;
 			}
 			k = 0;
 			sum = 0;
 			total = 0;
 			tv.setText("總金額");
 			tv1.setText("抽成後總金額");
-			input.setText("");
-			input1.setText("");
+			input.setText(null);
+			input1.setText(null);
 			adapter.notifyDataSetChanged();
 		}
 	};
@@ -297,53 +306,50 @@ public class S_Coupon_Buy extends Activity  {
 		}
 
 		protected String doInBackground(String... args) {
-			 db = new SQLiteHandler_Stores(getApplicationContext());
-			 
-		        // session manager
-		        session = new SessionManager_Stores(getApplicationContext());
-		        List<NameValuePair> params = new ArrayList<NameValuePair>();
-		        HashMap<String, String> user = db.getUserDetails();
-		        String userid = user.get("email");
-		      
-			for (int m = 0; m < itemname.length; m++) 
-			{
-				
+			db = new SQLiteHandler_Stores(getApplicationContext());
+
+			// session manager
+			session = new SessionManager_Stores(getApplicationContext());
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			HashMap<String, String> user = db.getUserDetails();
+			String userid = user.get("email");
+
+			for (int m = 0; m < itemname.length; m++) {
+
 				String howmuch = itemname[m];
 				String howmany = imgid[m];
-				if (itemname[m] == null){break;}
-				
-				// Building Parameters
-				else
-				{
-				params.add(new BasicNameValuePair("userid", userid));
-				params.add(new BasicNameValuePair("howmuch", howmuch));
-				params.add(new BasicNameValuePair("howmany", howmany));
-			
-				// getting JSON Object
-				// Note that create product url accepts POST method
-				JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_create_buycoupon, "POST", params);
-
-				// check log cat fro response
-				Log.d("Create Response", json.toString());
-			
-				// check for success tag
-				try {
-					int success = json.getInt(TAG_SUCCESS);
-
-					if (success == 1) {
-		
+				if (itemname[m] == null) {
 					
-					} else 
-					{
-						// failed to create product
+					break;
+				}
+
+				// Building Parameters
+				else {
+					params.add(new BasicNameValuePair("userid", userid));
+					params.add(new BasicNameValuePair("howmuch", howmuch));
+					params.add(new BasicNameValuePair("howmany", howmany));
+
+					// getting JSON Object
+					// Note that create product url accepts POST method
+					JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_create_buycoupon, "POST", params);
+
+					// check log cat fro response
+					Log.d("Create Response", json.toString());
+
+					// check for success tag
+					try {
+						int success = json.getInt(TAG_SUCCESS);
+
+						if (success == 1) {
+							
+						} else {
+							// failed to create product
+						}
 					}
-				}
-			
-				
-				catch (JSONException e) 
-				{
-					e.printStackTrace();
-				}
+
+					catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			return null;
@@ -353,14 +359,12 @@ public class S_Coupon_Buy extends Activity  {
 		/**
 		 * After completing background task Dismiss the progress dialog
 		 **/
-		protected void onPostExecute(String file_url) 
-		{
+		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once done
 			aDialog.dismiss();
-			
+
 		}
 
 	}
-	
-	
+
 }

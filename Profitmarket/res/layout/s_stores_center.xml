@@ -22,7 +22,6 @@
         android:layout_alignTop="@+id/textView6"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
-        android:text="等待資訊中..."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000"
         android:textSize="20sp" />
