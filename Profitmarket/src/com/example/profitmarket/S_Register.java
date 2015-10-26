@@ -147,7 +147,7 @@ public class S_Register extends Activity {
                                 
  
                                 // Inserting row in users table
-                                db.addUser(name, email, idnumber, phone, address, uid, created_at);
+                                //db.addUser(name, email, idnumber, phone, address, uid, created_at);
  
                                 // Launch login activity
                                 Intent intent = new Intent(S_Register.this,S_Login.class);

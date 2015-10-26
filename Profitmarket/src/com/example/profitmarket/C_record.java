@@ -149,6 +149,7 @@ public class C_record extends ListActivity {
 		    			String mh=recordsList2.get(i).get("MONTH(created_date)");
 		    			int yr2 = Integer.parseInt(yr);
 		    			int mh2 = Integer.parseInt(mh);
+		    			for(int k=0;k<recordsList.size();k++){
 		    			if(yearss-yr2==0&&month-mh2==0){
 		    			
 		    				String uid2 = recordsList2.get(i).get(UID);
@@ -191,7 +192,7 @@ public class C_record extends ListActivity {
 								// updating listview
 								setListAdapter(adapter2);
 								adapter2.notifyDataSetChanged();
-		    				
+		    			}
 		    			}
 		    			  tvDate.setText(yearss+"-"+month);
 		        		}	

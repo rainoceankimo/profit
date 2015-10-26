@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+
+import app.AppConfig;
 import app.AppConfig_Stores;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -105,7 +107,9 @@ public class S_Tradedetail extends Activity {
 	JSONParser jsonParser = new JSONParser();
 	JSONParser jParser = new JSONParser();
 	JSONParser PParser = new JSONParser();
-	
+	JSONParser UParser = new JSONParser();
+	JSONParser UQParser = new JSONParser();
+	JSONParser GQParser = new JSONParser();
 	
 	//private static String url_create_product = "http://192.168.43.218/addQpon/add_coupon.php";
 	//private static String url_all_products = "http://192.168.43.218/addQpon/getqpontot.php";
@@ -139,6 +143,12 @@ public class S_Tradedetail extends Activity {
 	public String judge,Qponmoney,saveissue_store;
 	
 	public int qponuseYorN = 0;
+	
+	private static final String TAG_ISSUE1 = "coupon";
+	private static final String TITLE = "howmany";
+	public String GgetQponQuantity;
+	public int QponQuantity = 0;
+	public int inputQponQuantity = 0;
 	
 	ArrayList<HashMap<String, String>> RdQponList;
 	
@@ -195,7 +205,7 @@ public class S_Tradedetail extends Activity {
 	        			          COUNTCONSUMPTION + " TEXT," +
 	        			          TRADETTMONEY + " TEXT);");
 	        	
-	        	Toast.makeText(S_Tradedetail.this, "新增成功", Toast.LENGTH_SHORT).show();
+	        	//Toast.makeText(S_Tradedetail.this, "新增成功", Toast.LENGTH_SHORT).show();
 		        
 	        }else
 	        {
@@ -305,6 +315,7 @@ public class S_Tradedetail extends Activity {
 		    
 		    new JudgeQponid().execute();
 		    
+		    new GetQponQuantity().execute();
 		   
 		   // Toast.makeText(S_Tradedetail.this, "" + Qponuse, Toast.LENGTH_SHORT).show();
 		    
@@ -425,10 +436,7 @@ public class S_Tradedetail extends Activity {
     	
     }
 	//-------------------------------------------------
-	
-	
-	
-	
+
 	// SHOW出對話視窗
 	public void MyDialog( ){
 		MyAlertDialog mDlgLogin = new MyAlertDialog(S_Tradedetail.this);
@@ -478,6 +486,7 @@ public class S_Tradedetail extends Activity {
 		@Override
 		public void onClick(View v) {
 			
+			AppController globalVariable = (AppController)getApplicationContext();
 			
 			if( usedenominations > tradediscount ){
 				MyDialog( );
@@ -504,26 +513,29 @@ public class S_Tradedetail extends Activity {
 				//Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
 				if (YorN == 1){
 					new CreateNewQpon().execute();
+					new GetQponQuantity().execute();
+					new updateQponQuantity().execute();
 				}else
 				{
 				
 				}
 				
-				new CreateCustomerRcords().execute();
-
-				Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
+				if (globalVariable.tradetypeNO == 1){
+				   new CreateCustomerRcords().execute();
+				}
+				
+				//Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
 
 				if(qponuseYorN == 1){
 					 new Createprofitrecord().execute();
+					 new updateuseQpon().execute();
 				}else{
 					
 				}
 				
-				
-
-			/*	Intent intent = new Intent();
+				Intent intent = new Intent();
 				intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
-				startActivity(intent);    //觸發換頁     */
+				startActivity(intent);    //觸發換頁       
 			
 			
 			}
@@ -615,7 +627,7 @@ public class S_Tradedetail extends Activity {
 	        session = new SessionManager_Stores(getApplicationContext());
 	        
 	        HashMap<String, String> user = db.getUserDetails();
-	        String userid = user.get("name");
+	        String receive_store = user.get("name");
 	        
 	        String couponid = QponNo;
 	        String kmoney = String.valueOf(usedenominations);
@@ -630,7 +642,7 @@ public class S_Tradedetail extends Activity {
 	        params.add(new BasicNameValuePair("couponid", couponid));
 	        params.add(new BasicNameValuePair("money", kmoney));
 	        params.add(new BasicNameValuePair("profitmoney", kprofitmoney));
-	        params.add(new BasicNameValuePair("receive_store", userid));
+	        params.add(new BasicNameValuePair("receive_store", receive_store));
 	        
 	        
 	        JSONObject jsonp = PParser.makeHttpRequest(AppConfig_Stores.URL_create_profitrecord, "POST", params);
@@ -753,6 +765,163 @@ public class S_Tradedetail extends Activity {
     }
     //-------------------------------------------------
     
+    //update useQpon
+    class updateuseQpon extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
+			db = new SQLiteHandler_Stores(getApplicationContext());
+	        session = new SessionManager_Stores(getApplicationContext());
+	        
+	        HashMap<String, String> user = db.getUserDetails();
+	        String receive_store = user.get("name");
+			
+	        String inputqpon = QponNo;
+			
+	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        params.add(new BasicNameValuePair("couponid", inputqpon));
+	        params.add(new BasicNameValuePair("receive_store", receive_store));
+	        
+	        JSONObject ujson = UParser.makeHttpRequest(AppConfig_Stores.URL_Update_COUPON, "POST", params);
+	        Log.d("update Qpon", ujson.toString());
+	        
+	        // check json success tag
+	     	try {
+	     			int success = ujson.getInt(TAG_SUCCESS);
+
+	     			if (success == 1) {
+	                      
+	     			} else {
+	     				// failed to update product
+	     			}
+	     		} catch (JSONException e) {
+	     			e.printStackTrace();
+	     		}
+	        	
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) 
+		{
+				// dismiss the dialog once done
+			   pDialog.dismiss();
+	
+		}
+    	
+    }
+    //-------------------------------------------------
+    
+    // Get Qpon Quantity
+    class GetQponQuantity extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
+			db = new SQLiteHandler_Stores(getApplicationContext());
+			 
+	        // session manager
+	        session = new SessionManager_Stores(getApplicationContext());
+	        HashMap<String, String> user = db.getUserDetails();
+	        String userid = user.get("email");
+	        
+	        String howmuch = String.valueOf(grantdenominations);
+	        
+		    List<NameValuePair> params = new ArrayList<NameValuePair>();
+		    params.add(new BasicNameValuePair("userid", userid));
+		    params.add(new BasicNameValuePair("howmuch", howmuch));
+		    
+		    JSONObject Gjson = GQParser.makeHttpRequest(AppConfig_Stores.URL_Get_QponQuantity, "GET", params);
+		    
+		    Log.d("Get Qpon Quantity", Gjson.toString());
+		    
+		    try {
+     			int success = Gjson.getInt(TAG_SUCCESS);
+
+     			if (success == 1) {
+     				
+     				JSONArray couponObj = Gjson.getJSONArray("coupon");
+                     
+     				
+						 JSONObject c = couponObj.getJSONObject(0);
+
+        			     GgetQponQuantity = c.getString("howmany");
+        			     QponQuantity = Integer.valueOf(GgetQponQuantity);
+        			     
+        			
+     				
+     			} else {
+     				// failed to update product
+     			}
+     		} catch (JSONException e) {
+     			e.printStackTrace();
+     		}
+			
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) 
+		{
+				// dismiss the dialog once done
+			   pDialog.dismiss();
+		}
+    	
+    }
+    //-------------------------------------------------
+    
+    //update Qpon Quantity
+    class updateQponQuantity extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
+			
+			db = new SQLiteHandler_Stores(getApplicationContext());
+	        session = new SessionManager_Stores(getApplicationContext());
+	        
+	        HashMap<String, String> user = db.getUserDetails();
+	        String userid = user.get("email");
+	        
+	        String howmuch = String.valueOf(grantdenominations);
+	        
+	        inputQponQuantity = QponQuantity - 1;
+	        
+	        String howmany = String.valueOf(inputQponQuantity);
+	        
+	        List<NameValuePair> params = new ArrayList<NameValuePair>();
+	        params.add(new BasicNameValuePair("userid", userid));
+	        params.add(new BasicNameValuePair("howmuch", howmuch));
+	        params.add(new BasicNameValuePair("howmany", howmany));
+	        
+			
+	        JSONObject uqjson = UQParser.makeHttpRequest(AppConfig_Stores.URL_Update_QponQuantity, "POST", params);
+	        Log.d("update Qpon Quantity", uqjson.toString());
+	        
+	        try {
+     			int success = uqjson.getInt(TAG_SUCCESS);
+
+     			if (success == 1) {
+                      
+     			} else {
+     				// failed to update product
+     			}
+     		} catch (JSONException e) {
+     			e.printStackTrace();
+     		}
+
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) 
+		{
+				// dismiss the dialog once done
+			   pDialog.dismiss();
+		}
+    	
+    }
+    //-------------------------------------------------
     
     // judge qponid
     class JudgeQponid extends AsyncTask<String, String, String> {
@@ -817,22 +986,6 @@ public class S_Tradedetail extends Activity {
            					QponNo = judge;
            					usedenominations = Integer.valueOf(c.getString(TAG_MONEY));
                 			
-                			
-           					
-           					
-                	/*		String qponid = judge;
-                			String money =  c.getString(TAG_MONEY);
-                			String username = c.getString(TAG_USERNAME);
-                			
-                		    
-                		    
-                		    HashMap<String, String> map = new HashMap<String, String>();
-                		    map.put(TAG_COUPONID,qponid);
-                		    map.put(TAG_MONEY,money);
-                		    map.put(TAG_USERNAME,username);
-                		    
-                		    
-                		    RdQponList.add(map);     */
 						
                 		} else {
 					

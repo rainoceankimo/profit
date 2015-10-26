@@ -46,7 +46,32 @@
             android:background="@drawable/s_button_shape5"
             android:textColor="#FFFFFF"/>
         
-     </LinearLayout>   
-    
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignRight="@+id/linearLayout1"
+        android:layout_marginBottom="58dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/edtdiscount"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="請輸入折扣上限： %"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnsetting"
+            android:layout_width="120dip"
+            android:layout_height="wrap_content"
+            android:text="設定" />
+
+    </LinearLayout>
 
 </RelativeLayout>

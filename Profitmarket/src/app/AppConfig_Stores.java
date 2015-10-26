@@ -23,6 +23,10 @@ public class AppConfig_Stores {
     
     public static String URL_create_ctrrecords = "http://chaoiok.net78.net/trade_details/memberrecord.php";
     public static String URL_create_profitrecord = "http://chaoiok.net78.net/profitrecord/profitrecord.php";
+    
+    public static String URL_Update_COUPON = "http://chaoiok.net78.net/addQpon/updateqpon.php";
+    public static String URL_Get_QponQuantity = "http://chaoiok.net78.net/couponconnect/getassigncoupon.php";
+    public static String URL_Update_QponQuantity = "http://chaoiok.net78.net/couponconnect/updatecoupon.php";
 
     // use to S_Coupon_Management
     public static String url_get_scmallcoupon = "http://chaoiok.net78.net/couponconnect/getallcoupon.php";

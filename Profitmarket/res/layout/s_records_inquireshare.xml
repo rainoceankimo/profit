@@ -19,25 +19,25 @@
 
     <Button
         android:id="@+id/btnclickreceivable"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/btnclickpayable"
         android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="127dp"
+        android:layout_marginTop="62dp"
+        android:background="@drawable/s_button_shape5"
         android:text="收到"
         android:textColor="#FFFFFF"
-        android:background="@drawable/s_button_shape5"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/btnclickpayable"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/btnclickreceivable"
-        android:layout_below="@+id/btnclickreceivable"
-        android:layout_marginTop="172dp"
-        android:text="付出"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="89dp"
         android:background="@drawable/s_button_shape5"
+        android:text="付出"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
