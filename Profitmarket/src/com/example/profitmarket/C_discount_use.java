@@ -49,26 +49,26 @@ import helper.SessionManager_Stores;
 
 public class C_discount_use extends ListActivity {
 
-	
 	private Button Btnclickqr;
 	private EditText edtUserName;
 	private Dialog mDlgLogin;
 	private ImageView qrImgImageView;
 	String email;
-	
+
 	private SQLiteHandler db;
-    private SessionManager session;
+	private SessionManager session;
 
 	private ProgressDialog pDialog;
-	
+
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 
 	ArrayList<HashMap<String, String>> couponsList;
 
 	// url to get all products list
-	//private static String url_all_products = "http://192.168.0.111/addQpon/getcoupon.php";
-	
+	// private static String url_all_products =
+	// "http://192.168.0.111/addQpon/getcoupon.php";
+
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ISSUE = "issueqpon";
@@ -77,75 +77,68 @@ public class C_discount_use extends ListActivity {
 	private static final String TAG_YESORNO = "yesorno";
 	private static final String TAG_COUPONID = "couponid";
 	private static final String TAG_COUPONID1 = "couponid1";
-	
-	//JSONArray
+
+	// JSONArray
 	JSONArray coupons = null;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_c_discount_use);
-		
-		// SqLite database handler
-        db = new SQLiteHandler(getApplicationContext());
- 
-        // session manager
-        session = new SessionManager(getApplicationContext());
-        
-        couponsList = new ArrayList<HashMap<String, String>>();
-        
-		
-        new DownloadQponData().execute();
-        
-		
-		Btnclickqr = (Button) findViewById(R.id.btnclickqr);
-		
-		Btnclickqr.setOnClickListener(btnOnClickQR);
-		
-		
-		 ListView lv = getListView();
-	        
-	        // on seleting single product
-	        // launching Edit Product Screen
-	        lv.setOnItemClickListener(new OnItemClickListener() {
-	 
-	            @Override
-	            public void onItemClick(AdapterView<?> parent, View view,
-	                    int position, long id) {
-	                
-	            	String qponid = ((TextView) view.findViewById(R.id.dctlttv5)).getText().toString();
-	            	
-	            	mDlgLogin = new Dialog(C_discount_use.this);
-	    			mDlgLogin.setTitle("折價券 QR Code");
-	    			mDlgLogin.setCancelable(true);
-	    			mDlgLogin.setContentView(R.layout.activity_c_mem_qrcode);
-	    			qrImgImageView = (ImageView) mDlgLogin.findViewById(R.id.imageView_abc);
-	    			
-	    			try {
-	    				String contentString = qponid;
-	    				if (contentString != null && contentString.trim().length() > 0) {
-	    					
-	    					Bitmap qrCodeBitmap =EncodingHandler.createQRCode(contentString, 600);
-	    					qrImgImageView.setImageBitmap(qrCodeBitmap);
-	    					
-	    				}else {
-	    					Toast.makeText(C_discount_use.this, "Text can not be empty", Toast.LENGTH_SHORT).show();
-	    				}
-	    				
-	    			} catch (WriterException e) {
-	    				e.printStackTrace();
-	    			}
 
-	    			mDlgLogin.show();
-	            	
-	            }
-	        });	
+		// SqLite database handler
+		db = new SQLiteHandler(getApplicationContext());
+
+		// session manager
+		session = new SessionManager(getApplicationContext());
+
+		couponsList = new ArrayList<HashMap<String, String>>();
+
+		new DownloadQponData().execute();
+
+		Btnclickqr = (Button) findViewById(R.id.btnclickqr);
+
+		Btnclickqr.setOnClickListener(btnOnClickQR);
+
+		ListView lv = getListView();
+
+		// on seleting single product
+		// launching Edit Product Screen
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				String qponid = ((TextView) view.findViewById(R.id.dctlttv5)).getText().toString();
+
+				mDlgLogin = new Dialog(C_discount_use.this);
+				mDlgLogin.setTitle("折價券 QR Code");
+				mDlgLogin.setCancelable(true);
+				mDlgLogin.setContentView(R.layout.activity_c_mem_qrcode);
+				qrImgImageView = (ImageView) mDlgLogin.findViewById(R.id.imageView_abc);
+
+				try {
+					String contentString = qponid;
+					if (contentString != null && contentString.trim().length() > 0) {
+
+						Bitmap qrCodeBitmap = EncodingHandler.createQRCode(contentString, 600);
+						qrImgImageView.setImageBitmap(qrCodeBitmap);
+
+					} else {
+						Toast.makeText(C_discount_use.this, "Text can not be empty", Toast.LENGTH_SHORT).show();
+					}
+
+				} catch (WriterException e) {
+					e.printStackTrace();
+				}
+
+				mDlgLogin.show();
+
+			}
+		});
 	}
 
-	
-	
-//---------   原程式碼
+	// --------- 原程式碼
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -163,12 +156,11 @@ public class C_discount_use extends ListActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}	
-//-------	
-	
-	
+	}
+	// -------
+
 	class DownloadQponData extends AsyncTask<String, String, String> {
-    
+
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -178,27 +170,26 @@ public class C_discount_use extends ListActivity {
 			pDialog.setCancelable(false);
 			pDialog.show();
 		}
-		
-		
+
 		@Override
 		protected String doInBackground(String... args) {
 			// TODO Auto-generated method stub
-			
+
 			// SqLite database handler
-	        db = new SQLiteHandler(getApplicationContext());
-	 
-	        // session manager
-	        session = new SessionManager(getApplicationContext());
-	        HashMap<String, String> user = db.getUserDetails();
-	        String username = user.get("email");
-	        List<NameValuePair> params = new ArrayList<NameValuePair>();
-	        params.add(new BasicNameValuePair("username",username));
-	        
-	        // getting JSON string from URL
-	        JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_qponmessage, "GET", params);
-	        Log.d("Get Qpon Message", json.toString());
-			
-	        try {
+			db = new SQLiteHandler(getApplicationContext());
+
+			// session manager
+			session = new SessionManager(getApplicationContext());
+			HashMap<String, String> user = db.getUserDetails();
+			String username = user.get("email");
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("username", username));
+
+			// getting JSON string from URL
+			JSONObject json = jParser.makeHttpRequest(AppConfig.url_get_qponmessage, "GET", params);
+			Log.d("Get Qpon Message", json.toString());
+
+			try {
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
 
@@ -206,37 +197,34 @@ public class C_discount_use extends ListActivity {
 					// products found
 					// Getting Array of Products
 					coupons = json.getJSONArray(TAG_ISSUE);
-					
+
 					for (int i = 0; i < coupons.length(); i++) {
 						JSONObject c = coupons.getJSONObject(i);
-						
-						
+
 						int[] check = new int[coupons.length()];
-						
+
 						check[i] = Integer.valueOf(c.getString(TAG_YESORNO));
-						
-						
-						if (check[i] != 1){
+
+						if (check[i] != 1) {
 							String deadline = "期限：" + c.getString(TAG_DEADLINE);
-							String money = "面額："+c.getString(TAG_MONEY) + "元";
-							String couponid = "序號："+c.getString(TAG_COUPONID);
+							String money = "面額：" + c.getString(TAG_MONEY) + "元";
+							String couponid = "序號：" + c.getString(TAG_COUPONID);
 							String couponid1 = c.getString(TAG_COUPONID);
-						
+
 							HashMap<String, String> map = new HashMap<String, String>();
-						
-							map.put(TAG_DEADLINE,deadline);
-							map.put(TAG_MONEY,money);
-							map.put(TAG_COUPONID,couponid);
-							map.put(TAG_COUPONID1,couponid1);
-						
-						
+
+							map.put(TAG_DEADLINE, deadline);
+							map.put(TAG_MONEY, money);
+							map.put(TAG_COUPONID, couponid);
+							map.put(TAG_COUPONID1, couponid1);
+
 							couponsList.add(map);
-						}else{
-							
+						} else {
+
 						}
 					}
 				} else {
-					
+
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -244,61 +232,52 @@ public class C_discount_use extends ListActivity {
 
 			return null;
 		}
-		
-		
-		protected void onPostExecute(String file_url) 
-		{
-			   // dismiss the dialog once done
-			   pDialog.dismiss();
-			   
-			   // updating UI from Background Thread
-			   C_discount_use.this.runOnUiThread(new Runnable() {
-					public void run() {
-						/**
-						 * Updating parsed JSON data into ListView
-						 * */
-						ListAdapter adapter = new SimpleAdapter(
-								C_discount_use.this, couponsList,
-								R.layout.activity_c_dctlist, new String[] { TAG_DEADLINE,
-										TAG_MONEY,TAG_COUPONID,TAG_COUPONID1},
-								new int[] { R.id.dctlttv2, R.id.dctlttv3, R.id.dctlttv4, R.id.dctlttv5 });
-						// updating listview
-						setListAdapter(adapter);
-					}
-			   });
-	
+
+		protected void onPostExecute(String file_url) {
+			// dismiss the dialog once done
+			pDialog.dismiss();
+
+			// updating UI from Background Thread
+			C_discount_use.this.runOnUiThread(new Runnable() {
+				public void run() {
+					/**
+					 * Updating parsed JSON data into ListView
+					 */
+					ListAdapter adapter = new SimpleAdapter(C_discount_use.this, couponsList,
+							R.layout.activity_c_dctlist,
+							new String[] { TAG_DEADLINE, TAG_MONEY, TAG_COUPONID, TAG_COUPONID1 },
+							new int[] { R.id.dctlttv2, R.id.dctlttv3, R.id.dctlttv4, R.id.dctlttv5 });
+					// updating listview
+					setListAdapter(adapter);
+				}
+			});
+
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
 	private View.OnClickListener btnOnClickQR = new View.OnClickListener() {
 		public void onClick(View v) {
-			
+
 			mDlgLogin = new Dialog(C_discount_use.this);
 			mDlgLogin.setTitle("會員 QR Code");
 			mDlgLogin.setCancelable(true);
 			mDlgLogin.setContentView(R.layout.activity_c_mem_qrcode);
 			qrImgImageView = (ImageView) mDlgLogin.findViewById(R.id.imageView_abc);
 			HashMap<String, String> user = db.getUserDetails();
-	        email = user.get("email");
-			
-			
+			email = user.get("email");
+
 			try {
 				String contentString = email;
 				if (contentString != null && contentString.trim().length() > 0) {
-					
-					Bitmap qrCodeBitmap =EncodingHandler.createQRCode(contentString, 600);
+
+					Bitmap qrCodeBitmap = EncodingHandler.createQRCode(contentString, 600);
 					qrImgImageView.setImageBitmap(qrCodeBitmap);
-					
-				}else {
+
+				} else {
 					Toast.makeText(C_discount_use.this, "Text can not be empty", Toast.LENGTH_SHORT).show();
 				}
-				
+
 			} catch (WriterException e) {
 				e.printStackTrace();
 			}
@@ -306,25 +285,22 @@ public class C_discount_use extends ListActivity {
 			mDlgLogin.show();
 
 		}
-	};	
-	
-	
-	
-   public boolean onKeyDown(int keyCode, KeyEvent event) {
-        
-        if (keyCode == KeyEvent.KEYCODE_BACK)
-        {
-            // Show home screen when pressing "back" button,
-            //  so that this app won't be closed accidentally
-        	Intent intent = new Intent();  
-    	    intent.setClass(C_discount_use.this,C_mem_view.class);
-    	   startActivity(intent);    //觸發換頁
-    	   finish();   //結束本頁
-            
-            return true;
-        }
-        
-        return super.onKeyDown(keyCode, event);
-    }
-   
+	};
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			// Show home screen when pressing "back" button,
+			// so that this app won't be closed accidentally
+			Intent intent = new Intent();
+			intent.setClass(C_discount_use.this, C_mem_view.class);
+			startActivity(intent); // 觸發換頁
+			finish(); // 結束本頁
+
+			return true;
+		}
+
+		return super.onKeyDown(keyCode, event);
+	}
+
 }

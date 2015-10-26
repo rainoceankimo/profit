@@ -33,6 +33,9 @@ public class AppConfig_Stores {
 
     // use to S_Coupon_Buy
     public static String url_create_buycoupon = "http://chaoiok.net78.net/couponconnect/create.php";
+    
+    // use to S_Coupon_Issuing
+    public static String url_get_coupontoissuing = "http://chaoiok.net78.net/addQpon/getqpontoissuing.php";
 
     //use to S_Records_ShareGet
     public static String url_get_profitrecord = "http://chaoiok.net78.net/profitrecord/getprofitrecord.php";

@@ -1,22 +1,61 @@
 package com.example.profitmarket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.profitmarket.C_discount_use.DownloadQponData;
 
 import android.app.Fragment;
+import android.app.ListFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import helper.RulesDbHandler;
+import helper.SQLiteHandler_Stores;
+import helper.SessionManager_Stores;
+import app.AppConfig;
+import app.AppConfig_Stores;
 import app.AppController;
 
-public class S_Coupon_Issuing extends Fragment {
+public class S_Coupon_Issuing extends ListFragment {
+	
+	private SQLiteHandler_Stores db;
+    private SessionManager_Stores session;
+    
+    private ProgressDialog pDialog;
+    
+    JSONParser jsonParser = new JSONParser();
+    
+    private static final String TAG_SUCCESS = "success";
+	private static final String TAG_ISSUE = "issueqpon";
+	private static final String TAG_DEADLINE = "deadline";
+	private static final String TAG_MONEY = "money";
+	private static final String TAG_YESORNO = "yesorno";
+	private static final String TAG_COUPONID = "couponid";
+	private static final String TAG_USERNAME = "username";
+	private static final String TAG_CREATED_DATE = "created_date";
+	
+	ArrayList<HashMap<String, String>> couponsList;
+	JSONArray coupons = null;
 	
 	private View v;
 	EditText showw;
@@ -46,8 +85,8 @@ public class S_Coupon_Issuing extends Fragment {
 		
 
 		showw = (EditText) v.findViewById(R.id.ciedta);
-		//showw1 = (EditText) v.findViewById(R.id.ciedtb);
-		btnaa = (Button) v.findViewById(R.id.cibtna);
+       
+		couponsList = new ArrayList<HashMap<String, String>>();
 		
 		RulesDbHandler rulesDbHandler = 
 				new RulesDbHandler(getActivity().getApplicationContext(), DB_DBNAME, null, 1);
@@ -79,16 +118,14 @@ public class S_Coupon_Issuing extends Fragment {
 		{
 			  Toast.makeText(getActivity().getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
 		}
-				
-				
-		
+
 		showall();
-		
-			
-		
+		new DownloadQponData().execute();
+
 		return v;
 	}
 	
+	// show rulers
 	public void showall(){
 		Cursor c = MyrulesDb.query(true, DB_TBNAME, columns,null, null, null, null, null, null);
 		
@@ -112,39 +149,107 @@ public class S_Coupon_Issuing extends Fragment {
 				showw.append("\n" + "消費達"+" " + c.getString(1) + " " + "元發放折價券"+" "+ c.getString(2)+" " +"元");
 		}
     }  
+	// -----------------------------------------------
 	
-/*	public void showrules(){
-		Cursor c = MyrulesDb.query(true, DB_TBNAME, columns,null, null, null, null, null, null);
+	class DownloadQponData extends AsyncTask<String, String, String> {
 		
-		if (c == null)
-			return;
-		
-		if (c.getCount() != 0) {
-			while(c.moveToNext())
-			{
-				String umoney = c.getString(1);
-				String gmoney = c.getString(2);
-				int umoneys = Integer.valueOf(umoney);
-				int gmoneys = Integer.valueOf(gmoney);
-				
-				use.add(umoneys);
-				grant.add(gmoneys);
-			}
-			
-			int cinum = use.size();
-			ciumy = new int[cinum];
-			cigmy = new int[cinum];
-			
-			for (int i = 0; i < cinum ; i++) {
-				ciumy[i] = use.get(i);
-				cigmy[i] = grant.get(i);
-				
-				showw.append("消費達"+" "+ciumy[i]+" "+ "元發放折價券"+" "+ cigmy[i]+" " +"元"+"\n");
-			}
-		}else
-		{
-			
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(getActivity());
+			pDialog.setMessage("Loading. Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
 		}
+
+		@Override
+		protected String doInBackground(String... args) {
+			// TODO Auto-generated method stub
 			
-	}   */
+			// SqLite database handler
+			db = new SQLiteHandler_Stores(getActivity().getApplicationContext());
+	        session = new SessionManager_Stores(getActivity().getApplicationContext());
+	        
+			HashMap<String, String> user = db.getUserDetails();
+			String issue_store = user.get("name");
+			
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("issue_store", issue_store));
+			
+			
+			JSONObject json = jsonParser.makeHttpRequest(AppConfig_Stores.url_get_coupontoissuing, "GET", params);
+			Log.d("Get Qpon Message", json.toString());
+			
+			try {
+				// Checking for SUCCESS TAG
+				int success = json.getInt(TAG_SUCCESS);
+
+				if (success == 1) {
+					
+					coupons = json.getJSONArray(TAG_ISSUE);
+
+					for (int i = 0; i < coupons.length(); i++) {
+						JSONObject c = coupons.getJSONObject(i);
+
+						int[] check = new int[coupons.length()];
+
+						check[i] = Integer.valueOf(c.getString(TAG_YESORNO));
+
+						if (check[i] != 1) {
+							
+							String deadline = "期限：" + c.getString(TAG_DEADLINE);
+							String couponid = "序號：" + c.getString(TAG_COUPONID);
+							String money = "面額：" + c.getString(TAG_MONEY) + "元";
+							String username = "會員：" + c.getString(TAG_USERNAME);
+							String created_date = "發放日期：" + c.getString(TAG_CREATED_DATE);
+
+							HashMap<String, String> map = new HashMap<String, String>();
+
+							map.put(TAG_DEADLINE, deadline);
+							map.put(TAG_COUPONID, couponid);
+							map.put(TAG_MONEY, money);
+							map.put(TAG_USERNAME, username);
+							map.put(TAG_CREATED_DATE, created_date);
+
+							couponsList.add(map);
+							
+						} else {
+
+						}
+					}
+				}else {
+
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) {
+			// dismiss the dialog once done
+			pDialog.dismiss();
+
+			// updating UI from Background Thread
+			getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					/**
+					 * Updating parsed JSON data into ListView
+					 */
+					ListAdapter adapter = new SimpleAdapter(getActivity(), couponsList,
+							R.layout.s_coupon_issuinglist,
+							new String[] { TAG_DEADLINE, TAG_COUPONID,TAG_MONEY,TAG_USERNAME,TAG_CREATED_DATE},
+							new int[] { R.id.s_cilttv1, R.id.s_cilttv2, R.id.s_cilttv3, R.id.s_cilttv4,R.id.s_cilttv5 });
+					// updating listview
+					setListAdapter(adapter);
+				}
+			});
+
+		}
+		
+	}
+	
+	
 }
