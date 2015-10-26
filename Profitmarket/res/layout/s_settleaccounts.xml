@@ -10,10 +10,10 @@
         android:id="@+id/textView01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#0FFF3F"
+        android:background="#99BBFF"
         android:gravity="center"
         android:text="結帳管理"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="36sp" />
     
     <LinearLayout
@@ -42,7 +42,9 @@
             android:layout_marginTop="35dp"
             android:padding="15dip"
             android:text="確定"
-            android:textSize="20dip" />
+            android:textSize="20dip" 
+            android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"/>
         
      </LinearLayout>   
     

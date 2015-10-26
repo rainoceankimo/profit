@@ -9,60 +9,73 @@
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-       
+        android:background="#99BBFF"
         android:gravity="center"
         android:text="歷史記錄及資料分析"
-        android:textColor="#000000"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/btnclickqr"
-        android:layout_width="255dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:background="@null"
-        android:onClick="s_inquiretransaction_onClick"
-        android:text="查詢交易記錄"
-        android:textColor="#000000"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="275dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/btnclickqr"
-        android:layout_marginTop="52dp"
-        android:background="@null"
-        android:onClick="s_inquireshare_onClick"
-        android:text="查詢分潤記錄"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
+        android:layout_alignLeft="@+id/button3"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignRight="@+id/button3"
         android:gravity="center"
+        android:text="資料分析"
         android:textColor="#000000"
-        android:text="資料分析" />
+        android:textSize="25dp" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="275dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
-        android:background="@drawable/s_analysis"
-        android:onClick="s_analysis_onClick"
-        android:textColor="#000000"
-        android:textSize="30sp" />
+       <Button
+           android:id="@+id/btnclickqr"
+           android:layout_width="150dp"
+           android:layout_height="150dp"
+           android:layout_below="@+id/textView1"
+           android:layout_centerHorizontal="true"
+           android:background="@drawable/s_search_record"
+           android:onClick="s_inquiretransaction_onClick" />
+
+       <Button
+           android:id="@+id/button2"
+           android:layout_width="150dp"
+           android:layout_height="150dp"
+           android:layout_alignLeft="@+id/textView4"
+           android:layout_centerVertical="true"
+           android:background="@drawable/s_shareget"
+           android:onClick="s_inquireshare_onClick" />
+
+       <TextView
+           android:id="@+id/textView4"
+           android:layout_width="wrap_content"
+           android:layout_height="80dp"
+           android:layout_alignLeft="@+id/btnclickqr"
+           android:layout_below="@+id/btnclickqr"
+           android:gravity="center"
+           android:text="查詢交易紀錄"
+           android:textColor="#000000"
+           android:textSize="25dp" />
+
+       <Button
+           android:id="@+id/button3"
+           android:layout_width="275dp"
+           android:layout_height="100dp"
+           android:layout_above="@+id/textView2"
+           android:layout_centerHorizontal="true"
+           android:background="@drawable/s_analysis"
+           android:onClick="s_analysis_onClick"
+           android:textColor="#000000"
+           android:textSize="30sp" />
+
+       <TextView
+           android:id="@+id/textView3"
+           android:layout_width="wrap_content"
+           android:layout_height="80dp"
+           android:layout_alignLeft="@+id/button2"
+           android:layout_below="@+id/button2"
+           android:gravity="center"
+           android:text="查詢分潤紀錄"
+           android:textColor="#000000"
+           android:textSize="25dp" />
 
 </RelativeLayout>

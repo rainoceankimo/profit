@@ -14,8 +14,8 @@
         android:gravity="center"
         android:text="查詢分潤記錄"
         android:textSize="36sp"
-        android:textColor="#000000"
-        android:background="#0FFF3F" />
+        android:textColor="#FFFFFF"
+        android:background="#99BBFF" />
 
     <Button
         android:id="@+id/btnclickreceivable"
@@ -25,7 +25,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="127dp"
         android:text="收到"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/s_button_shape5"
         android:textSize="20sp" />
 
     <Button
@@ -36,7 +37,8 @@
         android:layout_below="@+id/btnclickreceivable"
         android:layout_marginTop="172dp"
         android:text="付出"
-        android:textColor="#000000"
+        android:background="@drawable/s_button_shape5"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
 </RelativeLayout>

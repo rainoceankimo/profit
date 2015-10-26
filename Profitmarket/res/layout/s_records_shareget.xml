@@ -26,6 +26,9 @@
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.22"
+            android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
             android:text="選擇日期" />
 
     </LinearLayout>

@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="#0FFF3F"
+          android:background="#99BBFF"
+           android:textColor="#FFFFFF"
         android:gravity="center"
         android:text="修改店家資訊"
-        android:textColor="#000000"
+       
         android:textSize="36sp" />
 
 
@@ -27,7 +28,9 @@
         android:layout_centerHorizontal="true"
         android:onClick="s_backtostorescenter_onClick"
         android:text="確定"
-        android:textColor="#000000"
+           android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
+      
         android:textSize="26sp" />
 
     <EditText
