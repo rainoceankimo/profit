@@ -22,8 +22,8 @@
             android:layout_marginBottom="5dp"
             android:background="@color/white"
             android:gravity="center"
+            android:padding="8dip"
             android:textColor="@color/black"
-            android:padding="10dip"
             android:textSize="20dip" />
 
         <TextView
@@ -32,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -42,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
-           android:textColor="@color/black"
-            android:padding="8dip"
+            android:padding="6dip"
+            android:textColor="@color/black"
             android:textSize="15dip" />
 
         <TextView
@@ -52,8 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -62,8 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -72,8 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -82,8 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -92,8 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -102,8 +102,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -112,8 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:padding="6dip"
             android:textColor="@color/black"
-            android:padding="8dip"
             android:textSize="15dip" />
 
         <TextView
@@ -123,7 +123,7 @@
             android:layout_marginBottom="15dp"
             android:background="@color/white"
             android:gravity="right"
-            android:padding="8dip"
+            android:padding="6dip"
             android:text="totalmoney"
             android:textColor="@color/black"
             android:textSize="15dip" />
@@ -134,7 +134,6 @@
             android:layout_height="wrap_content"
             android:padding="10dip"
             android:text="確定" />
-
     </LinearLayout>
 
 </LinearLayout>

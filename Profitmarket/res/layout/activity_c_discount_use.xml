@@ -32,7 +32,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="15dip"
+               android:background="@drawable/shape"
             android:text="會員二維圖"
+            android:textColor="#FFFFFF"
             android:textSize="25dp" />
 
         <ListView

@@ -142,6 +142,7 @@ public class C_record extends ListActivity {
 		    			String years = Integer.toString(yearss); 
 		    			int month = (datePicker.getMonth()+1);
 		    			String months = Integer.toString(month);
+		    			recordsList.clear();
 		        		for(int i=0;i< recordsList2.size();i++){
 		        		//Intent intime = new Intent();
 		    			//intime.setClass(C_record.this,S_Analysis_Sources.class);
@@ -177,7 +178,7 @@ public class C_record extends ListActivity {
 							map3.put(TOTALMONEY,totalmoney2);
 							//recordsList3.add(map3);
 							
-							recordsList.clear();
+							
 							recordsList.add(map3);
 							SimpleAdapter adapter2 = new SimpleAdapter(
 									   C_record.this, recordsList,

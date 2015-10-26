@@ -76,19 +76,19 @@ public class C_Store_information extends Activity {
 			productsList = new ArrayList<HashMap<String, String>>(10);	
 	     
 			   Intent i = getIntent();
-			   csid=(TextView)findViewById(R.id.csid);
+			 
 			   csemail=(TextView)findViewById(R.id.scemail);
 			   csname=(TextView)findViewById(R.id.scname);
 			   csphone=(TextView)findViewById(R.id.scphone);
 			   csaddress=(TextView)findViewById(R.id.scaddress);
 
-		       uid = i.getStringExtra(TAG_PID);
+		     
 		       email=i.getStringExtra(TAG_EMAIL);
 		       name=i.getStringExtra(TAG_NAME);
 		       phone=i.getStringExtra(TAG_PHONE);
 		       address=i.getStringExtra(TAG_ADDRESS);
 		       
-		       csid.setText(uid);
+		     
 		       csemail.setText(email);
 		       csname.setText(name);
 		       csphone.setText(phone);

@@ -55,7 +55,7 @@ public class S_Login extends Activity {
 	private static final String TAG_OPENSTORE = "openstore";
 	
 	public String openstore; 
-	public int checkopenstore; 
+	public int checkopenstore = 0; 
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,28 +94,19 @@ public class S_Login extends Activity {
             	   
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
-                String idnumber = "";
-                String phone = "";
-                String address = "";
+                //String idnumber = "";
+                //String phone = "";
+                //String address = "";
+                //String openstore = "";
                 
                 new Getstoremessage().execute();
- 
+                
                 // Check for empty data in the form
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
-                	
-                    checkLogin(email, password, idnumber, phone, address);
-                    
-                    if (checkopenstore == 1){
-                    	Intent intent = new Intent(S_Login.this,S_Logout.class);
-                        startActivity(intent);
-                        finish();
-                    }else
-                    {
-                    	Toast.makeText(S_Login.this, "" + checkopenstore, Toast.LENGTH_SHORT).show();
-                    }
-                    
-                    
+                     
+                	checkLogin(email, password);
+                
                     
                 } else {
                     // Prompt user to enter credentials
@@ -142,7 +133,7 @@ public class S_Login extends Activity {
     /**
      * function to verify login details in mysql db
      * */
-    private void checkLogin(final String email, final String password, final String idnumber,final String phone, final String address) {
+    private void checkLogin(final String email, final String password) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
  
@@ -174,17 +165,31 @@ public class S_Login extends Activity {
                                 String idnumber = user.getString("idnumber");
                                 String phone = user.getString("phone");
                                 String address = user.getString("address");
-                                String created_at = user.getString("created_at");                              
+                                String created_at = user.getString("created_at");
+                                //String openstore = user.getString("openstore");
  
                                 // Inserting row in users table
                                 db.addUser(name, email, idnumber, phone, address, uid, created_at);
                                 
                                 session.setLogin(true);
                                 
+                                new Getstoremessage().execute();
+                                
+                                if (checkopenstore == 1){
+                                	Intent intent = new Intent(S_Login.this,S_Logout.class);
+                                    startActivity(intent);
+                                    finish();
+                                    
+                                }else if(checkopenstore == 0)
+                                {
+                            	   Toast.makeText(S_Login.this, "¶Q©±©|¥¼¶}³q!" + checkopenstore +""+ openstore, Toast.LENGTH_SHORT).show();
+                                } 
+
+                                
                                 //Toast.makeText(S_Login.this, "" + openstore, Toast.LENGTH_SHORT).show();
  
                                 // Launch main activity
-                             /*   Intent intent = new Intent(S_Login.this,
+                              /*Intent intent = new Intent(S_Login.this,
                                 		S_Logout.class);
                                 startActivity(intent);
                                 finish();  */
@@ -219,9 +224,11 @@ public class S_Login extends Activity {
                 params.put("tag", "login");
                 params.put("email", email);
                 params.put("password", password);
-                params.put("idnumber", idnumber);
-                params.put("phone", phone);
-                params.put("address", address);
+                //params.put("idnumber", idnumber);
+                //params.put("phone", phone);
+                //params.put("address", address);
+                //params.put("openstore", openstore);
+                
  
                 return params;
             }
@@ -240,12 +247,9 @@ public class S_Login extends Activity {
 		protected String doInBackground(String... args) {
 			// TODO Auto-generated method stub
 			
-			db = new SQLiteHandler_Stores(getApplicationContext());
-	        session = new SessionManager_Stores(getApplicationContext());
-	        
-	        HashMap<String, String> user = db.getUserDetails();
-	        String email = user.get("email");
-	        
+			inputEmail = (EditText) findViewById(R.id.email);
+			String email = inputEmail.getText().toString();
+
 	        List<NameValuePair> params = new ArrayList<NameValuePair>();
 	        params.add(new BasicNameValuePair("email", email));
 	
@@ -264,8 +268,12 @@ public class S_Login extends Activity {
 					 openstore = c.getString("openstore");
 					 checkopenstore = Integer.valueOf(openstore);
 					 
-   			         
-                      
+				/*	 if (checkopenstore == 1){
+                     	 Intent intent = new Intent(S_Login.this,S_Logout.class);
+                         startActivity(intent);
+                         finish();
+                     }     */
+
      			} else {
      				// failed to update product
      			}
