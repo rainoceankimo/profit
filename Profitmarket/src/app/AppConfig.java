@@ -21,4 +21,5 @@ public class AppConfig {
 
     //use to C_mod_inform
     public static String url_mem_inform = "http://chaoiok.net78.net/memberdetail/updatememberdetail.php";
+    public static String url_intro = "http://chaoiok.net78.net/storeintroduction/storeintroduction.php";
 }

@@ -131,6 +131,7 @@ public class ReadFragment extends Fragment {
 	                        String address = c.getString(TAG_ADDRESS);
 	                        String phone = c.getString(TAG_PHONE);
 	                        String type = c.getString(TAG_TYPE);
+	                        String introduction = c.getString("introduction");
 	                        Double type1=Double.parseDouble(type);
 	                        if(type1==1){
 	                         HashMap<String, String> map = new HashMap<String, String>();
@@ -140,6 +141,7 @@ public class ReadFragment extends Fragment {
 	  	                        map.put(TAG_ADDRESS, address);
 	  	                        map.put(TAG_PHONE,phone);
 	  	                        map.put(TAG_TYPE,type);
+	  	                      map.put("introduction",introduction);
 	  	                        // adding HashList to ArrayList
 	  	                        productsList.add(map);
 	                        	
@@ -176,8 +178,8 @@ public class ReadFragment extends Fragment {
 			 ListAdapter adapter = new SimpleAdapter(
 						getActivity(), productsList,
 						R.layout.list_item, new String[] { TAG_UID,
-                                TAG_NAME,TAG_PHONE,TAG_EMAIL,TAG_ADDRESS,TAG_TYPE},
-						new int[] {R.id.uid,R.id.name,R.id.phone,R.id.email,R.id.address,R.id.type});
+                                TAG_NAME,TAG_PHONE,TAG_EMAIL,TAG_ADDRESS,TAG_TYPE,"introduction"},
+						new int[] {R.id.uid,R.id.name,R.id.phone,R.id.email,R.id.address,R.id.type,R.id.introduction});
 				// updating listview
 				lv.setAdapter(adapter);
 			 // ArrayAdapter<String> adapter = 
@@ -194,7 +196,8 @@ public class ReadFragment extends Fragment {
 	        		   // intent.setClass(getActivity(),C_Store_information.class);
 	        		   // startActivity(intent);    //Ä²µo´«­¶
 	        	       // }
-	        		
+	        		String introduction = ((TextView) view.findViewById(R.id.introduction)).getText()
+	                        .toString();
 	        	    String uid = ((TextView) view.findViewById(R.id.uid)).getText()
 	                        .toString();
 	        	    String email = ((TextView) view.findViewById(R.id.email)).getText()
@@ -214,6 +217,7 @@ public class ReadFragment extends Fragment {
 	                in.putExtra(TAG_NAME, name);
 	                in.putExtra(TAG_PHONE, phone);
 	                in.putExtra(TAG_ADDRESS, address);
+	                in.putExtra("introduction", introduction);
 	                // starting new activity and expecting some response back
 	                startActivity(in);
 	        		

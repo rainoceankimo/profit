@@ -70,6 +70,8 @@
             android:id="@+id/btnsetting"
             android:layout_width="120dip"
             android:layout_height="wrap_content"
+            android:background="@drawable/s_button_shape5"
+            android:textColor="#FFFFFF"
             android:text="設定" />
 
     </LinearLayout>
