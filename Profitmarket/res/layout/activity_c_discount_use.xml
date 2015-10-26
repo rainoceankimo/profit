@@ -34,6 +34,7 @@
             android:padding="15dip"
                android:background="@drawable/shape"
             android:text="會員二維圖"
+            android:textColor="#FFFFFF"
             android:textSize="25dp" />
 
         <ListView
