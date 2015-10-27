@@ -64,12 +64,14 @@ public class S_Analysis_Revenue extends Activity {
 	public static   JSONParser jParser = new JSONParser();
 	 String  timeY ;
 	 String  time2;
-  public	 	int as=0;
-  public				int getas;	
-  public	 int MONEY; 
+  public	int as=0;
+  public	int getas;	
+  public	int MONEY; 
   public	int MONEY2;
-  public			int as2=0;
-  public       	int getas2;
+  public	int as2=0;
+  public    int getas2;
+  public    int getas3;
+  
   
   
 	private static final String DB_FILE = "tradedetail.db",
@@ -276,7 +278,7 @@ public class S_Analysis_Revenue extends Activity {
 			//Double b1=Double.parseDouble(b);
 			int[] VALUES = new int[4];
 			VALUES[0]=getas;
-			VALUES[1]=getas2;
+			VALUES[1]=getas3;
 			//VALUES[2]=a1;
 			//VALUES[3]=b1;
 			
@@ -347,10 +349,10 @@ public void SHOWLIST2(){
 	  	  while(c1.moveToNext())
 		  {
 	  		
-			  String pname = c1.getString(3);
+			  String pname = c1.getString(12);
 			// if(pname.indexOf(timeY)){}
 				 int  pname2 = Integer.parseInt(pname);
-			  String nousedollar = c1.getString(12);
+			  String nousedollar = c1.getString(11);
 			 int  nousedollar2 = Integer.parseInt(nousedollar);
 			  //  HashMap<String, String> map = new HashMap<String, String>();
 			 //   HashMap<String, String> map2 = new HashMap<String, String>();
@@ -396,7 +398,7 @@ public void SHOWLIST2(){
 		}
 		
 		 getas2=as2;
-	
+		  getas3= getas2-getas;
 		
 		 
 		 

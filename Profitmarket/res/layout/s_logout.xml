@@ -36,26 +36,26 @@
             android:textSize="13dp" />
 
         <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:background="@color/btn_logut_bg"
-            android:padding="15dip"
-            android:text="@string/btn_logout"
-            android:textColor="@color/white"
-            android:textSize="20dip" />
-
-        <Button
             android:id="@+id/btnclickqr"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
+            android:background="@color/blue20"
             android:onClick="s_signin_onClick"
             android:padding="15dip"
             android:text="確定"
             android:textColor="@color/white"
-            android:background="@color/blue20"
+            android:textSize="20dip" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@color/btn_logut_bg"
+            android:padding="15dip"
+            android:text="@string/btn_logout"
+            android:textColor="@color/white"
             android:textSize="20dip" />
         
     </LinearLayout>

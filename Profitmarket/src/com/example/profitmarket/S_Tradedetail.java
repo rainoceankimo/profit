@@ -119,7 +119,8 @@ public class S_Tradedetail extends Activity {
 	private static final String TAG_COUPONID = "couponid";
 	private static final String TAG_MONEY = "money";
 	private static final String TAG_USERNAME = "username";
-	public static final String ISSUE_STORE = "issue_store";
+	private static final String ISSUE_STORE = "issue_store";
+	private static final String TAG_YESORNO = "yesorno";
 	
 	
 	private TextView showtradetype,showtradedate,showtradeconsumption,trademaxdiscount,
@@ -143,6 +144,7 @@ public class S_Tradedetail extends Activity {
 	public String judge,Qponmoney,saveissue_store;
 	
 	public int qponuseYorN = 0;
+	public int qponisusedYorN = 0;
 	
 	private static final String TAG_ISSUE1 = "coupon";
 	private static final String TITLE = "howmany";
@@ -317,13 +319,23 @@ public class S_Tradedetail extends Activity {
 		    
 		    new GetQponQuantity().execute();
 		   
-		   // Toast.makeText(S_Tradedetail.this, "" + Qponuse, Toast.LENGTH_SHORT).show();
+		    if(qponisusedYorN == 1)
+			{
+				Toast.makeText(S_Tradedetail.this, "折價券已被使用過喔！", Toast.LENGTH_SHORT).show();
+				
+				Intent intent = new Intent();
+				intent.setClass(S_Tradedetail.this,S_Capture.class);
+				startActivity(intent);
+			}
 		    
 		    
 		    // TODO Auto-generated method stub
 		    
-		    tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
+		    
 		    tradecountconsumption = globalVariable.settlea_totalmoney - usedenominations;
+		    
+		    tradettmoney = globalVariable.settlea_totalmoney - usedenominations;
+		    
 		    
 		    trademembername.setText("會員名稱："+ memname);
 		    tradecouponuse.setText("折價券使用：" + Qponuse);
@@ -488,57 +500,73 @@ public class S_Tradedetail extends Activity {
 			
 			AppController globalVariable = (AppController)getApplicationContext();
 			
-			if( usedenominations > tradediscount ){
-				MyDialog( );
+			if (qponisusedYorN != 1){
 				
-			}else
-			{
-		
-				ContentValues newRow = new ContentValues();
-				newRow.put(TYPE,tradetype);
-				newRow.put(DATE,tradedate);
-				newRow.put(CONSUMPTION,tradeconsumption);
-				newRow.put(DISCOUNT,tradediscount);
-				newRow.put(GRANT,Qpongrant);
-				newRow.put(GRANTDENOMINATIONS,grantdenominations);
-				newRow.put(MEMNAME,memname);
-				newRow.put(QPONUSE,Qponuse);
-				newRow.put(QPONNO,QponNo);
-				newRow.put(USEDENOMINATIONS,usedenominations);
-				newRow.put(COUNTCONSUMPTION,tradecountconsumption);
-				newRow.put(TRADETTMONEY,tradettmoney);
-			
-				mtradeDb.insert(DB_TABLE, null, newRow);
-			
-				//Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
-				if (YorN == 1){
-					new CreateNewQpon().execute();
-					new GetQponQuantity().execute();
-					new updateQponQuantity().execute();
+				if( usedenominations > tradediscount ){
+					MyDialog( );
+				
 				}else
 				{
-				
-				}
-				
-				if (globalVariable.tradetypeNO == 1){
-				   new CreateCustomerRcords().execute();
-				}
-				
-				//Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
-
-				if(qponuseYorN == 1){
-					 new Createprofitrecord().execute();
-					 new updateuseQpon().execute();
-				}else{
 					
+					//Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
+					if (YorN == 1){
+						new CreateNewQpon().execute();
+						new GetQponQuantity().execute();
+						new updateQponQuantity().execute();
+					}else
+					{
+				
+					}
+				
+					if (globalVariable.tradetypeNO == 1){
+						new CreateCustomerRcords().execute();
+					}
+				
+					//Toast.makeText(S_Tradedetail.this, " "+ qponuseYorN, Toast.LENGTH_SHORT).show();
+
+					if(qponuseYorN == 1){
+						new Createprofitrecord().execute();
+						new updateuseQpon().execute();
+						tradecountconsumption = globalVariable.settlea_totalmoney - usedenominations;
+					}else{
+						tradecountconsumption = 0;
+					} 
+					
+				
+					// 記錄交易
+					ContentValues newRow = new ContentValues();
+					newRow.put(TYPE,tradetype);
+					newRow.put(DATE,tradedate);
+					newRow.put(CONSUMPTION,tradeconsumption);
+					newRow.put(DISCOUNT,tradediscount);
+					newRow.put(GRANT,Qpongrant);
+					newRow.put(GRANTDENOMINATIONS,grantdenominations);
+					newRow.put(MEMNAME,memname);
+					newRow.put(QPONUSE,Qponuse);
+					newRow.put(QPONNO,QponNo);
+					newRow.put(USEDENOMINATIONS,usedenominations);
+					newRow.put(COUNTCONSUMPTION,tradecountconsumption);
+					newRow.put(TRADETTMONEY,tradettmoney);
+			
+					mtradeDb.insert(DB_TABLE, null, newRow);
+				
+					Toast.makeText(S_Tradedetail.this, "紀錄成功", Toast.LENGTH_SHORT).show();
+				
+					Intent intent = new Intent();
+					intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
+					startActivity(intent);    //觸發換頁       
 				}
+			}else if(qponisusedYorN == 1)
+			{
+				Toast.makeText(S_Tradedetail.this, "折價券已被使用過喔！", Toast.LENGTH_SHORT).show();
 				
 				Intent intent = new Intent();
-				intent.setClass(S_Tradedetail.this,S_Mainmenu.class);
-				startActivity(intent);    //觸發換頁       
-			
-			
+				intent.setClass(S_Tradedetail.this,S_Capture.class);
+				startActivity(intent);
 			}
+				
+				
+				
 		}
     };
     //-------------------------------------------------
@@ -961,32 +989,36 @@ public class S_Tradedetail extends Activity {
                 			// Getting Array of Products
                 			JSONArray couponObj = json.getJSONArray(TAG_ISSUE);
                 			//coupons = json.getJSONArray(TAG_ISSUE);
-					
-					
                 			JSONObject c = couponObj.getJSONObject(0);
+                			
+                			int check = Integer.valueOf(c.getString(TAG_YESORNO));
+                			
+                			if (check != 1) {
+                				trademembername = (TextView) findViewById(R.id.trade_membername);
+                				tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
+                				tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
+                				
+                				trademembername.setText("會員名稱："+ c.getString(TAG_USERNAME));
+                				tradecouponuse.setText("折價券使用：" + "有");
+                				tradecouponNo.setText("折價券序號："+ judge);
+                				tradeusedenominations.setText("使用面額：" +c.getString(TAG_MONEY));
 
-                			trademembername = (TextView) findViewById(R.id.trade_membername);
-                			tradecouponNo = (TextView) findViewById(R.id.trade_couponNo);
-                			tradeusedenominations = (TextView) findViewById(R.id.trade_usedenominations);
-						
-                			trademembername.setText("會員名稱："+ c.getString(TAG_USERNAME));
-                			tradecouponuse.setText("折價券使用：" + "有");
-                			tradecouponNo.setText("折價券序號："+ judge);
-                			tradeusedenominations.setText("使用面額：" +c.getString(TAG_MONEY));
-
-                			AppController globalVariable = (AppController)getApplicationContext();
-                			tradettmoney = globalVariable.settlea_totalmoney - Integer.valueOf(c.getString(TAG_MONEY));
-                			tradetotalmoney.setText("總計金額：" + tradettmoney);
+                				AppController globalVariable = (AppController)getApplicationContext();
+                				tradettmoney = globalVariable.settlea_totalmoney - Integer.valueOf(c.getString(TAG_MONEY));
+                				tradetotalmoney.setText("總計金額：" + tradettmoney);
                 			
                 			
-                			saveissue_store = c.getString(ISSUE_STORE);
-                			qponuseYorN = 1;
-                			Qponuse = "有";
-           					memname = c.getString(TAG_USERNAME);
-           					QponNo = judge;
-           					usedenominations = Integer.valueOf(c.getString(TAG_MONEY));
-                			
-						
+                				saveissue_store = c.getString(ISSUE_STORE);
+                				qponuseYorN = 1;
+                				Qponuse = "有";
+                				memname = c.getString(TAG_USERNAME);
+                				QponNo = judge;
+                				usedenominations = Integer.valueOf(c.getString(TAG_MONEY));
+                			}else{
+                				qponisusedYorN = 1;
+                				trademembername.setText("會員名稱："+"無");
+                				tradecouponNo.setText("折價券序號："+ "折價券已被使用過喔!");
+                			}
                 		} else {
 					
                 		}
@@ -1005,6 +1037,7 @@ public class S_Tradedetail extends Activity {
         {            
         	// dismiss the dialog once done
             pDialog.dismiss();
+
          }	
     }	
     //-------------------------------------------------	

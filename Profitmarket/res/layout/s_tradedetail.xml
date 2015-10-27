@@ -134,6 +134,7 @@
             android:layout_height="wrap_content"
              android:background="@drawable/s_button_shape5"
             android:padding="10dip"
+            android:textColor="@color/white"
             android:text="確定" />
     </LinearLayout>
 
