@@ -208,11 +208,6 @@ public class S_Stores_Center_Amend extends Activity {
 
 					
 							 introd = c.getString(TAG_INTRODUCTION);
-							
-							
-						
-						
-
 						
 					}
 				 else {
@@ -232,7 +227,7 @@ public class S_Stores_Center_Amend extends Activity {
 			// updating UI from Background Thread
 			S_Stores_Center_Amend.this.runOnUiThread(new Runnable() {
 				public void run() {
-					textintro = (EditText) findViewById(R.id.s_scraedttv1);
+					 textintro = (EditText) findViewById(R.id.s_scraedttv1);
 					 textintro.setText(introd);
 				}
 			});
@@ -267,7 +262,7 @@ public class S_Stores_Center_Amend extends Activity {
 			String name = textName.getText().toString();
 			String phone = textPhone.getText().toString();
 			String address = textAddress.getText().toString();
-String introduction=textintro.getText().toString();
+            String introduction=textintro.getText().toString();
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair(TAG_EMAIL, email));

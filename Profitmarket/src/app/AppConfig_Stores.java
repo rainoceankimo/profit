@@ -4,8 +4,8 @@ public class AppConfig_Stores {
 	
     // Server user login url
    
-    public static String URL_LOGIN = "http://192.168.0.104/android_login_stores/";
-    public static String URL_GET_STOREMESSAGE = "http://192.168.0.104/storedetail/getstroedata.php";
+    public static String URL_LOGIN = "http://chaoiok.net78.net/android_login_stores/";
+    public static String URL_GET_STOREMESSAGE = "http://chaoiok.net78.net/storedetail/getstroedata.php";
 
     // Server user register url
     public static String URL_REGISTER = "http://chaoiok.net78.net/android_login_stores/";
@@ -33,6 +33,9 @@ public class AppConfig_Stores {
 
     // use to S_Coupon_Buy
     public static String url_create_buycoupon = "http://chaoiok.net78.net/couponconnect/create.php";
+    
+    // use to S_Coupon_Issuing
+    public static String url_get_coupontoissuing = "http://chaoiok.net78.net/addQpon/getqpontoissuing.php";
 
     //use to S_Records_ShareGet
     public static String url_get_profitrecord = "http://chaoiok.net78.net/profitrecord/getprofitrecord.php";
