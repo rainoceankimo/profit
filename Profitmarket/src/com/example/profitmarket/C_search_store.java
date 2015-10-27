@@ -183,7 +183,7 @@ public class C_search_store extends Activity {
         	Intent intent = new Intent();  
     	    intent.setClass(C_search_store.this,C_mem_view.class);
     	   startActivity(intent);    //Ä²µo´«­¶  //µ²§ô¥»­¶
-            
+            finish();
             return true;
         }
         
