@@ -169,20 +169,22 @@ public class S_Login extends Activity {
                                 //String openstore = user.getString("openstore");
  
                                 // Inserting row in users table
-                                db.addUser(name, email, idnumber, phone, address, uid, created_at);
-                                
-                                session.setLogin(true);
+
                                 
                                 new Getstoremessage().execute();
                                 
                                 if (checkopenstore == 1){
+                                	
+                                	session.setLogin(true);
+                                	db.addUser(name, email, idnumber, phone, address, uid, created_at);
+                                	
                                 	Intent intent = new Intent(S_Login.this,S_Logout.class);
                                     startActivity(intent);
                                     finish();
                                     
                                 }else if(checkopenstore == 0)
                                 {
-                            	   Toast.makeText(S_Login.this, "貴店尚未開通!" + checkopenstore +""+ openstore, Toast.LENGTH_SHORT).show();
+                            	   Toast.makeText(S_Login.this, "貴店尚未開通!", Toast.LENGTH_SHORT).show();
                                 } 
 
                                 
